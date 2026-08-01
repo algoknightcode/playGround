@@ -22,9 +22,10 @@ export default function Home() {
       <ToysForEveryNeed/>
       <SplitVantage />
       <ExpandableVideoMarquee />
+        <AgeBestsellers/>
       <TrustBannerSection />
      
-      <AgeBestsellers/>
+    
       <AtestMarqueeWall/>
       <GalleryLightboxZoom />
       <PastelB2BFooter />

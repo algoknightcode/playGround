@@ -135,12 +135,6 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Soft Cream Overlay that fades out on scroll */}
-          <motion.div
-            style={{ opacity: overlayOpacity }}
-            className="absolute inset-0 bg-[#FAF8F5] pointer-events-none"
-          />
-
           {/* Soft Glass Rim Highlight */}
           <div className="absolute inset-0 ring-1 ring-inset ring-white/60 rounded-[inherit] pointer-events-none" />
         </motion.div>

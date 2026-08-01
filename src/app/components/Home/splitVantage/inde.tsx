@@ -14,38 +14,42 @@ interface Project {
   services: string[];
   image: string;
   badgeColor: string;
+  icon: string;
 }
 
 const projects: Project[] = [
   {
-    id: 'sprout',
-    name: 'SPROUT & CO',
-    title: 'Designing active wooden play sets for growing toddlers',
-    year: '2-4 Years',
-    timeline: '5 Weeks',
-    services: ['Play Design', 'Safety Test', '3D Woodwork'],
-    image: 'https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=1200&q=80',
+    id: 'trampoline',
+    name: 'KIDS TRAMPOLINE',
+    title: 'Safe & bouncy indoor trampolines for endless active fun',
+    year: '3-8 Years',
+    timeline: 'Active Play',
+    services: ['Motor Skills', 'Energy Burn', 'Safety Net'],
+    image: '/assets/split_vantage_images/Kids_Trampoline.png',
     badgeColor: 'bg-amber-100 text-amber-900 border-amber-200/80',
+    icon: '🏃‍♂️',
   },
   {
-    id: 'tiny-explorer',
-    name: 'TINY EXPLORER',
-    title: 'Building sensory exploration kits for early childhood learning',
-    year: '1-3 Years',
-    timeline: '2 Months',
-    services: ['Tactile Kits', 'Branding', 'Packaging'],
-    image: 'https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=1200&q=80',
+    id: 'playhouse',
+    name: 'KIDS PLAY HOUSE',
+    title: 'Imaginative play tents and wooden houses for little dreamers',
+    year: '2-6 Years',
+    timeline: 'Creative Play',
+    services: ['Roleplay', 'Cozy Space', 'Imagination'],
+    image: '/assets/split_vantage_images/kids_playsHouse.png',
     badgeColor: 'bg-sky-100 text-sky-900 border-sky-200/80',
+    icon: '⛺',
   },
   {
-    id: 'little-builder',
-    name: 'LITTLE BUILDER',
-    title: 'Crafting modular stackable blocks to foster creative motor skills',
-    year: '3-6 Years',
-    timeline: '6 Weeks',
-    services: ['Modular Systems', 'UI/UX', 'Product Line'],
-    image: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=1200&q=80',
+    id: 'furniture',
+    name: 'KIDS FURNITURE',
+    title: 'Ergonomic & colorful tables for learning and art activities',
+    year: '3-10 Years',
+    timeline: 'Study & Art',
+    services: ['Ergonomic', 'Storage', 'Durable'],
+    image: '/assets/split_vantage_images/Kids_Furniture.png',
     badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
+    icon: '🎨',
   },
 ];
 
@@ -89,7 +93,7 @@ export default function PlayfulLightShowcase() {
     /* NO OVERFLOW-HIDDEN HERE -> STICKY WORKS NOW */
     <div 
       ref={containerRef} 
-      className="relative w-full bg-[#FAF6F0] text-slate-800 select-none"
+      className="relative w-full bg-[#fcece3] text-slate-800 select-none"
       style={{ height: `${projects.length * 100}vh` }}
     >
       {/* ═══ CONTAINED BACKGROUND FLOATING ELEMENTS ═══ */}
@@ -134,7 +138,7 @@ export default function PlayfulLightShowcase() {
       <div className="sticky top-0 flex h-screen w-full items-center justify-center p-4 md:p-8 overflow-hidden z-10">
         
         {/* Main Creamish Container Card */}
-        <div className="grid h-[85vh] w-full max-w-7xl grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bg-[#FFFDF8] rounded-[2.5rem] p-6 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.04)] border-2 border-[#F0E6D8]">
+        <div className="grid h-[85vh] w-full max-w-7xl grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bg-[#FFF9F2] rounded-[2.5rem] p-6 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.04)] border-2 border-[#F0E6D8]">
 
           {/* Left Column - Metadata & Details */}
           <div className="md:col-span-5 flex flex-col justify-between pr-0 md:pr-8 border-b md:border-b-0 md:border-r border-[#F0E6D8] pb-6 md:pb-0">
@@ -187,7 +191,7 @@ export default function PlayfulLightShowcase() {
                       animate={{ rotate: [0, 14, -10, 14, 0] }}
                       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                     >
-                      🧸
+                      {projects[activeIndex].icon}
                     </motion.span>
                   </div>
 
@@ -230,8 +234,8 @@ export default function PlayfulLightShowcase() {
           </div>
 
           {/* Right Column - Scroll Wipe Image Reveal */}
-          <div className="relative md:col-span-7 h-full w-full overflow-hidden rounded-[1.8rem] border-2 border-[#F0E6D8] bg-[#FAF6F0] p-2">
-            <div className="relative w-full h-full rounded-[1.3rem] overflow-hidden">
+          <div className="relative md:col-span-7 h-full w-full overflow-hidden rounded-[1.8rem] border-2 border-[#F0E6D8] bg-[#fcece3] p-2">
+            <div className="relative w-full h-full rounded-[1.3rem] overflow-hidden bg-white">
               {projects.map((proj, i) => (
                 <ProjectImage
                   key={proj.id}

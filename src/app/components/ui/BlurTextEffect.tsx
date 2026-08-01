@@ -30,10 +30,10 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({ children, classN
               opacity: 1,
               y: 0,
               filter: 'blur(0px)',
-              duration: 0.3,
+              duration: 0.5,
               delay: delay,
               ease: 'power2.out',
-              stagger: 0.015,
+              stagger: 0.05,
               clearProps: 'filter',
             });
 
@@ -42,7 +42,7 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({ children, classN
           }
         });
       },
-      { threshold: 0.2 } // Triggers when 20% visible
+      { threshold: 0.1, rootMargin: '0px 0px -15% 0px' } // Triggers when entering the bottom 15% of the screen
     );
 
     observer.observe(el);
@@ -52,10 +52,11 @@ export const BlurTextEffect: React.FC<BlurTextEffectProps> = ({ children, classN
 
   return (
     <span className={`inline-block ${className}`} ref={containerRef}>
-      {children.split('').map((char, i) => (
-        <span key={`${char}-${i}`} className="char inline-block" style={{ whiteSpace: 'pre' }}>
-          {char === ' ' ? '\u00A0' : char}
-        </span>
+      {children.split(' ').map((word, i, arr) => (
+        <React.Fragment key={`${word}-${i}`}>
+          <span className="char inline-block">{word}</span>
+          {i < arr.length - 1 && ' '}
+        </React.Fragment>
       ))}
     </span>
   );
