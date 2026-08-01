@@ -82,7 +82,7 @@ export const TrustBannerSection: React.FC = () => {
 
         {/* Main Headline with Straight Highlight Pill */}
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-black text-slate-800 tracking-tight leading-snug sm:leading-tight mb-8 max-w-3xl">
-          <BlurTextEffect>Why Is Playgro The </BlurTextEffect>{' '}
+          <BlurTextEffect>Why Is Toy Park The </BlurTextEffect>{' '}
           <span className="inline-block relative my-1 sm:my-0 px-4 py-1.5 rounded-2xl bg-[#E0F2FE] border border-[#BAE6FD] text-[#0284C7] shadow-sm">
             <BlurTextEffect className="text-[#0284C7]">
               Most Trusted Kids Equipment
@@ -95,7 +95,7 @@ export const TrustBannerSection: React.FC = () => {
         <div className="space-y-4 text-slate-700 font-medium text-base sm:text-lg leading-relaxed max-w-2xl bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-3xl border border-amber-200/60 shadow-sm">
           <p>
             <BlurTextEffect>
-              Here at Playgro, we aim to provide high-quality manufacturing with our toys, setups, Playground equipment, etc. This equipment helps in shaping young minds with motor skills, cognition, and creativity while having fun!
+              Here at Toy Park, we aim to provide high-quality manufacturing with our toys, setups, Playground equipment, etc. This equipment helps in shaping young minds with motor skills, cognition, and creativity while having fun!
             </BlurTextEffect>
           </p>
 

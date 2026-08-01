@@ -78,8 +78,11 @@ export const ToyWindmillScroll: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-black leading-[1.25] tracking-tight text-zinc-950">
               Built With Experience<br />
               <span>For Your </span>
-              <span className="bg-gradient-to-r from-[#FF7A59] via-[#FF9F43] to-[#FFC83B] bg-clip-text text-transparent drop-shadow-sm">
-                Child's Better Experience
+              <span className="bg-gradient-to-r from-[#FF7A59] to-[#FF9F43] bg-clip-text text-transparent drop-shadow-sm">
+                Child's Better{' '}
+              </span>
+              <span className="bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6] bg-clip-text text-transparent drop-shadow-sm">
+                Experience
               </span>
               <button className="inline-flex items-center rounded-full bg-gradient-to-r from-[#FF7A59] to-[#FF9F43] hover:from-[#e05f3e] hover:to-[#e08630] text-white font-bold text-xs sm:text-sm px-6 py-2.5 shadow-md shadow-[#FF7A59]/25 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap align-middle ml-4 -translate-y-1">
                 Explore Toys Catalog

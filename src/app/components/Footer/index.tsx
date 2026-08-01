@@ -16,7 +16,7 @@ export const PastelB2BFooter: React.FC = () => {
           className="text-4xl sm:text-6xl md:text-7xl lg:text-[6.5rem] font-bold tracking-tight text-slate-800 uppercase leading-none inline-block origin-left group-hover:text-[#A5C4B4] transition-colors duration-300"
           style={{ transform: 'scaleY(1.1)', transformOrigin: 'left' }}
         >
-          BECOME A PARTNER
+          TOYPARK
         </h1>
         <span className="text-5xl md:text-7xl text-slate-300 font-light group-hover:translate-x-2 group-hover:-translate-y-2 group-hover:text-[#A5C4B4] transition-all duration-300">
           ↗
@@ -40,7 +40,7 @@ export const PastelB2BFooter: React.FC = () => {
             </p>
           </div>
           <p className="mt-4 text-[10px] text-orange-900/60 font-medium uppercase tracking-widest">
-            © 2026 Sprout & Co. All rights reserved.
+            © 2026 Toy Park. All rights reserved.
           </p>
         </div>
 
@@ -133,7 +133,7 @@ export const PastelB2BFooter: React.FC = () => {
             wholesale inquiries
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-6xl font-bold text-slate-800 tracking-tight leading-none hover:text-[#E79482] cursor-pointer transition-colors duration-200 mt-2">
-            sales@sproutandco.b2b
+            sales@toypark.in
           </h2>
         </div>
         <div className="text-[10px] uppercase tracking-widest font-semibold text-slate-400">

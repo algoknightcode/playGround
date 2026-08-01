@@ -19,7 +19,7 @@ export default function PlayfulHeader() {
   const [isHoveringPhone, setIsHoveringPhone] = useState(false);
 
   return (
-    <header className="relative w-full overflow-hidden bg-[#cbe3ff] px-6 py-1 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:px-10">
+    <header className="relative w-full overflow-hidden bg-[#ffe4eb] px-6 py-1 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:px-10">
       {/* Decorative Background Clouds (Subtle wow factor) */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
         <motion.div
