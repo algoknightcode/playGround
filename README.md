@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Color Palette & Design System Documentation
 
-## Getting Started
+## 🎨 Matching Gradient Color Palette
 
-First, run the development server:
+This document tracks the color palette and hex codes used across the project components.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 🌈 Color Swatches & Hex Codes
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Color Name | Hex Code | RGB | Visual Preview |
+| :--- | :--- | :--- | :--- |
+| **Teal Green** | `#08B7AC` | `rgb(8, 183, 172)` | `🟢 #08B7AC` |
+| **Cyan Blue** | `#00A7C4` | `rgb(0, 167, 196)` | `🩵 #00A7C4` |
+| **Deep Sky Blue** | `#0093D3` | `rgb(0, 147, 211)` | `💙 #0093D3` |
+| **Royal Blue** | `#4179CD` | `rgb(65, 121, 205)` | `🫐 #4179CD` |
+| **Purple / Violet** | `#8358AE` | `rgb(131, 88, 174)` | `💜 #8358AE` |
+| **Magenta Red** | `#A1317B` | `rgb(161, 49, 123)` | `🌺 #A1317B` |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🎨 Additional Project Color Palettes
 
-## Learn More
+#### Neubrutalism Palette
+- **Main Canvas**: `#FEF9F0` (Warm Cream)
+- **Primary Text & Borders**: `#2D3436` (Off-Black Charcoal)
+- **Secondary Body Text**: `#636E72` (Muted Charcoal)
+- **Primary Coral Accent**: `#FF6B6B` (Tactile Shadow: `#D64545`)
+- **Sunshine Yellow Accent**: `#FFE66D` (Tactile Shadow: `#D9B61E`)
+- **Fresh Teal Accent**: `#4ECDC4` (Tactile Shadow: `#38B2AC`)
+- **Vibrant Purple Accent**: `#9B59B6` (Tactile Shadow: `#7D429B`)
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Banner 1 Palette
+- **Golden Yellow**: `#FFC349`
+- **Deep Slate Blue**: `#525EA7`
+- **Cerulean Blue**: `#5FACD3`
+- **Sky Aqua**: `#97DDE9`

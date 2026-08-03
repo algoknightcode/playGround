@@ -67,9 +67,9 @@ export const ToyWindmillScroll: React.FC = () => {
             className="flex flex-col items-center lg:items-start gap-4 max-w-2xl"
           >
             {/* Made with love badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FF7A59]/10 border border-[#FF7A59]/25 shadow-sm backdrop-blur-md">
-              <HappyStarIcon className="w-4 h-4 text-[#FF7A59] animate-bounce" />
-              <span className="font-kalam text-[#FF7A59] text-xs font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#F03852]/10 border border-[#F03852]/25 shadow-sm backdrop-blur-md">
+              <HappyStarIcon className="w-4 h-4 text-[#F03852] animate-bounce" />
+              <span className="font-kalam text-[#F03852] text-xs font-bold uppercase tracking-wider">
                 Made With 100% Love
               </span>
             </div>
@@ -78,13 +78,13 @@ export const ToyWindmillScroll: React.FC = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[48px] font-black leading-[1.25] tracking-tight text-zinc-950">
               Built With Experience<br />
               <span>For Your </span>
-              <span className="bg-gradient-to-r from-[#FF7A59] to-[#FF9F43] bg-clip-text text-transparent drop-shadow-sm">
+              <span className="bg-gradient-to-r from-[#F03852] to-[#FF9F43] bg-clip-text text-transparent drop-shadow-sm">
                 Child's Better{' '}
               </span>
-              <span className="bg-gradient-to-r from-[#3B82F6] to-[#8B5CF6] bg-clip-text text-transparent drop-shadow-sm">
+              <span className="bg-gradient-to-r from-[#FF9F43] to-[#FFD200] bg-clip-text text-transparent drop-shadow-sm">
                 Experience
               </span>
-              <button className="inline-flex items-center rounded-full bg-gradient-to-r from-[#FF7A59] to-[#FF9F43] hover:from-[#e05f3e] hover:to-[#e08630] text-white font-bold text-xs sm:text-sm px-6 py-2.5 shadow-md shadow-[#FF7A59]/25 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap align-middle ml-4 -translate-y-1">
+              <button className="inline-flex items-center rounded-full bg-gradient-to-r from-[#F03852] via-[#FF7A59] to-[#FFD200] hover:from-[#d6263e] hover:to-[#e6bd00] text-white font-bold text-xs sm:text-sm px-6 py-2.5 shadow-md shadow-[#F03852]/25 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap align-middle ml-4 -translate-y-1">
                 Explore Toys Catalog
               </button>
             </h2>
@@ -102,20 +102,20 @@ export const ToyWindmillScroll: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full bg-white/80 backdrop-blur-md border border-white/90 rounded-[2rem] p-6 sm:p-8 shadow-[0_20px_45px_rgba(255,122,89,0.1)] flex flex-col sm:flex-row justify-between items-stretch gap-6 sm:gap-2 relative overflow-hidden"
+            className="w-full bg-white/85 backdrop-blur-md border border-white/90 rounded-[2rem] p-6 sm:p-8 shadow-[0_20px_45px_rgba(240,56,82,0.12)] flex flex-col sm:flex-row justify-between items-stretch gap-6 sm:gap-2 relative overflow-hidden"
           >
             {/* Stat 1: Years of Work */}
             <div className="flex-1 flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-11 h-11 rounded-2xl bg-[#FF7A59]/10 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                <svg className="w-5 h-5 text-[#FF7A59]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <div className="w-11 h-11 rounded-2xl bg-[#F03852]/10 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <svg className="w-5 h-5 text-[#F03852]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
               <div className="text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight flex items-baseline justify-center">
                 <CountUp end={20} duration={2} enableScrollSpy scrollSpyOnce />
-                <span className="text-[#FF7A59] text-2xl sm:text-3xl ml-0.5 font-bold">+</span>
+                <span className="text-[#F03852] text-2xl sm:text-3xl ml-0.5 font-bold">+</span>
               </div>
-              <span className="font-kalam text-[#FF7A59] text-base font-bold mt-1.5">
+              <span className="font-kalam text-[#F03852] text-base font-bold mt-1.5">
                 Years Of Work
               </span>
             </div>
@@ -125,16 +125,16 @@ export const ToyWindmillScroll: React.FC = () => {
 
             {/* Stat 2: Kids Products */}
             <div className="flex-1 flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-11 h-11 rounded-2xl bg-[#FFC83B]/10 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
-                <svg className="w-5 h-5 text-[#FFC83B]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <div className="w-11 h-11 rounded-2xl bg-[#FFD200]/20 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-300">
+                <svg className="w-5 h-5 text-[#D9A700]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
               </div>
               <div className="text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight flex items-baseline justify-center">
                 <CountUp end={820} duration={2.5} enableScrollSpy scrollSpyOnce />
-                <span className="text-[#FFC83B] text-2xl sm:text-3xl ml-0.5 font-bold">+</span>
+                <span className="text-[#E6B800] text-2xl sm:text-3xl ml-0.5 font-bold">+</span>
               </div>
-              <span className="font-kalam text-[#FFC83B] text-base font-bold mt-1.5">
+              <span className="font-kalam text-[#D9A700] text-base font-bold mt-1.5">
                 Kids Products
               </span>
             </div>
@@ -144,16 +144,16 @@ export const ToyWindmillScroll: React.FC = () => {
 
             {/* Stat 3: Safe for Kids */}
             <div className="flex-1 flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-11 h-11 rounded-2xl bg-[#4CAF50]/10 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
-                <svg className="w-5 h-5 text-[#4CAF50]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <div className="w-11 h-11 rounded-2xl bg-[#F03852]/10 flex items-center justify-center mb-3 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300">
+                <svg className="w-5 h-5 text-[#F03852]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
               <div className="text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight flex items-baseline justify-center">
                 <CountUp end={100} duration={2} enableScrollSpy scrollSpyOnce />
-                <span className="text-[#4CAF50] text-2xl sm:text-3xl ml-0.5 font-bold">%</span>
+                <span className="text-[#F03852] text-2xl sm:text-3xl ml-0.5 font-bold">%</span>
               </div>
-              <span className="font-kalam text-[#4CAF50] text-base font-bold mt-1.5">
+              <span className="font-kalam text-[#F03852] text-base font-bold mt-1.5">
                 Safe For Kids
               </span>
             </div>

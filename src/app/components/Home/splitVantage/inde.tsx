@@ -14,8 +14,36 @@ interface Project {
   services: string[];
   image: string;
   badgeColor: string;
+  btnColor: string;
+  pillColor: string;
   icon: string;
 }
+
+// Web Audio API synth sound trigger for tactile physical feedback
+const playPopSound = () => {
+  try {
+    const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(520, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(980, ctx.currentTime + 0.08);
+    
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.08);
+    
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    
+    osc.start();
+    osc.stop(ctx.currentTime + 0.08);
+  } catch {
+    // Ignore autoplay AudioContext restrictions
+  }
+};
 
 const projects: Project[] = [
   {
@@ -26,7 +54,9 @@ const projects: Project[] = [
     timeline: 'Active Play',
     services: ['Motor Skills', 'Energy Burn', 'Safety Net'],
     image: '/assets/split_vantage_images/Kids_Trampoline.png',
-    badgeColor: 'bg-amber-100 text-amber-900 border-amber-200/80',
+    badgeColor: 'bg-[#FFE66D] text-[#2D3436] border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436]',
+    btnColor: 'bg-[#FFE66D] text-[#2D3436] hover:bg-[#f5dc5f]',
+    pillColor: 'bg-[#4ECDC4] text-[#2D3436]',
     icon: '🏃‍♂️',
   },
   {
@@ -37,7 +67,9 @@ const projects: Project[] = [
     timeline: 'Creative Play',
     services: ['Roleplay', 'Cozy Space', 'Imagination'],
     image: '/assets/split_vantage_images/kids_playsHouse.png',
-    badgeColor: 'bg-sky-100 text-sky-900 border-sky-200/80',
+    badgeColor: 'bg-[#4ECDC4] text-[#2D3436] border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436]',
+    btnColor: 'bg-[#4ECDC4] text-[#2D3436] hover:bg-[#3dbcb3]',
+    pillColor: 'bg-[#9B59B6] text-white',
     icon: '⛺',
   },
   {
@@ -48,7 +80,9 @@ const projects: Project[] = [
     timeline: 'Study & Art',
     services: ['Ergonomic', 'Storage', 'Durable'],
     image: '/assets/split_vantage_images/Kids_Furniture.png',
-    badgeColor: 'bg-emerald-100 text-emerald-900 border-emerald-200/80',
+    badgeColor: 'bg-[#FF6B6B] text-white border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436]',
+    btnColor: 'bg-[#FF6B6B] text-white hover:bg-[#ff5252]',
+    pillColor: 'bg-[#FFE66D] text-[#2D3436]',
     icon: '🎨',
   },
 ];
@@ -86,75 +120,77 @@ export default function PlayfulLightShowcase() {
   // 3. Update text index on scroll transition
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
     const newIndex = Math.round(latest * (projects.length - 1));
-    setActiveIndex(newIndex);
+    if (newIndex !== activeIndex) {
+      setActiveIndex(newIndex);
+      playPopSound();
+    }
   });
 
   return (
-    /* NO OVERFLOW-HIDDEN HERE -> STICKY WORKS NOW */
     <div 
       ref={containerRef} 
-      className="relative w-full bg-[#fcece3] text-slate-800 select-none"
+      className="relative w-full bg-[#FEF9F0] text-[#2D3436] select-none font-sans antialiased"
       style={{ height: `${projects.length * 100}vh` }}
     >
-      {/* ═══ CONTAINED BACKGROUND FLOATING ELEMENTS ═══ */}
+      {/* ═══ CONTAINED BACKGROUND FLOATING NEUBRUTALIST ACCENTS ═══ */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div
           animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
           transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-10 right-10 hidden lg:flex flex-col items-center opacity-70"
+          className="absolute top-10 right-10 hidden lg:flex flex-col items-center opacity-90"
         >
-          <div className="w-10 h-12 bg-[#F472B6] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] shadow-sm border border-white flex items-center justify-center">
-            <div className="w-2 h-4 bg-white/40 rounded-full -ml-3 -mt-2 blur-[0.5px]" />
+          <div className="w-12 h-14 bg-[#FF6B6B] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] flex items-center justify-center">
+            <div className="w-2.5 h-5 bg-white/60 rounded-full -ml-3 -mt-2 blur-[0.5px]" />
           </div>
-          <div className="w-1.5 h-2 bg-[#FDE68A] rounded-xs mt-0.5" />
+          <div className="w-2 h-3 bg-[#FFE66D] rounded-xs mt-0.5 border border-[#2D3436]" />
         </motion.div>
 
         <motion.div 
           animate={{ x: [0, 16, 0], y: [0, -6, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-12 left-10 hidden md:flex items-center justify-center p-2.5 bg-white/80 rounded-full border border-sky-100 shadow-xs text-sky-400"
+          className="absolute top-12 left-10 hidden md:flex items-center justify-center p-3 bg-[#4ECDC4] rounded-full border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] text-[#2D3436]"
         >
-          <Cloud className="w-6 h-6 stroke-[2]" />
+          <Cloud className="w-6 h-6 stroke-[2.5]" />
         </motion.div>
 
         <motion.div 
           animate={{ scale: [1, 1.2, 1], rotate: [0, 20, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-12 left-12 hidden lg:flex text-amber-400"
+          className="absolute bottom-12 left-12 hidden lg:flex text-[#FFE66D]"
         >
-          <Star className="w-6 h-6 fill-amber-300 stroke-amber-400" />
+          <Star className="w-8 h-8 fill-[#FFE66D] stroke-[#2D3436] stroke-[2]" />
         </motion.div>
 
         <motion.div 
           animate={{ y: [0, -12, 0], x: [0, 6, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-12 right-12 hidden md:flex items-center justify-center p-2.5 bg-rose-100/80 rounded-2xl border border-rose-200 text-rose-500"
+          className="absolute bottom-12 right-12 hidden md:flex items-center justify-center p-3 bg-[#9B59B6] rounded-2xl border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] text-white"
         >
-          <Rocket className="w-6 h-6 stroke-[2]" />
+          <Rocket className="w-6 h-6 stroke-[2.5]" />
         </motion.div>
       </div>
 
       {/* ═══ PINNED STICKY VIEWPORT ═══ */}
       <div className="sticky top-0 flex h-screen w-full items-center justify-center p-4 md:p-8 overflow-hidden z-10">
         
-        {/* Main Creamish Container Card */}
-        <div className="grid h-[85vh] w-full max-w-7xl grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bg-[#FFF9F2] rounded-[2.5rem] p-6 md:p-10 shadow-[0_12px_40px_rgba(0,0,0,0.04)] border-2 border-[#F0E6D8]">
+        {/* Main Neubrutalist Card Container */}
+        <div className="grid h-[85vh] w-full max-w-7xl grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bg-white rounded-[2.5rem] p-6 md:p-10 shadow-[8px_8px_0px_0px_#2D3436] border-4 border-[#2D3436]">
 
           {/* Left Column - Metadata & Details */}
-          <div className="md:col-span-5 flex flex-col justify-between pr-0 md:pr-8 border-b md:border-b-0 md:border-r border-[#F0E6D8] pb-6 md:pb-0">
+          <div className="md:col-span-5 flex flex-col justify-between pr-0 md:pr-8 border-b md:border-b-0 md:border-r-3 border-[#2D3436] pb-6 md:pb-0">
             
             {/* Top Indicator */}
             <div className="flex justify-between items-start w-full">
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2.5">
                 {projects.map((proj, idx) => (
-                  <div key={proj.id} className="flex items-center gap-2.5">
+                  <div key={proj.id} className="flex items-center gap-3">
                     <div 
-                      className={`w-3 h-3 rounded-full bg-sky-500 transition-all duration-300 ${
-                        activeIndex === idx ? 'scale-100 opacity-100' : 'scale-50 opacity-30'
+                      className={`w-3.5 h-3.5 rounded-full border-2 border-[#2D3436] transition-all duration-300 ${
+                        activeIndex === idx ? 'bg-[#FF6B6B] scale-110 shadow-[2px_2px_0px_0px_#2D3436]' : 'bg-[#FEF9F0] scale-90'
                       }`}
                     />
-                    <span className={`text-xs font-extrabold uppercase tracking-wider transition-colors duration-300 ${
-                      activeIndex === idx ? 'text-slate-800' : 'text-slate-400'
+                    <span className={`text-xs font-black uppercase tracking-wider transition-colors duration-300 ${
+                      activeIndex === idx ? 'text-[#2D3436]' : 'text-[#636E72]'
                     }`}>
                       {proj.name}
                     </span>
@@ -164,9 +200,10 @@ export default function PlayfulLightShowcase() {
 
               <a 
                 href="#" 
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFE7D8] border border-amber-200/80 text-amber-900 text-xs font-bold uppercase tracking-wider hover:bg-amber-100 transition-colors"
+                onClick={playPopSound}
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#FFE66D] border-2 border-[#2D3436] text-[#2D3436] text-xs font-black uppercase tracking-wider shadow-[3px_3px_0px_0px_#2D3436] hover:-translate-y-0.5 active:translate-y-0.5 transition-all"
               >
-                <Sparkles className="w-3 h-3 text-amber-600" />
+                <Sparkles className="w-3.5 h-3.5 text-[#2D3436]" />
                 <span>All Collections</span>
               </a>
             </div>
@@ -182,12 +219,12 @@ export default function PlayfulLightShowcase() {
                   transition={{ duration: 0.35, ease: 'easeOut' }}
                   className="space-y-5 w-full"
                 >
-                  <div className="flex items-center gap-2">
-                    <span className={`px-3 py-1 rounded-full border text-xs font-extrabold tracking-wide uppercase ${projects[activeIndex].badgeColor}`}>
+                  <div className="flex items-center gap-3">
+                    <span className={`px-3.5 py-1 rounded-full text-xs font-black tracking-wide uppercase ${projects[activeIndex].badgeColor}`}>
                       {projects[activeIndex].name}
                     </span>
                     <motion.span
-                      className="inline-block origin-bottom-right text-lg"
+                      className="inline-block origin-bottom-right text-xl"
                       animate={{ rotate: [0, 14, -10, 14, 0] }}
                       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                     >
@@ -195,26 +232,26 @@ export default function PlayfulLightShowcase() {
                     </motion.span>
                   </div>
 
-                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-slate-800 leading-tight min-h-[6rem]">
+                  <h2 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#2D3436] leading-tight min-h-[6rem] tracking-tight">
                     {projects[activeIndex].title}
                   </h2>
 
-                  <div className="space-y-3 pt-4 border-t border-[#F0E6D8] text-xs sm:text-sm">
-                    <div className="flex justify-between items-center py-0.5">
-                      <span className="font-bold text-amber-800 uppercase tracking-wider text-xs">Recommended Age</span>
-                      <span className="font-bold text-slate-700">{projects[activeIndex].year}</span>
+                  <div className="space-y-3 pt-4 border-t-2 border-[#2D3436] text-xs sm:text-sm">
+                    <div className="flex justify-between items-center py-1">
+                      <span className="font-black text-[#636E72] uppercase tracking-wider text-xs">Recommended Age</span>
+                      <span className="font-extrabold text-[#2D3436] bg-[#FEF9F0] px-2.5 py-0.5 rounded-md border border-[#2D3436]">{projects[activeIndex].year}</span>
                     </div>
-                    <div className="flex justify-between items-center py-0.5 border-t border-[#F0E6D8]">
-                      <span className="font-bold text-amber-800 uppercase tracking-wider text-xs">Play Duration</span>
-                      <span className="font-bold text-slate-700">{projects[activeIndex].timeline}</span>
+                    <div className="flex justify-between items-center py-1 border-t border-[#2D3436]/15">
+                      <span className="font-black text-[#636E72] uppercase tracking-wider text-xs">Play Duration</span>
+                      <span className="font-extrabold text-[#2D3436] bg-[#FEF9F0] px-2.5 py-0.5 rounded-md border border-[#2D3436]">{projects[activeIndex].timeline}</span>
                     </div>
-                    <div className="flex justify-between items-center py-0.5 border-t border-[#F0E6D8]">
-                      <span className="font-bold text-amber-800 uppercase tracking-wider text-xs">Skills Developed</span>
+                    <div className="flex justify-between items-center py-1 border-t border-[#2D3436]/15">
+                      <span className="font-black text-[#636E72] uppercase tracking-wider text-xs">Skills Developed</span>
                       <div className="flex gap-1.5 flex-wrap justify-end">
                         {projects[activeIndex].services.map((service, i) => (
                           <span
                             key={i}
-                            className="rounded-full bg-sky-50 px-2.5 py-0.5 text-[11px] font-extrabold text-sky-700 border border-sky-100"
+                            className={`rounded-full px-2.5 py-0.5 text-[11px] font-black border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] ${projects[activeIndex].pillColor}`}
                           >
                             {service}
                           </span>
@@ -226,16 +263,19 @@ export default function PlayfulLightShowcase() {
               </AnimatePresence>
             </div>
 
-            {/* CTA Button */}
-            <button className="w-full py-3.5 px-5 rounded-2xl bg-[#0284C7] hover:bg-[#0369A1] active:bg-[#075985] text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-between shadow-[0_4px_14px_rgba(2,132,199,0.2)] transition-all duration-200 group mt-4">
+            {/* CTA Button with Tactile Block Shadow & Dynamic Theme Color */}
+            <button 
+              onClick={playPopSound}
+              className={`w-full py-4 px-6 rounded-2xl font-black text-xs sm:text-sm uppercase tracking-wider flex items-center justify-between border-3 border-[#2D3436] shadow-[5px_5px_0px_0px_#2D3436] hover:-translate-y-1 hover:shadow-[7px_7px_0px_0px_#2D3436] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_#2D3436] transition-all duration-200 group mt-4 cursor-pointer ${projects[activeIndex].btnColor}`}
+            >
               <span>EXPLORE COLLECTION</span>
-              <ArrowRight className="w-4 h-4 stroke-[2.5] transform group-hover:translate-x-1 transition-transform duration-200" />
+              <ArrowRight className="w-5 h-5 stroke-[3] transform group-hover:translate-x-1.5 transition-transform duration-200" />
             </button>
           </div>
 
           {/* Right Column - Scroll Wipe Image Reveal */}
-          <div className="relative md:col-span-7 h-full w-full overflow-hidden rounded-[1.8rem] border-2 border-[#F0E6D8] bg-[#fcece3] p-2">
-            <div className="relative w-full h-full rounded-[1.3rem] overflow-hidden bg-white">
+          <div className="relative md:col-span-7 h-full w-full overflow-hidden rounded-[2rem] border-3 border-[#2D3436] bg-[#FEF9F0] p-2 shadow-[4px_4px_0px_0px_#2D3436]">
+            <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-white border-2 border-[#2D3436]">
               {projects.map((proj, i) => (
                 <ProjectImage
                   key={proj.id}
