@@ -1,139 +1,156 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { motion } from "motion/react";
-import { ChevronDown, Phone, CloudDownload, Menu } from "lucide-react";
+import React, { useState, useRef } from 'react';
+import { ChevronDown, Mail, Phone, Search, ShoppingCart, ArrowRight, LayoutGrid, Shapes, Armchair } from 'lucide-react';
 
-// Playful colors for each nav item on hover
-const NAV_ITEMS = [
-  { name: "About Us", hoverColor: "hover:text-pink-500" },
-  { name: "Products", hoverColor: "hover:text-amber-500", hasDropdown: true },
-  { name: "Credentials", hoverColor: "hover:text-emerald-500" },
-  { name: "Exhibitions", hoverColor: "hover:text-purple-500" },
-  { name: "Gallery", hoverColor: "hover:text-rose-500" },
-  { name: "Contact", hoverColor: "hover:text-cyan-600" },
-  { name: "Blog", hoverColor: "hover:text-orange-500" },
-];
-
-export default function PlayfulHeader() {
-  const [isHoveringPhone, setIsHoveringPhone] = useState(false);
+export default function KidzaNavbar() {
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   return (
-    <header className="relative w-full overflow-hidden bg-[#ffe4eb] px-6 py-1 shadow-[0_8px_30px_rgb(0,0,0,0.04)] sm:px-10">
-      {/* Decorative Background Clouds (Subtle wow factor) */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-40">
-        <motion.div
-          animate={{ x: [0, 100, 0] }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-4 left-10 h-16 w-32 rounded-full bg-white/60 blur-xl"
-        />
-        <motion.div
-          animate={{ x: [0, -100, 0] }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute top-2 right-20 h-20 w-40 rounded-full bg-white/60 blur-xl"
-        />
-      </div>
-
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 sm:gap-4">
-        
-        {/* 1. Playful Logo */}
-        <motion.div
-          whileHover={{ scale: 1.05, rotate: -2 }}
-          whileTap={{ scale: 0.95 }}
-          className="relative z-10 flex shrink-0 cursor-pointer items-center"
-        >
-          <img
-            src="/assets/ToyPark_logo.png"
-            alt="Toy Park Logo"
-            className="h-20 sm:h-24 lg:h-28 w-auto object-contain"
-          />
-        </motion.div>
-
-        {/* 2. Desktop Navigation */}
-        <nav className="hidden items-center gap-0.5 lg:flex xl:gap-2">
-          {NAV_ITEMS.map((item, i) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: i * 0.05,
-                type: "spring",
-                stiffness: 300,
-                damping: 20,
-              }}
-              className="relative"
-            >
-              <motion.button
-                whileHover={{ y: -4, scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`group flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-2 text-[15px] font-bold text-indigo-950 transition-colors ${item.hoverColor}`}
-              >
-                {item.name}
-                {item.hasDropdown && (
-                  <motion.span
-                    transition={{ type: "spring", stiffness: 300 }}
-                    className="group-hover:rotate-180"
-                  >
-                    <ChevronDown className="h-4 w-4 stroke-[3]" />
-                  </motion.span>
-                )}
-              </motion.button>
-            </motion.div>
-          ))}
-        </nav>
-
-        {/* 3. Right Side: Phone & CTA */}
-        <div className="flex items-center gap-3 xl:gap-6">
+    <header className="w-full font-fredoka relative">
+      
+      {/* ═══ 1. CYAN TOP BAR ═══ */}
+      <div className="relative bg-[#62C4D2] text-white text-sm sm:text-base px-6 lg:px-12 pt-2.5 pb-4 z-20">
+        <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
           
-          {/* Phone Number */}
-          <motion.a
-            href="tel:+919292924692"
-            onHoverStart={() => setIsHoveringPhone(true)}
-            onHoverEnd={() => setIsHoveringPhone(false)}
-            whileHover={{ scale: 1.05 }}
-            className="hidden items-center gap-2 whitespace-nowrap font-black tracking-wide text-indigo-950 md:flex"
-          >
-            <motion.div
-              animate={isHoveringPhone ? { rotate: [0, -15, 15, -15, 15, 0] } : {}}
-              transition={{ duration: 0.4 }}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-400 text-indigo-950 shadow-sm"
-            >
-              <Phone className="h-4 w-4 fill-current stroke-[2]" />
-            </motion.div>
-            9292924692
-          </motion.a>
+          {/* Left Text */}
+          <div className="flex items-center gap-2 font-medium tracking-wide">
+            <span>Kindergarten is an early childhood educational environment</span>
+            <a href="#learn-more" className="underline font-bold hover:text-gray-200 transition-colors ml-1">
+              Learn More
+            </a>
+          </div>
 
-          {/* Download CTA Button - Game UI Style */}
-          <motion.button
-            whileHover={{ y: -2 }}
-            whileTap={{ y: 4, boxShadow: "0 0px 0 0 #1e40af" }}
-            className="group relative flex shrink-0 items-center gap-2 rounded-full border-2 border-indigo-900 bg-blue-500 px-6 py-2.5 font-black text-white shadow-[0_6px_0_0_#1e3a8a] transition-all hover:bg-blue-400 hover:shadow-[0_8px_0_0_#1e3a8a]"
-          >
-            <CloudDownload className="h-5 w-5 stroke-[2.5] transition-transform group-hover:-translate-y-1" />
-            <span className="hidden sm:inline">Download Catalog</span>
-            <span className="sm:hidden">Catalog</span>
-            
-            {/* Playful shine effect */}
-            <span className="absolute -left-full top-0 block h-full w-1/2 -skew-x-12 bg-white/20 opacity-0 group-hover:animate-[shine_0.6s_ease-in-out]" />
-          </motion.button>
+          {/* Right Info Items */}
+          <div className="flex flex-wrap items-center justify-center gap-6 text-white/95 font-medium">
+            <div className="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition-colors">
+              <Mail className="w-5 h-5 stroke-[2.5]" />
+              {/* Exact spelling from the image */}
+              <span>kidza@gmial.com</span>
+            </div>
+            <div className="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition-colors">
+              <Phone className="w-5 h-5 stroke-[2.5]" />
+              <span>+00 (47) 939 4888</span>
+            </div>
+            <div className="flex items-center gap-2 cursor-pointer hover:text-gray-200 transition-colors">
+              <span>Graaf Floriss 22A CH NY</span>
+            </div>
+          </div>
 
-          {/* Mobile Menu Toggle */}
-          <motion.button
-            whileTap={{ scale: 0.9 }}
-            className="flex h-12 w-12 items-center justify-center rounded-full border-2 border-indigo-900 bg-white text-indigo-900 shadow-[0_4px_0_0_#312e81] lg:hidden"
-          >
-            <Menu className="h-6 w-6 stroke-[3]" />
-          </motion.button>
+        </div>
+
+        {/* Seamless Scalloped Wave Overlay bridging top bar & nav using the wavy design PNG */}
+        <div className="absolute left-0 right-0 -bottom-3 sm:-bottom-4 w-full h-6 sm:h-8 overflow-hidden leading-none z-20 pointer-events-none">
+          <div 
+            className="w-full h-full bg-[#62C4D2]"
+            style={{
+              WebkitMaskImage: "url('/assets/navbar/wavy%20design%20.png')",
+              maskImage: "url('/assets/navbar/wavy%20design%20.png')",
+              WebkitMaskSize: '100% 100%',
+              maskSize: '100% 100%',
+              WebkitMaskRepeat: 'no-repeat',
+              maskRepeat: 'no-repeat',
+              WebkitMaskPosition: 'bottom center',
+              maskPosition: 'bottom center',
+            }}
+          />
         </div>
       </div>
-      
-      {/* Tailwind animation for the CTA shine */}
-      <style>{`
-        @keyframes shine {
-          100% { left: 200%; opacity: 1; }
-        }
-      `}</style>
+
+      {/* ═══ 2. MAIN WHITE NAVBAR ═══ */}
+      <nav className="bg-white px-6 lg:px-12 pt-3.5 pb-3 flex items-center justify-between relative z-10">
+        
+        <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between">
+          
+          {/* LEFT: Logo & Categories */}
+          <div className="flex items-center gap-7 relative">
+            
+            {/* ToyPark Logo */}
+            <a href="/" className="flex items-center gap-2 cursor-pointer">
+              <img 
+                src="/assets/ToyPark_logo.png" 
+                alt="ToyPark Logo" 
+                className="h-13 sm:h-16 md:h-18 w-auto object-contain max-w-[240px] transform hover:scale-105 transition-transform" 
+              />
+            </a>
+
+            {/* Categories Button with Dropdown */}
+            <div className="relative hidden md:block" ref={dropdownRef}>
+              <button 
+                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                className="flex items-center gap-2.5 border-2 border-[#94A3B8]/60 rounded-full px-5 py-2.5 hover:bg-black/5 transition-colors text-[#334155] focus:outline-none"
+              >
+                <LayoutGrid className="w-5 h-5 text-[#f97316]" />
+                <span className="font-bold text-base">Categories</span>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isCategoriesOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {/* Categories Dropdown Menu */}
+              {isCategoriesOpen && (
+                <div className="absolute left-0 mt-2.5 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                  <a 
+                    href="#toys" 
+                    onClick={() => setIsCategoriesOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-base font-bold text-gray-700 hover:bg-[#F6F7F0] hover:text-[#f97316] transition-colors rounded-xl mx-2"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-[#f97316]/10 flex items-center justify-center text-[#f97316]">
+                      <Shapes className="w-4 h-4" />
+                    </div>
+                    <span>1. Toys</span>
+                  </a>
+                  <a 
+                    href="#furniture" 
+                    onClick={() => setIsCategoriesOpen(false)}
+                    className="flex items-center gap-3 px-4 py-3 text-base font-bold text-gray-700 hover:bg-[#F6F7F0] hover:text-[#f97316] transition-colors rounded-xl mx-2"
+                  >
+                    <div className="w-8 h-8 rounded-xl bg-[#62C4D2]/15 flex items-center justify-center text-[#62C4D2]">
+                      <Armchair className="w-4 h-4" />
+                    </div>
+                    <span>2. Furniture</span>
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* CENTER: Navigation Links */}
+          <div className="hidden xl:flex items-center gap-9">
+            {['Home', 'Pages', 'Programs', 'Blog', 'Shop'].map((link) => (
+              <a 
+                key={link} 
+                href={`#${link.toLowerCase()}`} 
+                className="flex items-center gap-1.5 font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg"
+              >
+                {link}
+                <ChevronDown className="w-4.5 h-4.5" />
+              </a>
+            ))}
+          </div>
+
+          {/* RIGHT: Actions (Search, Cart, Start Learning) */}
+          <div className="flex items-center gap-4">
+            
+            {/* Search Icon */}
+            <button className="w-12 h-12 rounded-full border-2 border-[#94A3B8]/60 flex items-center justify-center text-[#334155] hover:bg-black/5 transition-colors">
+              <Search className="w-5 h-5 stroke-[2]" />
+            </button>
+
+            {/* Cart Icon */}
+            <button className="w-12 h-12 rounded-full border-2 border-[#94A3B8]/60 flex items-center justify-center text-[#334155] hover:bg-black/5 transition-colors">
+              <ShoppingCart className="w-5 h-5 stroke-[2]" />
+            </button>
+
+            {/* Start Learning Button */}
+            <button className="bg-[#f97316] hover:bg-[#ea580c] text-white font-extrabold px-7 py-3 rounded-full flex items-center gap-2.5 transition-all shadow-md text-base sm:text-lg">
+              <span className="tracking-wide">Start Learning</span>
+              <ArrowRight className="w-5 h-5 stroke-[3]" />
+            </button>
+            
+          </div>
+        </div>
+      </nav>
+
     </header>
   );
 }

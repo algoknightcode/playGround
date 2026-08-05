@@ -68,7 +68,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
   return (
     <div
       ref={containerRef}
-      className="relative w-full bg-gradient-to-b from-[#E0F2FE] via-[#E6F8F6] to-[#E0F8F5] text-[#2D3436] font-sans antialiased selection:bg-[#FFE66D] selection:text-[#2D3436]"
+      className="relative w-full bg-[#c7f3f7] text-[#2D3436] font-sans antialiased selection:bg-[#FFE66D] selection:text-[#2D3436]"
       style={{ height: '160vh' }}
     >
       {/* Embedded animation keyframes */}
@@ -104,14 +104,17 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           className="absolute inset-0 flex items-center pointer-events-none z-6 overflow-hidden"
         >
           <motion.div
-            style={{ scale: textScale }}
+            style={{
+              scale: textScale,
+              WebkitTextStroke: '2px rgba(255, 255, 255, 0.95)',
+            }}
             animate={{ x: ['0%', '-50%'] }}
             transition={{
               repeat: Infinity,
               ease: 'linear',
               duration: 22,
             }}
-            className="whitespace-nowrap flex text-[9vw] sm:text-[7.5vw] md:text-[6vw] font-black tracking-tighter select-none text-[#2D3436]/8 uppercase"
+            className="whitespace-nowrap flex text-[9vw] sm:text-[7.5vw] md:text-[6vw] font-black tracking-tighter select-none text-white/60 uppercase"
           >
             <span className="pr-4">{repeatedText}</span>
             <span className="pr-4">{repeatedText}</span>
