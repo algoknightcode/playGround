@@ -1,215 +1,251 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Cloud, Box, Star, Rocket } from 'lucide-react';
+import { Heart, ArrowRight } from 'lucide-react';
 
-interface ToyCategory {
-  id: number;
+interface ToyCardData {
+  cat: string;
+  age: string;
+  sub: string;
   title: string;
-  subtitle: string;
-  description: string;
-  image: string;
-  overlayLabel: string;
-  accentBg: string;
+  desc: string;
+  img: string;
+  fallback: string;
+  emoji: string;
+  stars: string;
+  reviews: string;
 }
 
-const categories: ToyCategory[] = [
-  {
-    id: 1,
-    title: 'Creativity & Imagination',
-    subtitle: 'Easels, Drawers & Playhouses',
-    description: 'Art stations and play spaces that spark endless childhood imagination.',
-    image: '/assets/ToysEveryNeed/kids1.webp',
-    overlayLabel: '| Creativity',
-    accentBg: 'bg-[#FEF3C7]/60 border-amber-200/80',
+const cards: ToyCardData[] = [
+  { 
+    cat: 'Creativity', 
+    age: '3–8 yrs', 
+    sub: 'Easels, Drawers & Playhouses', 
+    title: 'Creativity & Imagination', 
+    desc: 'Art stations and play spaces that spark endless childhood imagination.', 
+    img: '/assets/ToysEveryNeed/kids1.webp', 
+    fallback: '#b2ede6', 
+    emoji: '🎨', 
+    stars: '★★★★★', 
+    reviews: '(2.4k)' 
   },
-  {
-    id: 2,
-    title: 'Balance & Coordination',
-    subtitle: 'Swings, Boards & Active Play',
-    description: 'Indoor swings and rockers designed to develop core stability.',
-    image: '/assets/ToysEveryNeed/kids2.webp',
-    overlayLabel: '| Balance',
-    accentBg: 'bg-[#E0F2FE]/60 border-sky-200/80',
+  { 
+    cat: 'Balance', 
+    age: '2–6 yrs', 
+    sub: 'Swings, Boards & Active Play', 
+    title: 'Balance & Coordination', 
+    desc: 'Indoor swings and rockers designed to develop core stability.', 
+    img: '/assets/ToysEveryNeed/kids2.webp', 
+    fallback: '#7de8f4', 
+    emoji: '⚖️', 
+    stars: '★★★★★', 
+    reviews: '(1.8k)' 
   },
-  {
-    id: 3,
-    title: 'Fine Motor Skills',
-    subtitle: 'Slides, Blocks & Towers',
-    description: 'Slides and stacking sets built to hone hand-eye coordination.',
-    image: '/assets/ToysEveryNeed/kids3.webp',
-    overlayLabel: '| Motor Skills',
-    accentBg: 'bg-[#D1FAE5]/60 border-emerald-200/80',
+  { 
+    cat: 'Motor Skills', 
+    age: '1–5 yrs', 
+    sub: 'Slides, Blocks & Towers', 
+    title: 'Fine Motor Skills', 
+    desc: 'Slides and stacking sets built to hone hand-eye coordination.', 
+    img: '/assets/ToysEveryNeed/kids3.webp', 
+    fallback: '#a7f3d0', 
+    emoji: '🧱', 
+    stars: '★★★★☆', 
+    reviews: '(3.1k)' 
   },
-  {
-    id: 4,
-    title: 'Cognitive Development',
-    subtitle: 'Puzzles & Memory Kits',
-    description: 'Engaging brain puzzles tailored for early childhood problem solving.',
-    image: '/assets/ToysEveryNeed/kids4.webp',
-    overlayLabel: '| Cognitive',
-    accentBg: 'bg-[#EDE9FE]/60 border-purple-200/80',
+  { 
+    cat: 'Cognitive', 
+    age: '4–10 yrs', 
+    sub: 'Puzzles & Memory Kits', 
+    title: 'Cognitive Development', 
+    desc: 'Engaging brain puzzles tailored for early childhood problem solving.', 
+    img: '/assets/ToysEveryNeed/kids4.webp', 
+    fallback: '#c4b5fd', 
+    emoji: '🧩', 
+    stars: '★★★★★', 
+    reviews: '(980)' 
   },
-  {
-    id: 5,
-    title: 'Sensory Exploration',
-    subtitle: 'Tactile Kits & Soft Play',
-    description: 'Textured exploration kits designed for safe tactile discovery.',
-    image: '/assets/ToysEveryNeed/kids5.webp',
-    overlayLabel: '| Sensory',
-    accentBg: 'bg-[#FFE4E6]/60 border-rose-200/80',
+  { 
+    cat: 'Sensory', 
+    age: '0–3 yrs', 
+    sub: 'Tactile Kits & Soft Play', 
+    title: 'Sensory Exploration', 
+    desc: 'Textured exploration kits designed for safe tactile discovery.', 
+    img: '/assets/ToysEveryNeed/kids5.webp', 
+    fallback: '#fca5a5', 
+    emoji: '🌈', 
+    stars: '★★★★★', 
+    reviews: '(1.2k)' 
   },
 ];
 
-// Duplicate list for infinite marquee loop
-const marqueeItems = [...categories, ...categories];
+// Double it for a continuous loop marquee
+const doubledCards = [...cards, ...cards, ...cards];
 
-export const ToysForEveryNeed: React.FC = () => {
-  const [isPaused, setIsPaused] = useState(false);
-
+export default function ToysEveryNeed() {
   return (
-    <section className="relative w-full py-12 bg-[#FAF6F0] text-slate-800 select-none overflow-hidden">
+    <section className="relative w-full overflow-hidden py-12 md:py-16 bg-gradient-to-br from-[#e8faf8] via-[#cff4f8] to-[#dffaf7] font-quicksand">
       
-      {/* ═══ ANIMATED BACKGROUND CHILDISH ELEMENTS ═══ */}
-      
-      {/* 1. Wiggling Hot Air Balloon (Top Right) */}
-      <motion.div
-        animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-6 right-8 z-0 hidden lg:flex flex-col items-center opacity-80 pointer-events-none"
-      >
-        <div className="w-10 h-12 bg-[#F472B6] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] shadow-sm border border-white flex items-center justify-center">
-          <div className="w-2 h-4 bg-white/40 rounded-full -ml-3 -mt-2 blur-[0.5px]" />
-        </div>
-        <div className="w-1.5 h-2 bg-[#FDE68A] rounded-xs mt-0.5" />
-      </motion.div>
+      {/* ═══ BLURRY BACKGROUND BLOBS ═══ */}
+      <div aria-hidden className="absolute -top-20 -left-16 w-[280px] h-[280px] bg-[#22d3e8]/18 rounded-full blur-3xl pointer-events-none" />
+      <div aria-hidden className="absolute -bottom-16 -right-10 w-[200px] h-[200px] bg-[#2cbfb3]/18 rounded-full blur-3xl pointer-events-none" />
+      <div aria-hidden className="absolute top-[40%] right-[5%] w-[120px] h-[120px] bg-[#7de8f4]/18 rounded-full blur-2xl pointer-events-none" />
 
-      {/* 2. Floating Cloud (Top Left) */}
-      <motion.div 
-        animate={{ x: [0, 16, 0], y: [0, -6, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-8 left-6 z-0 hidden md:flex items-center justify-center p-2.5 bg-white/80 backdrop-blur-xs rounded-full border border-sky-100 shadow-xs text-sky-400 opacity-80 pointer-events-none"
-      >
-        <Cloud className="w-6 h-6 stroke-[2]" />
-      </motion.div>
+      {/* ═══ FLOATING BOBBING MASCOTS (LEFT & RIGHT) ═══ */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none select-none z-10">
+        {/* Left Mascot */}
+        <motion.div
+          animate={{ y: [0, -24, 0], rotate: [0, 8, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-[10%] left-[8%] sm:left-[12%] md:left-[18%] lg:left-[24%] bg-[#b2ede6]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center shadow-xs p-2"
+        >
+          <img src="/assets/icons/icon_mastcoff.avif" className="w-full h-full object-contain" alt="Left Mascot Avatar" />
+        </motion.div>
 
-      {/* 3. Floating Toy Block (Bottom Left) */}
-      <motion.div 
-        animate={{ y: [0, 10, 0], rotate: [0, -12, 0] }}
-        transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-5 left-6 z-0 hidden md:flex items-center justify-center p-2.5 bg-[#FDE68A]/70 backdrop-blur-xs rounded-2xl border border-amber-200/60 text-amber-700 opacity-80 pointer-events-none"
-      >
-        <Box className="w-6 h-6 stroke-[2.5]" />
-      </motion.div>
+        {/* Right Mascot */}
+        <motion.div
+          animate={{ y: [0, -24, 0], rotate: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
+          className="absolute top-[8%] right-[8%] sm:right-[12%] md:right-[18%] lg:right-[24%] bg-[#a7f3d0]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center shadow-xs p-2"
+        >
+          <img src="/assets/icons/icon_mastcoff2.avif" className="w-full h-full object-contain" alt="Right Mascot Avatar" />
+        </motion.div>
+      </div>
 
-      {/* 4. Twinkling Star (Top Center-Left) */}
-      <motion.div 
-        animate={{ scale: [1, 1.25, 1], rotate: [0, 20, 0] }}
-        transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute top-10 left-1/3 z-0 hidden lg:flex text-amber-400 pointer-events-none"
-      >
-        <Star className="w-5 h-5 fill-amber-300 stroke-amber-400" />
-      </motion.div>
-
-      {/* 5. Floating Rocket (Bottom Right) */}
-      <motion.div 
-        animate={{ y: [0, -12, 0], x: [0, 6, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute bottom-6 right-8 z-0 hidden md:flex items-center justify-center p-2.5 bg-rose-100/80 rounded-2xl border border-rose-200 text-rose-500 opacity-80 pointer-events-none"
-      >
-        <Rocket className="w-6 h-6 stroke-[2]" />
-      </motion.div>
-
-      {/* ═══ CENTERED HEADER ═══ */}
-      <div className="max-w-2xl mx-auto text-center px-4 mb-10 space-y-2 relative z-10">
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#EFE7D8] border border-amber-200/60 text-amber-900 text-xs font-bold uppercase tracking-wider">
-          <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-spin" style={{ animationDuration: '6s' }} />
-          <span>Made for Joy & Growth</span>
+      {/* ═══ SECTION HEADER ═══ */}
+      <div className="relative text-center px-4 mb-10 z-20">
+        <div className="inline-flex items-center gap-1.5 bg-white/75 border border-[#70d9ce] rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-wider text-[#1f4e4b] uppercase mb-4.5 backdrop-blur-xs">
+          <span className="w-1.5 h-1.5 bg-[#2cbfb3] rounded-full animate-ping" />
+          Made for joy & growth
         </div>
         
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-800 tracking-tight flex items-center justify-center gap-3">
-          <span>Toys for Every Need</span>
-          
-          {/* ANIMATED WAVING TEDDY BEAR */}
-          <motion.span
-            className="inline-block origin-bottom-right cursor-pointer"
-            animate={{ rotate: [0, 16, -10, 16, 0], scale: [1, 1.1, 1] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
-          >
-            🧸
-          </motion.span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#0d2b2a] tracking-tight mb-2.5">
+          Toys for <span className="text-[#1a9e93]">Every</span> Need
         </h2>
         
-        <p className="text-slate-500 text-xs sm:text-sm font-medium leading-relaxed max-w-lg mx-auto">
-          Explore play collections crafted to nurture creativity, movement, and essential developmental skills.
+        <p className="text-sm text-[#4a8c88] max-w-[420px] mx-auto leading-relaxed">
+          Play collections crafted to nurture creativity, movement, and essential developmental milestones.
         </p>
       </div>
 
-      {/* ═══ TRUE EDGE-TO-EDGE MARQUEE (PAUSES ON HOVER) ═══ */}
-      <style>{`
-        @keyframes scroll-marquee {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .marquee-scroll {
-          animation: scroll-marquee 40s linear infinite;
-        }
-        .marquee-container:hover .marquee-scroll {
-          animation-play-state: paused;
-        }
-      `}</style>
-      <div className="relative w-full overflow-hidden py-2 my-2 marquee-container">
-        <div className="flex gap-6 w-max marquee-scroll">
-          {marqueeItems.map((item, idx) => (
-            <div
-              key={`${item.id}-${idx}`}
-              className="w-[280px] sm:w-[320px] lg:w-[340px] flex-shrink-0 group"
-            >
-              {/* Card Container */}
-              <div className="bg-[#FFFDF8] border-2 border-[#F0E6D8] rounded-[1.8rem] p-4 shadow-[0_8px_20px_rgba(0,0,0,0.03)] flex flex-col justify-between transition-all duration-300 group-hover:shadow-[0_14px_30px_rgba(2,132,199,0.12)] group-hover:border-sky-300 group-hover:-translate-y-1">
-                
-                {/* Image Container with object-contain */}
-                <div className={`relative w-full h-44 sm:h-48 rounded-[1.3rem] overflow-hidden border ${item.accentBg} p-3 mb-3 flex items-center justify-center`}>
-                  
-                  
+      {/* ═══ INFINITE MARQUEE SLIDER ═══ */}
+      <div className="marquee-wrap relative overflow-hidden py-3 z-20">
+        
+        {/* Left/Right Gradients for soft fading edges */}
+        <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-[#e8faf8] to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#dffaf7] to-transparent z-10 pointer-events-none" />
 
+        <div className="flex w-full select-none">
+          <motion.div
+            className="flex gap-5 pr-5"
+            animate={{ x: [0, '-50%'] }}
+            transition={{
+              repeat: Infinity,
+              ease: 'linear',
+              duration: 38,
+            }}
+          >
+            {doubledCards.map((card, idx) => (
+              <div
+                key={idx}
+                className="toy-card w-[270px] shrink-0 bg-white/95 border border-[#b2ede6] rounded-[24px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_20px_48px_-8px_rgba(28,180,170,0.22)] hover:border-[#2cbfb3] cursor-pointer relative backdrop-blur-xs group"
+              >
+                {/* Card Image Wrapper */}
+                <div className="w-full h-[190px] relative overflow-hidden bg-slate-100">
                   <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-full h-full object-contain transform group-hover:scale-108 transition-transform duration-500 ease-out drop-shadow-xs"
+                    src={card.img}
+                    alt={card.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-107"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                      const parent = target.parentElement;
+                      if (parent) {
+                        parent.style.background = card.fallback;
+                        const fallbackDiv = document.createElement('div');
+                        fallbackDiv.style.position = 'absolute';
+                        fallbackDiv.style.inset = '0';
+                        fallbackDiv.style.display = 'flex';
+                        fallbackDiv.style.alignItems = 'center';
+                        fallbackDiv.style.justifyContent = 'center';
+                        fallbackDiv.style.fontSize = '56px';
+                        fallbackDiv.innerHTML = card.emoji;
+                        parent.appendChild(fallbackDiv);
+                      }
+                    }}
                   />
-                </div>
-
-                {/* Card Info & Shop Now Button */}
-                <div className="space-y-3 flex flex-col justify-between">
-                  <div>
-                    <span className="text-[10px] font-bold text-amber-700 uppercase tracking-wider block">
-                      {item.subtitle}
-                    </span>
-                    <h3 className="text-lg font-bold text-slate-800 group-hover:text-sky-600 transition-colors duration-200 leading-snug mt-0.5">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed mt-1 line-clamp-2">
-                      {item.description}
-                    </p>
+                  
+                  {/* Category Pill */}
+                  <div className="absolute top-3 left-3 z-10 bg-white/90 border border-[#2cbfb3]/40 rounded-full px-2.5 py-1 text-[10px] font-extrabold tracking-wider text-[#1f4e4b] backdrop-blur-xs uppercase">
+                    {card.cat}
+                  </div>
+                  
+                  {/* Age Badge */}
+                  <div className="absolute top-3 right-3 z-10 bg-[#2cbfb3] rounded-full px-2.5 py-0.5 text-[10px] font-extrabold text-white">
+                    {card.age}
                   </div>
 
-                  {/* 100% VISIBLE SHOP NOW BUTTON */}
-                  <button className="w-full mt-2 py-3 px-4 rounded-xl bg-[#0284C7] hover:bg-[#0369A1] active:bg-[#075985] text-white font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xs transition-all duration-200 group/btn">
-                    <span>SHOP NOW</span>
-                    <ArrowRight className="w-4 h-4 stroke-[2.5] transform group-hover/btn:translate-x-1 transition-transform duration-200" />
-                  </button>
+                  {/* Soft bottom vignette overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-[#0d2b2a]/50 to-transparent pointer-events-none" />
+                </div>
+
+                {/* Card Content Body */}
+                <div className="p-4.5 flex flex-col">
+                  <span className="text-[10px] font-extrabold text-[#1a9e93] tracking-widest uppercase mb-1 block">
+                    {card.sub}
+                  </span>
+                  
+                  <h3 className="text-[15px] font-extrabold text-[#0d2b2a] leading-snug mb-1.5">
+                    {card.title}
+                  </h3>
+
+                  {/* Stars & Reviews */}
+                  <div className="flex items-center gap-1.5 mb-3">
+                    <span className="text-[#f59e0b] text-xs tracking-wider font-sans">
+                      {card.stars}
+                    </span>
+                    <span className="text-[11px] font-semibold text-[#4a8c88]">
+                      {card.reviews}
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-[#4a8c88] leading-relaxed mb-4 line-clamp-3 font-medium">
+                    {card.desc}
+                  </p>
+
+                  {/* CTA Buttons */}
+                  <div className="flex gap-2">
+                    <button className="flex-1 bg-[#2cbfb3] hover:bg-[#1a9e93] text-white border-none rounded-[14px] py-2.5 text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 uppercase transition-all active:scale-98">
+                      <span>Shop now</span>
+                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+                    </button>
+                    
+                    <button className="w-[38px] h-[38px] rounded-[14px] border border-[#b2ede6] bg-transparent flex items-center justify-center text-[#2cbfb3] hover:bg-[#e0f7f4] hover:text-[#e11d48] transition-all flex-shrink-0 group/wish">
+                      <Heart className="w-4 h-4 fill-transparent stroke-current group-hover/wish:fill-[#e11d48] group-hover/wish:stroke-[#e11d48] transition-colors" />
+                    </button>
+                  </div>
                 </div>
 
               </div>
-            </div>
-          ))}
+            ))}
+          </motion.div>
         </div>
       </div>
-
+      
+      {/* ═══ CLOUD SHAPE BOTTOM DIVIDER ═══ */}
+      <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
+        <svg 
+          className="relative block w-full h-[40px] sm:h-[60px]" 
+          viewBox="0 0 283.5 25" 
+          preserveAspectRatio="none" 
+        >
+          <path 
+            className="fill-white" 
+            d="M265.8 3.5c-10.9 0-15.9 6.2-15.9 6.2s-3.6-3.5-9.2-.9c-9.1 4.1-4.4 13.4-4.4 13.4s-1.2.2-1.9.9c-.6.7-.5 1.9-.5 1.9s-1-.5-2.3-.2c-1.3.3-1.6 1.4-1.6 1.4s.4-3.4-1.5-5c-3.9-3.4-8.3-.2-8.3-.2s-.6-.7-.9-.9c-.4-.2-1.2-.2-1.2-.2s-4.4-3.6-11.5-2.6-10.4 7.9-10.4 7.9-.5-3.3-3.9-4.9c-4.8-2.4-7.4 0-7.4 0s2.4-4.1-1.9-6.4-6.2 1.2-6.2 1.2-.9-.5-2.1-.5-2.3 1.1-2.3 1.1.1-.7-1.1-1.1c-1.2-.4-2 0-2 0s3.6-6.8-3.5-8.9c-6-1.8-7.9 2.6-8.4 4-.1-.3-.4-.7-.9-1.1-1-.7-1.3-.5-1.3-.5s1-4-1.7-5.2c-2.7-1.2-4.2 1.1-4.2 1.1s-3.1-1-5.7 1.4-2.1 5.5-2.1 5.5-.9 0-2.1.7-1.4 1.7-1.4 1.7-1.7-1.2-4.3-1.2c-2.6 0-4.5 1.2-4.5 1.2s-.7-1.5-2.8-2.4c-2.1-.9-4 0-4 0s2.6-5.9-4.7-9c-7.3-3.1-12.6 3.3-12.6 3.3s-.9 0-1.9.2c-.9.2-1.5.9-1.5.9S99.4 3 94.9 3.9c-4.5.9-5.7 5.7-5.7 5.7s-2.8-5-12.3-3.9-11.1 6-11.1 6-1.2-1.4-4-.7c-.8.2-1.3.5-1.8.9-.9-2.1-2.7-4.9-6.2-4.4-3.2.4-4 2.2-4 2.2s-.5-.7-1.2-.7h-1.4s-.5-.9-1.7-1.4-2.4 0-2.4 0-2.4-1.2-4.7 0-3.1 4.1-3.1 4.1-1.7-1.4-3.6-.7c-1.9.7-1.9 2.8-1.9 2.8s-.5-.5-1.7-.2c-1.2.2-1.4.7-1.4.7s-.7-2.3-2.8-2.8c-2.1-.5-4.3.2-4.3.2s-1.7-5-11.1-6c-3.8-.4-6.6.2-8.5 1v21.2h283.5V11.1c-.9.2-1.6.4-1.6.4s-5.2-8-16.1-8z"
+          />
+        </svg>
+      </div>
     </section>
   );
-};
-
-export default ToysForEveryNeed;
+}

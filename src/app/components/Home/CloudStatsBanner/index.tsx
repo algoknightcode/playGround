@@ -20,12 +20,12 @@ const statsData: StatItem[] = [
 
 export const CloudStatsBanner: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#5865F2] pt-2 pb-6 px-4 font-sans antialiased">
+    <section className="relative w-full bg-[#00C4B5] pt-2 pb-6 px-4 font-quicksand antialiased">
       
       {/* ═══ PLAYFUL SCALLOPED CLOUD WAVE TOP DIVIDER ═══ */}
       <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none z-20 -translate-y-[98%] pointer-events-none">
         <svg 
-          className="relative block w-full h-8 sm:h-12 md:h-14 text-[#5865F2]" 
+          className="relative block w-full h-8 sm:h-12 md:h-14 text-[#00C4B5]" 
           viewBox="0 0 1200 60" 
           preserveAspectRatio="none" 
           fill="currentColor"
@@ -67,7 +67,7 @@ export const CloudStatsBanner: React.FC = () => {
             {/* Cloud Content */}
             <div className="relative z-10 flex flex-col items-center justify-center text-center px-3">
               {/* Counter Number */}
-              <div className="text-2xl sm:text-3xl font-black text-[#FF6B6B] tracking-tight flex items-baseline justify-center font-sans">
+              <div className="text-2xl sm:text-3xl font-black text-[#FF6B6B] tracking-tight flex items-baseline justify-center font-quicksand">
                 <CountUp 
                   end={stat.number} 
                   duration={2.5} 

@@ -165,7 +165,7 @@ function MarqueeRow({
 
 export default function AtestMarqueeWall() {
   return (
-    <section className="relative overflow-hidden bg-[#fff6ec] px-6 py-20 md:py-24">
+    <section className="relative overflow-hidden bg-[#FFFFFF] px-6 py-20 md:py-24">
       {/* Playful background doodles */}
       <div className="pointer-events-none absolute inset-0 opacity-40">
         <div className="absolute top-1/4 left-10 h-32 w-32 rounded-full bg-yellow-200/50 blur-3xl" />

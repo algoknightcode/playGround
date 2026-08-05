@@ -50,7 +50,7 @@ export const ClientTestimonials: React.FC = () => {
   const [swiperRef, setSwiperRef] = useState<any>(null);
 
   return (
-    <div className="relative w-full bg-[#FEF9F0] py-16 sm:py-24 px-6 md:px-12 font-sans antialiased overflow-hidden select-none">
+    <div className="relative w-full bg-[#FFFFFF] py-16 sm:py-24 px-6 md:px-12 font-sans antialiased overflow-hidden select-none">
       
       {/* ═══ MAIN LAYOUT ═══ */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -68,7 +68,7 @@ export const ClientTestimonials: React.FC = () => {
               Commodo viverra maecenas accumsan lacus vel facilisis volutpat. vulputate dignissim suspendisse.
             </p>
           </div>
-
+ 
           {/* Interactive Pagination Dots */}
           <div className="flex items-center gap-2 mb-6">
             {testimonialsData.map((_, idx) => (
@@ -77,7 +77,7 @@ export const ClientTestimonials: React.FC = () => {
                 onClick={() => swiperRef?.slideTo(idx)}
                 className={`transition-all duration-300 rounded-full cursor-pointer ${
                   activeIndex === idx 
-                    ? 'w-8 h-3 bg-[#6C4AB6]' 
+                    ? 'w-8 h-3 bg-[#4ECDC4]' 
                     : 'w-3 h-3 bg-[#2D3436]/30 hover:bg-[#2D3436]/60'
                 }`}
                 aria-label={`Go to slide ${idx + 1}`}
@@ -85,7 +85,7 @@ export const ClientTestimonials: React.FC = () => {
             ))}
           </div>
         </div>
-
+ 
         {/* RIGHT COLUMN: Purple Card with Swiper and Floating SVGs */}
         <div className="lg:col-span-7 relative">
           
@@ -101,20 +101,20 @@ export const ClientTestimonials: React.FC = () => {
               <rect x="38" y="110" width="6" height="45" rx="3" fill="#C5AA85" />
               <rect x="62" y="110" width="6" height="45" rx="3" fill="#D8BE9A" />
               <rect x="72" y="110" width="6" height="45" rx="3" fill="#C5AA85" />
-
+ 
               {/* Body */}
               <ellipse cx="50" cy="100" rx="30" ry="20" fill="#E8D2B4" />
               {/* Giraffe Spots */}
-              <circle cx="38" cy="105" r="4.5" fill="#6C4AB6" opacity="0.6" />
-              <circle cx="48" cy="90" r="3" fill="#6C4AB6" opacity="0.6" />
-              <circle cx="60" cy="102" r="4" fill="#6C4AB6" opacity="0.6" />
-              <circle cx="55" cy="112" r="3.5" fill="#6C4AB6" opacity="0.6" />
-
+              <circle cx="38" cy="105" r="4.5" fill="#4ECDC4" opacity="0.6" />
+              <circle cx="48" cy="90" r="3" fill="#4ECDC4" opacity="0.6" />
+              <circle cx="60" cy="102" r="4" fill="#4ECDC4" opacity="0.6" />
+              <circle cx="55" cy="112" r="3.5" fill="#4ECDC4" opacity="0.6" />
+ 
               {/* Neck */}
               <path d="M28,95 C30,50 35,25 45,15 L58,18 C48,30 42,55 42,95 Z" fill="#E8D2B4" />
               {/* Mane */}
               <path d="M44,15 C40,25 38,40 32,60 M42,20 C38,30 36,45 30,65" stroke="#F4A261" strokeWidth="4" strokeLinecap="round" />
-
+ 
               {/* Head */}
               <ellipse cx="52" cy="15" rx="12" ry="8" fill="#E8D2B4" />
               {/* Snout */}
@@ -124,15 +124,16 @@ export const ClientTestimonials: React.FC = () => {
               {/* Ears / Horns */}
               <line x1="45" y1="10" x2="42" y2="3" stroke="#2D3436" strokeWidth="2" strokeLinecap="round" />
               <circle cx="41" cy="2" r="2" fill="#F4A261" />
-
+ 
               {/* Tail */}
               <path d="M78,100 Q88,105 85,115" stroke="#E8D2B4" strokeWidth="3" fill="none" />
+              {/* Giraffe Spot on tail */}
               <circle cx="85" cy="115" r="3" fill="#F4A261" />
             </svg>
           </motion.div>
-
+ 
           {/* Main Purple Testimonial Card */}
-          <div className="relative bg-[#6C4AB6] text-white rounded-[2.5rem] p-6 sm:p-10 shadow-2xl overflow-hidden border-4 border-white/20 min-h-[320px] flex items-center justify-center">
+          <div className="relative bg-[#4ECDC4] text-white rounded-[2.5rem] p-6 sm:p-10 shadow-2xl overflow-hidden border-4 border-white/20 min-h-[320px] flex items-center justify-center">
             
             {/* --- FLOATING DECORATIVE SVGS ON CARD --- */}
             
@@ -210,9 +211,9 @@ export const ClientTestimonials: React.FC = () => {
               <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                 {/* Face */}
-                <circle cx="10" cy="12" r="1" fill="#6C4AB6" />
-                <circle cx="14" cy="12" r="1" fill="#6C4AB6" />
-                <path d="M10.5,15 Q12,17 13.5,15" stroke="#6C4AB6" strokeWidth="1" fill="none" />
+                <circle cx="10" cy="12" r="1" fill="#2D3436" />
+                <circle cx="14" cy="12" r="1" fill="#2D3436" />
+                <path d="M10.5,15 Q12,17 13.5,15" stroke="#2D3436" strokeWidth="1" fill="none" />
               </svg>
             </motion.div>
 

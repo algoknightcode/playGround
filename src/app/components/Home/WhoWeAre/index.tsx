@@ -6,7 +6,7 @@ import { Check } from 'lucide-react';
 
 export const WhoWeAre: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#FEF9F0] pt-12 pb-16 px-6 sm:px-10 overflow-hidden font-sans antialiased text-[#2D3436]">
+    <section className="relative w-full bg-[#FFFFFF] pt-12 pb-16 px-6 sm:px-10 overflow-hidden font-quicksand antialiased text-[#2D3436]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         
         {/* Left Column: School Illustration */}

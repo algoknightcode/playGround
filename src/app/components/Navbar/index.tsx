@@ -8,7 +8,7 @@ export default function KidzaNavbar() {
   const dropdownRef = useRef(null);
 
   return (
-    <header className="w-full font-fredoka relative">
+    <header className="w-full font-quicksand relative">
       
       {/* ═══ 1. CYAN TOP BAR ═══ */}
       <div className="relative bg-[#62C4D2] text-white text-sm sm:text-base px-6 lg:px-12 pt-2.5 pb-4 z-20">

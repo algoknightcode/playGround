@@ -61,7 +61,7 @@ export default function AgeBestsellersShowcase() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-[#FAF9F5] py-16 flex items-center justify-center overflow-hidden font-sans select-none">
+    <section className="relative w-full min-h-screen bg-[#FFFFFF] py-16 flex items-center justify-center overflow-hidden font-sans select-none">
       
       {/* ═══ OUT-OF-THIS-WORLD MAGICAL BACKGROUND DOODLES ═══ */}
       

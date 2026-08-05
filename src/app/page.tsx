@@ -3,7 +3,7 @@
 import React from 'react';
 import PlayfulHeader from './components/Navbar';
 import { FeaturesGrid } from './components/FeaturesGrid';
-import EducationalBanner from './components/Banner1';
+import HeroBanner from './components/Home/HeroBanner';
 import HeroSubBanner from './components/Home/HeroSubBanner';
 import ToyWindmillScroll from './components/Home/ToyWindmillScroll';
 import ToysForEveryNeed from './components/Home/ToysEveryNeed';
@@ -20,18 +20,22 @@ import KidsNewsSection from './components/Home/newletter';
 import UpperFooter from './components/Home/UpperFooter';
 import Footer2 from './components/Footer2';
 import Marquee2 from './components/Home/Marquee2';
+import ShopByCategories from './components/Home/ShopByCategories';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-[#2D3436]">
       <PlayfulHeader />
-      <Marquee2 />
+    
+     
+      <HeroBanner />
       <FeaturesGrid />
-      <EducationalBanner />
       <HeroSubBanner />
       <ToyWindmillScroll />
       <ToysForEveryNeed />
+      <ShopByCategories />
       <SplitVantage />
+        <Marquee2 />
       <ExpandableVideoMarquee />
       <WhoWeAre />
       <CloudStatsBanner />

@@ -129,49 +129,33 @@ export default function PlayfulLightShowcase() {
   return (
     <div 
       ref={containerRef} 
-      className="relative w-full bg-[#FEF9F0] text-[#2D3436] select-none font-sans antialiased"
+      className="relative w-full bg-[#FFFFFF] text-[#2D3436] select-none font-quicksand antialiased"
       style={{ height: `${projects.length * 100}vh` }}
     >
-      {/* ═══ CONTAINED BACKGROUND FLOATING NEUBRUTALIST ACCENTS ═══ */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div
-          animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-10 right-10 hidden lg:flex flex-col items-center opacity-90"
-        >
-          <div className="w-12 h-14 bg-[#FF6B6B] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] flex items-center justify-center">
-            <div className="w-2.5 h-5 bg-white/60 rounded-full -ml-3 -mt-2 blur-[0.5px]" />
-          </div>
-          <div className="w-2 h-3 bg-[#FFE66D] rounded-xs mt-0.5 border border-[#2D3436]" />
-        </motion.div>
-
-        <motion.div 
-          animate={{ x: [0, 16, 0], y: [0, -6, 0] }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-12 left-10 hidden md:flex items-center justify-center p-3 bg-[#4ECDC4] rounded-full border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] text-[#2D3436]"
-        >
-          <Cloud className="w-6 h-6 stroke-[2.5]" />
-        </motion.div>
-
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], rotate: [0, 20, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-12 left-12 hidden lg:flex text-[#FFE66D]"
-        >
-          <Star className="w-8 h-8 fill-[#FFE66D] stroke-[#2D3436] stroke-[2]" />
-        </motion.div>
-
-        <motion.div 
-          animate={{ y: [0, -12, 0], x: [0, 6, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-12 right-12 hidden md:flex items-center justify-center p-3 bg-[#9B59B6] rounded-2xl border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] text-white"
-        >
-          <Rocket className="w-6 h-6 stroke-[2.5]" />
-        </motion.div>
-      </div>
-
       {/* ═══ PINNED STICKY VIEWPORT ═══ */}
       <div className="sticky top-0 flex h-screen w-full items-center justify-center p-4 md:p-8 overflow-hidden z-10">
+        
+        {/* ═══ CONTAINED BACKGROUND FLOATING NEUBRUTALIST ACCENTS (PINNED/STICKY) ═══ */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          <motion.div
+            animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-10 right-10 hidden lg:flex flex-col items-center opacity-90"
+          >
+            <div className="w-12 h-14 bg-[#FF6B6B] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] flex items-center justify-center">
+              <div className="w-2.5 h-5 bg-white/60 rounded-full -ml-3 -mt-2 blur-[0.5px]" />
+            </div>
+            <div className="w-2 h-3 bg-[#FFE66D] rounded-xs mt-0.5 border border-[#2D3436]" />
+          </motion.div>
+
+          <motion.div 
+            animate={{ scale: [1, 1.2, 1], rotate: [0, 20, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute bottom-12 left-12 hidden lg:flex text-[#FFE66D]"
+          >
+            <Star className="w-8 h-8 fill-[#FFE66D] stroke-[#2D3436] stroke-[2]" />
+          </motion.div>
+        </div>
         
         {/* Main Neubrutalist Card Container */}
         <div className="grid h-[85vh] w-full max-w-7xl grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 bg-white rounded-[2.5rem] p-6 md:p-10 shadow-[8px_8px_0px_0px_#2D3436] border-4 border-[#2D3436]">
@@ -186,7 +170,7 @@ export default function PlayfulLightShowcase() {
                   <div key={proj.id} className="flex items-center gap-3">
                     <div 
                       className={`w-3.5 h-3.5 rounded-full border-2 border-[#2D3436] transition-all duration-300 ${
-                        activeIndex === idx ? 'bg-[#FF6B6B] scale-110 shadow-[2px_2px_0px_0px_#2D3436]' : 'bg-[#FEF9F0] scale-90'
+                        activeIndex === idx ? 'bg-[#FF6B6B] scale-110 shadow-[2px_2px_0px_0px_#2D3436]' : 'bg-[#FFFFFF] scale-90'
                       }`}
                     />
                     <span className={`text-xs font-black uppercase tracking-wider transition-colors duration-300 ${
@@ -239,11 +223,11 @@ export default function PlayfulLightShowcase() {
                   <div className="space-y-3 pt-4 border-t-2 border-[#2D3436] text-xs sm:text-sm">
                     <div className="flex justify-between items-center py-1">
                       <span className="font-black text-[#636E72] uppercase tracking-wider text-xs">Recommended Age</span>
-                      <span className="font-extrabold text-[#2D3436] bg-[#FEF9F0] px-2.5 py-0.5 rounded-md border border-[#2D3436]">{projects[activeIndex].year}</span>
+                      <span className="font-extrabold text-[#2D3436] bg-[#FFFFFF] px-2.5 py-0.5 rounded-md border border-[#2D3436]">{projects[activeIndex].year}</span>
                     </div>
                     <div className="flex justify-between items-center py-1 border-t border-[#2D3436]/15">
                       <span className="font-black text-[#636E72] uppercase tracking-wider text-xs">Play Duration</span>
-                      <span className="font-extrabold text-[#2D3436] bg-[#FEF9F0] px-2.5 py-0.5 rounded-md border border-[#2D3436]">{projects[activeIndex].timeline}</span>
+                      <span className="font-extrabold text-[#2D3436] bg-[#FFFFFF] px-2.5 py-0.5 rounded-md border border-[#2D3436]">{projects[activeIndex].timeline}</span>
                     </div>
                     <div className="flex justify-between items-center py-1 border-t border-[#2D3436]/15">
                       <span className="font-black text-[#636E72] uppercase tracking-wider text-xs">Skills Developed</span>
@@ -274,7 +258,7 @@ export default function PlayfulLightShowcase() {
           </div>
 
           {/* Right Column - Scroll Wipe Image Reveal */}
-          <div className="relative md:col-span-7 h-full w-full overflow-hidden rounded-[2rem] border-3 border-[#2D3436] bg-[#FEF9F0] p-2 shadow-[4px_4px_0px_0px_#2D3436]">
+          <div className="relative md:col-span-7 h-full w-full overflow-hidden rounded-[2rem] border-3 border-[#2D3436] bg-[#FFFFFF] p-2 shadow-[4px_4px_0px_0px_#2D3436]">
             <div className="relative w-full h-full rounded-[1.5rem] overflow-hidden bg-white border-2 border-[#2D3436]">
               {projects.map((proj, i) => (
                 <ProjectImage

@@ -7,7 +7,7 @@ import { BlurTextEffect } from '../../ui/BlurTextEffect';
 
 export const TrustBannerSection: React.FC = () => {
   return (
-    <section className="relative w-full bg-[#FAF5EE] pt-8 pb-14 px-6 sm:px-12 md:pt-10 md:pb-20 overflow-hidden select-none">
+    <section className="relative w-full bg-[#FFFFFF] pt-8 pb-14 px-6 sm:px-12 md:pt-10 md:pb-20 overflow-hidden select-none">
       
       {/* ═══ PLAYFUL PASTEL AMBIENT BLOBS ═══ */}
       <div className="absolute top-0 left-1/4 w-72 h-72 bg-amber-200/35 rounded-full blur-3xl pointer-events-none" />
