@@ -42,25 +42,25 @@ export const UpperFooter: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full bg-white overflow-visible font-sans antialiased">
+    <div className="relative w-full overflow-visible font-sans antialiased mt-32 md:mt-48 lg:mt-64">
       
       {/* ═══ DUAL LAYERED HIGH-CONTRAST SCALLOP WAVE OVERLAY ═══ */}
-      <div className="relative w-full leading-none z-10 -mb-1">
+      <div className="absolute top-0 left-0 w-full leading-none z-10 -translate-y-[99%]">
         <svg 
-          className="w-full h-28 sm:h-40 md:h-48 block" 
+          className="w-full h-24 sm:h-32 md:h-40 block" 
           viewBox="0 0 1440 190" 
           preserveAspectRatio="none"
         >
-          {/* BACK WAVE (ALTERNATE OFFSET PHASE #70C1D6) */}
-          <g transform="translate(1440, 0) scale(-1, 1)">
+          {/* BACK WAVE (#70C1D6) - Shifted way up to be heavily visible */}
+          <g transform="translate(0, -45)">
             <path 
-              d="M0,25 C120,-15 240,-15 360,25 C480,65 600,65 720,25 C840,-15 960,-15 1080,25 C1200,65 1320,65 1440,25 L1440,190 L0,190 Z" 
+              d="M0,64L48,74.7C96,85,192,107,288,101.3C384,96,480,64,576,48C672,32,768,32,864,48C960,64,1056,96,1152,101.3C1248,107,1344,85,1392,74.7L1440,64L1440,250L0,250Z" 
               fill="#70C1D6" 
             />
           </g>
-          {/* FRONT MAIN WAVE (SOFT BABY CYAN #BDECF0) */}
+          {/* FRONT MAIN WAVE (SOFT BABY CYAN #BDECF0) - Smooth natural wave */}
           <path 
-            d="M0,75 C100,40 200,40 300,75 C400,105 500,105 600,75 C700,40 800,40 900,75 C1000,105 1100,105 1200,75 C1300,40 1400,50 1440,65 L1440,190 L0,190 Z" 
+            d="M0,128L48,117.3C96,107,192,85,288,85.3C384,85,480,107,576,128C672,149,768,171,864,165.3C960,160,1056,128,1152,112C1248,96,1344,96,1392,96L1440,96L1440,190L0,190Z" 
             fill="#BDECF0" 
           />
         </svg>
@@ -72,7 +72,7 @@ export const UpperFooter: React.FC = () => {
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-6 sm:px-12 z-20 scroll-mt-10"
+        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-12 pb-12 sm:pb-16 px-6 sm:px-12 z-20 scroll-mt-10"
       >
         
         {/* Hanging Clouds (Optimized with direct ref transforms for silky smooth parallax) */}

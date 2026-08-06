@@ -25,14 +25,16 @@ import Marquee2 from './components/Home/Marquee2';
 import ShopByCategories from './components/Home/ShopByCategories';
 import FaqInteractivePreview from './components/Home/Faq';
 import KidsStackingCards from './components/Home/KidsStackingCards';
+import PlaygroundScrollVideo from './components/Home/PlaygroundScrollVideo';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-[#2D3436]">
       <PlayfulHeader />
+       <PlaygroundScrollVideo />
     
      
-      <HeroBanner />
+    
       <FeaturesGrid />
       <ToyWindmillScroll />
      
@@ -41,11 +43,13 @@ export default function Home() {
       <ToysForEveryNeed />
       <ShopByCategories />
       <SplitVantage />
+        <HeroBanner />
    
       
       <WhoWeAre />
       <CloudStatsBanner />
       <ExpandableVideoMarquee />
+     
        <HeroSubBanner />
     
       <AgeBestsellers />

@@ -44,20 +44,24 @@ export default function KidsStackingCards() {
     <main className="bg-white text-[#2D3436] font-quicksand" ref={container}>
       {/* Wrapper Section to bind sticky header and sticky cards together so they scroll away at the same time */}
       <section className="relative w-full">
-        {/* Header Section (Sticky) */}
-        <div className="sticky top-0 z-20 pt-8 pb-6 md:pt-10 md:pb-8 w-full flex flex-col justify-center items-center text-center px-4 bg-white/95 backdrop-blur-md">
-          {/* Playful Background Doodles / Glow */}
-          <div className="absolute top-4 left-10 w-20 h-20 bg-yellow-300/40 rounded-full blur-xl -z-10" />
-          <div className="absolute bottom-4 right-10 w-32 h-32 bg-pink-300/40 rounded-full blur-2xl -z-10" />
+        {/* Header Section (Sticky with Equal Boundary to Cards) */}
+        <div className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none">
+          <div className="sticky top-0 w-full h-[730px] md:h-[700px] flex flex-col justify-start">
+            <div className="w-full pt-8 pb-6 md:pt-10 md:pb-8 flex flex-col justify-center items-center text-center px-4 bg-white/95 backdrop-blur-md pointer-events-auto shadow-sm">
+              {/* Playful Background Doodles / Glow */}
+              <div className="absolute top-4 left-10 w-20 h-20 bg-yellow-300/40 rounded-full blur-xl -z-10" />
+              <div className="absolute bottom-4 right-10 w-32 h-32 bg-pink-300/40 rounded-full blur-2xl -z-10" />
 
-          <span className="bg-[#FF7A59] text-white text-xs md:text-sm font-black tracking-widest uppercase px-4 py-1.5 rounded-full shadow-sm mb-2.5">
-            Fun &amp; Education For Kids
-          </span>
-          
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2D3436] tracking-tight leading-[115%] max-w-4xl drop-shadow-sm">
-            Explore Wonder &amp; Play <br />
-            <span className="text-[#00C4B5]">Scroll To Discover 👇</span>
-          </h1>
+              <span className="bg-[#FF7A59] text-white text-xs md:text-sm font-black tracking-widest uppercase px-4 py-1.5 rounded-full shadow-sm mb-2.5">
+                Fun &amp; Education For Kids
+              </span>
+              
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2D3436] tracking-tight leading-[115%] max-w-4xl drop-shadow-sm">
+                Explore Wonder &amp; Play <br />
+                <span className="text-[#00C4B5]">Scroll To Discover 👇</span>
+              </h1>
+            </div>
+          </div>
         </div>
 
         {/* Cards Stacking Section */}
@@ -123,7 +127,7 @@ export const Card: React.FC<CardProps> = ({
   return (
     <div
       ref={container}
-      className="h-[550px] md:h-[530px] flex items-start justify-center sticky top-48 md:top-56"
+      className="h-[730px] md:h-[700px] flex items-start justify-center sticky top-0 pt-48 md:pt-56"
     >
       <motion.div
         style={{
@@ -131,7 +135,7 @@ export const Card: React.FC<CardProps> = ({
           scale,
           top: `calc(${i * 24}px)`,
         }}
-        className="flex flex-col md:flex-row relative h-[520px] md:h-[480px] w-[92%] sm:w-[88%] lg:w-[82%] max-w-6xl rounded-[2.5rem] p-6 md:p-10 origin-top shadow-2xl border-4 border-white/30 text-white overflow-hidden gap-6 md:gap-10 font-quicksand"
+        className="flex flex-col md:flex-row relative h-[520px] md:h-[480px] w-[96%] sm:w-[94%] lg:w-[90%] max-w-[1400px] rounded-[2.5rem] p-6 md:p-10 origin-top shadow-2xl border-4 border-white/30 text-white overflow-hidden gap-6 md:gap-10 font-quicksand"
       >
         {/* Left Column: Details */}
         <div className="w-full md:w-[45%] flex flex-col justify-between py-2 z-10">
