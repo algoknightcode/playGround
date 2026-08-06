@@ -93,10 +93,10 @@ export default function HeroBanner() {
           />
 
         </div>
-        {/* Permanent Hero Banner Image (new_banner.png) */}
+        {/* Permanent Hero Banner Image (new_banner1.webp) */}
         <div className="w-full overflow-hidden flex justify-center items-center">
           <img
-            src="/assets/banner/new_banner.png"
+            src="/assets/banner/new_banner1.webp"
             alt="Toy Park Hero Banner"
             className="w-full h-auto object-cover block"
           />
