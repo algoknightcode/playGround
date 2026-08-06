@@ -76,11 +76,13 @@ export default function PlaygroundScrollVideo() {
       if (i !== drawn && frames[i]) draw(i);
     }
 
-    window.addEventListener('scroll', render, { passive: true });
-    window.addEventListener('resize', () => {
+    const handleResize = () => {
       resizeCanvas();
       render();
-    });
+    };
+
+    window.addEventListener('scroll', render, { passive: true });
+    window.addEventListener('resize', handleResize);
 
     function bitmapOpts() {
       if (!vid || !TARGET_W || !vid.videoWidth) return undefined;
@@ -180,6 +182,13 @@ export default function PlaygroundScrollVideo() {
 
     return () => {
       window.removeEventListener('scroll', render);
+      window.removeEventListener('resize', handleResize);
+      vid.removeEventListener('loadedmetadata', start);
+      frames.forEach((b) => {
+        try {
+          b.close();
+        } catch (e) {}
+      });
     };
   }, []);
 
