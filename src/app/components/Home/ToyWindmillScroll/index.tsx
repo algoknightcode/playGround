@@ -36,7 +36,7 @@ export const ToyWindmillScroll: React.FC = () => {
       {/* ═══ SHARP AUTO-LOOP BACKGROUND VIDEO ═══ */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <video
-          src="/video/Toy_windmill_on_green_hill_202607311719.mp4"
+          src="/video/Toy_windmill_on_green_hill_202608061121.mp4"
           autoPlay
           loop
           muted
