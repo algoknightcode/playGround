@@ -56,7 +56,7 @@ const kidsActivities = [
   },
 ];
 
-export default function KidsStackingCards(): JSX.Element {
+export default function KidsStackingCards() {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
