@@ -80,15 +80,6 @@ export const FaqInteractivePreview = () => {
 
       {/* ═══ FLOATING BOBBING CLOUDS (PLAYFUL ACCENTS) ═══ */}
       <div aria-hidden className="absolute inset-0 pointer-events-none select-none z-10 overflow-hidden">
-        {/* Left Floating Cloud */}
-        <motion.div
-          animate={{ y: [0, -14, 0], x: [0, 6, 0] }}
-          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-10 left-4 sm:left-10 lg:left-14 hidden sm:flex items-center justify-center text-white/90"
-        >
-          <Cloud className="w-12 h-12 md:w-16 md:h-16 stroke-[2.2] drop-shadow-md" />
-        </motion.div>
-
         {/* Right Floating Cloud */}
         <motion.div
           animate={{ y: [0, 16, 0], x: [0, -8, 0] }}
