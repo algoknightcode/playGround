@@ -71,7 +71,7 @@ export const UpperFooter: React.FC = () => {
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-2 pb-4 sm:pb-6 px-6 sm:px-12 z-30 overflow-visible"
+        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-6 sm:px-12 z-20"
       >
         
         {/* Hanging Clouds (Optimized with direct ref transforms for silky smooth parallax) */}
@@ -132,10 +132,10 @@ export const UpperFooter: React.FC = () => {
           style={{ bottom: "25%", right: "20%", rotate: "45deg" }}
         />
 
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 relative z-20">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12 relative z-20">
           
           {/* Left: Baby on Cloud with Contact Header */}
-          <div className="w-full md:w-1/2 flex flex-col items-center justify-center font-quicksand z-30">
+          <div className="w-full md:w-1/2 flex flex-col items-center justify-center font-quicksand z-20">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black uppercase tracking-wider text-[#0F2942] mb-2 text-center drop-shadow-sm">
               Contact Us
             </h2>
@@ -152,7 +152,7 @@ export const UpperFooter: React.FC = () => {
           </div>
 
           {/* Right: Contact Form (Transparent Cyan Blue Tinted Glass Overlay) */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center font-quicksand -mt-8 sm:-mt-14 md:-mt-20 lg:-mt-24 z-40 relative">
+          <div className="w-full md:w-1/2 flex flex-col justify-center font-quicksand relative z-20">
             <form 
               onSubmit={(e) => { e.preventDefault(); alert('Thank you! Your message has been sent.'); }} 
               className="w-full max-w-xl flex flex-col gap-3.5 bg-gradient-to-br from-white/50 via-[#70C1D6]/25 to-white/40 backdrop-blur-xl p-6 sm:p-7 rounded-3xl border border-white/90 shadow-[0_12px_36px_rgba(15,41,66,0.12)] relative z-40"

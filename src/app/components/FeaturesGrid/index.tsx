@@ -71,7 +71,7 @@ export const FeaturesGrid: React.FC = () => {
     <section className="relative w-full bg-white px-6 lg:px-12 py-8 font-fredoka overflow-hidden">
       
       {/* ═══ SUBTLE FLOATING UMBRELLA ACCENT (NO WHITE BOX BACKGROUND) ═══ */}
-      <div className="absolute -top-1 right-8 lg:right-16 z-20 pointer-events-none opacity-85 hover:opacity-100 transition-opacity">
+      <div className="absolute top-6 lg:top-8 right-8 lg:right-16 z-20 pointer-events-none opacity-85 hover:opacity-100 transition-opacity">
         <div className="relative animate-bounce duration-1000">
           <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-6 hover:rotate-0 transition-transform duration-300 drop-shadow-md">
             {/* Umbrella Canopy Panels */}

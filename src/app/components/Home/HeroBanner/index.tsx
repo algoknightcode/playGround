@@ -25,8 +25,8 @@ const HELICOPTER_POSITION = {
 };
 
 const BANNERS = [
-  { id: 1, src: "/assets/banner/banner2.jpeg", alt: "Toy Park Special Banner" },
-  { id: 2, src: "/assets/banner/new_banner.png", alt: "Toy Park Hero Banner" },
+  { id: 1, src: "/assets/banner/new_banner.png", alt: "Toy Park Hero Banner" },
+  { id: 2, src: "/assets/banner/banner2.jpeg", alt: "Toy Park Special Banner" },
 ];
 
 export default function HeroBanner() {
