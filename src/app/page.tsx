@@ -35,7 +35,7 @@ export default function Home() {
       <HeroBanner />
       <FeaturesGrid />
       <ToyWindmillScroll />
-      <HeroSubBanner />
+     
  
            <Marquee2 />
       <ToysForEveryNeed />
@@ -46,6 +46,7 @@ export default function Home() {
       <WhoWeAre />
       <CloudStatsBanner />
       <ExpandableVideoMarquee />
+       <HeroSubBanner />
     
       <AgeBestsellers />
         <BusinessStats />
