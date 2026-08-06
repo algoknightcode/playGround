@@ -21,6 +21,7 @@ import UpperFooter from './components/Home/UpperFooter';
 import Footer2 from './components/Footer2';
 import Marquee2 from './components/Home/Marquee2';
 import ShopByCategories from './components/Home/ShopByCategories';
+import FaqInteractivePreview from './components/Home/Faq';
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
       <AtestMarqueeWall />
       <ClientTestimonials />
       <GalleryLightboxZoom />
+      <FaqInteractivePreview />
       <KidsNewsSection />
       <UpperFooter />
       <Footer2 />

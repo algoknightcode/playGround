@@ -130,7 +130,7 @@ export default function PlayfulLightShowcase() {
     <div 
       ref={containerRef} 
       className="relative w-full bg-[#FFFFFF] text-[#2D3436] select-none font-quicksand antialiased"
-      style={{ height: `${projects.length * 100}vh` }}
+      style={{ height: `${projects.length * 55}vh` }}
     >
       {/* ═══ PINNED STICKY VIEWPORT ═══ */}
       <div className="sticky top-0 flex h-screen w-full items-center justify-center p-4 md:p-8 overflow-hidden z-10">
