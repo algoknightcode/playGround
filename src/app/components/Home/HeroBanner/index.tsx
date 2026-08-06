@@ -14,7 +14,7 @@ export default function HeroBanner() {
       >
         {/* Full-width Banner Image */}
         <img
-          src="/assets/banner/banner_toy.jpeg"
+          src="/assets/banner/new_banner.png"
           alt="Toy Park Hero Banner"
           className="h-auto w-full object-contain"
         />

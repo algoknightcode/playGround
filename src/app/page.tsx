@@ -22,6 +22,7 @@ import Footer2 from './components/Footer2';
 import Marquee2 from './components/Home/Marquee2';
 import ShopByCategories from './components/Home/ShopByCategories';
 import FaqInteractivePreview from './components/Home/Faq';
+import KidsStackingCards from './components/Home/KidsStackingCards';
 
 export default function Home() {
   return (
@@ -44,6 +45,7 @@ export default function Home() {
       <HeroTextSection />
       <AtestMarqueeWall />
       <ClientTestimonials />
+      <KidsStackingCards />
       <GalleryLightboxZoom />
       <FaqInteractivePreview />
       <KidsNewsSection />

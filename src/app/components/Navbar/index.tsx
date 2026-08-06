@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { ChevronDown, Mail, Phone, Search, ShoppingCart, ArrowRight, LayoutGrid, Shapes, Armchair } from 'lucide-react';
+import { LiquidButton } from '../ui/buttonUi';
 
 export default function KidzaNavbar() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
@@ -141,11 +142,11 @@ export default function KidzaNavbar() {
               <ShoppingCart className="w-5 h-5 stroke-[2]" />
             </button>
 
-            {/* Start Learning Button */}
-            <button className="bg-[#f97316] hover:bg-[#ea580c] text-white font-extrabold px-7 py-3 rounded-full flex items-center gap-2.5 transition-all shadow-md text-base sm:text-lg">
-              <span className="tracking-wide">Start Learning</span>
+            {/* Start Learning Liquid Button */}
+            <LiquidButton className="px-6 py-3 text-sm sm:text-base">
+              <span>Start Learning</span>
               <ArrowRight className="w-5 h-5 stroke-[3]" />
-            </button>
+            </LiquidButton>
             
           </div>
         </div>
