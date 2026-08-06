@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Sparkles, Cloud } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function cn(...inputs: (string | undefined | null | false)[]) {
@@ -14,56 +14,63 @@ interface FAQItem {
   answer: string;
   category: 'general' | 'technical' | 'billing' | 'account';
   img: string;
+  icon: string;
 }
 
 const FAQ_DATA: FAQItem[] = [
   {
     id: 'g1',
     category: 'general',
-    question: 'What is this platform about?',
+    question: 'What is ToyPark about?',
     answer:
-      'This is a premium showcase platform designed to demonstrate modern UI patterns, including sophisticated accordions and AI-driven features.',
-    img: 'https://images.unsplash.com/photo-1768280511074-3b3effe7a139?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'ToyPark is a magical universe created for kids, parents, and educators! We offer premium educational toys, play structures, and creative activities.',
+    img: '/assets/ToysEveryNeed/kids1.webp',
+    icon: '🧸',
   },
   {
     id: 'g2',
     category: 'general',
-    question: 'How do I get started?',
+    question: 'How do I get started with orders?',
     answer:
-      'Simply browse through our various sections. If you have a specific question, use our AI Assistant at the bottom of the page.',
-    img: 'https://images.unsplash.com/photo-1759269834957-3457c9ee46c7?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'Simply explore our shop categories above, pick your favorite play sets, and enjoy fast home delivery with safe, non-toxic certified products.',
+    img: '/assets/favcategories/hero6a.png',
+    icon: '🚀',
   },
   {
     id: 't1',
     category: 'technical',
-    question: 'Is it mobile responsive?',
+    question: 'Are all toys safety certified for kids?',
     answer:
-      'Absolutely. Every component is built with a mobile-first approach using Tailwind CSS, ensuring a seamless experience across all devices.',
-    img: 'https://images.unsplash.com/photo-1754405300142-246a9bf917d9?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'Yes! Every single toy and play set in our catalog undergoes rigorous child-safety testing and uses 100% eco-friendly, non-toxic materials.',
+    img: '/assets/ToysEveryNeed/kids2.webp',
+    icon: '🛡️',
   },
   {
     id: 't2',
     category: 'technical',
-    question: 'What technologies are used?',
+    question: 'What age groups do you cater to?',
     answer:
-      'We use React 18, TypeScript, Framer Motion for animations, and the Gemini AI API for our intelligent features.',
-    img: 'https://images.unsplash.com/photo-1738510992679-41f599ec9399?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'We curate special collections for all growing ages — from toddlers (0-2 yrs) to active kids (3-8+ yrs) and young puzzle builders!',
+    img: '/assets/favcategories/hero6b.png',
+    icon: '🎨',
   },
   {
     id: 'b1',
     category: 'billing',
-    question: 'What payment methods are accepted?',
+    question: 'What payment & shipping methods work?',
     answer:
-      'We accept all major credit cards, PayPal, and cryptocurrency for our premium enterprise plans.',
-    img: 'https://images.unsplash.com/photo-1688909906484-738d78601884?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'We support all major credit cards, UPI, digital wallets, and Cash on Delivery with free express shipping on orders above $50.',
+    img: '/assets/ToysEveryNeed/kids3.webp',
+    icon: '🎁',
   },
   {
     id: 'b2',
     category: 'billing',
-    question: 'Can I cancel my subscription anytime?',
+    question: 'Can I return or exchange an item anytime?',
     answer:
-      'Yes, you can cancel your subscription from your account dashboard at any time. Your features will remain active until the end of the billing cycle.',
-    img: 'https://images.unsplash.com/photo-1703600091728-8d0a2bf13396?q=80&w=711&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+      'Yes! We offer a hassle-free 30-day play guarantee. If your little one isn’t completely happy, returns and exchanges are quick and easy.',
+    img: '/assets/favcategories/hero6c.png',
+    icon: '⭐',
   },
 ];
 
@@ -71,11 +78,32 @@ export const FaqInteractivePreview = () => {
   const [activeItem, setActiveItem] = useState<FAQItem>(FAQ_DATA[0]);
 
   return (
-    <section className="w-full flex flex-col justify-center items-center relative bg-gradient-to-br from-[#38BDF8] via-[#0284C7] to-[#00C4B5] overflow-hidden font-quicksand py-6 md:py-8">
+    <section className="w-full flex flex-col justify-center items-center relative bg-gradient-to-br from-[#38BDF8] via-[#0284C7] to-[#00C4B5] overflow-hidden font-quicksand py-8 md:py-10">
       
       {/* Absolute Background Image Container - Scoped only to FAQ section */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1597200381847-30ec200eeb9a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-85 mix-blend-overlay"></div>
+        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1597200381847-30ec200eeb9a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-75 mix-blend-overlay"></div>
+      </div>
+
+      {/* ═══ FLOATING BOBBING CLOUDS (PLAYFUL ACCENTS) ═══ */}
+      <div aria-hidden className="absolute inset-0 pointer-events-none select-none z-10 overflow-hidden">
+        {/* Left Floating Cloud */}
+        <motion.div
+          animate={{ y: [0, -14, 0], x: [0, 6, 0] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-10 left-4 sm:left-10 lg:left-14 hidden sm:flex items-center justify-center text-white/90"
+        >
+          <Cloud className="w-12 h-12 md:w-16 md:h-16 stroke-[2.2] drop-shadow-md" />
+        </motion.div>
+
+        {/* Right Floating Cloud */}
+        <motion.div
+          animate={{ y: [0, 16, 0], x: [0, -8, 0] }}
+          transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+          className="absolute top-12 right-4 sm:right-10 lg:right-14 hidden sm:flex items-center justify-center text-white/90"
+        >
+          <Cloud className="w-12 h-12 md:w-16 md:h-16 stroke-[2.2] drop-shadow-md" />
+        </motion.div>
       </div>
 
       <div className="w-full max-w-6xl mx-auto px-4 relative z-10">
@@ -102,18 +130,21 @@ export const FaqInteractivePreview = () => {
                 onMouseEnter={() => setActiveItem(item)}
                 onClick={() => setActiveItem(item)}
                 className={cn(
-                  'w-full text-left px-6 py-5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group backdrop-blur-md border',
+                  'w-full text-left px-5 py-4 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group backdrop-blur-md border',
                   activeItem.id === item.id
                     ? 'bg-white text-slate-900 shadow-2xl scale-[1.02] border-white'
                     : 'bg-white/20 text-white hover:bg-white/30 border-white/30'
                 )}
               >
-                <span className="text-lg font-bold tracking-wide">
-                  {item.question}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className="text-xl sm:text-2xl">{item.icon}</span>
+                  <span className="text-base sm:text-lg font-bold tracking-wide">
+                    {item.question}
+                  </span>
+                </div>
                 <ArrowRight
                   className={cn(
-                    'w-5 h-5 transition-all duration-300',
+                    'w-5 h-5 flex-shrink-0 transition-all duration-300',
                     activeItem.id === item.id
                       ? 'translate-x-0 opacity-100 text-slate-900'
                       : '-translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 text-white'
@@ -146,16 +177,16 @@ export const FaqInteractivePreview = () => {
                     {activeItem.question}
                   </h3>
                   
-                  <p className="text-slate-600 text-base md:text-lg leading-relaxed font-medium">
+                  <p className="text-slate-600 text-base md:text-lg leading-relaxed font-semibold">
                     {activeItem.answer}
                   </p>
                 </div>
 
-                <div className="pt-3 overflow-hidden rounded-2xl shadow-md border border-slate-100 mt-auto">
+                <div className="pt-3 overflow-hidden rounded-2xl shadow-md border border-slate-100 mt-auto bg-[#F6F7F0]/60 p-1">
                   <img
                     src={activeItem.img}
                     alt={activeItem.question}
-                    className="w-full h-52 sm:h-60 object-cover transform hover:scale-105 transition-transform duration-700"
+                    className="w-full h-52 sm:h-60 object-contain rounded-xl transform hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </motion.div>
