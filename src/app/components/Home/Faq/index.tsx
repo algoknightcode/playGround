@@ -23,7 +23,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'What is ToyPark about?',
     answer:
       'ToyPark is a magical universe created for kids, parents, and educators! We offer premium educational toys, play structures, and creative activities.',
-    img: '/assets/ToysEveryNeed/kids1.webp',
+    img: '/assets/split_vantage_images/kids_playsHouse.png',
   },
   {
     id: 'g2',
@@ -31,7 +31,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'How do I get started with orders?',
     answer:
       'Simply explore our shop categories above, pick your favorite play sets, and enjoy fast home delivery with safe, non-toxic certified products.',
-    img: '/assets/favcategories/hero6a.png',
+    img: '/assets/split_vantage_images/Kids_Furniture.png',
   },
   {
     id: 't1',
@@ -39,7 +39,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'Are all toys safety certified for kids?',
     answer:
       'Yes! Every single toy and play set in our catalog undergoes rigorous child-safety testing and uses 100% eco-friendly, non-toxic materials.',
-    img: '/assets/ToysEveryNeed/kids2.webp',
+    img: '/assets/split_vantage_images/Kids_Trampoline.png',
   },
   {
     id: 't2',
@@ -47,7 +47,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'What age groups do you cater to?',
     answer:
       'We curate special collections for all growing ages — from toddlers (0-2 yrs) to active kids (3-8+ yrs) and young puzzle builders!',
-    img: '/assets/favcategories/hero6b.png',
+    img: '/assets/split_vantage_images/kids_playsHouse.png',
   },
   {
     id: 'b1',
@@ -55,7 +55,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'What payment & shipping methods work?',
     answer:
       'We support all major credit cards, UPI, digital wallets, and Cash on Delivery with free express shipping on orders above $50.',
-    img: '/assets/ToysEveryNeed/kids3.webp',
+    img: '/assets/split_vantage_images/Kids_Furniture.png',
   },
   {
     id: 'b2',
@@ -63,7 +63,7 @@ const FAQ_DATA: FAQItem[] = [
     question: 'Can I return or exchange an item anytime?',
     answer:
       'Yes! We offer a hassle-free 30-day play guarantee. If your little one isn’t completely happy, returns and exchanges are quick and easy.',
-    img: '/assets/favcategories/hero6c.png',
+    img: '/assets/split_vantage_images/Kids_Trampoline.png',
   },
 ];
 
@@ -163,11 +163,11 @@ export const FaqInteractivePreview = () => {
                   </p>
                 </div>
 
-                <div className="pt-3 overflow-hidden rounded-2xl shadow-md border border-slate-100 mt-auto bg-[#F6F7F0]/60 p-1">
+                <div className="overflow-hidden rounded-2xl shadow-md border border-slate-100 mt-auto w-full h-52 sm:h-60 relative">
                   <img
                     src={activeItem.img}
                     alt={activeItem.question}
-                    className="w-full h-52 sm:h-60 object-contain rounded-xl transform hover:scale-105 transition-transform duration-700"
+                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </motion.div>

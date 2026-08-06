@@ -12,7 +12,9 @@ import ExpandableVideoMarquee from './components/Home/ExpandableVideoMarquee';
 import WhoWeAre from './components/Home/WhoWeAre';
 import CloudStatsBanner from './components/Home/CloudStatsBanner';
 import AgeBestsellers from './components/Home/BestSeller';
+import DealsSection from './components/Home/BestDeals';
 import HeroTextSection from './components/Home/HeroText';
+import BusinessStats from './components/Home/BusinessStats';
 import AtestMarqueeWall from './components/Home/Testimotinal';
 import ClientTestimonials from './components/Home/ClientTestimonials';
 import GalleryLightboxZoom from './components/GalleryLightboxZoom';
@@ -32,20 +34,27 @@ export default function Home() {
      
       <HeroBanner />
       <FeaturesGrid />
-      <HeroSubBanner />
       <ToyWindmillScroll />
+      <HeroSubBanner />
+ 
+           <Marquee2 />
       <ToysForEveryNeed />
       <ShopByCategories />
       <SplitVantage />
-        <Marquee2 />
-      <ExpandableVideoMarquee />
+   
+      
       <WhoWeAre />
       <CloudStatsBanner />
+      <ExpandableVideoMarquee />
+    
       <AgeBestsellers />
+        <BusinessStats />
+      <DealsSection />
       <HeroTextSection />
+       <KidsStackingCards />
       <AtestMarqueeWall />
       <ClientTestimonials />
-      <KidsStackingCards />
+     
       <GalleryLightboxZoom />
       <FaqInteractivePreview />
       <KidsNewsSection />

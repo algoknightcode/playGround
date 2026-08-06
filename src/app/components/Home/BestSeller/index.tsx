@@ -15,7 +15,7 @@ const products = [
     price: '2,999',
     originalPrice: '3,330',
     reviews: 149,
-    image: '/assets/ToysEveryNeed/kids1.webp',
+    image: '/assets/split_vantage_images/kids_playsHouse.png',
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const products = [
     price: '2,999',
     originalPrice: '3,330',
     reviews: 173,
-    image: '/assets/ToysEveryNeed/kids1.webp',
+    image: '/assets/split_vantage_images/Kids_Furniture.png',
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const products = [
     price: '2,999',
     originalPrice: '3,330',
     reviews: 168,
-    image: '/assets/ToysEveryNeed/kids1.webp',
+    image: '/assets/split_vantage_images/Kids_Trampoline.png',
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const products = [
     price: '3,299',
     originalPrice: '3,650',
     reviews: 215,
-    image: '/assets/ToysEveryNeed/kids1.webp',
+    image: '/assets/split_vantage_images/kids_playsHouse.png',
   },
 ];
 
@@ -61,7 +61,7 @@ export default function AgeBestsellersShowcase() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-[#FFFFFF] py-16 flex items-center justify-center overflow-hidden font-sans select-none">
+    <section className="relative w-full min-h-screen bg-[#FFFFFF] py-16 flex items-center justify-center overflow-hidden font-quicksand select-none">
       
       {/* ═══ OUT-OF-THIS-WORLD MAGICAL BACKGROUND DOODLES ═══ */}
       
@@ -84,7 +84,7 @@ export default function AgeBestsellersShowcase() {
         transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         className="absolute top-12 right-[5%] pointer-events-none hidden xl:block opacity-70"
       >
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#C084FC" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#00C4B5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M2 12l10-9 10 9-10 9L2 12z" />
           <path d="M12 3v18" />
           <path d="M12 12l8-5" />
@@ -172,7 +172,7 @@ export default function AgeBestsellersShowcase() {
           {/* Explore All Action */}
           <a
             href="#"
-            className="text-[#9F629F] font-bold text-xs sm:text-sm border-b-2 border-[#9F629F] pb-0.5 hover:text-[#7A487B] hover:border-[#7A487B] transition-colors shrink-0 uppercase tracking-wider"
+            className="text-[#00C4B5] font-bold text-xs sm:text-sm border-b-2 border-[#00C4B5] pb-0.5 hover:text-[#00A396] hover:border-[#00A396] transition-colors shrink-0 uppercase tracking-wider"
           >
             Explore All
           </a>
@@ -203,11 +203,11 @@ export default function AgeBestsellersShowcase() {
               >
                 <div>
                   {/* Card Image Container */}
-                  <div className="h-[250px] sm:h-[270px] bg-[#FAF5ED] p-6 flex items-center justify-center relative overflow-hidden rounded-t-[1.8rem]">
+                  <div className="h-[230px] sm:h-[250px] bg-gray-50 flex items-center justify-center relative overflow-hidden rounded-t-[1.8rem]">
                     <motion.img
                       src={product.image}
                       alt={product.title}
-                      className="w-full h-full object-contain mix-blend-multiply drop-shadow-sm"
+                      className="w-full h-full object-cover"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                     />
@@ -253,7 +253,7 @@ export default function AgeBestsellersShowcase() {
 
                 {/* Tactile Button Footer */}
                 <div className="px-5 sm:px-6 pb-6 pt-0">
-                  <button className="w-full sm:w-auto px-7 py-2.5 rounded-xl bg-[#A0629F] hover:bg-[#8F528E] text-white font-black text-xs sm:text-[13px] uppercase tracking-wider shadow-[0_4px_0_#7D477C] transition-all active:shadow-none active:translate-y-[4px]">
+                  <button className="w-full sm:w-auto px-7 py-2.5 rounded-xl bg-[#00C4B5] hover:bg-[#00A396] text-white font-black text-xs sm:text-[13px] uppercase tracking-wider shadow-[0_4px_0_#00867B] transition-all active:shadow-none active:translate-y-[4px]">
                     Explore now
                   </button>
                 </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { ChevronDown, Mail, Phone, Search, ShoppingCart, ArrowRight, LayoutGrid, Shapes, Armchair } from 'lucide-react';
+import { ChevronDown, Mail, Phone, Search, Heart, ArrowRight, LayoutGrid, Shapes, Armchair } from 'lucide-react';
 import { LiquidButton } from '../ui/buttonUi';
 
 export default function KidzaNavbar() {
@@ -129,7 +129,7 @@ export default function KidzaNavbar() {
             ))}
           </div>
 
-          {/* RIGHT: Actions (Search, Cart, Start Learning) */}
+          {/* RIGHT: Actions (Search, Wishlist/Heart, All Products) */}
           <div className="flex items-center gap-4">
             
             {/* Search Icon */}
@@ -137,14 +137,14 @@ export default function KidzaNavbar() {
               <Search className="w-5 h-5 stroke-[2]" />
             </button>
 
-            {/* Cart Icon */}
+            {/* Wishlist Heart Icon */}
             <button className="w-12 h-12 rounded-full border-2 border-[#94A3B8]/60 flex items-center justify-center text-[#334155] hover:bg-black/5 transition-colors">
-              <ShoppingCart className="w-5 h-5 stroke-[2]" />
+              <Heart className="w-5 h-5 stroke-[2]" />
             </button>
 
-            {/* Start Learning Liquid Button */}
+            {/* All Products Liquid Button */}
             <LiquidButton className="px-6 py-3 text-sm sm:text-base">
-              <span>Start Learning</span>
+              <span>All Products</span>
               <ArrowRight className="w-5 h-5 stroke-[3]" />
             </LiquidButton>
             

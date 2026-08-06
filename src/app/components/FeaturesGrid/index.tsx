@@ -119,15 +119,7 @@ export const FeaturesGrid: React.FC = () => {
         </div>
       </div>
 
-      {/* Floating Teal Cart Button */}
-      <button className="fixed bottom-0 right-10 z-50 flex h-20 w-16 flex-col items-center justify-center gap-1 rounded-t-xl bg-[#00B8A9] text-white shadow-2xl hover:bg-[#00a396] hover:scale-105 active:scale-95 transition-all">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="animate-pulse">
-          <path d="M5 9L4 20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20L19 9H5Z" stroke="white" strokeWidth="2" strokeLinejoin="round"/>
-          <path d="M9 9V6C9 4.34315 10.3431 3 12 3C13.6569 3 15 4.34315 15 6V9" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M9 14H15" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-        </svg>
-        <span className="text-[11px] font-extrabold tracking-wide">0 Item</span>
-      </button>
+
     </section>
   );
 };

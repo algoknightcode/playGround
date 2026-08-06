@@ -19,15 +19,15 @@ export const HeroSubBanner: React.FC = () => {
         >
           {/* Text Content */}
           <div className="z-10 flex-1 max-w-[280px] sm:max-w-[320px]">
-            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold text-[#0B1A30] leading-[1.15] mb-2 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-[34px] font-extrabold !text-white drop-shadow-sm leading-[1.15] mb-2 tracking-tight">
               Kids Table &amp; Play Sets
             </h2>
-            <p className="text-sm sm:text-base font-semibold text-[#0B1A30]/85 mb-6">
+            <p className="text-sm sm:text-base font-semibold !text-white/95 drop-shadow-sm mb-6">
               Discover Amazing Offers!
             </p>
             <a
               href="#shop"
-              className="inline-flex items-center gap-2 bg-[#0B1A30] text-white hover:bg-[#1E293B] font-extrabold text-sm sm:text-base px-6 py-3 rounded-full transition-all shadow-md group-hover:scale-105 active:scale-95"
+              className="inline-flex items-center gap-2 bg-white text-[#FFB800] hover:bg-slate-50 font-extrabold text-sm sm:text-base px-6 py-3 rounded-full transition-all shadow-md group-hover:scale-105 active:scale-95"
             >
               <span>See Collection</span>
               <ArrowRight className="w-4 h-4 stroke-[3]" />

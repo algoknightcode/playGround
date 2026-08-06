@@ -106,7 +106,6 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           <motion.div
             style={{
               scale: textScale,
-              WebkitTextStroke: '2px rgba(255, 255, 255, 0.95)',
             }}
             animate={{ x: ['0%', '-50%'] }}
             transition={{
@@ -114,7 +113,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
               ease: 'linear',
               duration: 22,
             }}
-            className="whitespace-nowrap flex text-[9vw] sm:text-[7.5vw] md:text-[6vw] font-black tracking-tighter select-none text-white/60 uppercase"
+            className="whitespace-nowrap flex text-[9vw] sm:text-[7.5vw] md:text-[6vw] font-black tracking-tighter select-none text-white/80 uppercase"
           >
             <span className="pr-4">{repeatedText}</span>
             <span className="pr-4">{repeatedText}</span>

@@ -1,23 +1,128 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+
+// Swiper CSS styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/effect-fade";
+
+// ═══ EASY POSITIONING & SIZING CONTROLS ═══
+// You can edit top/bottom/left/right & size directly here in the code:
+const PLANE_POSITION = {
+  bottom: "16%",   // Vertical position (e.g., '12%', '20%')
+  left: "32%",     // Horizontal position (e.g., '25%', '35%')
+  size: "w-14 sm:w-20 md:w-24 lg:w-28", // Size classes
+};
+
+const HELICOPTER_POSITION = {
+  top: "16%",      // Vertical position (keeps away from navbar, e.g., '15%', '20%')
+  right: "22%",    // Horizontal position (e.g., '18%', '25%')
+  size: "w-12 sm:w-16 md:w-20 lg:w-24", // Size classes
+};
+
+const BANNERS = [
+  { id: 1, src: "/assets/banner/banner2.jpeg", alt: "Toy Park Special Banner" },
+  { id: 2, src: "/assets/banner/new_banner.png", alt: "Toy Park Hero Banner" },
+];
 
 export default function HeroBanner() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#fcece3] flex justify-center items-center">
+    <section className="relative w-full overflow-hidden flex justify-center items-center -mt-10 sm:-mt-16 md:-mt-24 lg:-mt-32">
+      {/* Component-Specific Swiper Styles */}
+      <style>{`
+        .hero-banner-swiper .swiper-pagination-bullet {
+          width: 10px;
+          height: 10px;
+          background: #ffffff;
+          opacity: 0.5;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          transition: all 0.3s ease;
+        }
+
+        .hero-banner-swiper .swiper-pagination-bullet-active {
+          width: 28px;
+          border-radius: 6px;
+          background: #ffffff;
+          opacity: 1;
+        }
+      `}</style>
+
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="relative w-full overflow-hidden"
       >
-        {/* Full-width Banner Image */}
-        <img
-          src="/assets/banner/new_banner.png"
-          alt="Toy Park Hero Banner"
-          className="h-auto w-full object-contain"
-        />
+        {/* ═══ FLOATING PLANE & HELICOPTER OVERLAY ═══ */}
+        <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
+          
+          {/* Floating Toy Plane */}
+          <motion.img
+            src="/assets/plane_icon.webp"
+            alt="Toy Plane"
+            animate={{ 
+              y: [0, -12, 0],
+              rotate: [-3, 4, -3] 
+            }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+            style={{
+              bottom: PLANE_POSITION.bottom,
+              left: PLANE_POSITION.left,
+            }}
+            className={`absolute ${PLANE_POSITION.size} h-auto drop-shadow-lg select-none`}
+          />
+
+          {/* Floating Helicopter */}
+          <motion.img
+            src="/assets/helicopter_icon.svg"
+            alt="Helicopter"
+            animate={{ 
+              y: [0, -14, 0],
+              rotate: [4, -4, 4] 
+            }}
+            transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
+            style={{
+              top: HELICOPTER_POSITION.top,
+              right: HELICOPTER_POSITION.right,
+            }}
+            className={`absolute ${HELICOPTER_POSITION.size} h-auto drop-shadow-lg select-none`}
+          />
+
+        </div>
+        <Swiper
+          modules={[Autoplay, Pagination, EffectFade]}
+          effect="fade"
+          fadeEffect={{ crossFade: true }}
+          spaceBetween={0}
+          slidesPerView={1}
+          loop={true}
+          speed={1000}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+          }}
+          pagination={{
+            clickable: true,
+          }}
+          navigation={false}
+          className="w-full hero-banner-swiper group"
+        >
+          {BANNERS.map((banner) => (
+            <SwiperSlide key={banner.id}>
+              <div className="w-full overflow-hidden flex justify-center items-center">
+                <img
+                  src={banner.src}
+                  alt={banner.alt}
+                  className="w-full h-auto object-cover block"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </motion.div>
     </section>
   );

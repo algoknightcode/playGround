@@ -28,7 +28,7 @@ const kidsActivities = [
     description:
       'High-safety trampolines and bouncing sets designed to build balance, coordination, and healthy outdoor activity.',
     link: '/assets/split_vantage_images/Kids_Trampoline.png',
-    color: '#FF7A59', // Coral
+    color: '#FF7A59', // Coral Red
     badge: 'Active Bouncer',
   },
 ];

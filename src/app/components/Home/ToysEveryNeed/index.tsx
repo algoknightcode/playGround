@@ -152,11 +152,11 @@ export default function ToysEveryNeed() {
                 className="toy-card w-[270px] shrink-0 bg-white/95 border border-[#b2ede6] rounded-[24px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_20px_48px_-8px_rgba(28,180,170,0.22)] hover:border-[#2cbfb3] cursor-pointer relative backdrop-blur-xs group"
               >
                 {/* Card Image Wrapper */}
-                <div className="w-full h-[190px] relative overflow-hidden bg-slate-100">
+                <div className="w-full h-[210px] relative overflow-hidden bg-[#FDF3E7]">
                   <img
                     src={card.img}
                     alt={card.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-107"
+                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.style.display = 'none';
@@ -177,17 +177,14 @@ export default function ToysEveryNeed() {
                   />
                   
                   {/* Category Pill */}
-                  <div className="absolute top-3 left-3 z-10 bg-white/90 border border-[#2cbfb3]/40 rounded-full px-2.5 py-1 text-[10px] font-extrabold tracking-wider text-[#1f4e4b] backdrop-blur-xs uppercase">
+                  <div className="absolute top-3 left-3 z-10 bg-white/90 border border-[#2cbfb3]/40 rounded-full px-2.5 py-1 text-[10px] font-extrabold tracking-wider text-[#1f4e4b] backdrop-blur-xs uppercase shadow-xs">
                     {card.cat}
                   </div>
                   
                   {/* Age Badge */}
-                  <div className="absolute top-3 right-3 z-10 bg-[#2cbfb3] rounded-full px-2.5 py-0.5 text-[10px] font-extrabold text-white">
+                  <div className="absolute top-3 right-3 z-10 bg-[#2cbfb3] rounded-full px-2.5 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
                     {card.age}
                   </div>
-
-                  {/* Soft bottom vignette overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-[#0d2b2a]/50 to-transparent pointer-events-none" />
                 </div>
 
                 {/* Card Content Body */}
