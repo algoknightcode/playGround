@@ -93,36 +93,14 @@ export default function HeroBanner() {
           />
 
         </div>
-        <Swiper
-          modules={[Autoplay, Pagination, EffectFade]}
-          effect="fade"
-          fadeEffect={{ crossFade: true }}
-          spaceBetween={0}
-          slidesPerView={1}
-          loop={true}
-          speed={1000}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={false}
-          className="w-full hero-banner-swiper group"
-        >
-          {BANNERS.map((banner) => (
-            <SwiperSlide key={banner.id}>
-              <div className="w-full overflow-hidden flex justify-center items-center">
-                <img
-                  src={banner.src}
-                  alt={banner.alt}
-                  className="w-full h-auto object-cover block"
-                />
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {/* Permanent Hero Banner Image (new_banner.png) */}
+        <div className="w-full overflow-hidden flex justify-center items-center">
+          <img
+            src="/assets/banner/new_banner.png"
+            alt="Toy Park Hero Banner"
+            className="w-full h-auto object-cover block"
+          />
+        </div>
       </motion.div>
     </section>
   );

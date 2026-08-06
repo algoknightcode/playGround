@@ -68,10 +68,11 @@ export const UpperFooter: React.FC = () => {
 
       {/* ═══ MAIN SOFT BABY CYAN SECTION ═══ */}
       <div 
+        id="contact"
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-6 sm:px-12 z-20"
+        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-6 sm:px-12 z-20 scroll-mt-10"
       >
         
         {/* Hanging Clouds (Optimized with direct ref transforms for silky smooth parallax) */}

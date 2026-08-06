@@ -143,10 +143,12 @@ export default function KidzaNavbar() {
             </button>
 
             {/* All Products Liquid Button */}
-            <LiquidButton className="px-6 py-3 text-sm sm:text-base">
-              <span>All Products</span>
-              <ArrowRight className="w-5 h-5 stroke-[3]" />
-            </LiquidButton>
+            <a href="/products">
+              <LiquidButton className="px-6 py-3 text-sm sm:text-base">
+                <span>All Products</span>
+                <ArrowRight className="w-5 h-5 stroke-[3]" />
+              </LiquidButton>
+            </a>
             
           </div>
         </div>
