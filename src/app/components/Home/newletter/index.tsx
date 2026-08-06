@@ -29,32 +29,30 @@ const articles = [
 
 const KidsNewsSection: React.FC = () => {
   return (
-    <section className="min-h-screen bg-[#fcf9f2] font-sans text-gray-900 flex flex-col w-full relative">
+    <section className="min-h-screen bg-white font-quicksand text-gray-900 flex flex-col w-full relative">
       
       {/* Header Area */}
-      <header className="px-6 py-8 md:px-12 md:py-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 z-10 relative bg-[#fcf9f2]">
-        <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+      <header className="px-6 py-8 md:px-12 md:py-10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 z-10 relative bg-white">
+        <h1 className="text-3xl md:text-5xl font-black tracking-tight text-gray-900">
           Kids News Articles
         </h1>
-        <button className="bg-[#5f46a0] text-white text-sm md:text-xs font-bold tracking-wider px-6 py-3 rounded-full uppercase shadow-[4px_4px_0px_#111] border border-[#111] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111] transition-all whitespace-nowrap">
+        <button className="bg-[#00C4B5] hover:bg-[#00A89B] text-white text-xs md:text-sm font-extrabold tracking-wider px-6 py-3 rounded-full uppercase shadow-md hover:shadow-lg hover:scale-105 transition-all whitespace-nowrap">
           Explore More Blogs
         </button>
       </header>
 
       {/* Main Content Grid with Borders */}
-      <div className="border-t border-gray-400 flex flex-col lg:flex-row w-full flex-grow relative">
+      <div className="border-t border-gray-200 flex flex-col lg:flex-row w-full flex-grow relative">
         
-        {/* Left Sidebar (Poster / Image) - NOW STICKY ON DESKTOP */}
-        <aside className="w-full lg:w-[35%] border-b lg:border-b-0 lg:border-r border-gray-400 p-6 md:p-12 lg:sticky lg:top-0 lg:h-screen lg:self-start">
-          <div className="relative w-full h-full min-h-[400px] lg:min-h-0 rounded-xl overflow-hidden border border-gray-200">
-            {/* Substituting the specific poster with a relevant toy image */}
+        {/* Left Sidebar (Poster / Image) - STICKY ON DESKTOP */}
+        <aside className="w-full lg:w-[35%] border-b lg:border-b-0 lg:border-r border-gray-200 p-6 md:p-12 lg:sticky lg:top-0 lg:h-screen lg:self-start">
+          <div className="relative w-full h-full min-h-[400px] lg:min-h-0 rounded-2xl overflow-hidden border border-gray-100 shadow-md">
             <img 
               src="/assets/newLetter/newletter1.jpg" 
               alt="Be a volunteer, join our events" 
               className="w-full h-full object-cover absolute inset-0"
             />
-            {/* Overlay to mimic the poster feel if needed */}
-            <div className="absolute inset-0 bg-teal-400/20 mix-blend-multiply rounded-xl"></div>
+            <div className="absolute inset-0 bg-[#00C4B5]/10 mix-blend-multiply rounded-2xl"></div>
           </div>
         </aside>
 
@@ -65,31 +63,31 @@ const KidsNewsSection: React.FC = () => {
             <article 
               key={article.id} 
               className={`p-6 md:p-12 flex flex-col xl:flex-row gap-8 ${
-                index !== articles.length - 1 ? 'border-b border-gray-400' : ''
+                index !== articles.length - 1 ? 'border-b border-gray-200' : ''
               }`}
             >
               {/* Article Image & Date Badge */}
               <div className="relative w-full xl:w-[45%] flex-shrink-0">
-                <div className="absolute top-4 left-4 z-10 bg-[#fde047] text-black text-xs font-bold px-3 py-1.5 rounded shadow-sm">
+                <div className="absolute top-4 left-4 z-10 bg-[#FF6B6B] text-white text-xs font-black px-3.5 py-1.5 rounded-full shadow-md">
                   {article.date}
                 </div>
                 <img 
                   src={article.imageUrl} 
                   alt={article.title} 
-                  className="w-full h-64 xl:h-full object-cover rounded-xl"
+                  className="w-full h-64 xl:h-full object-cover rounded-2xl shadow-sm"
                 />
               </div>
 
               {/* Article Content */}
               <div className="flex flex-col justify-center w-full xl:w-[55%]">
-                <h2 className="text-2xl md:text-3xl font-extrabold leading-tight mb-4">
+                <h2 className="text-2xl md:text-3xl font-black leading-tight mb-4 text-gray-900 hover:text-[#00C4B5] transition-colors cursor-pointer">
                   {article.title}
                 </h2>
-                <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-6">
+                <p className="text-gray-500 text-sm md:text-base leading-relaxed mb-6 font-semibold">
                   {article.excerpt}
                 </p>
                 <div>
-                  <button className="bg-[#5f46a0] text-white text-xs font-bold tracking-wider px-8 py-3 rounded-full uppercase shadow-[4px_4px_0px_#111] border border-[#111] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111] transition-all">
+                  <button className="bg-[#00C4B5] hover:bg-[#00A89B] text-white text-xs font-extrabold tracking-wider px-8 py-3 rounded-full uppercase shadow-md hover:shadow-lg hover:scale-105 transition-all">
                     Read More
                   </button>
                 </div>
@@ -99,25 +97,6 @@ const KidsNewsSection: React.FC = () => {
           
         </div>
       </div>
-      
-      {/* Floating Back to Top Button (Fixed to bottom right of screen) */}
-      <button 
-        className="fixed bottom-6 right-6 md:bottom-12 md:right-12 w-16 h-16 bg-[#5f46a0] text-white rounded-full flex items-center justify-center shadow-[4px_4px_0px_#111] border border-[#111] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_#111] transition-all z-50 group"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      >
-        <svg 
-          xmlns="http://www.w3.org/2000/svg" 
-          className="w-6 h-6 group-hover:-translate-y-1 transition-transform" 
-          fill="none" 
-          viewBox="0 0 24 24" 
-          stroke="currentColor" 
-          strokeWidth={3}
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
-        </svg>
-        {/* Decorative dots to mimic the circle text in the original image */}
-        <div className="absolute inset-1 border-[1px] border-dashed border-white/40 rounded-full animate-[spin_10s_linear_infinite]"></div>
-      </button>
 
     </section>
   );

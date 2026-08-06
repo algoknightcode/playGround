@@ -182,7 +182,7 @@ export default function GalleryLightboxZoom() {
     <section
       ref={sectionRef}
       aria-label="Photography gallery"
-      className="relative w-full overflow-hidden bg-[#FFF8F0] px-5 py-20 text-amber-950 sm:px-8 sm:py-28"
+      className="relative w-full overflow-hidden bg-white px-5 py-16 text-gray-900 sm:px-8 sm:py-24 font-quicksand"
     >
       <style>{`
         @keyframes ${uid}-sheen {
@@ -217,30 +217,29 @@ export default function GalleryLightboxZoom() {
       {/* Atmospheric Background Effects */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
         <div
-          className={`${uid}-orb absolute -left-24 top-10 h-72 w-72 rounded-full bg-amber-200/40 blur-3xl`}
+          className={`${uid}-orb absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#00C4B5]/10 blur-3xl`}
         />
         <div
-          className={`${uid}-orb-2 absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-orange-200/35 blur-3xl`}
+          className={`${uid}-orb-2 absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#FF6B6B]/10 blur-3xl`}
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(217,119,6,0.06)_1px,transparent_0)] [background-size:22px_22px]" />
       </div>
 
       <div className="mx-auto max-w-6xl">
         {/* Header */}
-        <div className="mb-12 flex flex-col gap-6 sm:mb-16 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-10 flex flex-col gap-6 sm:mb-14 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-100/70 px-3 py-1 text-[0.7rem] font-bold uppercase tracking-[0.2em] text-amber-800 backdrop-blur">
-              <span className="h-2 w-2 rounded-full bg-[#FF7A59]" />
+            <span className="inline-flex items-center gap-2 rounded-full border border-[#00C4B5]/30 bg-[#00C4B5]/10 px-3.5 py-1 text-[0.7rem] font-bold uppercase tracking-[0.2em] text-[#00C4B5] backdrop-blur">
+              <span className="h-2 w-2 rounded-full bg-[#FF6B6B]" />
               Field Archive · Vol. 07
             </span>
-            <h2 className="mt-5 text-4xl font-extrabold tracking-tight text-amber-950 sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-black tracking-tight text-gray-900 sm:text-5xl">
               Frames from the{" "}
-              <span className="bg-gradient-to-r from-[#FF7A59] via-amber-500 to-orange-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#00C4B5] to-[#FF6B6B] bg-clip-text text-transparent">
                 road
               </span>
             </h2>
           </div>
-          <p className="max-w-sm text-sm font-medium leading-relaxed text-amber-800/80">
+          <p className="max-w-sm text-sm font-semibold leading-relaxed text-gray-500">
             Ten photographs from across the world. Click any frame to enlarge,
             then use the keyboard arrow keys or thumbnail strip to navigate.
           </p>
@@ -266,7 +265,7 @@ export default function GalleryLightboxZoom() {
                 whileHover={{ y: -4 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ type: "spring", stiffness: 320, damping: 26 }}
-                className={`${uid}-card group relative h-full w-full overflow-hidden rounded-3xl border-2 border-amber-200/80 bg-amber-50 text-left shadow-md shadow-amber-900/5 outline-none ring-amber-400 transition-all duration-300 hover:border-amber-300 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FFF8F0]`}
+                className={`${uid}-card group relative h-full w-full overflow-hidden rounded-3xl border-2 border-gray-100 bg-gray-50 text-left shadow-md outline-none transition-all duration-300 hover:border-[#00C4B5]/40 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-offset-2`}
               >
                 <motion.div
                   layoutId={`${uid}-frame-${photo.id}`}

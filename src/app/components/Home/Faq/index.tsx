@@ -14,7 +14,6 @@ interface FAQItem {
   answer: string;
   category: 'general' | 'technical' | 'billing' | 'account';
   img: string;
-  icon: string;
 }
 
 const FAQ_DATA: FAQItem[] = [
@@ -25,7 +24,6 @@ const FAQ_DATA: FAQItem[] = [
     answer:
       'ToyPark is a magical universe created for kids, parents, and educators! We offer premium educational toys, play structures, and creative activities.',
     img: '/assets/ToysEveryNeed/kids1.webp',
-    icon: '🧸',
   },
   {
     id: 'g2',
@@ -34,7 +32,6 @@ const FAQ_DATA: FAQItem[] = [
     answer:
       'Simply explore our shop categories above, pick your favorite play sets, and enjoy fast home delivery with safe, non-toxic certified products.',
     img: '/assets/favcategories/hero6a.png',
-    icon: '🚀',
   },
   {
     id: 't1',
@@ -43,7 +40,6 @@ const FAQ_DATA: FAQItem[] = [
     answer:
       'Yes! Every single toy and play set in our catalog undergoes rigorous child-safety testing and uses 100% eco-friendly, non-toxic materials.',
     img: '/assets/ToysEveryNeed/kids2.webp',
-    icon: '🛡️',
   },
   {
     id: 't2',
@@ -52,7 +48,6 @@ const FAQ_DATA: FAQItem[] = [
     answer:
       'We curate special collections for all growing ages — from toddlers (0-2 yrs) to active kids (3-8+ yrs) and young puzzle builders!',
     img: '/assets/favcategories/hero6b.png',
-    icon: '🎨',
   },
   {
     id: 'b1',
@@ -61,7 +56,6 @@ const FAQ_DATA: FAQItem[] = [
     answer:
       'We support all major credit cards, UPI, digital wallets, and Cash on Delivery with free express shipping on orders above $50.',
     img: '/assets/ToysEveryNeed/kids3.webp',
-    icon: '🎁',
   },
   {
     id: 'b2',
@@ -70,7 +64,6 @@ const FAQ_DATA: FAQItem[] = [
     answer:
       'Yes! We offer a hassle-free 30-day play guarantee. If your little one isn’t completely happy, returns and exchanges are quick and easy.',
     img: '/assets/favcategories/hero6c.png',
-    icon: '⭐',
   },
 ];
 
@@ -106,7 +99,7 @@ export const FaqInteractivePreview = () => {
         </motion.div>
       </div>
 
-      <div className="w-full max-w-6xl mx-auto px-4 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 relative z-10 w-full">
         
         {/* Section Header */}
         <motion.div 
@@ -130,18 +123,15 @@ export const FaqInteractivePreview = () => {
                 onMouseEnter={() => setActiveItem(item)}
                 onClick={() => setActiveItem(item)}
                 className={cn(
-                  'w-full text-left px-5 py-4 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group backdrop-blur-md border',
+                  'w-full text-left px-6 py-5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group backdrop-blur-md border',
                   activeItem.id === item.id
                     ? 'bg-white text-slate-900 shadow-2xl scale-[1.02] border-white'
                     : 'bg-white/20 text-white hover:bg-white/30 border-white/30'
                 )}
               >
-                <div className="flex items-center gap-3">
-                  <span className="text-xl sm:text-2xl">{item.icon}</span>
-                  <span className="text-base sm:text-lg font-bold tracking-wide">
-                    {item.question}
-                  </span>
-                </div>
+                <span className="text-base sm:text-lg font-bold tracking-wide">
+                  {item.question}
+                </span>
                 <ArrowRight
                   className={cn(
                     'w-5 h-5 flex-shrink-0 transition-all duration-300',

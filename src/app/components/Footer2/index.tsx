@@ -54,7 +54,7 @@ const Footer2 = () => {
   }, []);
 
   return (
-    <footer className="relative bg-white pt-16 pb-48 md:pb-60 lg:pb-72 overflow-hidden font-sans text-gray-600">
+    <footer className="relative bg-white pt-16 pb-48 md:pb-60 lg:pb-72 overflow-hidden font-quicksand text-gray-600">
       
       {/* --- Top Content Section --- */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
@@ -63,46 +63,43 @@ const Footer2 = () => {
           {/* Column 1: Brand & Contact Info */}
           <div className="space-y-5">
             {/* Logo */}
-            <div className="flex items-center gap-1 mb-3">
-              <span className="text-3xl md:text-4xl font-black text-orange-500 tracking-tight">Toy</span>
-              <span className="text-3xl md:text-4xl font-black text-orange-500 tracking-tight">Ü</span>
-              <span className="text-3xl md:text-4xl font-black text-orange-500 tracking-tight">p</span>
-            </div>
-
-            {/* Tagline */}
-            <p className="text-sm leading-relaxed text-gray-500 font-normal">
-              Lorem ipsum dolor sit amet consectetur. Id fames there are many vulputate eget dolor.
-            </p>
+            <a href="/" className="inline-block -mt-3 sm:-mt-5 mb-1">
+              <img 
+                src="/assets/clean_logo_toypark.webp" 
+                alt="ToyPark Logo" 
+                className="h-24 sm:h-28 md:h-34 w-auto max-w-[320px] object-contain transform hover:scale-105 transition-transform" 
+              />
+            </a>
 
             {/* Contact Info */}
             <ul className="space-y-3.5 text-sm">
-              <li className="flex items-start gap-3 text-gray-600 hover:text-orange-500 transition-colors">
-                <MapPin size={18} className="text-teal-500 flex-shrink-0 mt-0.5" />
-                <span className="font-medium">6391 Elgin St. Celina, Delaware 10299</span>
+              <li className="flex items-start gap-3 text-gray-600 hover:text-[#00C4B5] transition-colors">
+                <MapPin size={18} className="text-[#00C4B5] flex-shrink-0 mt-0.5" />
+                <span className="font-semibold">6391 Elgin St. Celina, Delaware 10299</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-600 hover:text-orange-500 transition-colors">
-                <Phone size={18} className="text-teal-500 flex-shrink-0" />
-                <span className="font-medium">+000-1234-456789</span>
+              <li className="flex items-center gap-3 text-gray-600 hover:text-[#00C4B5] transition-colors">
+                <Phone size={18} className="text-[#00C4B5] flex-shrink-0" />
+                <span className="font-semibold">+000-1234-456789</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-600 hover:text-orange-500 transition-colors">
-                <Mail size={18} className="text-teal-500 flex-shrink-0" />
-                <span className="font-medium">toyup@gmail.com</span>
+              <li className="flex items-center gap-3 text-gray-600 hover:text-[#00C4B5] transition-colors">
+                <Mail size={18} className="text-[#00C4B5] flex-shrink-0" />
+                <span className="font-semibold">toypark@gmail.com</span>
               </li>
-              <li className="flex items-center gap-3 text-gray-600 hover:text-orange-500 transition-colors">
-                <Printer size={18} className="text-teal-500 flex-shrink-0" />
-                <span className="font-medium">+000-1234-55000</span>
+              <li className="flex items-center gap-3 text-gray-600 hover:text-[#00C4B5] transition-colors">
+                <Printer size={18} className="text-[#00C4B5] flex-shrink-0" />
+                <span className="font-semibold">+000-1234-55000</span>
               </li>
             </ul>
           </div>
 
           {/* Column 2: Services */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Services</h3>
-            <div className="w-10 h-1 bg-orange-500 mb-6 rounded-full"></div>
+            <h3 className="text-lg font-black text-gray-900 mb-2">Services</h3>
+            <div className="w-10 h-1 bg-[#FF6B6B] mb-6 rounded-full"></div>
             <ul className="space-y-3 text-sm">
               {['Service Offerings', 'How It Works', 'Pricing Table', 'Service Areas', 'Service FAQs', 'Contact Information'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-gray-600 hover:text-orange-500 font-medium transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
+                  <a href="#" className="text-gray-600 hover:text-[#FF6B6B] font-bold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
                     {link}
                   </a>
                 </li>
@@ -112,12 +109,12 @@ const Footer2 = () => {
 
           {/* Column 3: Customer Support */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Customer Support</h3>
-            <div className="w-10 h-1 bg-orange-500 mb-6 rounded-full"></div>
+            <h3 className="text-lg font-black text-gray-900 mb-2">Customer Support</h3>
+            <div className="w-10 h-1 bg-[#00C4B5] mb-6 rounded-full"></div>
             <ul className="space-y-3 text-sm">
               {['Contact Us', 'Store List', 'Opening Hours', 'Returns & Exchanges', 'Refund and Returns', 'Privacy Policy'].map((link) => (
                 <li key={link}>
-                  <a href="#" className="text-gray-600 hover:text-orange-500 font-medium transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
+                  <a href="#" className="text-gray-600 hover:text-[#00C4B5] font-bold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
                     {link}
                   </a>
                 </li>
@@ -127,7 +124,7 @@ const Footer2 = () => {
 
           {/* Column 4: Newsletter */}
           <div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">Subscribe Our NewsLetter</h3>
+            <h3 className="text-lg font-black text-gray-900 mb-2">Subscribe Our NewsLetter</h3>
             <div className="w-10 h-1 bg-orange-500 mb-6 rounded-full"></div>
             <p className="text-sm mb-6 text-gray-500 leading-relaxed">
               With our newsletter, you'll never miss an important update.
