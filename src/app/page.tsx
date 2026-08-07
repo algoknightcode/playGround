@@ -27,6 +27,7 @@ import FaqInteractivePreview from './components/Home/Faq';
 import KidsStackingCards from './components/Home/KidsStackingCards';
 import PlaygroundScrollVideo from './components/Home/PlaygroundScrollVideo';
 import ToyParkScrollVideo from './components/Home/ToyParkScrollVideo';
+import ShopElementsSection from './components/Home/ShopElementsSection';
 
 export default function Home() {
   return (
@@ -46,24 +47,25 @@ export default function Home() {
       <SplitVantage />
         <HeroBanner />
    
-      
+      <ShopElementsSection />
       <WhoWeAre />
       <CloudStatsBanner />
       <ExpandableVideoMarquee />
      
        <HeroSubBanner />
     
-      <AgeBestsellers />
+      {/* <AgeBestsellers /> */}
         <BusinessStats />
       <DealsSection />
       <HeroTextSection />
        <KidsStackingCards />
-      <AtestMarqueeWall />
+      {/* <AtestMarqueeWall /> */}
       <ClientTestimonials />
      
       <GalleryLightboxZoom />
       <FaqInteractivePreview />
       <KidsNewsSection />
+ 
       <ToyParkScrollVideo />
       <UpperFooter />
       <Footer2 />
