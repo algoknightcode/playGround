@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Heart, ArrowRight } from 'lucide-react';
 
@@ -17,7 +17,7 @@ interface ToyCardData {
   reviews: string;
 }
 
-const cards: ToyCardData[] = [
+const CARDS: ToyCardData[] = [
   { 
     cat: 'Creativity', 
     age: '3–8 yrs', 
@@ -80,40 +80,132 @@ const cards: ToyCardData[] = [
   },
 ];
 
-// Double it for a continuous loop marquee
-const doubledCards = [...cards, ...cards, ...cards];
+const DOUBLED_CARDS = [...CARDS, ...CARDS];
+
+function ToyCard({ card }: { card: ToyCardData }) {
+  const [imgError, setImgError] = useState(false);
+
+  return (
+    <div className="w-[270px] shrink-0 bg-white/95 border border-[#b2ede6] rounded-[24px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_20px_48px_-8px_rgba(28,180,170,0.22)] hover:border-[#2cbfb3] cursor-pointer relative backdrop-blur-xs group">
+      {/* Image / Fallback Container */}
+      <div 
+        className="w-full h-[210px] relative overflow-hidden bg-[#FDF3E7] flex items-center justify-center text-5xl"
+        style={{ backgroundColor: imgError ? card.fallback : undefined }}
+      >
+        {!imgError ? (
+          <img
+            src={card.img}
+            alt={card.title}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+            onError={() => setImgError(true)}
+          />
+        ) : (
+          <span>{card.emoji}</span>
+        )}
+
+        {/* Category Pill */}
+        <div className="absolute top-3 left-3 z-10 bg-white/90 border border-[#2cbfb3]/40 rounded-full px-2.5 py-1 text-[10px] font-extrabold tracking-wider text-[#1f4e4b] backdrop-blur-xs uppercase shadow-xs">
+          {card.cat}
+        </div>
+
+        {/* Age Badge */}
+        <div className="absolute top-3 right-3 z-10 bg-[#2cbfb3] rounded-full px-2.5 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
+          {card.age}
+        </div>
+      </div>
+
+      {/* Body */}
+      <div className="p-4.5 flex flex-col">
+        <span className="text-[10px] font-extrabold text-[#1a9e93] tracking-widest uppercase mb-1 block">
+          {card.sub}
+        </span>
+
+        <h3 className="text-[15px] font-extrabold text-[#0d2b2a] leading-snug mb-1.5">
+          {card.title}
+        </h3>
+
+        <div className="flex items-center gap-1.5 mb-3">
+          <span className="text-[#f59e0b] text-xs tracking-wider font-sans">
+            {card.stars}
+          </span>
+          <span className="text-[11px] font-semibold text-[#4a8c88]">
+            {card.reviews}
+          </span>
+        </div>
+
+        <p className="text-xs text-[#4a8c88] leading-relaxed mb-4 line-clamp-3 font-medium">
+          {card.desc}
+        </p>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <button 
+            type="button" 
+            aria-label={`Shop ${card.title}`}
+            className="flex-1 bg-[#2cbfb3] hover:bg-[#1a9e93] text-white rounded-[14px] py-2.5 text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 uppercase transition-all active:scale-98 cursor-pointer"
+          >
+            <span>Shop now</span>
+            <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+          </button>
+
+          <button 
+            type="button" 
+            aria-label="Add to wishlist"
+            className="w-[38px] h-[38px] rounded-[14px] border border-[#b2ede6] bg-transparent flex items-center justify-center text-[#2cbfb3] hover:bg-[#e0f7f4] hover:text-[#e11d48] transition-all flex-shrink-0 group/wish cursor-pointer"
+          >
+            <Heart className="w-4 h-4 fill-transparent stroke-current group-hover/wish:fill-[#e11d48] group-hover/wish:stroke-[#e11d48] transition-colors" />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ToysEveryNeed() {
   return (
     <section className="relative w-full overflow-hidden py-12 md:py-16 bg-gradient-to-br from-[#e8faf8] via-[#cff4f8] to-[#dffaf7] font-quicksand">
-      
-      {/* ═══ BLURRY BACKGROUND BLOBS ═══ */}
+      {/* ═══ CSS KEYFRAMES FOR HARDWARE-ACCELERATED MARQUEE ═══ */}
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-50%, 0, 0); }
+        }
+        .animate-marquee {
+          animation: marquee 35s linear infinite;
+          will-change: transform;
+        }
+        .animate-marquee:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+
+      {/* Ambient Blobs */}
       <div aria-hidden className="absolute -top-20 -left-16 w-[280px] h-[280px] bg-[#22d3e8]/18 rounded-full blur-3xl pointer-events-none" />
       <div aria-hidden className="absolute -bottom-16 -right-10 w-[200px] h-[200px] bg-[#2cbfb3]/18 rounded-full blur-3xl pointer-events-none" />
       <div aria-hidden className="absolute top-[40%] right-[5%] w-[120px] h-[120px] bg-[#7de8f4]/18 rounded-full blur-2xl pointer-events-none" />
 
-      {/* ═══ FLOATING BOBBING MASCOTS (LEFT & RIGHT) ═══ */}
+      {/* Floating Mascots */}
       <div aria-hidden className="absolute inset-0 pointer-events-none select-none z-10">
-        {/* Left Mascot */}
         <motion.div
           animate={{ y: [0, -24, 0], rotate: [0, 8, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[10%] left-[8%] sm:left-[12%] md:left-[18%] lg:left-[24%] bg-[#b2ede6]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center shadow-xs p-2"
+          className="absolute top-[10%] left-[8%] sm:left-[12%] md:left-[18%] lg:left-[24%] bg-[#b2ede6]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center p-2"
         >
-          <img src="/assets/icons/icon_mastcoff.avif" className="w-full h-full object-contain" alt="Left Mascot Avatar" />
+          <img src="/assets/icons/icon_mastcoff.avif" className="w-full h-full object-contain" alt="" width="112" height="112" />
         </motion.div>
 
-        {/* Right Mascot */}
         <motion.div
           animate={{ y: [0, -24, 0], rotate: [0, -8, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-          className="absolute top-[8%] right-[8%] sm:right-[12%] md:right-[18%] lg:right-[24%] bg-[#a7f3d0]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center shadow-xs p-2"
+          className="absolute top-[8%] right-[8%] sm:right-[12%] md:right-[18%] lg:right-[24%] bg-[#a7f3d0]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center p-2"
         >
-          <img src="/assets/icons/icon_mastcoff2.avif" className="w-full h-full object-contain" alt="Right Mascot Avatar" />
+          <img src="/assets/icons/icon_mastcoff2.avif" className="w-full h-full object-contain" alt="" width="112" height="112" />
         </motion.div>
       </div>
 
-      {/* ═══ SECTION HEADER ═══ */}
+      {/* Header */}
       <div className="relative text-center px-4 mb-10 z-20">
         <div className="inline-flex items-center gap-1.5 bg-white/75 border border-[#70d9ce] rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-wider text-[#1f4e4b] uppercase mb-4.5 backdrop-blur-xs">
           <span className="w-1.5 h-1.5 bg-[#2cbfb3] rounded-full animate-ping" />
@@ -129,108 +221,21 @@ export default function ToysEveryNeed() {
         </p>
       </div>
 
-      {/* ═══ INFINITE MARQUEE SLIDER ═══ */}
-      <div className="marquee-wrap relative overflow-hidden py-3 z-20">
-        
-        {/* Left/Right Gradients for soft fading edges */}
+      {/* Marquee Wrapper */}
+      <div className="relative overflow-hidden py-3 z-20">
         <div className="absolute top-0 bottom-0 left-0 w-24 bg-gradient-to-r from-[#e8faf8] to-transparent z-10 pointer-events-none" />
         <div className="absolute top-0 bottom-0 right-0 w-24 bg-gradient-to-l from-[#dffaf7] to-transparent z-10 pointer-events-none" />
 
-        <div className="flex w-full select-none">
-          <motion.div
-            className="flex gap-5 pr-5"
-            animate={{ x: [0, '-50%'] }}
-            transition={{
-              repeat: Infinity,
-              ease: 'linear',
-              duration: 38,
-            }}
-          >
-            {doubledCards.map((card, idx) => (
-              <div
-                key={idx}
-                className="toy-card w-[270px] shrink-0 bg-white/95 border border-[#b2ede6] rounded-[24px] overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_20px_48px_-8px_rgba(28,180,170,0.22)] hover:border-[#2cbfb3] cursor-pointer relative backdrop-blur-xs group"
-              >
-                {/* Card Image Wrapper */}
-                <div className="w-full h-[210px] relative overflow-hidden bg-[#FDF3E7]">
-                  <img
-                    src={card.img}
-                    alt={card.title}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        parent.style.background = card.fallback;
-                        const fallbackDiv = document.createElement('div');
-                        fallbackDiv.style.position = 'absolute';
-                        fallbackDiv.style.inset = '0';
-                        fallbackDiv.style.display = 'flex';
-                        fallbackDiv.style.alignItems = 'center';
-                        fallbackDiv.style.justifyContent = 'center';
-                        fallbackDiv.style.fontSize = '56px';
-                        fallbackDiv.innerHTML = card.emoji;
-                        parent.appendChild(fallbackDiv);
-                      }
-                    }}
-                  />
-                  
-                  {/* Category Pill */}
-                  <div className="absolute top-3 left-3 z-10 bg-white/90 border border-[#2cbfb3]/40 rounded-full px-2.5 py-1 text-[10px] font-extrabold tracking-wider text-[#1f4e4b] backdrop-blur-xs uppercase shadow-xs">
-                    {card.cat}
-                  </div>
-                  
-                  {/* Age Badge */}
-                  <div className="absolute top-3 right-3 z-10 bg-[#2cbfb3] rounded-full px-2.5 py-0.5 text-[10px] font-extrabold text-white shadow-xs">
-                    {card.age}
-                  </div>
-                </div>
-
-                {/* Card Content Body */}
-                <div className="p-4.5 flex flex-col">
-                  <span className="text-[10px] font-extrabold text-[#1a9e93] tracking-widest uppercase mb-1 block">
-                    {card.sub}
-                  </span>
-                  
-                  <h3 className="text-[15px] font-extrabold text-[#0d2b2a] leading-snug mb-1.5">
-                    {card.title}
-                  </h3>
-
-                  {/* Stars & Reviews */}
-                  <div className="flex items-center gap-1.5 mb-3">
-                    <span className="text-[#f59e0b] text-xs tracking-wider font-sans">
-                      {card.stars}
-                    </span>
-                    <span className="text-[11px] font-semibold text-[#4a8c88]">
-                      {card.reviews}
-                    </span>
-                  </div>
-
-                  <p className="text-xs text-[#4a8c88] leading-relaxed mb-4 line-clamp-3 font-medium">
-                    {card.desc}
-                  </p>
-
-                  {/* CTA Buttons */}
-                  <div className="flex gap-2">
-                    <button className="flex-1 bg-[#2cbfb3] hover:bg-[#1a9e93] text-white border-none rounded-[14px] py-2.5 text-xs font-bold tracking-wider flex items-center justify-center gap-1.5 uppercase transition-all active:scale-98">
-                      <span>Shop now</span>
-                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
-                    </button>
-                    
-                    <button className="w-[38px] h-[38px] rounded-[14px] border border-[#b2ede6] bg-transparent flex items-center justify-center text-[#2cbfb3] hover:bg-[#e0f7f4] hover:text-[#e11d48] transition-all flex-shrink-0 group/wish">
-                      <Heart className="w-4 h-4 fill-transparent stroke-current group-hover/wish:fill-[#e11d48] group-hover/wish:stroke-[#e11d48] transition-colors" />
-                    </button>
-                  </div>
-                </div>
-
-              </div>
+        <div className="flex w-max select-none animate-marquee">
+          <div className="flex gap-5 pr-5">
+            {DOUBLED_CARDS.map((card, idx) => (
+              <ToyCard key={`${card.cat}-${idx}`} card={card} />
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
-      
-      {/* ═══ CLOUD SHAPE BOTTOM DIVIDER ═══ */}
+
+      {/* Cloud Bottom Divider */}
       <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none z-20 pointer-events-none">
         <svg 
           className="relative block w-full h-[40px] sm:h-[60px]" 

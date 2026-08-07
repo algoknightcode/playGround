@@ -76,16 +76,23 @@ export default function ToyParkScrollVideo() {
       drawnIndex = i;
     }
 
+    let containerTop = 0;
+    let totalScroll = 0;
+
+    function measureLayout() {
+      if (!container || !cv) return;
+      const stickyH = cv.parentElement?.clientHeight || window.innerHeight;
+      totalScroll = Math.max(1, container.offsetHeight - stickyH);
+      const rect = container.getBoundingClientRect();
+      containerTop = rect.top + window.scrollY;
+    }
+
     function renderScroll() {
-      rafScrollId = null;
       const N = totalFrames || frames.length;
       if (!N || !container || !cv) return;
 
-      const stickyH = cv.parentElement?.clientHeight || window.innerHeight;
-      const totalScroll = container.offsetHeight - stickyH;
-      const rect = container.getBoundingClientRect();
-
-      const progress = totalScroll > 0 ? Math.min(1, Math.max(0, -rect.top / totalScroll)) : 0;
+      const scrollY = window.scrollY || window.pageYOffset;
+      const progress = totalScroll > 0 ? Math.min(1, Math.max(0, (scrollY - containerTop) / totalScroll)) : 0;
       const frameIndex = Math.round(progress * (N - 1));
 
       if (frameIndex !== drawnIndex && frames[frameIndex]) {
@@ -95,16 +102,40 @@ export default function ToyParkScrollVideo() {
 
     function onScroll() {
       if (rafScrollId === null) {
-        rafScrollId = requestAnimationFrame(renderScroll);
+        rafScrollId = requestAnimationFrame(() => {
+          renderScroll();
+          rafScrollId = null;
+        });
       }
     }
 
     function onResize() {
-      if (resizeTimer) clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        updateLayout();
-        renderScroll();
-      }, 100);
+      updateLayout();
+      measureLayout();
+      renderScroll();
+    }
+
+    let isObserving = false;
+
+    function enableScrollListener() {
+      if (!isObserving) {
+        isObserving = true;
+        measureLayout();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onResize);
+      }
+    }
+
+    function disableScrollListener() {
+      if (isObserving) {
+        isObserving = false;
+        window.removeEventListener('scroll', onScroll);
+        window.removeEventListener('resize', onResize);
+        if (rafScrollId !== null) {
+          cancelAnimationFrame(rafScrollId);
+          rafScrollId = null;
+        }
+      }
     }
 
     function getBitmapOpts() {
@@ -127,8 +158,8 @@ export default function ToyParkScrollVideo() {
         }
         frames[slot] = bitmap;
 
-        // Draw initial frame immediately, avoid calling renderScroll() on every single extracted frame
         if (slot === 0) {
+          measureLayout();
           draw(0);
         }
       } catch (e) {
@@ -138,6 +169,7 @@ export default function ToyParkScrollVideo() {
 
     function finish() {
       totalFrames = frames.length;
+      measureLayout();
       renderScroll();
 
       if (loaderRef.current) {
@@ -202,6 +234,7 @@ export default function ToyParkScrollVideo() {
       isExtractionStarted = true;
 
       updateLayout();
+      measureLayout();
 
       const run = () => {
         if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
@@ -221,11 +254,12 @@ export default function ToyParkScrollVideo() {
 
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) {
+        const entry = entries[0];
+        if (entry.isIntersecting) {
           startExtraction();
-          window.addEventListener('scroll', onScroll, { passive: true });
-          window.addEventListener('resize', onResize);
-          observer.disconnect();
+          enableScrollListener();
+        } else {
+          disableScrollListener();
         }
       },
       { rootMargin: '200px 0px' }
@@ -235,11 +269,8 @@ export default function ToyParkScrollVideo() {
 
     return () => {
       observer.disconnect();
-      if (resizeTimer) clearTimeout(resizeTimer);
+      disableScrollListener();
       if (loadedMetadataHandler && vid) vid.removeEventListener('loadedmetadata', loadedMetadataHandler);
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
-      if (rafScrollId !== null) cancelAnimationFrame(rafScrollId);
 
       frames.forEach((b) => {
         try {

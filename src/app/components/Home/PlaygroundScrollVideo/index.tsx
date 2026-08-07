@@ -22,7 +22,7 @@ export default function PlaygroundScrollVideo() {
     const ctx = cv.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    const TARGET_W = 1280;
+    const TARGET_W = 1000;
     const frames: ImageBitmap[] = [];
     let N = 0;
     let iw = 0;
@@ -65,23 +65,82 @@ export default function PlaygroundScrollVideo() {
       drawn = i;
     }
 
+    let rafId: number | null = null;
+    let containerTop = 0;
+    let totalScroll = 0;
+
+    function measureLayout() {
+      if (!container || !cv) return;
+      const stickyH = cv.parentElement?.clientHeight || window.innerHeight;
+      totalScroll = Math.max(1, container.offsetHeight - stickyH);
+      const rect = container.getBoundingClientRect();
+      containerTop = rect.top + window.scrollY;
+    }
+
     function render() {
       const totalFrames = N || frames.length;
       if (!totalFrames || !container || !cv) return;
-      const stickyH = cv.parentElement?.clientHeight || window.innerHeight;
-      const total = container.offsetHeight - stickyH;
-      const rect = container.getBoundingClientRect();
-      const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
+
+      const scrollY = window.scrollY || window.pageYOffset;
+      const p = totalScroll > 0 ? Math.min(1, Math.max(0, (scrollY - containerTop) / totalScroll)) : 0;
       const i = Math.round(p * (totalFrames - 1));
       if (i !== drawn && frames[i]) draw(i);
     }
 
+    function onScroll() {
+      if (rafId === null) {
+        rafId = requestAnimationFrame(() => {
+          render();
+          rafId = null;
+        });
+      }
+    }
+
     const handleResize = () => {
       resizeCanvas();
+      measureLayout();
       render();
     };
 
-    window.addEventListener('scroll', render, { passive: true });
+    let observer: IntersectionObserver | null = null;
+    let isObserving = false;
+
+    function enableScrollListener() {
+      if (!isObserving) {
+        isObserving = true;
+        measureLayout();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      }
+    }
+
+    function disableScrollListener() {
+      if (isObserving) {
+        isObserving = false;
+        window.removeEventListener('scroll', onScroll);
+        if (rafId !== null) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        }
+      }
+    }
+
+    if (typeof IntersectionObserver !== 'undefined') {
+      observer = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (entry && entry.isIntersecting) {
+            enableScrollListener();
+          } else {
+            disableScrollListener();
+          }
+        },
+        { rootMargin: '200px 0px' }
+      );
+      observer.observe(container);
+    } else {
+      enableScrollListener();
+    }
+
     window.addEventListener('resize', handleResize);
 
     function bitmapOpts() {
@@ -104,6 +163,7 @@ export default function PlaygroundScrollVideo() {
         frames[slot] = b;
         if (slot === 0) {
           resizeCanvas();
+          measureLayout();
           draw(0);
         }
         render();
@@ -114,6 +174,7 @@ export default function PlaygroundScrollVideo() {
 
     function finish() {
       N = frames.length;
+      measureLayout();
       render();
       setIsLoaded(true);
     }
@@ -167,6 +228,7 @@ export default function PlaygroundScrollVideo() {
 
     function start() {
       resizeCanvas();
+      measureLayout();
       if ('requestVideoFrameCallback' in HTMLVideoElement.prototype) {
         extractByPlay();
       } else {
@@ -181,7 +243,8 @@ export default function PlaygroundScrollVideo() {
     }
 
     return () => {
-      window.removeEventListener('scroll', render);
+      disableScrollListener();
+      if (observer) observer.disconnect();
       window.removeEventListener('resize', handleResize);
       vid.removeEventListener('loadedmetadata', start);
       frames.forEach((b) => {
