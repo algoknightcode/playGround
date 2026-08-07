@@ -25,15 +25,14 @@ import Marquee2 from './components/Home/Marquee2';
 import ShopByCategories from './components/Home/ShopByCategories';
 import FaqInteractivePreview from './components/Home/Faq';
 import KidsStackingCards from './components/Home/KidsStackingCards';
-import PlaygroundScrollVideo from './components/Home/PlaygroundScrollVideo';
-import ToyParkScrollVideo from './components/Home/ToyParkScrollVideo';
 import ShopElementsSection from './components/Home/ShopElementsSection';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-white text-[#2D3436]">
       <PlayfulHeader />
-       <PlaygroundScrollVideo />
+       {/* <PlaygroundScrollVideo /> */}
+        <HeroBanner />
     
      
     
@@ -45,7 +44,7 @@ export default function Home() {
       <ToysForEveryNeed />
       <ShopByCategories />
       <SplitVantage />
-        <HeroBanner />
+       
    
       <ShopElementsSection />
       <WhoWeAre />
@@ -66,7 +65,6 @@ export default function Home() {
       <FaqInteractivePreview />
       <KidsNewsSection />
  
-      <ToyParkScrollVideo />
       <UpperFooter />
       <Footer2 />
     </main>

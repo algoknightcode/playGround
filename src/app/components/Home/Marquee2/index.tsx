@@ -1,13 +1,11 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Flame } from 'lucide-react';
 
 export default function Marquee2() {
   const marqueeText = "Toy Park Kids Toys & Furniture";
 
-  // Combine into a repeated sequence for seamless looping
   const items = [
     { text: marqueeText },
     { text: marqueeText },
@@ -19,16 +17,18 @@ export default function Marquee2() {
 
   return (
     <section className="relative w-full bg-[#00BFA6] text-white py-4 sm:py-5 overflow-hidden font-quicksand select-none border-y border-[#00A38D] shadow-sm">
+      <style>{`
+        @keyframes marqueeScroll {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(-33.333%, 0, 0); }
+        }
+        .animate-marquee-fast {
+          animation: marqueeScroll 20s linear infinite;
+          will-change: transform;
+        }
+      `}</style>
       <div className="flex whitespace-nowrap min-w-full">
-        <motion.div
-          className="flex gap-16 items-center pr-16"
-          animate={{ x: [0, '-33.333%'] }}
-          transition={{
-            repeat: Infinity,
-            ease: 'linear',
-            duration: 20,
-          }}
-        >
+        <div className="flex gap-16 items-center pr-16 animate-marquee-fast">
           {items.map((item, index) => (
             <div key={index} className="flex items-center gap-5 text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider">
               <Flame className="w-6 h-6 sm:w-7 sm:h-7 fill-white text-white animate-pulse" />
@@ -42,7 +42,7 @@ export default function Marquee2() {
               <span>{item.text}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

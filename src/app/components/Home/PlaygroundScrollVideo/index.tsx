@@ -22,7 +22,7 @@ export default function PlaygroundScrollVideo() {
     const ctx = cv.getContext('2d', { alpha: true });
     if (!ctx) return;
 
-    const TARGET_W = 1000;
+    const TARGET_W = 1280;
     const frames: ImageBitmap[] = [];
     let N = 0;
     let iw = 0;

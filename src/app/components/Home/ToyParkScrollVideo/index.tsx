@@ -33,6 +33,7 @@ export default function ToyParkScrollVideo() {
     vid.muted = true;
     vid.setAttribute('playsinline', '');
     vid.removeAttribute('controls');
+    vid.preload = 'auto';
 
     const ctx = cv.getContext('2d', { alpha: false });
     if (!ctx) return;
@@ -93,7 +94,21 @@ export default function ToyParkScrollVideo() {
 
       const scrollY = window.scrollY || window.pageYOffset;
       const progress = totalScroll > 0 ? Math.min(1, Math.max(0, (scrollY - containerTop) / totalScroll)) : 0;
-      const frameIndex = Math.round(progress * (N - 1));
+      let frameIndex = Math.round(progress * (N - 1));
+
+      // Fallback to closest available frame if target frame is still loading during active scroll
+      if (!frames[frameIndex]) {
+        for (let offset = 1; offset < 5; offset++) {
+          if (frames[frameIndex - offset]) {
+            frameIndex = frameIndex - offset;
+            break;
+          }
+          if (frames[frameIndex + offset]) {
+            frameIndex = frameIndex + offset;
+            break;
+          }
+        }
+      }
 
       if (frameIndex !== drawnIndex && frames[frameIndex]) {
         draw(frameIndex);
@@ -143,7 +158,7 @@ export default function ToyParkScrollVideo() {
       return {
         resizeWidth: TARGET_W,
         resizeHeight: Math.round((TARGET_W * vid.videoHeight) / vid.videoWidth),
-        resizeQuality: 'medium' as ResizeQuality,
+        resizeQuality: 'low' as ResizeQuality,
       };
     }
 
@@ -205,13 +220,21 @@ export default function ToyParkScrollVideo() {
       vid.addEventListener(
         'ended',
         async () => {
+          if (vid && !vid.paused) vid.pause();
+          // Ensure final frame at video end is captured into slot
+          try {
+            const lastFrame = await createImageBitmap(vid, getBitmapOpts());
+            frames[slot] = lastFrame;
+          } catch {}
           await Promise.all(pending);
           finish();
         },
         { once: true }
       );
 
-      vid.play().catch(extractBySeek);
+      vid.play().then(() => {
+        // Pause playback after extracting frames or once end is reached
+      }).catch(extractBySeek);
     }
 
     async function extractBySeek() {
@@ -249,6 +272,7 @@ export default function ToyParkScrollVideo() {
       } else {
         loadedMetadataHandler = run;
         vid.addEventListener('loadedmetadata', loadedMetadataHandler, { once: true });
+        vid.load();
       }
     }
 
@@ -256,13 +280,15 @@ export default function ToyParkScrollVideo() {
       (entries) => {
         const entry = entries[0];
         if (entry.isIntersecting) {
-          startExtraction();
+          if (!isExtractionStarted) {
+            startExtraction();
+          }
           enableScrollListener();
         } else {
           disableScrollListener();
         }
       },
-      { rootMargin: '200px 0px' }
+      { rootMargin: '0px 0px' }
     );
 
     observer.observe(container);
@@ -280,6 +306,8 @@ export default function ToyParkScrollVideo() {
     };
   }, []);
 
+  return null;
+  /*
   return (
     <section ref={containerRef} className="relative w-full h-[150vh] bg-white py-20">
       <video
@@ -288,7 +316,7 @@ export default function ToyParkScrollVideo() {
         className="absolute top-0 left-0 w-1 h-1 opacity-0 pointer-events-none"
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         crossOrigin="anonymous"
       />
 
@@ -298,17 +326,11 @@ export default function ToyParkScrollVideo() {
             Interactive Showcase
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-[#2D3436] font-quicksand leading-tight">
-            Welcome to the ultimate <span className="text-[#FF7675]">Toy Park</span>
+            Experience the ultimate <span className="text-[#00C4B5]">Toy Park</span>
           </h2>
           <p className="text-gray-600 text-lg leading-relaxed">
-            Scroll down to watch our colorful blocks stack up, bringing creative toy manufacturing directly to life right before your eyes.
+            Scroll down to watch our manufacturing world come alive, bringing creative toy craftsmanship directly to life right before your eyes.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="w-12 h-1 bg-[#00C4B5] rounded-full animate-pulse"></span>
-            <span className="text-sm font-bold text-gray-400 uppercase tracking-wider">
-              Scroll down to explore
-            </span>
-          </div>
         </div>
 
         <div className="lg:col-span-7 w-full aspect-video overflow-hidden flex items-center justify-center bg-white rounded-2xl border border-gray-100 shadow-lg relative">
@@ -327,4 +349,5 @@ export default function ToyParkScrollVideo() {
       </div>
     </section>
   );
+  */
 }

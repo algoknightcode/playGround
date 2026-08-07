@@ -22,9 +22,13 @@ const MouseSVG = () => (
 
 
 
-export default function ShopElementsSection() {
+interface ShopElementsProps {
+  bgColor?: string;
+}
+
+export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElementsProps) {
   return (
-    <section className="relative w-full bg-white pt-12 pb-0 overflow-hidden">
+    <section className={`relative w-full ${bgColor} pt-12 pb-0 overflow-hidden`}>
       {/* Clouds and Characters Area */}
       <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] flex items-end justify-center">
         

@@ -1,8 +1,7 @@
 'use client';
 
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue, useMotionValueEvent } from 'framer-motion';
-import Lenis from 'lenis';
 import { ArrowRight, Sparkles, Cloud, Star, Rocket } from 'lucide-react';
 
 interface Project {
@@ -92,6 +91,7 @@ export default function PlayfulLightShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // 1. Lenis smooth scroll
+  /*
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -110,6 +110,7 @@ export default function PlayfulLightShowcase() {
     requestAnimationFrame(raf);
     return () => lenis.destroy();
   }, []);
+  */
 
   // 2. Track scroll progress
   const { scrollYProgress } = useScroll({
@@ -122,7 +123,6 @@ export default function PlayfulLightShowcase() {
     const newIndex = Math.round(latest * (projects.length - 1));
     if (newIndex !== activeIndex) {
       setActiveIndex(newIndex);
-      playPopSound();
     }
   });
 

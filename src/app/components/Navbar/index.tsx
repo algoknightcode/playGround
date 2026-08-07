@@ -72,7 +72,7 @@ export default function KidzaNavbar() {
               <img 
                 src="/assets/ToyPark_logo.png" 
                 alt="ToyPark Logo" 
-                className="h-13 sm:h-16 md:h-18 w-auto object-contain max-w-[240px] transform hover:scale-105 transition-transform" 
+                className="h-16 sm:h-20 md:h-24 w-auto object-contain max-w-[300px] transform hover:scale-105 transition-transform" 
               />
             </a>
 
