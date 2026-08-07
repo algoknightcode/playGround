@@ -1,10 +1,10 @@
-import React from 'react';
+import dynamic from 'next/dynamic';
 import PlayfulHeader from '../components/Navbar';
-import Footer2 from '../components/Footer2';
-import AboutUsScrollAnimation from '../components/pages/about';
-import ShopElementsSection from '../components/Home/ShopElementsSection';
-import WhoWeAre from '../components/Home/WhoWeAre';
-import ToyParkScrollVideo from '../components/Home/ToyParkScrollVideo';
+
+const AboutUsScrollAnimation = dynamic(() => import('../components/pages/about'));
+const ShopElementsSection = dynamic(() => import('../components/Home/ShopElementsSection'));
+const WhoWeAre = dynamic(() => import('../components/Home/WhoWeAre'));
+const Footer2 = dynamic(() => import('../components/Footer2'));
 
 export default function AboutPage() {
   return (

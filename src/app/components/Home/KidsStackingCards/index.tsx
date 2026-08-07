@@ -47,7 +47,7 @@ export default function KidsStackingCards() {
         {/* Header Section (Sticky with Equal Boundary to Cards) */}
         <div className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none">
           <div className="sticky top-0 w-full h-[730px] md:h-[700px] flex flex-col justify-start">
-            <div className="w-full pt-8 pb-6 md:pt-10 md:pb-8 flex flex-col justify-center items-center text-center px-4 bg-white/95 backdrop-blur-md pointer-events-auto shadow-sm">
+            <div className="w-full pt-8 pb-6 md:pt-10 md:pb-8 flex flex-col justify-center items-center text-center px-4 bg-white/98 pointer-events-auto shadow-sm">
               {/* Playful Background Doodles / Glow */}
               <div className="absolute top-4 left-10 w-20 h-20 bg-yellow-300/40 rounded-full blur-xl -z-10" />
               <div className="absolute bottom-4 right-10 w-32 h-32 bg-pink-300/40 rounded-full blur-2xl -z-10" />

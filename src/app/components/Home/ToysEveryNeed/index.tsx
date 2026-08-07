@@ -187,22 +187,32 @@ export default function ToysEveryNeed() {
       <div aria-hidden className="absolute top-[40%] right-[5%] w-[120px] h-[120px] bg-[#7de8f4]/18 rounded-full blur-2xl pointer-events-none" />
 
       {/* Floating Mascots */}
+      <style>{`
+        @keyframes mascotFloat1 {
+          0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+          50% { transform: translate3d(0, -24px, 0) rotate(8deg); }
+        }
+        @keyframes mascotFloat2 {
+          0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+          50% { transform: translate3d(0, -24px, 0) rotate(-8deg); }
+        }
+        .animate-mascot-1 {
+          animation: mascotFloat1 5s ease-in-out infinite;
+          will-change: transform;
+        }
+        .animate-mascot-2 {
+          animation: mascotFloat2 5s ease-in-out 1.5s infinite;
+          will-change: transform;
+        }
+      `}</style>
       <div aria-hidden className="absolute inset-0 pointer-events-none select-none z-10">
-        <motion.div
-          animate={{ y: [0, -24, 0], rotate: [0, 8, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-[10%] left-[8%] sm:left-[12%] md:left-[18%] lg:left-[24%] bg-[#b2ede6]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center p-2"
-        >
+        <div className="absolute top-[10%] left-[8%] sm:left-[12%] md:left-[18%] lg:left-[24%] bg-[#b2ede6]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center p-2 animate-mascot-1">
           <img src="/assets/icons/icon_mastcoff.avif" className="w-full h-full object-contain" alt="" width="112" height="112" />
-        </motion.div>
+        </div>
 
-        <motion.div
-          animate={{ y: [0, -24, 0], rotate: [0, -8, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-          className="absolute top-[8%] right-[8%] sm:right-[12%] md:right-[18%] lg:right-[24%] bg-[#a7f3d0]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center p-2"
-        >
+        <div className="absolute top-[8%] right-[8%] sm:right-[12%] md:right-[18%] lg:right-[24%] bg-[#a7f3d0]/40 w-24 h-24 md:w-28 md:h-28 rounded-full flex items-center justify-center p-2 animate-mascot-2">
           <img src="/assets/icons/icon_mastcoff2.avif" className="w-full h-full object-contain" alt="" width="112" height="112" />
-        </motion.div>
+        </div>
       </div>
 
       {/* Header */}

@@ -58,38 +58,46 @@ export default function HeroBanner() {
         className="relative w-full overflow-hidden"
       >
         {/* ═══ FLOATING PLANE & HELICOPTER OVERLAY ═══ */}
+        <style>{`
+          @keyframes planeFloat {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+            50% { transform: translate3d(0, -12px, 0) rotate(4deg); }
+          }
+          @keyframes helicopterFloat {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(4deg); }
+            50% { transform: translate3d(0, -14px, 0) rotate(-4deg); }
+          }
+          .animate-plane-float {
+            animation: planeFloat 4.5s ease-in-out infinite;
+            will-change: transform;
+          }
+          .animate-helicopter-float {
+            animation: helicopterFloat 5.2s ease-in-out 0.6s infinite;
+            will-change: transform;
+          }
+        `}</style>
         <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
           
           {/* Floating Toy Plane */}
-          <motion.img
+          <img
             src="/assets/plane_icon.webp"
             alt="Toy Plane"
-            animate={{ 
-              y: [0, -12, 0],
-              rotate: [-3, 4, -3] 
-            }}
-            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
             style={{
               bottom: PLANE_POSITION.bottom,
               left: PLANE_POSITION.left,
             }}
-            className={`absolute ${PLANE_POSITION.size} h-auto drop-shadow-lg select-none`}
+            className={`absolute ${PLANE_POSITION.size} h-auto drop-shadow-lg select-none animate-plane-float`}
           />
 
           {/* Floating Helicopter */}
-          <motion.img
+          <img
             src="/assets/helicopter_icon.svg"
             alt="Helicopter"
-            animate={{ 
-              y: [0, -14, 0],
-              rotate: [4, -4, 4] 
-            }}
-            transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
             style={{
               top: HELICOPTER_POSITION.top,
               right: HELICOPTER_POSITION.right,
             }}
-            className={`absolute ${HELICOPTER_POSITION.size} h-auto drop-shadow-lg select-none`}
+            className={`absolute ${HELICOPTER_POSITION.size} h-auto drop-shadow-lg select-none animate-helicopter-float`}
           />
 
         </div>
@@ -99,6 +107,8 @@ export default function HeroBanner() {
             src="/assets/banner/new_banner1.webp"
             alt="Toy Park Hero Banner"
             className="w-full h-auto object-cover block"
+            loading="eager"
+            decoding="async"
           />
         </div>
       </motion.div>

@@ -1,7 +1,8 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue, useMotionValueEvent } from 'framer-motion';
+import Lenis from 'lenis';
 import { ArrowRight, Sparkles, Cloud, Star, Rocket } from 'lucide-react';
 
 interface Project {
@@ -91,7 +92,6 @@ export default function PlayfulLightShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   // 1. Lenis smooth scroll
-  /*
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -99,7 +99,7 @@ export default function PlayfulLightShowcase() {
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     });
 
     function raf(time: number) {
@@ -110,7 +110,6 @@ export default function PlayfulLightShowcase() {
     requestAnimationFrame(raf);
     return () => lenis.destroy();
   }, []);
-  */
 
   // 2. Track scroll progress
   const { scrollYProgress } = useScroll({
@@ -136,25 +135,35 @@ export default function PlayfulLightShowcase() {
       <div className="sticky top-0 flex h-screen w-full items-center justify-center p-4 md:p-8 overflow-hidden z-10">
         
         {/* ═══ CONTAINED BACKGROUND FLOATING NEUBRUTALIST ACCENTS (PINNED/STICKY) ═══ */}
+        <style>{`
+          @keyframes balloonFloat {
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+            50% { transform: translate3d(0, -14px, 0) rotate(6deg); }
+          }
+          @keyframes starSpin {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.2) rotate(20deg); }
+          }
+          .animate-balloon-float {
+            animation: balloonFloat 5.5s ease-in-out infinite;
+            will-change: transform;
+          }
+          .animate-star-spin {
+            animation: starSpin 4s ease-in-out infinite;
+            will-change: transform;
+          }
+        `}</style>
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          <motion.div
-            animate={{ y: [0, -14, 0], rotate: [0, 6, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute top-10 right-10 hidden lg:flex flex-col items-center opacity-90"
-          >
+          <div className="absolute top-10 right-10 hidden lg:flex flex-col items-center opacity-90 animate-balloon-float">
             <div className="w-12 h-14 bg-[#FF6B6B] rounded-[50%_50%_50%_50%/60%_60%_40%_40%] border-3 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] flex items-center justify-center">
               <div className="w-2.5 h-5 bg-white/60 rounded-full -ml-3 -mt-2 blur-[0.5px]" />
             </div>
             <div className="w-2 h-3 bg-[#FFE66D] rounded-xs mt-0.5 border border-[#2D3436]" />
-          </motion.div>
+          </div>
 
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1], rotate: [0, 20, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute bottom-12 left-12 hidden lg:flex text-[#FFE66D]"
-          >
+          <div className="absolute bottom-12 left-12 hidden lg:flex text-[#FFE66D] animate-star-spin">
             <Star className="w-8 h-8 fill-[#FFE66D] stroke-[#2D3436] stroke-[2]" />
-          </motion.div>
+          </div>
         </div>
         
         {/* Main Neubrutalist Card Container */}

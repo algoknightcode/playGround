@@ -36,6 +36,17 @@ export const ToyWindmillScroll: React.FC = () => {
       {/* ═══ SHARP AUTO-LOOP BACKGROUND VIDEO ═══ */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
         <video
+          ref={(vid) => {
+            if (!vid) return;
+            const observer = new IntersectionObserver(([entry]) => {
+              if (entry.isIntersecting) {
+                vid.play().catch(() => {});
+              } else {
+                vid.pause();
+              }
+            });
+            observer.observe(vid);
+          }}
           src="/video/Toy_windmill_on_green_hill_202608061121.mp4"
           autoPlay
           loop

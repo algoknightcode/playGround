@@ -48,20 +48,14 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
     offset: ['start start', 'end end'],
   });
 
-  // 2. Grow width and height symmetrically to full viewport size
-  const videoWidth = useTransform(scrollYProgress, [0, 1], ['32%', '100%']);
-  const videoHeight = useTransform(scrollYProgress, [0, 1], ['36vh', '100vh']);
+  // 2. Scale transform (hardware accelerated, zero layout reflow)
+  const videoScale = useTransform(scrollYProgress, [0, 1], [0.35, 1]);
   
   // 3. Flatten the border radius as it becomes full screen
   const borderRadius = useTransform(scrollYProgress, [0, 1], ['36px', '0px']);
   
-  // 4. Parallax scroll transforms for background elements
+  // 4. Parallax opacity
   const marqueeOpacity = useTransform(scrollYProgress, [0, 0.45], [1, 0]);
-  const textScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
-  const cloud1X = useTransform(scrollYProgress, [0, 1], [0, -120]);
-  const cloud2X = useTransform(scrollYProgress, [0, 1], [0, 140]);
-  const planeX = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const helicopterY = useTransform(scrollYProgress, [0, 1], [0, -90]);
 
   const repeatedText = Array(4).fill(tickerText).join('');
 
@@ -104,9 +98,6 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           className="absolute inset-0 flex items-center pointer-events-none z-6 overflow-hidden"
         >
           <motion.div
-            style={{
-              scale: textScale,
-            }}
             animate={{ x: ['0%', '-50%'] }}
             transition={{
               repeat: Infinity,
@@ -199,57 +190,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           />
         </motion.div>
 
-        {/* ═══ MAGICAL KIDS WOW FACTOR: FLOATING BUBBLES & TWINKLING SPARKLES ═══ */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none z-5">
-          {/* Bubble 1 */}
-          <motion.div
-            animate={{ y: ['100vh', '-10vh'], x: [0, 30, -30, 0] }}
-            transition={{ duration: 16, repeat: Infinity, ease: 'linear' }}
-            className="absolute left-[10%] w-8 h-8 rounded-full bg-gradient-to-br from-white/50 to-sky-200/40 border-2 border-white/80 shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),0_4px_8px_rgba(0,183,172,0.1)] backdrop-blur-[1px]"
-          />
-          {/* Bubble 2 */}
-          <motion.div
-            animate={{ y: ['100vh', '-10vh'], x: [0, -45, 45, 0] }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'linear', delay: 4 }}
-            className="absolute left-[25%] w-12 h-12 rounded-full bg-gradient-to-br from-white/40 to-sky-200/30 border-2 border-white/70 shadow-[inset_0_3px_6px_rgba(255,255,255,0.8),0_6px_12px_rgba(0,183,172,0.1)] backdrop-blur-[1px]"
-          />
-          {/* Bubble 3 */}
-          <motion.div
-            animate={{ y: ['100vh', '-10vh'], x: [0, 25, -25, 0] }}
-            transition={{ duration: 24, repeat: Infinity, ease: 'linear', delay: 8 }}
-            className="absolute right-[20%] w-6 h-6 rounded-full bg-gradient-to-br from-white/60 to-sky-200/50 border-2 border-white/90 shadow-[inset_0_2px_3px_rgba(255,255,255,0.8),0_3px_6px_rgba(0,183,172,0.1)] backdrop-blur-[1px]"
-          />
-          {/* Bubble 4 */}
-          <motion.div
-            animate={{ y: ['100vh', '-10vh'], x: [0, -35, 35, 0] }}
-            transition={{ duration: 18, repeat: Infinity, ease: 'linear', delay: 12 }}
-            className="absolute right-[35%] w-10 h-10 rounded-full bg-gradient-to-br from-white/45 to-sky-200/35 border-2 border-white/70 shadow-[inset_0_3px_5px_rgba(255,255,255,0.8),0_5px_10px_rgba(0,183,172,0.1)] backdrop-blur-[1px]"
-          />
-          {/* Twinkling Sparkle 1 */}
-          <motion.div
-            animate={{ scale: [0, 1, 0], rotate: [0, 90, 180], opacity: [0, 0.7, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute left-[15%] top-[25%] text-yellow-300/80 text-xl font-bold select-none"
-          >
-            ✦
-          </motion.div>
-          {/* Twinkling Sparkle 2 */}
-          <motion.div
-            animate={{ scale: [0, 1, 0], rotate: [0, -90, -180], opacity: [0, 0.7, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
-            className="absolute right-[22%] top-[30%] text-pink-300/80 text-2xl font-bold select-none"
-          >
-            ✦
-          </motion.div>
-          {/* Twinkling Sparkle 3 */}
-          <motion.div
-            animate={{ scale: [0, 1, 0], rotate: [0, 90, 180], opacity: [0, 0.6, 0] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 1.5 }}
-            className="absolute left-[40%] top-[15%] text-cyan-300/70 text-lg font-bold select-none"
-          >
-            ✦
-          </motion.div>
-        </div>
+
 
         {/* ═══ LARGE PROFESSIONAL RAINBOW BACKGROUND (SCALED BY VH TO PREVENT CUTOFF) ═══ */}
         <motion.div 
@@ -269,14 +210,24 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
         <motion.div
           onClick={playPopSound}
           style={{
-            width: videoWidth,
-            height: videoHeight,
+            scale: videoScale,
             borderRadius: borderRadius,
           }}
-          className="relative z-10 overflow-hidden border-3 border-[#2D3436] shadow-[6px_6px_0px_0px_#2D3436] bg-[#FFE66D] flex items-center justify-center cursor-pointer transition-shadow duration-300 will-change-transform group"
+          className="relative z-10 w-full h-full max-w-[100vw] max-h-[100vh] overflow-hidden border-3 border-[#2D3436] shadow-[6px_6px_0px_0px_#2D3436] bg-[#FFE66D] flex items-center justify-center cursor-pointer transition-shadow duration-300 will-change-transform group"
         >
           {/* Background Video */}
           <video
+            ref={(vid) => {
+              if (!vid) return;
+              const observer = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                  vid.play().catch(() => {});
+                } else {
+                  vid.pause();
+                }
+              });
+              observer.observe(vid);
+            }}
             src={videoSrc}
             autoPlay
             loop
