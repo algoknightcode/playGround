@@ -127,15 +127,18 @@ const Footer2 = () => {
             </ul>
           </div>
 
-          {/* Column 2: Services */}
+          {/* Column 2: Quick Links / Navigation */}
           <div>
-            <h3 className="text-lg font-black text-gray-900 mb-2">Services</h3>
+            <h3 className="text-lg font-black text-gray-900 mb-2">Navigation</h3>
             <div className="w-10 h-1 bg-[#FF6B6B] mb-6 rounded-full"></div>
             <ul className="space-y-3 text-sm">
-              {['Service Offerings', 'How It Works', 'Pricing Table', 'Service Areas', 'Service FAQs', 'Contact Information'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-gray-600 hover:text-[#FF6B6B] font-bold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
-                    {link}
+              {[
+                { name: 'Gallery Showcase', href: '/gallery' },
+                { name: 'About Us', href: '/about' },
+              ].map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="text-gray-600 hover:text-[#FF6B6B] font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
+                    {link.name}
                   </a>
                 </li>
               ))}

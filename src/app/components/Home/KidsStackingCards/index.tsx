@@ -135,7 +135,7 @@ export const Card: React.FC<CardProps> = ({
           scale,
           top: `calc(${i * 24}px)`,
         }}
-        className="flex flex-col md:flex-row relative h-[520px] md:h-[480px] w-[96%] sm:w-[94%] lg:w-[90%] max-w-[1400px] rounded-[2.5rem] p-6 md:p-10 origin-top shadow-2xl border-4 border-white/30 text-white overflow-hidden gap-6 md:gap-10 font-quicksand"
+        className="flex flex-col md:flex-row relative h-[520px] md:h-[480px] w-full max-w-[1440px] rounded-[2.5rem] p-6 md:p-10 origin-top shadow-2xl border-4 border-white/30 text-white overflow-hidden gap-6 md:gap-10 font-quicksand"
       >
         {/* Left Column: Details */}
         <div className="w-full md:w-[45%] flex flex-col justify-between py-2 z-10">

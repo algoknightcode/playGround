@@ -12,6 +12,7 @@ const ToyWindmillScroll = dynamic(() => import('./components/Home/ToyWindmillScr
 const Marquee2 = dynamic(() => import('./components/Home/Marquee2'), { ssr: true });
 const ToysForEveryNeed = dynamic(() => import('./components/Home/ToysEveryNeed'), { ssr: true });
 const ShopByCategories = dynamic(() => import('./components/Home/ShopByCategories'), { ssr: true });
+const ShopByAge = dynamic(() => import('./components/Home/ShopByAge'), { ssr: true });
 const SplitVantage = dynamic(() => import('./components/Home/splitVantage'), { ssr: true });
 const ShopElementsSection = dynamic(() => import('./components/Home/ShopElementsSection'), { ssr: true });
 const WhoWeAre = dynamic(() => import('./components/Home/WhoWeAre'), { ssr: true });
@@ -19,6 +20,7 @@ const CloudStatsBanner = dynamic(() => import('./components/Home/CloudStatsBanne
 const ExpandableVideoMarquee = dynamic(() => import('./components/Home/ExpandableVideoMarquee').then((m) => m.ExpandableVideoMarquee), { ssr: true });
 const HeroSubBanner = dynamic(() => import('./components/Home/HeroSubBanner'), { ssr: true });
 const BusinessStats = dynamic(() => import('./components/Home/BusinessStats'), { ssr: true });
+const HowItWorksProcess = dynamic(() => import('./components/Home/HowItWorksProcess'), { ssr: true });
 const DealsSection = dynamic(() => import('./components/Home/BestDeals'), { ssr: true });
 const HeroTextSection = dynamic(() => import('./components/Home/HeroText'), { ssr: true });
 const KidsStackingCards = dynamic(() => import('./components/Home/KidsStackingCards'), { ssr: true });
@@ -38,6 +40,7 @@ export default function Home() {
       <Marquee2 />
       <ToysForEveryNeed />
       <ShopByCategories />
+      <ShopByAge />
       <SplitVantage />
       <ShopElementsSection />
       <WhoWeAre />
@@ -45,6 +48,7 @@ export default function Home() {
       <ExpandableVideoMarquee />
       <HeroSubBanner />
       <BusinessStats />
+      <HowItWorksProcess />
       <DealsSection />
       <HeroTextSection />
       <KidsStackingCards />
