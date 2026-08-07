@@ -26,6 +26,7 @@ import ShopByCategories from './components/Home/ShopByCategories';
 import FaqInteractivePreview from './components/Home/Faq';
 import KidsStackingCards from './components/Home/KidsStackingCards';
 import PlaygroundScrollVideo from './components/Home/PlaygroundScrollVideo';
+import ToyParkScrollVideo from './components/Home/ToyParkScrollVideo';
 
 export default function Home() {
   return (
@@ -63,6 +64,7 @@ export default function Home() {
       <GalleryLightboxZoom />
       <FaqInteractivePreview />
       <KidsNewsSection />
+      <ToyParkScrollVideo />
       <UpperFooter />
       <Footer2 />
     </main>

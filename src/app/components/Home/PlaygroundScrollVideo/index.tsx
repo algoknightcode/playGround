@@ -197,7 +197,7 @@ export default function PlaygroundScrollVideo() {
       {/* Hidden source video element */}
       <video
         ref={videoRef}
-        src="/video/Website_video_showing_playground_1080p_202608070041_202608071011.mp4"
+        src="/video/Website_video_showing_playground…_1080p_202608070041.mp4"
         className="absolute top-0 left-0 w-1 h-1 opacity-0 pointer-events-none"
         muted
         playsInline
