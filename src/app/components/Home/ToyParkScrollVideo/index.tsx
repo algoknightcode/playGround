@@ -306,8 +306,6 @@ export default function ToyParkScrollVideo() {
     };
   }, []);
 
-  return null;
-  /*
   return (
     <section ref={containerRef} className="relative w-full h-[150vh] bg-white py-20">
       <video
@@ -349,5 +347,4 @@ export default function ToyParkScrollVideo() {
       </div>
     </section>
   );
-  */
 }

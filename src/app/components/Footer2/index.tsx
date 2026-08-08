@@ -135,6 +135,7 @@ const Footer2 = () => {
               {[
                 { name: 'Gallery Showcase', href: '/gallery' },
                 { name: 'About Us', href: '/about' },
+                { name: 'Our Story', href: '/ourstory' },
               ].map((link) => (
                 <li key={link.name}>
                   <a href={link.href} className="text-gray-600 hover:text-[#FF6B6B] font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
