@@ -117,14 +117,20 @@ export default function KidzaNavbar() {
 
           {/* CENTER: Navigation Links */}
           <div className="hidden xl:flex items-center gap-9">
-            {['Home', 'Pages', 'Programs', 'Blog', 'Shop'].map((link) => (
+            {[
+              { name: 'Home', href: '/' },
+              { name: 'About', href: '/about' },
+              { name: 'Who We Are', href: '/whoweare' },
+              { name: 'Exhibition', href: '/exhibition' },
+              { name: 'Blog', href: '/blogs' },
+              { name: 'Shop', href: '/products' },
+            ].map((link) => (
               <a 
-                key={link} 
-                href={`#${link.toLowerCase()}`} 
+                key={link.name} 
+                href={link.href} 
                 className="flex items-center gap-1.5 font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg"
               >
-                {link}
-                <ChevronDown className="w-4.5 h-4.5" />
+                {link.name}
               </a>
             ))}
           </div>

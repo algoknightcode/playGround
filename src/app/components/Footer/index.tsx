@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export const PastelB2BFooter: React.FC = () => {
-  const menuLinks = ['Collections', 'Materials & Safety', 'Sustainability', 'B2B Portal', 'Contact Us'];
+  const menuLinks = ['Collections', 'Materials & Safety', 'Sustainability', 'Exhibition', 'B2B Portal', 'Contact Us'];
   const socialLinks = ['Instagram', 'Pinterest', 'LinkedIn', 'Facebook'];
 
   return (
