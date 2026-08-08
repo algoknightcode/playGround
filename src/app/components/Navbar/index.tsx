@@ -122,6 +122,7 @@ export default function KidzaNavbar() {
               { name: 'About', href: '/about' },
               { name: 'Who We Are', href: '/whoweare' },
               { name: 'Exhibition', href: '/exhibition' },
+              { name: 'Careers', href: '/careers' },
               { name: 'Blog', href: '/blogs' },
               { name: 'Shop', href: '/products' },
             ].map((link) => (

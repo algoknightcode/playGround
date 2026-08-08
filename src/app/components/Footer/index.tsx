@@ -4,7 +4,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export const PastelB2BFooter: React.FC = () => {
-  const menuLinks = ['Collections', 'Materials & Safety', 'Sustainability', 'Exhibition', 'B2B Portal', 'Contact Us'];
+  const menuLinks = [
+    { name: 'Collections', href: '/products' },
+    { name: 'Materials & Safety', href: '/about' },
+    { name: 'Sustainability', href: '/whoweare' },
+    { name: 'Exhibition', href: '/exhibition' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'B2B Portal', href: '/about' },
+    { name: 'Contact Us', href: '/whoweare' },
+  ];
   const socialLinks = ['Instagram', 'Pinterest', 'LinkedIn', 'Facebook'];
 
   return (
@@ -49,13 +57,18 @@ export const PastelB2BFooter: React.FC = () => {
           <ul className="flex flex-col w-full border-t border-orange-200/60">
             {menuLinks.map((link) => (
               <li 
-                key={link} 
-                className="flex items-center justify-between py-4 text-lg font-semibold text-slate-600 border-b border-orange-200/60 hover:text-[#E79482] cursor-pointer group transition-colors duration-200"
+                key={link.name} 
+                className="border-b border-orange-200/60"
               >
-                <span>{link}</span>
-                <span className="text-sm opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-[#E79482]">
-                  ↗
-                </span>
+                <a
+                  href={link.href}
+                  className="flex items-center justify-between py-4 text-lg font-semibold text-slate-600 hover:text-[#E79482] cursor-pointer group transition-colors duration-200"
+                >
+                  <span>{link.name}</span>
+                  <span className="text-sm opacity-0 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all text-[#E79482]">
+                    ↗
+                  </span>
+                </a>
               </li>
             ))}
           </ul>
