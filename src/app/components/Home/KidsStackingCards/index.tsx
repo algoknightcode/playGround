@@ -8,7 +8,7 @@ const kidsActivities = [
     title: '🪑 Premium Kids Furniture',
     subtitle: 'Ages 2-10 • Ergonomic & Safe',
     description:
-      'Beautifully crafted tables, chairs, and storage units tailored for learning, studying, and creative play in kids’ rooms.',
+      'From study tables and chairs to clever storage, our Play School Furniture is designed to make learning spaces more comfortable, functional, and inspiring—while standing up to everyday use.',
     link: '/assets/split_vantage_images/Kids_Furniture.png',
     color: '#00C4B5', // Sea Green
     badge: 'Kids Furniture',
@@ -17,7 +17,7 @@ const kidsActivities = [
     title: '🏰 Magical Outdoor Playhouse',
     subtitle: 'Ages 3-9 • Imaginative Play',
     description:
-      'Vibrant playhouses, slides, and adventure towers that transform your backyard into an enchanting kingdom of fun.',
+      'From vibrant playhouses to exciting slides and adventure towers, create a play space where every climb, slide, and little adventure becomes a story of its own.',
     link: '/assets/split_vantage_images/kids_playsHouse.png',
     color: '#0284C7', // Rich Ocean Blue
     badge: 'Playhouse',
@@ -26,7 +26,7 @@ const kidsActivities = [
     title: '🤸 Active Fitness Trampoline',
     subtitle: 'Ages 4-12 • Physical Health',
     description:
-      'High-safety trampolines and bouncing sets designed to build balance, coordination, and healthy outdoor activity.',
+      'Safe, durable trampolines and bouncing sets that turn energy into action—helping kids build balance, coordination, confidence, and a love for staying active.',
     link: '/assets/split_vantage_images/Kids_Trampoline.png',
     color: '#FF7A59', // Coral Red
     badge: 'Active Bouncer',

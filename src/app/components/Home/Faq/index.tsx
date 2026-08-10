@@ -20,49 +20,49 @@ const FAQ_DATA: FAQItem[] = [
   {
     id: 'g1',
     category: 'general',
-    question: 'What is ToyPark about?',
+    question: '1. What Makes ToyPark, ToyPark?',
     answer:
-      'ToyPark is a magical universe created for kids, parents, and educators! We offer premium educational toys, play structures, and creative activities.',
+      'A little imagination. A lot of play. And products designed to make childhood more exciting. From clever toys to creative play spaces, we make it easier for kids to learn, explore, move, and simply have fun.',
     img: '/assets/split_vantage_images/kids_playsHouse.png',
   },
   {
     id: 'g2',
     category: 'general',
-    question: 'How do I get started with orders?',
+    question: '2. Can I order in bulk?',
     answer:
-      'Simply explore our shop categories above, pick your favorite play sets, and enjoy fast home delivery with safe, non-toxic certified products.',
+      'Yes. We work with retailers, schools, daycares, distributors, and businesses looking for wholesale quantities.',
     img: '/assets/split_vantage_images/Kids_Furniture.png',
   },
   {
     id: 't1',
     category: 'technical',
-    question: 'Are all toys safety certified for kids?',
+    question: '3. How do I get a wholesale quote?',
     answer:
-      'Yes! Every single toy and play set in our catalog undergoes rigorous child-safety testing and uses 100% eco-friendly, non-toxic materials.',
+      'Share the products, quantities, and requirements you have in mind. We’ll take it from there and help you with the right options and pricing.',
     img: '/assets/split_vantage_images/Kids_Trampoline.png',
   },
   {
     id: 't2',
     category: 'technical',
-    question: 'What age groups do you cater to?',
+    question: '4. Which age groups do you cater to?',
     answer:
-      'We curate special collections for all growing ages — from toddlers (0-2 yrs) to active kids (3-8+ yrs) and young puzzle builders!',
+      'Our range covers different age groups, from early learners to active older children, with age recommendations provided for individual products.',
     img: '/assets/split_vantage_images/kids_playsHouse.png',
   },
   {
     id: 'b1',
     category: 'billing',
-    question: 'What payment & shipping methods work?',
+    question: '5. Where do you deliver?',
     answer:
-      'We support all major credit cards, UPI, digital wallets, and Cash on Delivery with free express shipping on orders above $50.',
+      'We fulfil wholesale orders across India, with delivery arrangements based on your order and location.',
     img: '/assets/split_vantage_images/Kids_Furniture.png',
   },
   {
     id: 'b2',
     category: 'billing',
-    question: 'Can I return or exchange an item anytime?',
+    question: '6. Still Not Sure What Fits?',
     answer:
-      'Yes! We offer a hassle-free 30-day play guarantee. If your little one isn’t completely happy, returns and exchanges are quick and easy.',
+      'Tell us what you’re looking to stock, build, or sell. We’ll help you choose the right products, quantities, and options for your business.',
     img: '/assets/split_vantage_images/Kids_Trampoline.png',
   },
 ];
@@ -100,7 +100,7 @@ export const FaqInteractivePreview = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight drop-shadow-md">
-            Frequently Asked Questions
+            Got Questions? We’ve Got Answers.
           </h2>
         </motion.div>
 

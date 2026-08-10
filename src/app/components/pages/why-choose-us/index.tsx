@@ -51,6 +51,12 @@ export default function WhyChooseUsPageContent() {
   const toyRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const lenis = new Lenis();
+    lenis.on("scroll", ScrollTrigger.update);
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0, 0);
 
     const ctx = gsap.context(() => {
@@ -151,6 +157,7 @@ export default function WhyChooseUsPageContent() {
 
     return () => {
       ctx.revert();
+      gsap.ticker.remove(updateLenis);
       lenis.destroy();
     };
   }, []);
