@@ -35,10 +35,10 @@ const HeroTextSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-[#2D3436]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-[#0D1C3A] drop-shadow-xs"
             >
-              Creating Happy <br />
-              Spaces For Children
+              Creating <span className="bg-gradient-to-r from-[#FF5A5F] via-[#FF8E53] to-[#f97316] bg-clip-text text-transparent">Happy Spaces</span> <br />
+              For <span className="bg-gradient-to-r from-[#00C4B5] to-[#0284C7] bg-clip-text text-transparent">Children</span>
             </motion.h2>
             
             <motion.p 
@@ -46,8 +46,9 @@ const HeroTextSection: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-lg sm:text-xl text-[#08B7AC] font-black tracking-wide"
+              className="text-lg sm:text-xl text-[#08B7AC] font-black tracking-wide flex items-center gap-2"
             >
+              <span className="w-2.5 h-2.5 rounded-full bg-[#FFE66D] border border-white" />
               Premium Indian Manufacturing
             </motion.p>
           </div>
@@ -58,17 +59,17 @@ const HeroTextSection: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-[#08B7AC] p-6 sm:p-8 rounded-3xl border-4 border-[#2D3436] flex flex-col gap-5 text-white max-w-xl"
+            className="bg-[#08B7AC] p-6 sm:p-8 rounded-3xl border-4 border-white flex flex-col gap-5 text-white max-w-xl"
           >
             <p className="text-base sm:text-lg leading-relaxed font-bold">
               Here at <strong className="text-[#FFE66D] font-black">Toy Park</strong>, we aim to provide high-quality manufacturing with our toys, setups, Playground equipment, etc. This equipment helps in shaping young minds with motor skills, cognition, and creativity while having fun!
             </p>
-            <div className="w-full h-px bg-[#2D3436]/40" />
+            <div className="w-full h-px bg-white/40" />
             <p className="text-sm sm:text-base leading-relaxed font-bold text-white/90">
               Our designs are safe, innovative, and diverse to suit the requirements of every age group.
             </p>
           </motion.div>
-
+ 
           {/* Action Buttons (No shadow, solid borders) */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
@@ -80,7 +81,7 @@ const HeroTextSection: React.FC = () => {
             <button className="bg-[#0093D3] hover:bg-[#007bb3] text-white text-xs sm:text-sm font-black tracking-wider px-6 py-3.5 rounded-full uppercase border-2 border-white cursor-pointer transition-colors">
               Explore Playground
             </button>
-            <button className="bg-[#FFE66D] hover:bg-[#e6cf5c] text-black text-xs sm:text-sm font-black tracking-wider px-6 py-3.5 rounded-full uppercase border-2 border-[#2D3436] cursor-pointer transition-colors">
+            <button className="bg-[#FFE66D] hover:bg-[#e6cf5c] text-black text-xs sm:text-sm font-black tracking-wider px-6 py-3.5 rounded-full uppercase border-2 border-white cursor-pointer transition-colors">
               View Catalog
             </button>
           </motion.div>

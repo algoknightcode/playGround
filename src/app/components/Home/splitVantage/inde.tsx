@@ -1,4 +1,6 @@
-'use client';
+// DUPLICATE FILE - REMOVED
+export {};
+
 
 import { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence, MotionValue, useMotionValueEvent } from 'framer-motion';

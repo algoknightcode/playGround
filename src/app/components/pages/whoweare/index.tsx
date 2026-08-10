@@ -51,20 +51,6 @@ export default function WhoWeArePage() {
   const horizontalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Smooth Scroll setup with Lenis
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    const updateLenis = (time: number) => {
-      lenis.raf(time * 1000);
-    };
-
-    gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0, 0);
 
     // 2. GSAP Animations Context

@@ -1,117 +1,183 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper/modules";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
-// Swiper CSS styles
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
-
-// ═══ EASY POSITIONING & SIZING CONTROLS ═══
-// You can edit top/bottom/left/right & size directly here in the code:
 const PLANE_POSITION = {
-  bottom: "16%",   // Vertical position (e.g., '12%', '20%')
-  left: "32%",     // Horizontal position (e.g., '25%', '35%')
-  size: "w-14 sm:w-20 md:w-24 lg:w-28", // Size classes
+  bottom: "16%",
+  left: "32%",
 };
 
 const HELICOPTER_POSITION = {
-  top: "16%",      // Vertical position (keeps away from navbar, e.g., '15%', '20%')
-  right: "22%",    // Horizontal position (e.g., '18%', '25%')
-  size: "w-12 sm:w-16 md:w-20 lg:w-24", // Size classes
+  top: "10%",
+  right: "10%",
 };
 
-const BANNERS = [
-  { id: 1, src: "/assets/banner/new_banner.png", alt: "Toy Park Hero Banner" },
-  { id: 2, src: "/assets/banner/banner2.jpeg", alt: "Toy Park Special Banner" },
+const PLAYSTATION_IMAGES = [
+  "/assets/banner/playsation2.png",
+  "/assets/banner/playstation1.png",
 ];
 
 export default function HeroBanner() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % PLAYSTATION_IMAGES.length);
+    }, 4500);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <section className="relative w-full overflow-hidden flex justify-center items-center -mt-10 sm:-mt-16 md:-mt-24 lg:-mt-32">
-      {/* Component-Specific Swiper Styles */}
-      <style>{`
-        .hero-banner-swiper .swiper-pagination-bullet {
-          width: 10px;
-          height: 10px;
-          background: #ffffff;
-          opacity: 0.5;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-          transition: all 0.3s ease;
-        }
+    <section className="relative z-10 w-full overflow-hidden font-quicksand">
+      
+      <div className="relative flex min-h-[500px] w-full items-center justify-center overflow-hidden sm:min-h-[580px] md:min-h-[660px] lg:min-h-[700px] xl:min-h-[760px]">
 
-        .hero-banner-swiper .swiper-pagination-bullet-active {
-          width: 28px;
-          border-radius: 6px;
-          background: #ffffff;
-          opacity: 1;
-        }
-      `}</style>
+        {/* Background */}
+        <Image
+          src="/assets/banner/background.png"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
 
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative w-full overflow-hidden"
-      >
-        {/* ═══ FLOATING PLANE & HELICOPTER OVERLAY ═══ */}
-        <style>{`
-          @keyframes planeFloat {
-            0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
-            50% { transform: translate3d(0, -12px, 0) rotate(4deg); }
-          }
-          @keyframes helicopterFloat {
-            0%, 100% { transform: translate3d(0, 0, 0) rotate(4deg); }
-            50% { transform: translate3d(0, -14px, 0) rotate(-4deg); }
-          }
-          .animate-plane-float {
-            animation: planeFloat 4.5s ease-in-out infinite;
-            will-change: transform;
-          }
-          .animate-helicopter-float {
-            animation: helicopterFloat 5.2s ease-in-out 0.6s infinite;
-            will-change: transform;
-          }
-        `}</style>
-        <div className="absolute inset-0 pointer-events-none z-30 overflow-hidden">
-          
-          {/* Floating Toy Plane */}
-          <img
-            src="/assets/plane_icon.webp"
-            alt="Toy Plane"
-            style={{
-              bottom: PLANE_POSITION.bottom,
-              left: PLANE_POSITION.left,
-            }}
-            className={`absolute ${PLANE_POSITION.size} h-auto drop-shadow-lg select-none animate-plane-float`}
-          />
+        {/* Plane */}
+        <Image
+          src="/assets/plane_icon.webp"
+          alt=""
+          width={112}
+          height={112}
+          sizes="112px"
+          style={{
+            bottom: PLANE_POSITION.bottom,
+            left: PLANE_POSITION.left,
+          }}
+          className="
+            absolute z-10 hidden h-auto w-14 select-none
+            drop-shadow-lg
+            animate-[planeFloat_4.5s_ease-in-out_infinite]
+            md:block md:w-20
+            lg:w-28
+          "
+        />
 
-          {/* Floating Helicopter */}
-          <img
-            src="/assets/helicopter_icon.svg"
-            alt="Helicopter"
-            style={{
-              top: HELICOPTER_POSITION.top,
-              right: HELICOPTER_POSITION.right,
-            }}
-            className={`absolute ${HELICOPTER_POSITION.size} h-auto drop-shadow-lg select-none animate-helicopter-float`}
-          />
+        {/* Helicopter */}
+        <Image
+          src="/assets/helicopter_icon.svg"
+          alt=""
+          width={96}
+          height={96}
+          sizes="96px"
+          style={{
+            top: HELICOPTER_POSITION.top,
+            right: HELICOPTER_POSITION.right,
+          }}
+          className="
+            absolute z-10 hidden h-auto w-12 select-none
+            drop-shadow-lg
+            animate-[helicopterFloat_5.2s_ease-in-out_0.6s_infinite]
+            md:block md:w-16
+            lg:w-24
+          "
+        />
+
+        {/* Content */}
+        <div className="relative z-20 mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-8 px-6 pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-12 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-10 lg:px-12 lg:pb-16">
+
+          {/* Text */}
+          <div className="flex flex-col items-center space-y-4 text-center text-white sm:space-y-5 lg:col-span-6 lg:items-start lg:text-left">
+
+            <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+              Play School Furniture.
+              <br className="hidden sm:block" />
+              <span>Made to Inspire.</span>
+            </h1>
+
+            <p className="max-w-xl text-base font-semibold leading-relaxed text-white sm:text-lg md:text-xl">
+              Quality furniture designed for little learners and built for
+              the everyday demands of play schools, daycares, and learning
+              spaces.
+            </p>
+
+            <div className="pt-2 sm:pt-3">
+              <a
+                href="/products"
+                className="
+                  inline-flex items-center gap-2.5
+                  rounded-full bg-white
+                  px-6 py-3
+                  text-sm font-extrabold text-[#2B545B]
+                  shadow-lg
+                  transition-transform duration-200
+                  hover:-translate-y-0.5
+                  sm:px-7 sm:py-3.5 sm:text-base
+                "
+              >
+                Explore products
+                <ArrowRight className="h-5 w-5" strokeWidth={3} />
+              </a>
+            </div>
+          </div>
+
+          {/* Playground Image Slideshow */}
+          <div className="relative flex justify-center lg:col-span-6 lg:justify-end items-center min-h-[350px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[550px] w-full">
+            {PLAYSTATION_IMAGES.map((imgSrc, index) => (
+              <Image
+                key={imgSrc}
+                src={imgSrc}
+                alt="Playground equipment"
+                width={793}
+                height={630}
+                priority={index === 0}
+                sizes="(max-width: 1024px) 90vw, 793px"
+                className={`
+                  absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-auto lg:right-0 lg:translate-x-0
+                  h-auto w-full max-w-[525px] object-contain lg:max-w-[683px]
+                  transition-opacity duration-1000 ease-in-out pointer-events-none
+                  ${index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"}
+                `}
+              />
+            ))}
+          </div>
 
         </div>
-        {/* Permanent Hero Banner Image (new_banner1.webp) */}
-        <div className="w-full overflow-hidden flex justify-center items-center">
-          <img
-            src="/assets/banner/new_banner1.webp"
-            alt="Toy Park Hero Banner"
-            className="w-full h-auto object-cover block"
-            loading="eager"
-            decoding="async"
-          />
-        </div>
-      </motion.div>
+      </div>
+
+      {/* Lightweight animation CSS */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes planeFloat {
+          0%,
+          100% {
+            transform: translateY(0) rotate(-3deg);
+          }
+
+          50% {
+            transform: translateY(-12px) rotate(4deg);
+          }
+        }
+
+        @keyframes helicopterFloat {
+          0%,
+          100% {
+            transform: translateY(0) rotate(4deg);
+          }
+
+          50% {
+            transform: translateY(-14px) rotate(-4deg);
+          }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          img {
+            animation: none !important;
+            transition: none !important;
+          }
+        }
+      ` }} />
     </section>
   );
 }

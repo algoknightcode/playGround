@@ -36,19 +36,21 @@ export const WhoWeAre: React.FC = () => {
         >
           {/* Sub-badge */}
           <div className="flex items-center gap-2">
-            <span className="font-extrabold text-[#FF6B6B] text-xs uppercase tracking-widest">
+            <span className="inline-flex items-center gap-1.5 bg-[#FF5A5F]/10 border border-[#FF5A5F]/20 rounded-full px-3.5 py-1 text-xs font-black tracking-widest text-[#FF5A5F] uppercase">
               WHO WE ARE
             </span>
           </div>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl lg:text-[40px] font-black text-[#2D3436] leading-[1.25] tracking-tight">
-            Our Journey of Inspiring Children to Grow and Shine
+          <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#0D1C3A] leading-[1.2] tracking-tight">
+            We Make Things <span className="text-[#FF5A5F]">Kids Love.</span>
+            <br className="hidden sm:block" />
+            Businesses Can <span className="bg-gradient-to-r from-[#00C4B5] to-[#0284C7] bg-clip-text text-transparent">Count On.</span>
           </h2>
 
           {/* Description */}
-          <p className="text-sm sm:text-base text-[#636E72] leading-relaxed font-normal">
-            Dictum dapibus pellentesque vehicula consectetur ligula pulvinar vestibulum vulputate. Pharetra montes integer senectus venenatis urna aptent proin finibus. Sollicitudin ligula mauris ipsum consectetur nisi maecenas pharetra malesuada volutpat.
+          <p className="text-sm sm:text-base text-[#334155] leading-relaxed font-medium">
+            What started with a passion for creating better childhood experiences has grown into a <span className="font-bold text-[#0D1C3A]">trusted name</span> in toys, play equipment, and <span className="font-bold text-[#00C4B5]">Play School Furniture</span>. We combine years of industry know-how with thoughtful design, dependable quality, and production built for <span className="font-bold text-[#FF5A5F]">wholesale</span>—so our partners can confidently bring more products, more value, and more smiles to their customers.
           </p>
 
           <div className="w-full h-px bg-slate-200/80 my-1 border-dashed border-t border-slate-300" />
@@ -62,11 +64,11 @@ export const WhoWeAre: React.FC = () => {
                 <Check className="w-5 h-5 stroke-[3]" />
               </div>
               <div className="space-y-1">
-                <h4 className="font-extrabold text-[#2D3436] text-base">
-                  Compassion & Care
+                <h4 className="font-extrabold text-[#8BC34A] text-lg">
+                  Made to Impress
                 </h4>
-                <p className="text-xs sm:text-sm text-[#636E72] leading-relaxed">
-                  Platea volutpat lectus in enim eget curae quis mauris aliquam montes habitant
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed font-medium">
+                  Products designed to catch attention, spark curiosity, and keep children coming back for more.
                 </p>
               </div>
             </div>
@@ -77,11 +79,11 @@ export const WhoWeAre: React.FC = () => {
                 <Check className="w-5 h-5 stroke-[3]" />
               </div>
               <div className="space-y-1">
-                <h4 className="font-extrabold text-[#2D3436] text-base">
-                  Creativity & Imagination
+                <h4 className="font-extrabold text-[#00ACC1] text-lg">
+                  Made to Perform
                 </h4>
-                <p className="text-xs sm:text-sm text-[#636E72] leading-relaxed">
-                  Platea volutpat lectus in enim eget curae quis mauris aliquam montes habitant
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed font-medium">
+                  Thoughtfully crafted for everyday use, with quality and durability at the heart of every product.
                 </p>
               </div>
             </div>
@@ -92,11 +94,11 @@ export const WhoWeAre: React.FC = () => {
                 <Check className="w-5 h-5 stroke-[3]" />
               </div>
               <div className="space-y-1">
-                <h4 className="font-extrabold text-[#2D3436] text-base">
-                  Community & Collaboration
+                <h4 className="font-extrabold text-[#FF5722] text-lg">
+                  Made to Grow with You
                 </h4>
-                <p className="text-xs sm:text-sm text-[#636E72] leading-relaxed">
-                  Platea volutpat lectus in enim eget curae quis mauris aliquam montes habitant
+                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed font-medium">
+                  Reliable wholesale solutions that help retailers, schools, daycares, and distributors build stronger businesses.
                 </p>
               </div>
             </div>

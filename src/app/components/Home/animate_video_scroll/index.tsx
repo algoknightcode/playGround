@@ -1,5 +1,10 @@
 'use client';
 
+// UNUSED EXPERIMENTAL COMPONENT - COMMENTED OUT
+export const NovaLandingPage = () => null;
+export default NovaLandingPage;
+
+/*
 import React, { useRef, useEffect } from 'react';
 
 const HexagonIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
@@ -27,14 +32,14 @@ export const NovaLandingPage: React.FC = () => {
     let targetProgress = 0;
     let smoothedProgress = 0;
     
-    // FIX 1: Check if the video is ALREADY loaded (e.g., from cache)
-    // readyState >= 1 means HAVE_METADATA.
     let isReady = video.readyState >= 1; 
 
     const onReady = () => { isReady = true; };
     if (!isReady) {
       video.addEventListener('loadedmetadata', onReady);
     }
+
+    let isSeeking = false;
 
     const handleScroll = () => {
       const rect = container.getBoundingClientRect();
@@ -47,17 +52,15 @@ export const NovaLandingPage: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initialize on mount
+    handleScroll();
 
     const tick = () => {
-      // Lerp for smooth acceleration/deceleration
       smoothedProgress += (targetProgress - smoothedProgress) * 0.08;
 
-      if (isReady && video.duration && !isNaN(video.duration)) {
+      if (isReady && video.duration && !isNaN(video.duration) && !isSeeking) {
         const seekTo = smoothedProgress * (video.duration - 0.05);
-        
-        // FIX 2: Slightly increased threshold to prevent DOM thrashing and micro-stutters
-        if (Math.abs(video.currentTime - seekTo) > 0.03) {
+        if (Math.abs(video.currentTime - seekTo) > 0.1) {
+          isSeeking = true;
           video.currentTime = seekTo;
         }
       }
@@ -65,19 +68,24 @@ export const NovaLandingPage: React.FC = () => {
       rafId = requestAnimationFrame(tick);
     };
 
+    const onSeeked = () => {
+      isSeeking = false;
+    };
+    video.addEventListener('seeked', onSeeked);
+
     rafId = requestAnimationFrame(tick);
 
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener('scroll', handleScroll);
       video.removeEventListener('loadedmetadata', onReady);
+      video.removeEventListener('seeked', onSeeked);
     };
   }, []);
 
   return (
     <div ref={containerRef} className="relative w-full bg-[#0a0a0a] text-white font-sans antialiased selection:bg-white/20" style={{ minHeight: '300vh' }}>
 
-      {/* ═══ FIXED FULL-BLEED VIDEO BACKGROUND ═══ */}
       <div className="fixed inset-0 z-0 bg-[#0a0a0a] overflow-hidden pointer-events-none">
         <video
           ref={videoRef}
@@ -90,10 +98,8 @@ export const NovaLandingPage: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80" />
       </div>
 
-      {/* ═══ FOREGROUND CONTENT ═══ */}
       <div className="relative z-10">
 
-        {/* NAVBAR */}
         <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/15 bg-black/20 backdrop-blur-md px-5 sm:px-8 md:px-12 py-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-2.5">
@@ -114,10 +120,8 @@ export const NovaLandingPage: React.FC = () => {
           </div>
         </nav>
 
-        {/* SECTION ONE — HERO */}
         <section className="min-h-screen pt-24 sm:pt-28 pb-12 md:pb-16 px-5 sm:px-8 md:px-12 flex flex-col justify-between max-w-7xl mx-auto">
 
-          {/* Top Row */}
           <div className="flex flex-col gap-8 sm:flex-row sm:justify-between sm:items-start pt-8">
             <div className="flex flex-col gap-2">
               <span className="font-mono text-xs uppercase tracking-[0.15em] text-white/90 drop-shadow-md">/ AI AUTOMATION</span>
@@ -129,7 +133,6 @@ export const NovaLandingPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Bottom Row */}
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-16">
             <div>
               <div className="inline-block border-l-2 border-white bg-white/15 px-3 py-1.5 backdrop-blur-md font-mono text-[11px] uppercase tracking-[0.15em] mb-5">
@@ -141,7 +144,6 @@ export const NovaLandingPage: React.FC = () => {
               </h1>
             </div>
 
-            {/* Mitha Glass Card */}
             <div className="flex items-center gap-4 rounded-xl border border-white/20 bg-white/15 p-3 backdrop-blur-md">
               <img
                 src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260728_050334_5b076e26-0ce7-4898-b432-d764190e448f.png&w=1280&q=85"
@@ -160,13 +162,10 @@ export const NovaLandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* MID SPACER — gives scroll room for video to scrub */}
         <div className="h-[80vh]" aria-hidden="true" />
 
-        {/* SECTION TWO — CAPABILITY */}
         <section className="min-h-screen pt-24 sm:pt-28 pb-12 md:pb-16 px-5 sm:px-8 md:px-12 flex flex-col justify-between max-w-7xl mx-auto">
 
-          {/* Top Row */}
           <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-start">
             <div className="inline-block border-l-2 border-white bg-white/15 px-3 py-1.5 backdrop-blur-md font-mono text-[11px] uppercase tracking-[0.15em]">
               Insight On Demand
@@ -176,10 +175,8 @@ export const NovaLandingPage: React.FC = () => {
             </p>
           </div>
 
-          {/* Bottom Row */}
           <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between md:gap-16 pt-16">
 
-            {/* Left */}
             <div className="max-w-xl">
               <h2 className="text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-white drop-shadow-lg">
                 Learn to see<br />brilliantly.
@@ -197,7 +194,6 @@ export const NovaLandingPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right — Frosted Capability Panel */}
             <div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md px-5 sm:px-6">
               <div className="flex gap-5 py-5 border-b border-white/15 group cursor-pointer">
                 <span className="font-mono text-[11px] tracking-[0.15em] text-white/55 pt-0.5">01</span>
@@ -238,5 +234,4 @@ export const NovaLandingPage: React.FC = () => {
     </div>
   );
 };
-
-export default NovaLandingPage;
+*/

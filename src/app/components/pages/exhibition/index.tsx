@@ -53,14 +53,6 @@ export default function ToyExhibition() {
   const [activeEventImage, setActiveEventImage] = useState(dailyActivities[0].img);
 
   useEffect(() => {
-    // 1. Smooth Scroll Setup (Lenis)
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-    });
-    lenis.on("scroll", ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
     gsap.ticker.lagSmoothing(0, 0);
 
     // 2. GSAP Animations Context

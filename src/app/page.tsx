@@ -32,7 +32,7 @@ const Footer2 = dynamic(() => import('./components/Footer2'), { ssr: true });
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white text-[#2D3436] [content-visibility:auto]">
+    <main className="min-h-screen bg-white text-[#2D3436]">
       <PlayfulHeader />
       <HeroBanner />
       <FeaturesGrid />

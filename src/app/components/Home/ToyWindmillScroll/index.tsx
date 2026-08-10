@@ -55,21 +55,15 @@ export const ToyWindmillScroll: React.FC = () => {
       
       {/* ═══ BACKGROUND MEDIA ═══ */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
-        {/* Mobile Static Image (Optimized for performance) */}
-        <img 
-          src="/video/Toy_windmill_on_green_hill_mobile.webp" 
-          alt="Green hill with windmill" 
-          className="absolute inset-0 w-full h-full object-cover object-[center_35%] block lg:hidden"
-        />
-
-        {/* Desktop Lazy-Loaded Video */}
+        {/* Background Video */}
         <video
           ref={videoRef}
+          src="/video/Toy_windmill_on_green_hill_202608061121.mp4"
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover object-[center_35%] hidden lg:block"
+          className="absolute inset-0 w-full h-full object-cover object-[20%_top]"
         />
         
         {/* Crisp gradient mask: leaves left windmill clear while offering subtle contrast for text on right */}
@@ -95,19 +89,16 @@ export const ToyWindmillScroll: React.FC = () => {
             className="flex flex-col items-center lg:items-start gap-4 max-w-2xl"
           >
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold leading-[1.2] tracking-tight text-zinc-900 font-quicksand">
-              Direct Factory Wholesale For<br />
-              <span className="bg-gradient-to-r from-[#FF5A5F] to-[#FF7A59] bg-clip-text text-transparent">
-                Kids Toys &amp;{' '}
-              </span>
-              <span className="bg-gradient-to-r from-[#00C4B5] to-[#0284C7] bg-clip-text text-transparent">
-                School Furniture
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold leading-[1.2] tracking-tight text-[#0D1C3A] font-quicksand">
+              Made for Little Hands.<br />
+              <span className="bg-gradient-to-r from-[#FF5A5F] via-[#FF8E53] to-[#00C4B5] bg-clip-text text-transparent">
+                Built for Big Imaginations.
               </span>
             </h2>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base md:text-lg text-zinc-700 leading-relaxed max-w-xl font-medium font-quicksand">
-              Empower your preschool, daycare, activity center, or retail store with certified, non-toxic commercial play setups and ergonomic kids&apos; furniture straight from our state-of-the-art manufacturing plant.
+            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-xl font-medium font-quicksand">
+              Discover thoughtfully crafted toys, play equipment, and <strong className="font-extrabold text-[#00C4B5]">Play School Furniture</strong> designed to inspire creativity, encourage learning, and make every childhood space more exciting.
             </p>
 
             {/* B2B Action Buttons */}
