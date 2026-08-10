@@ -9,7 +9,7 @@ export const PastelB2BFooter: React.FC = () => {
     { name: 'Materials & Safety', href: '/about' },
     { name: 'Sustainability', href: '/whoweare' },
     { name: 'Exhibition', href: '/exhibition' },
-    { name: 'Careers', href: '/careers' },
+    { name: 'Why Choose Us', href: '/why-choose-us' },
     { name: 'B2B Portal', href: '/about' },
     { name: 'Contact Us', href: '/whoweare' },
   ];

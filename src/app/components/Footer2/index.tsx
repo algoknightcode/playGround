@@ -138,7 +138,7 @@ const Footer2 = () => {
                 { name: 'Our Story', href: '/ourstory' },
                 { name: 'Who We Are', href: '/whoweare' },
                 { name: 'Exhibition', href: '/exhibition' },
-                { name: 'Careers', href: '/careers' },
+                { name: 'Why Choose Us', href: '/why-choose-us' },
                 { name: 'Blogs & Journal', href: '/blogs' },
               ].map((link) => (
                 <li key={link.name}>

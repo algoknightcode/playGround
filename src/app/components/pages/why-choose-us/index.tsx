@@ -11,20 +11,38 @@ import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
-const perks = [
-  { title: "Infinite Play", desc: "Our offices are giant playgrounds. Ideas come from fun, not boardrooms.", color: "bg-pink-500", icon: Gamepad2, top: "22%", left: "8%" },
-  { title: "Family Magic", desc: "World-class parental leave and family health benefits. Family is everything.", color: "bg-cyan-500", icon: Heart, top: "48%", left: "72%" },
-  { title: "Rocket Growth", desc: "Huge learning budgets to skyrocket your skills and career trajectory.", color: "bg-amber-500", icon: Rocket, top: "74%", left: "14%" },
+const reasons = [
+  { 
+    title: "Safety Certified", 
+    desc: "Every piece of furniture we design undergoes rigorous testing to meet global safety standards. Non-toxic finishes, rounded corners, and sturdy construction keep your little explorers safe.", 
+    color: "bg-pink-500", 
+    top: "22%", 
+    left: "8%" 
+  },
+  { 
+    title: "Eco-Friendly Sourcing", 
+    desc: "We love the earth as much as children do. We use FSC-certified sustainable timber, recycled materials, and green production processes to ensure a better planet for future generations.", 
+    color: "bg-cyan-500", 
+    top: "48%", 
+    left: "72%" 
+  },
+  { 
+    title: "Child-Centric Growth", 
+    desc: "Our designs are inspired by play-based learning theories. We craft spaces and furniture that encourage active curiosity, build independence, and adapt to children as they grow.", 
+    color: "bg-amber-500", 
+    top: "74%", 
+    left: "14%" 
+  },
 ];
 
-const jobs = [
-  { title: "Master Toy Architect", dept: "Design", color: "from-cyan-400 to-blue-500" },
-  { title: "Frontend Sorcerer", dept: "Engineering", color: "from-pink-400 to-rose-500" },
-  { title: "Vibe Manager", dept: "Community", color: "from-amber-400 to-orange-500" },
-  { title: "3D Dream Weaver", dept: "Animation", color: "from-emerald-400 to-teal-500" },
+const pillars = [
+  { title: "Scandinavian Design", dept: "Modern Aesthetics", label1: "Sleek", label2: "Design", color: "from-cyan-400 to-blue-500" },
+  { title: "Ergonomic Layouts", dept: "Child Comfort", label1: "Comfy", label2: "Fit", color: "from-pink-400 to-rose-500" },
+  { title: "Tough & Durable", dept: "Built to Last", label1: "Solid", label2: "Build", color: "from-amber-400 to-orange-500" },
+  { title: "Interactive Elements", dept: "Play Integration", label1: "Active", label2: "Play", color: "from-emerald-400 to-teal-500" },
 ];
 
-export default function CareersPageContent() {
+export default function WhyChooseUsPageContent() {
   const mainRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
   const heroBgRef = useRef<HTMLDivElement>(null);
@@ -185,7 +203,7 @@ export default function CareersPageContent() {
         >
           <Image
             src="/assets/WHOWEARE/Brightly_lit_empty_playroom_toys_202608081652.jpeg"
-            alt="ToyPark Play Lab"
+            alt="ToyPark Design Lab"
             fill
             className="object-cover saturate-150 brightness-50"
             priority
@@ -201,14 +219,14 @@ export default function CareersPageContent() {
           className="relative z-10 text-center px-6 will-change-transform"
         >
           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-cyan-300 px-5 py-2 rounded-full font-bold text-sm uppercase tracking-widest mb-8">
-            <Sparkles className="w-4 h-4" /> Careers at ToyPark
+            <Sparkles className="w-4 h-4" /> Why Choose ToyPark
           </div>
           <h1 className="text-[13vw] md:text-[10vw] font-black leading-[0.85] uppercase tracking-tighter text-white drop-shadow-2xl mb-6">
-            Enter The<br />
-            <span className="text-pink-400">Play Lab</span>
+            Built For Play<br />
+            <span className="text-cyan-300">Safe & Sweet</span>
           </h1>
           <p className="text-lg md:text-2xl text-cyan-200 font-medium max-w-xl mx-auto">
-            Where imagination is your job title.
+            Discover why parents and partners trust ToyPark for children spaces.
           </p>
         </div>
 
@@ -226,10 +244,10 @@ export default function CareersPageContent() {
 
         <div className="absolute top-20 inset-x-0 text-center z-20 reveal-up px-6">
           <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tight text-white drop-shadow-lg">
-            Life at ToyPark
+            Our Core Promises
           </h2>
           <p className="text-cyan-100 font-medium text-lg mt-4">
-            Hover over each stop to discover the perks.
+            Hover over each station to discover what sets us apart.
           </p>
         </div>
 
@@ -263,24 +281,28 @@ export default function CareersPageContent() {
         </div>
 
         {/* Perk stations */}
-        {perks.map((perk, i) => {
-          const Icon = perk.icon;
+        {reasons.map((reason, i) => {
+          // Adjust position slightly to ensure the wider cards do not bleed off the screen edges
+          const positionStyles = i === 1 
+            ? { top: reason.top, right: "8%" } // Align second card from the right side
+            : { top: reason.top, left: "8%" };  // Align first and third from the left side
+
           return (
             <div
               key={i}
               className="perk-station absolute z-20"
-              style={{ top: perk.top, left: perk.left }}
+              style={positionStyles}
             >
               <div className="group relative cursor-help">
                 <div
-                  className={`w-24 h-24 rounded-3xl ${perk.color} border-4 border-white shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-80 sm:w-[26rem] p-6 sm:p-8 rounded-[2.2rem] ${reason.color} border-4 border-white shadow-2xl flex flex-col gap-3 items-center justify-center group-hover:scale-105 transition-transform duration-300`}
                 >
-                  <Icon className="w-12 h-12 text-white" />
-                </div>
-                {/* Tooltip */}
-                <div className="pointer-events-none absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-white text-[#082f49] p-6 rounded-2xl shadow-2xl opacity-0 group-hover:opacity-100 scale-90 group-hover:scale-100 transition-all duration-300 origin-top z-30">
-                  <h3 className="text-xl font-black mb-2 uppercase">{perk.title}</h3>
-                  <p className="text-sm font-medium leading-relaxed">{perk.desc}</p>
+                  <span className="font-black text-white text-2xl sm:text-3xl leading-none uppercase tracking-wider text-center select-none">
+                    {reason.title}
+                  </span>
+                  <p className="text-white/90 text-sm sm:text-base font-semibold leading-relaxed text-center select-none">
+                    {reason.desc}
+                  </p>
                 </div>
               </div>
             </div>
@@ -293,16 +315,16 @@ export default function CareersPageContent() {
         <div className="text-center mb-20 reveal-up">
           <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tight inline-block mb-6">
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-amber-400">
-              Unbox Your Future
+              Unbox Our Pillars
             </span>
           </h2>
           <p className="text-xl text-cyan-200 font-medium max-w-2xl mx-auto">
-            Hover each box to reveal the role hiding inside.
+            Hover each box to reveal how we design our playroom products.
           </p>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto reveal-up">
-          {jobs.map((job, idx) => (
+          {pillars.map((pillar, idx) => (
             <div
               key={idx}
               className="toy-box preserve-3d relative w-full aspect-square cursor-pointer"
@@ -312,27 +334,27 @@ export default function CareersPageContent() {
               <div className="absolute inset-0 bg-white rounded-3xl p-6 shadow-xl border-8 border-cyan-100 flex flex-col items-center justify-center overflow-hidden">
                 <div className="jack-in-box flex flex-col items-center text-center">
                   <Star className="w-12 h-12 text-amber-400 fill-amber-300 mb-4" />
-                  <span className="text-[#0ea5e9] font-bold text-xs uppercase tracking-widest mb-2">{job.dept}</span>
-                  <h3 className="text-2xl font-black text-[#082f49] leading-tight mb-6">{job.title}</h3>
-                  <button className="bg-pink-500 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-pink-600 transition-colors flex items-center gap-2 text-sm">
-                    Apply Now <ArrowRight className="w-4 h-4" />
-                  </button>
+                  <span className="text-[#0ea5e9] font-bold text-xs uppercase tracking-widest mb-2">{pillar.dept}</span>
+                  <h3 className="text-2xl font-black text-[#082f49] leading-tight mb-6">{pillar.title}</h3>
+                  <a href="/products" className="bg-pink-500 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-pink-600 transition-colors flex items-center gap-2 text-sm">
+                    Explore Now <ArrowRight className="w-4 h-4" />
+                  </a>
                 </div>
               </div>
 
               {/* Lid */}
               <div
-                className={`toy-box-lid absolute inset-0 bg-gradient-to-br ${job.color} rounded-3xl p-8 shadow-2xl flex flex-col justify-between border-4 border-white/20 overflow-hidden z-10`}
+                className={`toy-box-lid absolute inset-0 bg-gradient-to-br ${pillar.color} rounded-3xl p-8 shadow-2xl flex flex-col justify-between border-4 border-white/20 overflow-hidden z-10`}
               >
                 <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
                 <span className="text-white/70 font-black tracking-widest uppercase text-xs">
-                  Opening #{idx + 1}
+                  Pillar #{idx + 1}
                 </span>
                 <div className="text-center">
                   <div className="w-16 h-16 mx-auto bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/30 mb-4">
                     <Zap className="w-8 h-8 text-white" />
                   </div>
-                  <h3 className="text-3xl font-black text-white leading-none">Mystery<br/>Box</h3>
+                  <h3 className="text-3xl font-black text-white leading-none">{pillar.label1}<br/>{pillar.label2}</h3>
                 </div>
                 <p className="text-center text-white/50 font-bold uppercase text-xs tracking-widest">
                   Hover to Open ↑
@@ -344,7 +366,7 @@ export default function CareersPageContent() {
       </section>
 
       {/* ─── 4. BOTTOM CTA ───────────────────────────────── */}
-      <section className="py-32 px-6 bg-pink-500 text-center relative overflow-hidden rounded-t-[3rem]">
+      <section className="py-32 px-6 bg-gradient-to-br from-[#0ea5e9] to-[#0284c7] text-center relative overflow-hidden rounded-t-[3rem]">
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -354,14 +376,14 @@ export default function CareersPageContent() {
         />
         <div className="relative z-10 max-w-3xl mx-auto reveal-up">
           <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tight mb-8">
-            Create Magic<br />Every Day.
+            Create Playful<br />Magic Today.
           </h2>
-          <p className="text-pink-100 text-xl font-medium mb-12 max-w-xl mx-auto">
-            Don't see a fit? Send us your open application and we'll be in touch.
+          <p className="text-cyan-50 text-xl font-medium mb-12 max-w-xl mx-auto">
+            Ready to design the ultimate playroom space for kids? Explore our wholesale catalog.
           </p>
-          <button className="bg-white text-pink-500 px-10 py-5 rounded-full font-black text-lg shadow-[0_8px_0_rgb(190,24,93)] hover:translate-y-2 hover:shadow-[0_2px_0_rgb(190,24,93)] transition-all duration-200 uppercase tracking-wide">
-            Send Open Application
-          </button>
+          <a href="/products" className="inline-block bg-white text-[#0ea5e9] px-10 py-5 rounded-full font-black text-lg shadow-[0_8px_0_rgb(2,132,199)] hover:translate-y-2 hover:shadow-[0_2px_0_rgb(2,132,199)] transition-all duration-200 uppercase tracking-wide">
+            Explore Collections
+          </a>
         </div>
       </section>
     </div>
