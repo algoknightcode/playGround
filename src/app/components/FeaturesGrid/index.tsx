@@ -119,7 +119,6 @@ export const FeaturesGrid: React.FC = () => {
         </div>
       </div>
 
-
     </section>
   );
 };

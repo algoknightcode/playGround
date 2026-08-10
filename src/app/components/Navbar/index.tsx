@@ -9,7 +9,7 @@ export default function KidzaNavbar() {
   const dropdownRef = useRef(null);
 
   return (
-    <header className="w-full font-quicksand relative">
+    <header className="w-full font-quicksand relative z-50">
       
       {/* ═══ 1. CYAN TOP BAR ═══ */}
       <div className="relative bg-[#62C4D2] text-white text-sm sm:text-base px-6 lg:px-12 pt-2.5 pb-4 z-20">
@@ -60,7 +60,7 @@ export default function KidzaNavbar() {
       </div>
 
       {/* ═══ 2. MAIN WHITE NAVBAR ═══ */}
-      <nav className="bg-white px-6 lg:px-12 pt-3.5 pb-3 flex items-center justify-between relative z-10">
+      <nav className="bg-white px-6 lg:px-12 pt-3.5 pb-3 flex items-center justify-between relative z-50">
         
         <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between">
           
@@ -130,7 +130,7 @@ export default function KidzaNavbar() {
 
               {/* About Us Dropdown Menu */}
               <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 pb-3 space-y-1">
                   <a 
                     href="/ourstory" 
                     className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
@@ -165,7 +165,7 @@ export default function KidzaNavbar() {
 
               {/* News & Events Dropdown Menu */}
               <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 pb-3 space-y-1">
                   <a 
                     href="/exhibition" 
                     className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
