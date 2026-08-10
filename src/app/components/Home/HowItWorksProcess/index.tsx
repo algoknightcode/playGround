@@ -12,6 +12,10 @@ interface ProcessStep {
   bgColor: string;
   iconBg: string;
   badgeText: string;
+  hoverBg: string;
+  hoverText: string;
+  hoverDesc: string;
+  hoverNumber: string;
 }
 
 const STEPS: ProcessStep[] = [
@@ -22,7 +26,11 @@ const STEPS: ProcessStep[] = [
     icon: <Phone className="w-6 h-6 stroke-[2.5]" />,
     bgColor: 'bg-[#FDF6ED]',
     iconBg: 'bg-[#FF6B6B]',
-    badgeText: 'Step 1'
+    badgeText: 'Step 1',
+    hoverBg: 'hover:bg-[#FF6B6B]',
+    hoverText: 'group-hover:text-white',
+    hoverDesc: 'group-hover:text-white/90',
+    hoverNumber: 'group-hover:text-white/25'
   },
   {
     number: '02',
@@ -31,7 +39,11 @@ const STEPS: ProcessStep[] = [
     icon: <Ruler className="w-6 h-6 stroke-[2.5]" />,
     bgColor: 'bg-[#EAF8F9]',
     iconBg: 'bg-[#4ECDC4]',
-    badgeText: 'Step 2'
+    badgeText: 'Step 2',
+    hoverBg: 'hover:bg-[#4ECDC4]',
+    hoverText: 'group-hover:text-white',
+    hoverDesc: 'group-hover:text-white/90',
+    hoverNumber: 'group-hover:text-white/25'
   },
   {
     number: '03',
@@ -40,7 +52,11 @@ const STEPS: ProcessStep[] = [
     icon: <FileText className="w-6 h-6 stroke-[2.5]" />,
     bgColor: 'bg-[#FFFBEB]',
     iconBg: 'bg-[#FFE66D]',
-    badgeText: 'Step 3'
+    badgeText: 'Step 3',
+    hoverBg: 'hover:bg-[#FFE66D]',
+    hoverText: 'group-hover:text-[#2D3436]',
+    hoverDesc: 'group-hover:text-[#2D3436]/80',
+    hoverNumber: 'group-hover:text-[#2D3436]/20'
   },
   {
     number: '04',
@@ -49,7 +65,11 @@ const STEPS: ProcessStep[] = [
     icon: <Wrench className="w-6 h-6 stroke-[2.5]" />,
     bgColor: 'bg-[#F5EFFB]',
     iconBg: 'bg-[#9B59B6]',
-    badgeText: 'Step 4'
+    badgeText: 'Step 4',
+    hoverBg: 'hover:bg-[#9B59B6]',
+    hoverText: 'group-hover:text-white',
+    hoverDesc: 'group-hover:text-white/90',
+    hoverNumber: 'group-hover:text-white/25'
   },
   {
     number: '05',
@@ -58,7 +78,11 @@ const STEPS: ProcessStep[] = [
     icon: <ShieldCheck className="w-6 h-6 stroke-[2.5]" />,
     bgColor: 'bg-[#EBF5FF]',
     iconBg: 'bg-[#3B82F6]',
-    badgeText: 'Step 5'
+    badgeText: 'Step 5',
+    hoverBg: 'hover:bg-[#3B82F6]',
+    hoverText: 'group-hover:text-white',
+    hoverDesc: 'group-hover:text-white/90',
+    hoverNumber: 'group-hover:text-white/25'
   },
 ];
 
@@ -105,7 +129,7 @@ export default function HowItWorksProcess() {
                 scale: 1.02,
                 transition: { type: 'spring', stiffness: 300, damping: 15 }
               }}
-              className={`${step.bgColor} border-2 border-[#2D3436]/20 hover:border-[#2D3436] rounded-[2.2rem] p-6 shadow-md hover:shadow-xl flex flex-col justify-between transition-all duration-300 relative group cursor-pointer overflow-hidden`}
+              className={`${step.bgColor} ${step.hoverBg} border-2 border-[#2D3436]/20 hover:border-[#2D3436] rounded-[2.2rem] p-6 shadow-md hover:shadow-xl flex flex-col justify-between transition-all duration-300 relative group cursor-pointer overflow-hidden`}
             >
               {/* Subtle Card Glow / Shine on Hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
@@ -114,7 +138,7 @@ export default function HowItWorksProcess() {
                 {/* Step Number & Floating Animated Icon Header */}
                 <div className="flex items-center justify-between mb-6">
                   <motion.span 
-                    className="text-4xl font-black text-[#2D3436]/25 group-hover:text-[#2D3436]/60 transition-colors"
+                    className={`text-4xl font-black text-[#2D3436]/25 transition-colors ${step.hoverNumber}`}
                     animate={{ scale: [1, 1.05, 1] }}
                     transition={{ duration: 3, repeat: Infinity, delay: idx * 0.4 }}
                   >
@@ -131,24 +155,24 @@ export default function HowItWorksProcess() {
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="text-xl font-black text-[#2D3436] mb-3 leading-snug group-hover:text-[#FF5722] transition-colors">
+                <h3 className={`text-xl font-black text-[#2D3436] mb-3 leading-snug transition-colors ${step.hoverText}`}>
                   {step.title}
                 </h3>
-                <p className="text-gray-600 text-sm leading-relaxed font-medium">
+                <p className={`text-gray-600 text-sm leading-relaxed font-medium transition-colors ${step.hoverDesc}`}>
                   {step.description}
                 </p>
               </div>
 
               {/* Bottom Badge Accent with Animated Arrow */}
               <div className="mt-6 pt-4 border-t-2 border-dashed border-[#2D3436]/15 flex items-center justify-between">
-                <span className="text-xs font-black text-[#2D3436] uppercase tracking-wider group-hover:text-[#00C4B5] transition-colors">
+                <span className={`text-xs font-black text-[#2D3436] uppercase tracking-wider transition-colors ${step.hoverText}`}>
                   {step.badgeText}
                 </span>
                 <motion.div
                   animate={{ x: [0, 4, 0] }}
                   transition={{ duration: 1.5, repeat: Infinity }}
                 >
-                  <ArrowRight className="w-4 h-4 text-[#2D3436] group-hover:text-[#FF6B6B] transition-colors" />
+                  <ArrowRight className={`w-4 h-4 text-[#2D3436] transition-colors ${step.hoverText}`} />
                 </motion.div>
               </div>
             </motion.div>

@@ -10,11 +10,11 @@ const stats = [
 ];
 
 const b2bSchedules = [
-  { id: 1, name: "Minimum Order Quantity", time: "From 50 Units" },
-  { id: 2, name: "Custom OEM & Branding", time: "Available On Request" },
-  { id: 3, name: "Trade Support Hours", time: "Mon - Sat: 9am - 7pm" },
+  { id: 1, name: "Start Small, Scale Smart", time: "Wholesale orders from just 50 units" },
+  { id: 2, name: "Make It Yours", time: "OEM & private-label branding available" },
+  { id: 3, name: "Real People. Real Support.", time: "Mon – Sat | 9 AM – 7 PM" },
 ];
-
+ 
 const BusinessStats = () => {
   return (
     <section className="w-full relative bg-white py-16 font-quicksand overflow-hidden">
@@ -42,7 +42,7 @@ const BusinessStats = () => {
             <path d="M43 55 Q50 63 57 55" stroke="#1e1e1e" strokeWidth="2.5" strokeLinecap="round" fill="none" />
           </svg>
         </motion.div>
-
+ 
         {/* Stats Grid */}
         <div className="relative z-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
           {stats.map((stat, index) => {
@@ -59,7 +59,7 @@ const BusinessStats = () => {
           })}
         </div>
       </div>
-
+ 
       {/* YELLOW SECTION */}
       <div className="relative z-30 max-w-6xl mx-auto -mt-24 sm:-mt-32 lg:-mt-48 px-4 sm:px-6">
         <div className="bg-[#FFD400] rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row gap-12 lg:gap-16 relative overflow-hidden">
@@ -70,31 +70,33 @@ const BusinessStats = () => {
               <path d="M12 19V5M5 12l7-7 7 7"/>
             </svg>
           </div>
-
+ 
           {/* Left: Text */}
           <div className="flex-1 lg:border-r lg:border-black/10 lg:border-dashed lg:pr-12">
             <div className="inline-block bg-[#00C4B5] text-white px-5 py-2 rounded-full text-sm font-bold tracking-wide mb-6">
               B2B Trade &amp; Wholesale
             </div>
             <h2 className="text-4xl sm:text-5xl font-black text-[#0B1A30] leading-tight mb-6 relative inline-block">
-              Wholesale Partner Benefits
+              Stock What Kids Love.
               {/* Squiggly red underline */}
               <svg className="absolute -bottom-3 left-0 w-full h-4 text-[#FF6B6B]" viewBox="0 0 200 20" preserveAspectRatio="none">
                 <path d="M0 10 Q 50 20, 100 10 T 200 10" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
               </svg>
             </h2>
-            <p className="text-[#0B1A30]/80 font-semibold leading-relaxed text-lg mt-4 max-w-md">
-              Partner with us for direct factory pricing on premium kids toys and wooden play furniture. Built specifically for retailers, schools, and daycare centers.
+            <p className="text-[#0B1A30]/80 font-semibold leading-relaxed text-base mt-4 max-w-md">
+              Why settle for ordinary products when you can stock toys and kids’ furniture designed to catch attention, deliver quality, and keep customers coming back? Get direct wholesale access, flexible order quantities, and customization options—all backed by a team that understands what growing businesses need.
             </p>
           </div>
-
+ 
           {/* Right: Time list */}
           <div className="flex-1 flex flex-col justify-center gap-4">
             {b2bSchedules.map((item) => (
-              <div key={item.id} className="bg-white rounded-full px-6 sm:px-8 py-4 sm:py-5 flex flex-col sm:flex-row sm:items-center justify-between shadow-sm hover:shadow-md transition-shadow">
-                <span className="font-bold text-[#0B1A30] text-lg mb-1 sm:mb-0 w-1/2">{item.name}</span>
-                <div className="hidden sm:block h-6 w-px bg-gray-200 border-r border-dashed border-gray-300"></div>
-                <span className="font-bold text-gray-600 sm:text-right w-1/2">{item.time}</span>
+              <div key={item.id} className="bg-white rounded-3xl px-6 sm:px-8 py-4 sm:py-5 grid grid-cols-1 sm:grid-cols-12 items-center shadow-sm hover:shadow-md transition-shadow gap-2 sm:gap-4">
+                <span className="font-bold text-[#0B1A30] text-base sm:text-lg col-span-1 sm:col-span-5">{item.name}</span>
+                <div className="hidden sm:flex col-span-1 justify-center">
+                  <div className="h-6 w-px bg-gray-200 border-r border-dashed border-gray-300"></div>
+                </div>
+                <span className="font-bold text-gray-600 sm:text-right col-span-1 sm:col-span-6 text-sm sm:text-base">{item.time}</span>
               </div>
             ))}
           </div>

@@ -51,6 +51,12 @@ export default function WhoWeArePage() {
   const horizontalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const lenis = new Lenis();
+    lenis.on("scroll", ScrollTrigger.update);
+    const updateLenis = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(updateLenis);
     gsap.ticker.lagSmoothing(0, 0);
 
     // 2. GSAP Animations Context
