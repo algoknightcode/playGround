@@ -119,7 +119,7 @@ export default function CertificationPageContent() {
     <div ref={containerRef} className="bg-white text-zinc-900 font-quicksand selection:bg-[#00C4B5] selection:text-white">
       
       {/* ─── 1. HERO SECTION ─────────────────────────────── */}
-      <section ref={heroRef} className="relative h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e0f7fa] to-[#e3f2f7]">
+      <section ref={heroRef} className="relative min-h-[80vh] py-16 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e0f7fa] to-[#e3f2f7]">
         
         {/* Parallax Image Background */}
         <div className="absolute inset-0 w-full h-[120%] -top-[10%]">
@@ -169,8 +169,8 @@ export default function CertificationPageContent() {
       </section>
 
       {/* ─── 2. THE TESTING LAB (CERTIFICATIONS) ─────────── */}
-      <section className="relative py-24 md:py-40 px-6 max-w-7xl mx-auto">
-        <div className="text-center mb-24">
+      <section className="relative pt-8 pb-24 md:pt-12 md:pb-32 px-6 max-w-7xl mx-auto">
+        <div className="text-center mb-12">
           <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6">Our Badges of Honor</h2>
           <p className="text-lg md:text-xl text-zinc-500 font-medium max-w-3xl mx-auto">
             Each certification represents hours of testing, sustainable sourcing, and an unwavering commitment to quality.
