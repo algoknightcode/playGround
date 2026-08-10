@@ -4,7 +4,6 @@ import PlayfulHeader from '../components/Navbar';
 const AboutUsScrollAnimation = dynamic(() => import('../components/pages/about'));
 const ShopElementsSection = dynamic(() => import('../components/Home/ShopElementsSection'));
 const WhoWeAre = dynamic(() => import('../components/Home/WhoWeAre'));
-const ToyParkScrollVideo = dynamic(() => import('../components/Home/ToyParkScrollVideo'));
 const Footer2 = dynamic(() => import('../components/Footer2'));
 
 export default function AboutPage() {
@@ -14,7 +13,6 @@ export default function AboutPage() {
       <AboutUsScrollAnimation />
       <ShopElementsSection bgColor="bg-[#E0F7F6]" />
       <WhoWeAre />
-      <ToyParkScrollVideo />
       <Footer2 />
     </main>
   );

@@ -116,24 +116,94 @@ export default function KidzaNavbar() {
           </div>
 
           {/* CENTER: Navigation Links */}
-          <div className="hidden xl:flex items-center gap-9">
-            {[
-              { name: 'Home', href: '/' },
-              { name: 'About', href: '/about' },
-              { name: 'Who We Are', href: '/whoweare' },
-              { name: 'Exhibition', href: '/exhibition' },
-              { name: 'Careers', href: '/careers' },
-              { name: 'Blog', href: '/blogs' },
-              { name: 'Shop', href: '/products' },
-            ].map((link) => (
+          <div className="hidden xl:flex items-center gap-8">
+            
+            {/* 1. About Us (Dropdown on Hover) */}
+            <div className="relative group py-2">
               <a 
-                key={link.name} 
-                href={link.href} 
-                className="flex items-center gap-1.5 font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg"
+                href="/about" 
+                className="flex items-center gap-1 font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg cursor-pointer"
               >
-                {link.name}
+                <span>About Us</span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-[#62C4D2]" />
               </a>
-            ))}
+
+              {/* About Us Dropdown Menu */}
+              <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1">
+                  <a 
+                    href="/ourstory" 
+                    className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
+                  >
+                    <span>Our Story</span>
+                  </a>
+                  <a 
+                    href="/whoweare" 
+                    className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
+                  >
+                    <span>Who We Are</span>
+                  </a>
+                  <a 
+                    href="/careers" 
+                    className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
+                  >
+                    <span>Careers</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. News & Events (Dropdown on Hover) */}
+            <div className="relative group py-2">
+              <a 
+                href="/exhibition" 
+                className="flex items-center gap-1 font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg cursor-pointer"
+              >
+                <span>News & Events</span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-[#62C4D2]" />
+              </a>
+
+              {/* News & Events Dropdown Menu */}
+              <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-2 space-y-1">
+                  <a 
+                    href="/exhibition" 
+                    className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
+                  >
+                    <span>Exhibition</span>
+                  </a>
+                  <a 
+                    href="/blogs" 
+                    className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
+                  >
+                    <span>Blogs</span>
+                  </a>
+                  <a 
+                    href="/whoweare#certification" 
+                    className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
+                  >
+                    <span>Certification</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Gallery */}
+            <a 
+              href="/gallery" 
+              className="font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg"
+            >
+              Gallery
+            </a>
+
+            {/* 4. Contact Us */}
+            <a 
+              href="/whoweare#contact" 
+              className="font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg"
+            >
+              Contact Us
+            </a>
+
           </div>
 
           {/* RIGHT: Actions (Search, Wishlist/Heart, All Products) */}
