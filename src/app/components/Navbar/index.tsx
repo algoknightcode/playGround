@@ -179,7 +179,7 @@ export default function KidzaNavbar() {
                     <span>Blogs</span>
                   </a>
                   <a 
-                    href="/whoweare#certification" 
+                    href="/certification" 
                     className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl"
                   >
                     <span>Certification</span>
