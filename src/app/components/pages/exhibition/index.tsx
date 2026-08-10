@@ -53,6 +53,12 @@ export default function ToyExhibition() {
   const [activeEventImage, setActiveEventImage] = useState(dailyActivities[0].img);
 
   useEffect(() => {
+    const lenis = new Lenis();
+    lenis.on("scroll", ScrollTrigger.update);
+    const updateRaf = (time: number) => {
+      lenis.raf(time * 1000);
+    };
+    gsap.ticker.add(updateRaf);
     gsap.ticker.lagSmoothing(0, 0);
 
     // 2. GSAP Animations Context
@@ -110,6 +116,7 @@ export default function ToyExhibition() {
 
     return () => {
       ctx.revert();
+      gsap.ticker.remove(updateRaf);
       lenis.destroy();
     };
   }, []);
