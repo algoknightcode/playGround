@@ -24,25 +24,24 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
       (entries) => {
         if (entries[0].isIntersecting) {
           setIsVisible(true);
-        } else {
-          setIsVisible(false);
+          observer.disconnect(); // Disconnect early to keep component lightweight
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     const currentRef = domRef.current;
     if (currentRef) observer.observe(currentRef);
 
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
     };
   }, []);
 
   return (
     <div
       ref={domRef}
-      className={`transition-all duration-1000 ease-out ${
+      className={`transition-[transform,opacity,filter] duration-1000 ease-out ${
         isVisible ? activeClass : baseClass
       } ${className}`}
     >
@@ -68,16 +67,18 @@ const StaggeredTextReveal: React.FC<StaggeredTextRevealProps> = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries[0].isIntersecting) setIsVisible(true);
-        else setIsVisible(false);
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // Disconnect early to keep component lightweight
+        }
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     const currentRef = domRef.current;
     if (currentRef) observer.observe(currentRef);
     return () => {
-      if (currentRef) observer.unobserve(currentRef);
+      observer.disconnect();
     };
   }, []);
 
@@ -86,7 +87,7 @@ const StaggeredTextReveal: React.FC<StaggeredTextRevealProps> = ({
       {words.map((word, i) => (
         <span
           key={i}
-          className={`inline-block transition-all duration-500 ease-out ${
+          className={`inline-block transition-[transform,opacity,filter] duration-500 ease-out ${
             isVisible
               ? 'opacity-100 translate-y-0 blur-none'
               : 'opacity-0 translate-y-4 blur-sm'
@@ -150,15 +151,18 @@ function AboutUsScrollAnimation() {
           baseClass="opacity-0 translate-y-8 blur-md"
           activeClass="opacity-100 translate-y-0 blur-none"
         >
-          <div className="space-y-6 text-left">
+          <div className="space-y-6 text-left font-quicksand">
             <span className="text-[#00C4B5] font-extrabold uppercase tracking-widest text-sm">
-              Established in 2002
+              SINCE 2002
             </span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#2D3436] leading-tight">
-              Leading Supplier of Playground & Playing Equipment
+            <h2 className="text-3xl md:text-5xl font-black text-[#0D1C3A] leading-tight">
+              We’ve Been in the <span className="bg-gradient-to-r from-[#FF5A5F] via-[#FF8E53] to-[#f97316] bg-clip-text text-transparent">Play Game</span> for a While.
             </h2>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-              Incepted in the year 2002, <strong className="text-[#2D3436]">Toy Park Delhi Pvt. Ltd.</strong> is known to be one of the leading suppliers, wholesalers, distributors, and retailers of an impeccable range of playground equipment, kids toys, trampolines, and children's furniture. Manufacturing follows strict industry norms to ensure sturdiness, durability, and safety.
+            <p className="text-slate-700 text-base md:text-lg leading-relaxed font-semibold">
+              Toys, playgrounds, trampolines, and kids’ furniture—we’ve been making and supplying them since 1992. With decades of hands-on experience, we know what makes a product fun for kids, practical for businesses, and built to last.
+            </p>
+            <p className="text-[#00C4B5] text-lg font-black tracking-wide">
+              Good design. Solid quality. Zero compromise on play.
             </p>
           </div>
         </ScrollReveal>
@@ -170,8 +174,8 @@ function AboutUsScrollAnimation() {
           
           <div className="flex-1 text-left">
             <StaggeredTextReveal
-              text="we are a collective of dreamers and doers ✨"
-              className="text-3xl md:text-5xl lowercase font-extrabold text-[#00A89B] leading-tight"
+              text="We’re dreamers. We’re makers. We make play happen. ✨"
+              className="text-3xl md:text-5xl font-extrabold text-[#00A89B] leading-tight"
             />
           </div>
 
@@ -223,11 +227,14 @@ function AboutUsScrollAnimation() {
             <span className="text-[#00C4B5] font-extrabold uppercase tracking-widest text-sm">
               State-of-the-Art Infrastructure
             </span>
-            <h2 className="text-3xl md:text-5xl font-black text-[#2D3436] leading-tight">
-              Advanced Warehousing & Compartmentalized Facility
+            <h2 className="text-3xl md:text-5xl font-black text-[#0D1C3A] leading-tight">
+              Where <span className="bg-gradient-to-r from-[#00C4B5] to-[#0284C7] bg-clip-text text-transparent">Good Products</span> Get Their Start.
             </h2>
-            <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-              Our highly advanced, spacious warehousing facility at Toy Park Delhi Pvt. Ltd. is laced with modern machinery. Undergoing regular up-gradation, our climate-safe, compartmentalized setup ensures effective management and long-term preservation of equipment.
+            <p className="text-slate-700 text-base md:text-lg leading-relaxed font-semibold">
+              Our spacious, modern facility is built for efficient production, organized storage, and smooth order handling. With advanced machinery, climate-safe spaces, and dedicated storage areas, we keep every product protected, every process on track, and every order ready to move.
+            </p>
+            <p className="text-[#00C4B5] text-lg font-black tracking-wide">
+              Smart infrastructure. Better efficiency. Built to scale.
             </p>
           </div>
         </ScrollReveal>
@@ -254,13 +261,13 @@ function AboutUsScrollAnimation() {
           className="text-left space-y-6"
         >
           <span className="text-[#00C4B5] font-extrabold uppercase tracking-widest text-sm">
-            Visionary Leadership
+            VISIONARY LEADERSHIP
           </span>
-          <h2 className="text-3xl md:text-5xl font-black text-[#2D3436] leading-tight">
-            Guided by Director Mr. Pulkit Singal
+          <h2 className="text-3xl md:text-5xl font-black text-[#0D1C3A] leading-tight">
+            The Mind Behind <span className="bg-gradient-to-r from-[#FF5A5F] via-[#FF8E53] to-[#f97316] bg-clip-text text-transparent">the Mission.</span>
           </h2>
-          <p className="text-gray-700 text-base md:text-lg leading-relaxed">
-            Under the leadership and guidance of our Director, <strong className="text-[#2D3436]">Mr. Pulkit Singal</strong>, we have attained greater heights of success. His deep market insight and client-centric approach continue to drive our ethical standards and market leadership.
+          <p className="text-slate-700 text-base md:text-lg leading-relaxed font-semibold">
+            <strong className="text-[#0D1C3A]">Mr. Pulkit Singal</strong> brings a fresh perspective to an industry built on experience. His approach blends market insight, creative thinking, and strong relationships to keep ToyPark moving forward—one smart idea at a time.
           </p>
         </ScrollReveal>
       </section>
