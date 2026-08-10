@@ -178,7 +178,7 @@ export default function WhoWeArePage() {
         <div className="absolute inset-0 z-0 overflow-hidden">
           {/* Parallax Hero Image Container with Object-Contain */}
           <div className="hero-bg relative w-full h-[120%] -top-[10%]">
-            <Image src="/assets/WHOWEARE/Minimalist_presentation_slide_te…_2K_202608081543.jpeg" alt="Hero Banner" fill priority className="object-contain object-center" />
+            <Image src="/assets/WHOWEARE/Minimalist_presentation_slide_te…_2K_202608081543.jpeg" alt="Hero Banner" fill priority className="object-cover object-center" />
           </div>
         </div>
         <div className="relative z-10 max-w-5xl">

@@ -1,58 +1,75 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
-// Playful Windmill SVG Icon
-const WindmillIcon = ({ className = "w-6 h-6", isSpinning = true }: { className?: string; isSpinning?: boolean }) => (
-  <svg
-    className={`${className} ${isSpinning ? 'animate-spin' : ''}`}
-    style={{ animationDuration: '6s' }}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.5"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 2v20M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-    <path d="m19 12-7 7-7-7 7-7 7 7Z" />
-    <circle cx="12" cy="12" r="1" className="fill-current" />
-  </svg>
-);
-
-// Happy Star icon for kids theme
-const HappyStarIcon = ({ className = "w-5 h-5 text-amber-400" }: { className?: string }) => (
-  <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-  </svg>
-);
-
 export const ToyWindmillScroll: React.FC = () => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const vid = videoRef.current;
+    if (!section || !vid) return;
+
+    // Observer 1: Lazy load the video early (500px before it enters the viewport)
+    const loadObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !vid.getAttribute('src')) {
+          vid.setAttribute('src', '/video/Toy_windmill_on_green_hill_202608061121.mp4');
+          loadObserver.disconnect();
+        }
+      },
+      { rootMargin: '500px' }
+    );
+
+    // Observer 2: Play/pause logic strictly when in view
+    const playObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (vid.getAttribute('src')) {
+            vid.play().catch(() => {});
+          }
+        } else {
+          vid.pause();
+        }
+      },
+      { rootMargin: '0px' }
+    );
+
+    loadObserver.observe(section);
+    playObserver.observe(section);
+
+    return () => {
+      loadObserver.disconnect();
+      playObserver.disconnect();
+    };
+  }, []);
+
   return (
-    <section className="relative w-full min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center pt-0 pb-10 lg:pb-16 px-6 sm:px-10 overflow-hidden bg-[#eef7fc] font-quicksand antialiased text-zinc-800">
+    <section 
+      ref={sectionRef} 
+      className="relative w-full min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center pt-0 pb-10 lg:pb-16 px-6 sm:px-10 overflow-hidden bg-[#eef7fc] font-quicksand antialiased text-zinc-800"
+    >
       
-      {/* ═══ SHARP AUTO-LOOP BACKGROUND VIDEO ═══ */}
+      {/* ═══ BACKGROUND MEDIA ═══ */}
       <div className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        {/* Mobile Static Image (Optimized for performance) */}
+        <img 
+          src="/video/Toy_windmill_on_green_hill_mobile.webp" 
+          alt="Green hill with windmill" 
+          className="absolute inset-0 w-full h-full object-cover object-[center_35%] block lg:hidden"
+        />
+
+        {/* Desktop Lazy-Loaded Video */}
         <video
-          ref={(vid) => {
-            if (!vid) return;
-            const observer = new IntersectionObserver(([entry]) => {
-              if (entry.isIntersecting) {
-                vid.play().catch(() => {});
-              } else {
-                vid.pause();
-              }
-            });
-            observer.observe(vid);
-          }}
-          src="/video/Toy_windmill_on_green_hill_202608061121.mp4"
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover object-[center_35%]"
+          className="absolute inset-0 w-full h-full object-cover object-[center_35%] hidden lg:block"
         />
         
         {/* Crisp gradient mask: leaves left windmill clear while offering subtle contrast for text on right */}
@@ -80,10 +97,10 @@ export const ToyWindmillScroll: React.FC = () => {
             {/* Heading */}
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold leading-[1.2] tracking-tight text-zinc-900 font-quicksand">
               Direct Factory Wholesale For<br />
-              <span className="bg-gradient-to-r from-[#FF5A5F] to-[#FF7A59] bg-clip-text text-transparent drop-shadow-sm">
+              <span className="bg-gradient-to-r from-[#FF5A5F] to-[#FF7A59] bg-clip-text text-transparent">
                 Kids Toys &amp;{' '}
               </span>
-              <span className="bg-gradient-to-r from-[#00C4B5] to-[#0284C7] bg-clip-text text-transparent drop-shadow-sm">
+              <span className="bg-gradient-to-r from-[#00C4B5] to-[#0284C7] bg-clip-text text-transparent">
                 School Furniture
               </span>
             </h2>
@@ -95,14 +112,14 @@ export const ToyWindmillScroll: React.FC = () => {
 
             {/* B2B Action Buttons */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
-              <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00C4B5] to-[#0284C7] hover:from-[#00a89b] hover:to-[#026fa8] text-white font-extrabold text-xs sm:text-sm px-6 py-3 shadow-lg shadow-[#00C4B5]/25 hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap font-quicksand">
+              <button className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#00C4B5] to-[#0284C7] hover:from-[#00a89b] hover:to-[#026fa8] text-white font-extrabold text-xs sm:text-sm px-6 py-3 shadow-lg shadow-[#00C4B5]/25 hover:shadow-xl hover:scale-105 transition-[transform,background-color,box-shadow] duration-300 cursor-pointer whitespace-nowrap font-quicksand">
                 <span>Request B2B Wholesale Quote</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </button>
 
-              <button className="inline-flex items-center gap-2 rounded-full bg-white/90 border border-sky-200 text-[#0284C7] hover:bg-sky-50 font-extrabold text-xs sm:text-sm px-5 py-3 shadow-sm hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap font-quicksand">
+              <button className="inline-flex items-center gap-2 rounded-full bg-white/90 border border-sky-200 text-[#0284C7] hover:bg-sky-50 font-extrabold text-xs sm:text-sm px-5 py-3 shadow-sm hover:scale-105 transition-[transform,background-color,box-shadow] duration-300 cursor-pointer whitespace-nowrap font-quicksand">
                 <span>Bulk Catalog PDF</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -117,11 +134,11 @@ export const ToyWindmillScroll: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="w-full bg-white/95 backdrop-blur-md border border-sky-100 rounded-[2rem] p-5 sm:p-7 shadow-[0_20px_45px_rgba(2,132,199,0.1)] grid grid-cols-2 sm:grid-cols-4 gap-4 relative overflow-hidden font-quicksand"
+            className="w-full bg-white/95 border border-sky-100 rounded-[2rem] p-5 sm:p-7 shadow-[0_20px_45px_rgba(2,132,199,0.1)] grid grid-cols-2 sm:grid-cols-4 gap-4 relative overflow-hidden font-quicksand"
           >
             {/* Stat 1: Manufacturing Experience */}
             <div className="flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-10 h-10 rounded-2xl bg-[#FF5A5F]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#FF5A5F]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-[transform,background-color,box-shadow] duration-300">
                 <svg className="w-5 h-5 text-[#FF5A5F]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
@@ -137,7 +154,7 @@ export const ToyWindmillScroll: React.FC = () => {
 
             {/* Stat 2: B2B Commercial Clients */}
             <div className="flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-10 h-10 rounded-2xl bg-[#00C4B5]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#00C4B5]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-[transform,background-color,box-shadow] duration-300">
                 <svg className="w-5 h-5 text-[#00C4B5]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
@@ -153,7 +170,7 @@ export const ToyWindmillScroll: React.FC = () => {
 
             {/* Stat 3: Products Catalog */}
             <div className="flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-10 h-10 rounded-2xl bg-[#0284C7]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#0284C7]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-[transform,background-color,box-shadow] duration-300">
                 <svg className="w-5 h-5 text-[#0284C7]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
@@ -169,7 +186,7 @@ export const ToyWindmillScroll: React.FC = () => {
 
             {/* Stat 4: BIS Safety Certified */}
             <div className="flex flex-col justify-center items-center text-center p-2 group">
-              <div className="w-10 h-10 rounded-2xl bg-[#FF7A59]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-10 h-10 rounded-2xl bg-[#FF7A59]/10 flex items-center justify-center mb-2 group-hover:scale-110 transition-[transform,background-color,box-shadow] duration-300">
                 <svg className="w-5 h-5 text-[#FF7A59]" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
