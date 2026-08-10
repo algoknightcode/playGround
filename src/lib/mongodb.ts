@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
-const MONGODB_URI = process.env.MONGODB_URI;
-
-if (!MONGODB_URI) {
-    throw new Error("MONGODB_URI is not defined in .env.local");
-}
-
 const connectDB = async () => {
+    const MONGODB_URI = process.env.MONGODB_URI;
+    
+    if (!MONGODB_URI) {
+        console.error("MONGODB_URI is not defined in the environment variables.");
+        throw new Error("MONGODB_URI is not defined in environment variables");
+    }
+
     try {
         if (mongoose.connection.readyState === 1) {
             return;
