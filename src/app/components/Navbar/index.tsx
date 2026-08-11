@@ -128,7 +128,7 @@ export default function KidzaNavbar() {
                 <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-[#62C4D2]" />
               </a>
 
-              <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 pb-3 space-y-1">
                   <a href="/ourstory" className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl">
                     <span>Our Story</span>
@@ -156,7 +156,7 @@ export default function KidzaNavbar() {
                 <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-[#62C4D2]" />
               </a>
 
-              <div className="absolute left-0 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                 <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 pb-3 space-y-1">
                   <a href="/exhibition" className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl">
                     <span>Exhibition</span>
@@ -176,10 +176,27 @@ export default function KidzaNavbar() {
               Gallery
             </a>
 
-            {/* 4. Contact Us */}
-            <a href="/whoweare#contact" className="font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg">
-              Contact Us
-            </a>
+            {/* 4. Contact Dropdown (Hover on Desktop) */}
+            <div className="relative group py-2">
+              <a 
+                href="/contact" 
+                className="flex items-center gap-1 font-extrabold text-[#334155] hover:text-[#62C4D2] transition-colors text-base sm:text-lg cursor-pointer"
+              >
+                <span>Contact</span>
+                <ChevronDown className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180 text-[#62C4D2]" />
+              </a>
+
+              <div className="absolute left-1/2 -translate-x-1/2 top-full pt-2 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-3 pb-3 space-y-1">
+                  <a href="/contact" className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl">
+                    <span>Contact Us</span>
+                  </a>
+                  <a href="/partner" className="flex items-center justify-between px-4 py-2.5 text-base font-bold text-gray-700 hover:bg-[#62C4D2]/10 hover:text-[#62C4D2] transition-colors rounded-xl">
+                    <span>Partner With Us</span>
+                  </a>
+                </div>
+              </div>
+            </div>
 
           </div>
 
@@ -224,7 +241,8 @@ export default function KidzaNavbar() {
               <a href="/about" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:text-[#62C4D2] transition-colors">About Us</a>
               <a href="/exhibition" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:text-[#62C4D2] transition-colors">News & Events</a>
               <a href="/gallery" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:text-[#62C4D2] transition-colors">Gallery</a>
-              <a href="/whoweare#contact" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:text-[#62C4D2] transition-colors">Contact Us</a>
+              <a href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:text-[#62C4D2] transition-colors">Contact Us</a>
+              <a href="/partner" onClick={() => setIsMobileMenuOpen(false)} className="py-2 hover:text-[#62C4D2] transition-colors">Partner With Us</a>
               <div className="pt-2">
                 <a href="/products" onClick={() => setIsMobileMenuOpen(false)}>
                   <LiquidButton className="w-full justify-center py-3 text-sm">

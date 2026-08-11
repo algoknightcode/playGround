@@ -68,7 +68,10 @@ export const FeaturesGrid: React.FC = () => {
   ];
 
   return (
-    <section className="relative w-full bg-white px-6 lg:px-12 py-8 font-fredoka overflow-hidden">
+    <section className="relative w-full bg-[#E0F8F8] px-6 lg:px-12 py-8 font-fredoka overflow-hidden">
+      
+      {/* Top Glow Blending Overlay */}
+      <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
       
       {/* ═══ SUBTLE FLOATING UMBRELLA ACCENT (NO WHITE BOX BACKGROUND) ═══ */}
       <div className="absolute top-6 lg:top-8 right-8 lg:right-16 z-20 pointer-events-none opacity-85 hover:opacity-100 transition-opacity">
@@ -118,7 +121,6 @@ export const FeaturesGrid: React.FC = () => {
           ))}
         </div>
       </div>
-
     </section>
   );
 };

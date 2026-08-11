@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Star, Heart, Check, Truck, ShieldCheck, ArrowRight, Minus, Plus, Mail, MessageSquare } from 'lucide-react';
 import PlayfulHeader from '../../components/Navbar';
 import Footer2 from '../../components/Footer2';
+import ContactForm from '../../components/ContactForm';
 
 export default function ProductDetail() {
   const [quantity, setQuantity] = useState(1);
@@ -347,121 +348,13 @@ export default function ProductDetail() {
                 </div>
               </div>
             </div>
+            {/* ═══ PRODUCT INQUIRY FORM SECTION (BEFORE FOOTER) ═══ */}
+            <ContactForm 
+              productName="Wondear Dolls Dreamhouse Play Tent" 
+              className="mt-20" 
+            />
           </div>
 
-        </div>
-
-        {/* ═══ PRODUCT INQUIRY FORM SECTION (BEFORE FOOTER) ═══ */}
-        <div id="contact" className="mt-20 bg-[#EAF8F9] border-3 border-[#2D3436] rounded-[2.5rem] p-8 md:p-12 shadow-[8px_8px_0px_0px_#2D3436] relative overflow-hidden">
-          
-          {/* Animated Background Floating Clouds */}
-          <motion.img 
-            src="/assets/cloud-svgrepo-com.svg" 
-            alt="Floating Cloud 1" 
-            className="absolute top-4 left-[-40px] w-32 md:w-44 opacity-35 pointer-events-none z-0"
-            animate={{ x: [0, 80, 0] }}
-            transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-          />
-          <motion.img 
-            src="/assets/cloud-svgrepo-com.svg" 
-            alt="Floating Cloud 2" 
-            className="absolute bottom-6 right-[-20px] w-36 md:w-48 opacity-35 pointer-events-none z-0"
-            animate={{ x: [0, -70, 0] }}
-            transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
-          />
-
-          <div className="max-w-3xl mx-auto relative z-10">
-            <div className="text-center mb-8">
-              <span className="bg-[#FF6B6B] text-white text-xs font-black tracking-widest uppercase px-4 py-2 rounded-full shadow-xs inline-flex items-center gap-2">
-                <Mail className="w-4 h-4" />
-                Get In Touch
-              </span>
-              <h2 className="text-3xl md:text-4xl font-black text-[#2D3436] tracking-tight mt-3 flex items-center justify-center gap-2.5">
-                <span>Have Questions About This Product?</span>
-                <MessageSquare className="w-7 h-7 text-[#FF6B6B] hidden sm:inline-block" />
-              </h2>
-              <p className="text-gray-600 font-semibold text-sm md:text-base mt-2">
-                Send us a quick message and our ToyPark support team will get back to you right away!
-              </p>
-            </div>
-
-            <form 
-              onSubmit={(e) => {
-                e.preventDefault();
-                alert('Thank you! Your inquiry for Wondear Dolls Dreamhouse has been submitted successfully.');
-              }}
-              className="space-y-5"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-xs font-black text-[#2D3436] uppercase tracking-wider mb-2">
-                    Your Full Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="e.g. Sarah Jenkins"
-                    className="w-full bg-white border-2 border-[#2D3436] rounded-2xl px-4 py-3 text-sm font-bold text-[#2D3436] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C4B5] shadow-[2px_2px_0px_0px_#2D3436]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-black text-[#2D3436] uppercase tracking-wider mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    placeholder="e.g. sarah@example.com"
-                    className="w-full bg-white border-2 border-[#2D3436] rounded-2xl px-4 py-3 text-sm font-bold text-[#2D3436] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C4B5] shadow-[2px_2px_0px_0px_#2D3436]"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-xs font-black text-[#2D3436] uppercase tracking-wider mb-2">
-                    Phone / WhatsApp Number
-                  </label>
-                  <input
-                    type="tel"
-                    placeholder="+91 98765 43210"
-                    className="w-full bg-white border-2 border-[#2D3436] rounded-2xl px-4 py-3 text-sm font-bold text-[#2D3436] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C4B5] shadow-[2px_2px_0px_0px_#2D3436]"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-black text-[#2D3436] uppercase tracking-wider mb-2">
-                    Interested Product
-                  </label>
-                  <input
-                    type="text"
-                    readOnly
-                    value="Wondear Dolls Dreamhouse Play Tent"
-                    className="w-full bg-gray-100 border-2 border-[#2D3436] rounded-2xl px-4 py-3 text-sm font-bold text-[#2D3436] cursor-not-allowed shadow-[2px_2px_0px_0px_#2D3436]"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-black text-[#2D3436] uppercase tracking-wider mb-2">
-                  Your Message or Special Request *
-                </label>
-                <textarea
-                  required
-                  rows={4}
-                  placeholder="Ask about bulk orders, delivery times, or custom sizes..."
-                  className="w-full bg-white border-2 border-[#2D3436] rounded-2xl px-4 py-3 text-sm font-bold text-[#2D3436] placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00C4B5] shadow-[2px_2px_0px_0px_#2D3436]"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-[#FF6B6B] hover:bg-[#ff5252] text-white font-black text-base uppercase tracking-wider py-4 rounded-2xl border-2 border-[#2D3436] shadow-[4px_4px_0px_0px_#2D3436] hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2"
-              >
-                Send Inquiry Now
-                <ArrowRight className="w-5 h-5 stroke-[3]" />
-              </button>
-            </form>
-          </div>
         </div>
 
       </div>

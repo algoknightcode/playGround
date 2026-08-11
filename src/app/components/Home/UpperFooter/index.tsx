@@ -2,7 +2,11 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 
-export const UpperFooter: React.FC = () => {
+interface UpperFooterProps {
+  className?: string;
+}
+
+export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:mt-24 lg:mt-32" }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
   const rafId = useRef<number | null>(null);
@@ -59,7 +63,7 @@ export const UpperFooter: React.FC = () => {
   };
 
   return (
-    <div className="relative w-full overflow-visible font-sans antialiased mt-16 md:mt-24 lg:mt-32">
+    <div className={`relative w-full overflow-visible font-sans antialiased ${className}`}>
       
       {/* ═══ SCALLOP WAVE OVERLAY ═══ */}
       <div className="absolute top-0 left-0 w-full leading-none z-10 -translate-y-[99%] pointer-events-none">
@@ -105,10 +109,10 @@ export const UpperFooter: React.FC = () => {
           
           {/* Left: Text & Video Container */}
           <div className="w-full lg:w-5/12 flex flex-col items-center lg:items-start justify-center font-quicksand z-20">
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#0F2942] mb-3 text-center lg:text-left">
-              Let's Connect!
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-[#4ECDC4] mb-3 text-center lg:text-left">
+              Partner With Us
             </h2>
-            <p className="text-base sm:text-lg font-semibold text-[#0F2942]/70 mb-6 text-center lg:text-left">
+            <p className="text-base sm:text-lg font-extrabold text-[#4ECDC4] mb-6 text-center lg:text-left">
               Have questions? We'd love to hear from you. Drop us a message below.
             </p>
             
@@ -132,7 +136,7 @@ export const UpperFooter: React.FC = () => {
               </div>
             </div>
           </div>
-
+ 
           {/* Right: Solid/Light Glass Form (Removed backdrop-blur & heavy shadows) */}
           <div className="w-full lg:w-7/12 flex justify-center lg:justify-end relative z-20">
             <form 
@@ -142,7 +146,7 @@ export const UpperFooter: React.FC = () => {
               {/* Row 1: Name & Email */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">Full Name</label>
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Full Name</label>
                   <input 
                     type="text" 
                     required 
@@ -150,9 +154,9 @@ export const UpperFooter: React.FC = () => {
                     className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
                   />
                 </div>
-
+ 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">Email Address</label>
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Email Address</label>
                   <input 
                     type="email" 
                     required 
@@ -161,20 +165,20 @@ export const UpperFooter: React.FC = () => {
                   />
                 </div>
               </div>
-
+ 
               {/* Row 2: Company & Phone */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">Company Name</label>
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Company Name</label>
                   <input 
                     type="text" 
                     placeholder="Optional" 
                     className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
                   />
                 </div>
-
+ 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">Phone Number</label>
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Phone Number</label>
                   <div className="flex items-center bg-white/40 rounded-2xl border border-transparent focus-within:border-[#70C1D6] focus-within:bg-white/90 transition-colors shadow-sm overflow-hidden">
                     <span className="pl-4 pr-3 py-3.5 text-[#0F2942]/50 font-semibold border-r border-[#0F2942]/10 select-none">
                       +91
@@ -188,11 +192,11 @@ export const UpperFooter: React.FC = () => {
                   </div>
                 </div>
               </div>
-
+ 
               {/* Row 3: State & City */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">State</label>
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">State</label>
                   <input 
                     type="text" 
                     required 
@@ -200,9 +204,9 @@ export const UpperFooter: React.FC = () => {
                     className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
                   />
                 </div>
-
+ 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">City</label>
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">City</label>
                   <input 
                     type="text" 
                     required 
@@ -211,10 +215,10 @@ export const UpperFooter: React.FC = () => {
                   />
                 </div>
               </div>
-
+ 
               {/* Row 4: Message */}
               <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-extrabold text-[#0F2942]/70 uppercase tracking-widest pl-1">Your Message</label>
+                <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Your Message</label>
                 <textarea 
                   rows={3} 
                   required 
@@ -226,7 +230,7 @@ export const UpperFooter: React.FC = () => {
               {/* Submit Button */}
               <button 
                 type="submit" 
-                className="w-full mt-2 py-4 rounded-2xl bg-[#0F2942] text-white font-bold text-sm tracking-widest uppercase hover:bg-[#70C1D6] hover:text-[#0F2942] active:scale-[0.98] transition-colors duration-200 shadow-md flex items-center justify-center gap-3 group"
+                className="w-full mt-2 py-4 rounded-2xl bg-[#4ECDC4] text-white font-black text-sm tracking-widest uppercase hover:bg-[#3dbcb3] active:scale-[0.98] transition-colors duration-200 shadow-md flex items-center justify-center gap-3 group"
               >
                 <span>Send Message</span>
                 <svg className="w-5 h-5 transform group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">

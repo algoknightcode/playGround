@@ -477,17 +477,7 @@ export default function ToysEveryNeed() {
         </div>
       </div>
 
-      {/* Bottom cloud */}
-      <div
-        aria-hidden
-        className="
-          absolute bottom-0 left-0
-          h-8 w-full
-          bg-white
-          [clip-path:ellipse(55%_70%_at_50%_100%)]
-          sm:h-10
-        "
-      />
+
     </section>
   );
 }

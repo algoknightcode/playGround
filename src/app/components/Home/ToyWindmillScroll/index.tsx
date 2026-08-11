@@ -13,36 +13,24 @@ export const ToyWindmillScroll: React.FC = () => {
     const vid = videoRef.current;
     if (!section || !vid) return;
 
-    // Observer 1: Lazy load the video early (500px before it enters the viewport)
-    const loadObserver = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !vid.getAttribute('src')) {
-          vid.setAttribute('src', '/video/Toy_windmill_on_green_hill_202608061121.mp4');
-          loadObserver.disconnect();
-        }
-      },
-      { rootMargin: '500px' }
-    );
-
-    // Observer 2: Play/pause logic strictly when in view
+    // Observer: Play/pause logic strictly when in view
     const playObserver = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          if (vid.getAttribute('src')) {
-            vid.play().catch(() => {});
-          }
+          vid.play().catch(() => {});
         } else {
           vid.pause();
         }
       },
-      { rootMargin: '0px' }
+      { 
+        rootMargin: '0px',
+        threshold: 0.15 // Play when 15% of the section is visible
+      }
     );
 
-    loadObserver.observe(section);
     playObserver.observe(section);
 
     return () => {
-      loadObserver.disconnect();
       playObserver.disconnect();
     };
   }, []);
@@ -50,7 +38,7 @@ export const ToyWindmillScroll: React.FC = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="relative w-full min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center pt-0 pb-10 lg:pb-16 px-6 sm:px-10 overflow-hidden bg-[#eef7fc] font-quicksand antialiased text-zinc-800"
+      className="relative w-full min-h-[85vh] lg:min-h-[90vh] flex items-center justify-center pt-0 pb-10 lg:pb-16 px-6 sm:px-10 overflow-hidden bg-gradient-to-br from-[#93e2ec] via-[#93e2ec] to-[#c1f2eb] font-quicksand antialiased text-zinc-800"
     >
       
       {/* ═══ BACKGROUND MEDIA ═══ */}
@@ -58,17 +46,24 @@ export const ToyWindmillScroll: React.FC = () => {
         {/* Background Video */}
         <video
           ref={videoRef}
-          src="/video/Toy_windmill_on_green_hill_202608061121.mp4"
-          autoPlay
+          src="/video/Toy_windmill_on_green_hill_202608111041.mp4"
           loop
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover object-[20%_top]"
         />
+        {/* Light Overlay */}
+        <div className="absolute inset-0 bg-white/10 pointer-events-none" />
         
-        {/* Crisp gradient mask: leaves left windmill clear while offering subtle contrast for text on right */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#eef7fc]/40 to-[#eef7fc]/90 z-1 pointer-events-none hidden lg:block" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#eef7fc]/40 via-transparent to-[#eef7fc]/80 z-1 pointer-events-none lg:hidden" />
+        {/* Color Glow Overlay (#6DD2DB) */}
+        <div className="absolute inset-0 bg-[#6DD2DB]/15 pointer-events-none mix-blend-screen" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(109,210,219,0.4)_0%,transparent_45%)] pointer-events-none" />
+        
+        {/* Top Blend Overlay (#6DD2DB to Transparent) */}
+        <div className="absolute top-0 left-0 right-0 h-10 md:h-16 bg-gradient-to-b from-[#6DD2DB] to-transparent pointer-events-none z-10" />
+        
+        {/* Bottom Blend Overlay (Transparent to Marquee Teal) */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 md:h-48 bg-gradient-to-t from-[#00C4B5] to-transparent pointer-events-none" />
       </div>
 
       {/* ═══ FOREGROUND CONTENT (GRID LAYOUT: WINDMILL SHIFTED LEFT, TEXT ON RIGHT) ═══ */}
@@ -89,16 +84,19 @@ export const ToyWindmillScroll: React.FC = () => {
             className="flex flex-col items-center lg:items-start gap-4 max-w-2xl"
           >
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-extrabold leading-[1.2] tracking-tight text-[#0D1C3A] font-quicksand">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-black leading-[1.2] tracking-tight text-white font-quicksand drop-shadow-sm">
               Made for Little Hands.<br />
-              <span className="bg-gradient-to-r from-[#FF5A5F] via-[#FF8E53] to-[#00C4B5] bg-clip-text text-transparent">
+              <span 
+                className="bg-gradient-to-r from-[#6bd0dc] to-[#00BFA6] bg-clip-text text-transparent"
+                style={{ WebkitTextStroke: "1.5px white" }}
+              >
                 Built for Big Imaginations.
               </span>
             </h2>
 
             {/* Subtitle */}
-            <p className="text-sm sm:text-base md:text-lg text-slate-600 leading-relaxed max-w-xl font-medium font-quicksand">
-              Discover thoughtfully crafted toys, play equipment, and <strong className="font-extrabold text-[#00C4B5]">Play School Furniture</strong> designed to inspire creativity, encourage learning, and make every childhood space more exciting.
+            <p className="text-sm sm:text-base md:text-lg text-white font-bold leading-relaxed max-w-xl font-quicksand drop-shadow-sm">
+              Discover thoughtfully crafted toys, play equipment, and <strong className="font-black text-[#00BFA6]" style={{ WebkitTextStroke: "1px white" }}>Play School Furniture</strong> designed to inspire creativity, encourage learning, and make every childhood space more exciting.
             </p>
 
             {/* B2B Action Buttons */}

@@ -48,6 +48,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
         </motion.div>
 
         {/* Characters between clouds */}
+        {/* Cat */}
         <motion.div 
           className="absolute bottom-[35%] left-[5%] z-[5] w-18 sm:w-26 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60 }}
@@ -67,8 +68,29 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
           </motion.div>
         </motion.div>
 
+        {/* Zebra (between Cat and Mouse) */}
         <motion.div 
-          className="absolute bottom-[40%] left-[50%] -translate-x-1/2 z-[5] w-24 sm:w-32 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[38%] left-[25%] z-[5] w-20 sm:w-30 cursor-pointer pointer-events-auto"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 1.2, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <motion.div
+            whileHover={{ y: -20, scale: 1.08 }}
+            transition={{ type: "spring", stiffness: 300, damping: 15 }}
+          >
+            <img 
+              src="/assets/clouds/zebra-svgrepo-com.svg" 
+              alt="Zebra"
+              className="w-full h-auto drop-shadow-md"
+            />
+          </motion.div>
+        </motion.div>
+
+        {/* Mouse */}
+        <motion.div 
+          className="absolute bottom-[40%] left-[60%] -translate-x-1/2 z-[5] w-24 sm:w-32 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60, x: "-50%" }}
           whileInView={{ opacity: 1, y: 0, x: "-50%" }}
           viewport={{ once: true, margin: "-50px" }}
@@ -82,6 +104,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
           </motion.div>
         </motion.div>
 
+        {/* Giraffe */}
         <motion.div 
           className="absolute bottom-[28%] right-[15%] z-[5] w-20 sm:w-32 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60 }}

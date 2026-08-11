@@ -68,7 +68,7 @@ const AGE_CATEGORIES: AgeCategory[] = [
 
 export default function ShopByAge() {
   return (
-    <section className="py-14 bg-white font-quicksand overflow-hidden">
+    <section className="py-6 bg-white font-quicksand overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 text-center">
         
         {/* Section Title Header */}
@@ -77,7 +77,7 @@ export default function ShopByAge() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-10 max-w-2xl mx-auto"
+          className="mb-6 max-w-2xl mx-auto"
         >
           <span className="bg-[#FFE66D] text-[#2D3436] text-xs font-black tracking-widest uppercase px-4 py-1.5 rounded-full border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] inline-block mb-3">
             AGE-BASED DISCOVERY

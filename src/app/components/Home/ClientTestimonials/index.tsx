@@ -93,7 +93,7 @@ export const ClientTestimonials: React.FC = () => {
           <motion.div 
             animate={{ x: [-6, 6, -6] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -left-16 bottom-0 z-20 pointer-events-none hidden sm:block"
+            className="absolute -left-24 bottom-0 z-0 pointer-events-none hidden sm:block"
           >
             <svg className="w-28 sm:w-32 h-auto drop-shadow-md" viewBox="0 0 100 160" fill="none">
               {/* Legs */}
@@ -133,7 +133,7 @@ export const ClientTestimonials: React.FC = () => {
           </motion.div>
  
           {/* Main Purple Testimonial Card */}
-          <div className="relative bg-[#4ECDC4] text-white rounded-[2.5rem] p-6 sm:p-10 shadow-2xl overflow-hidden border-4 border-white/20 min-h-[320px] flex items-center justify-center">
+          <div className="relative z-10 bg-[#4ECDC4] text-white rounded-[2.5rem] p-6 sm:p-10 shadow-2xl overflow-hidden border-4 border-white/20 min-h-[320px] flex items-center justify-center">
             
             {/* --- FLOATING DECORATIVE SVGS ON CARD --- */}
             
