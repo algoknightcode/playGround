@@ -4,13 +4,20 @@ import { useState } from "react";
 import {
   Heart,
   ArrowRight,
-  Download,
   Palette,
   Scale,
   Blocks,
   Puzzle,
   Rainbow,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 interface ToyCardData {
   cat: string;
@@ -88,157 +95,154 @@ const CARDS: ToyCardData[] = [
   },
 ];
 
-const CATEGORY_ICONS = [
-  Palette,
-  Scale,
-  Blocks,
-  Puzzle,
-  Rainbow,
-];
-
 function ToyCard({ card }: { card: ToyCardData }) {
   const [error, setError] = useState(false);
 
   return (
     <article
       className="
-        group relative w-[270px] shrink-0 overflow-hidden
+        group relative w-full overflow-hidden
         rounded-[22px]
         border border-[#b2ede6]
         bg-white
         transition-transform duration-200
         hover:-translate-y-1
+        h-full flex flex-col justify-between
       "
     >
-      {/* Image */}
-      <div
-        className="
-          relative flex h-[210px]
-          items-center justify-center
-          overflow-hidden
-          bg-[#FDF3E7]
-        "
-        style={{
-          backgroundColor: error ? card.fallback : "#FDF3E7",
-        }}
-      >
-        {error ? (
-          <span className="text-5xl">{card.emoji}</span>
-        ) : (
-          <img
-            src={card.img}
-            alt={card.title}
-            loading="lazy"
-            decoding="async"
-            width={540}
-            height={420}
+      <div>
+        {/* Image */}
+        <div
+          className="
+            relative flex h-[210px]
+            items-center justify-center
+            overflow-hidden
+            bg-[#FDF3E7]
+          "
+          style={{
+            backgroundColor: error ? card.fallback : "#FDF3E7",
+          }}
+        >
+          {error ? (
+            <span className="text-5xl">{card.emoji}</span>
+          ) : (
+            <img
+              src={card.img}
+              alt={card.title}
+              loading="lazy"
+              decoding="async"
+              width={540}
+              height={420}
+              className="
+                h-full w-full
+                object-cover object-top
+              "
+              onError={() => setError(true)}
+            />
+          )}
+
+          {/* Category */}
+          <span
             className="
-              h-full w-full
-              object-cover object-top
+              absolute left-3 top-3
+              rounded-full
+              border border-[#2cbfb3]/40
+              bg-white/95
+              px-2.5 py-1
+              text-[10px] font-extrabold
+              uppercase tracking-wider
+              text-[#1f4e4b]
             "
-            onError={() => setError(true)}
-          />
-        )}
+          >
+            {card.cat}
+          </span>
 
-        {/* Category */}
-        <span
-          className="
-            absolute left-3 top-3
-            rounded-full
-            border border-[#2cbfb3]/40
-            bg-white/95
-            px-2.5 py-1
-            text-[10px] font-extrabold
-            uppercase tracking-wider
-            text-[#1f4e4b]
-          "
-        >
-          {card.cat}
-        </span>
+          {/* Age */}
+          <span
+            className="
+              absolute right-3 top-3
+              rounded-full
+              bg-[#2cbfb3]
+              px-2.5 py-1
+              text-[10px] font-extrabold
+              text-white
+            "
+          >
+            {card.age}
+          </span>
+        </div>
 
-        {/* Age */}
-        <span
-          className="
-            absolute right-3 top-3
-            rounded-full
-            bg-[#2cbfb3]
-            px-2.5 py-1
-            text-[10px] font-extrabold
-            text-white
-          "
-        >
-          {card.age}
-        </span>
+        {/* Content */}
+        <div className="p-4">
+          <span
+            className="
+              mb-1 block
+              text-[10px] font-extrabold
+              uppercase tracking-widest
+              text-[#1a9e93]
+            "
+          >
+            {card.sub}
+          </span>
+
+          <h3 className="mb-1.5 text-[15px] font-extrabold leading-snug text-[#0d2b2a]">
+            {card.title}
+          </h3>
+
+          <div className="mb-3 flex items-center gap-1.5">
+            <span className="text-xs tracking-wider text-[#f59e0b]">
+              {card.stars}
+            </span>
+
+            <span className="text-[11px] font-semibold text-[#4a8c88]">
+              {card.reviews}
+            </span>
+          </div>
+
+          <p className="mb-4 line-clamp-3 text-xs font-medium leading-relaxed text-[#4a8c88]">
+            {card.desc}
+          </p>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-4">
-        <span
+      <div className="px-4 pb-4 flex gap-2">
+        <button
+          type="button"
           className="
-            mb-1 block
-            text-[10px] font-extrabold
-            uppercase tracking-widest
-            text-[#1a9e93]
+            flex-1
+            inline-flex items-center justify-center gap-1.5
+            rounded-[13px]
+            bg-[#2cbfb3]
+            py-2.5
+            text-xs font-bold
+            uppercase tracking-wider
+            text-white
+            transition-colors
+            hover:bg-[#1a9e93]
+            cursor-pointer
           "
         >
-          {card.sub}
-        </span>
+          Shop now
+          <ArrowRight className="h-3.5 w-3.5" />
+        </button>
 
-        <h3 className="mb-1.5 text-[15px] font-extrabold leading-snug text-[#0d2b2a]">
-          {card.title}
-        </h3>
-
-        <div className="mb-3 flex items-center gap-1.5">
-          <span className="text-xs tracking-wider text-[#f59e0b]">
-            {card.stars}
-          </span>
-
-          <span className="text-[11px] font-semibold text-[#4a8c88]">
-            {card.reviews}
-          </span>
-        </div>
-
-        <p className="mb-4 line-clamp-3 text-xs font-medium leading-relaxed text-[#4a8c88]">
-          {card.desc}
-        </p>
-
-        <div className="flex gap-2">
-          <button
-            type="button"
-            className="
-              flex-1
-              inline-flex items-center justify-center gap-1.5
-              rounded-[13px]
-              bg-[#2cbfb3]
-              py-2.5
-              text-xs font-bold
-              uppercase tracking-wider
-              text-white
-              transition-colors
-              hover:bg-[#1a9e93]
-            "
-          >
-            Shop now
-            <ArrowRight className="h-3.5 w-3.5" />
-          </button>
-
-          <button
-            type="button"
-            aria-label={`Add ${card.title} to wishlist`}
-            className="
-              flex h-[38px] w-[38px]
-              shrink-0 items-center justify-center
-              rounded-[13px]
-              border border-[#b2ede6]
-              text-[#2cbfb3]
-              transition-colors
-              hover:bg-[#e0f7f4]
-              hover:text-[#e11d48]
-            "
-          >
-            <Heart className="h-4 w-4" />
-          </button>
-        </div>
+        <button
+          type="button"
+          aria-label={`Add ${card.title} to wishlist`}
+          className="
+            flex h-[38px] w-[38px]
+            shrink-0 items-center justify-center
+            rounded-[13px]
+            border border-[#b2ede6]
+            text-[#2cbfb3]
+            transition-colors
+            hover:bg-[#e0f7f4]
+            hover:text-[#e11d48]
+            cursor-pointer
+          "
+        >
+          <Heart className="h-4 w-4" />
+        </button>
       </div>
     </article>
   );
@@ -258,46 +262,24 @@ export default function ToysEveryNeed() {
         md:py-16
       "
     >
-      {/* Lightweight animations */}
+      {/* Mascot Floating Animation Style */}
       <style dangerouslySetInnerHTML={{ __html: `
-        @keyframes marquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
         @keyframes mascotFloat {
-          0%,
-          100% {
+          0%, 100% {
             transform: translateY(0) rotate(0deg);
           }
-
           50% {
             transform: translateY(-16px) rotate(5deg);
           }
         }
-
-        .marquee {
-          animation: marquee 35s linear infinite;
-        }
-
         .mascot {
           animation: mascotFloat 5s ease-in-out infinite;
         }
-
         .mascot-delay {
           animation-delay: 1.5s;
         }
-
-        @media (prefers-reduced-motion: reduce) {
-          .marquee,
-          .mascot,
-          .mascot-delay {
-            animation: none;
-          }
+        .toys-swiper .swiper-pagination-bullet {
+          background: #2cbfb3;
         }
       ` }} />
 
@@ -425,58 +407,44 @@ export default function ToysEveryNeed() {
         </p>
       </header>
 
-      {/* Marquee */}
-      <div className="relative z-20 overflow-hidden py-3">
-        {/* Edge fades */}
-        <div
-          aria-hidden
-          className="
-            pointer-events-none
-            absolute inset-y-0 left-0 z-10
-            w-16
-            bg-gradient-to-r
-            from-[#e8faf8]
-            to-transparent
-            sm:w-24
-          "
-        />
+      {/* Swiper Slider */}
+      <div className="relative z-20 max-w-[1400px] mx-auto px-6 lg:px-12">
+        <Swiper
+          modules={[Autoplay, Navigation, Pagination]}
+          spaceBetween={24}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true, dynamicBullets: true }}
+          navigation={{
+            prevEl: '.custom-prev-btn',
+            nextEl: '.custom-next-btn',
+          }}
+          breakpoints={{
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+            1280: { slidesPerView: 4 },
+          }}
+          className="toys-swiper !pb-12"
+        >
+          {CARDS.map((card, idx) => (
+            <SwiperSlide key={idx} className="!h-auto flex">
+              <ToyCard card={card} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-        <div
-          aria-hidden
-          className="
-            pointer-events-none
-            absolute inset-y-0 right-0 z-10
-            w-16
-            bg-gradient-to-l
-            from-[#dffaf7]
-            to-transparent
-            sm:w-24
-          "
-        />
-
-        <div className="marquee flex w-max">
-          {/* First set */}
-          <div className="flex gap-5 pr-5">
-            {CARDS.map((card) => (
-              <ToyCard
-                key={`first-${card.cat}`}
-                card={card}
-              />
-            ))}
-          </div>
-
-          {/* Duplicate for seamless loop */}
-          <div className="flex gap-5 pr-5">
-            {CARDS.map((card) => (
-              <ToyCard
-                key={`second-${card.cat}`}
-                card={card}
-              />
-            ))}
-          </div>
-        </div>
+        {/* Custom Navigation Arrows */}
+        <button className="custom-prev-btn absolute left-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/90 border border-[#b2ede6] text-[#1f4e4b] flex items-center justify-center shadow-md hover:bg-[#2cbfb3] hover:text-white transition-colors cursor-pointer">
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button className="custom-next-btn absolute right-1 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/90 border border-[#b2ede6] text-[#1f4e4b] flex items-center justify-center shadow-md hover:bg-[#2cbfb3] hover:text-white transition-colors cursor-pointer">
+          <ChevronRight className="w-6 h-6" />
+        </button>
       </div>
-
 
     </section>
   );

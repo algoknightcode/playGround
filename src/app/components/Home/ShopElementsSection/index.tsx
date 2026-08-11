@@ -50,7 +50,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
         {/* Characters between clouds */}
         {/* Cat */}
         <motion.div 
-          className="absolute bottom-[35%] left-[5%] z-[5] w-18 sm:w-26 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[32%] sm:bottom-[35%] left-[2%] sm:left-[5%] z-[5] w-12 sm:w-26 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -68,9 +68,9 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
           </motion.div>
         </motion.div>
 
-        {/* Zebra (between Cat and Mouse) */}
+        {/* Zebra */}
         <motion.div 
-          className="absolute bottom-[38%] left-[25%] z-[5] w-20 sm:w-30 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[34%] sm:bottom-[38%] left-[22%] sm:left-[25%] z-[5] w-14 sm:w-30 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
@@ -90,7 +90,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
 
         {/* Mouse */}
         <motion.div 
-          className="absolute bottom-[40%] left-[60%] -translate-x-1/2 z-[5] w-24 sm:w-32 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[36%] sm:bottom-[40%] left-[54%] sm:left-[60%] -translate-x-1/2 z-[5] w-16 sm:w-32 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60, x: "-50%" }}
           whileInView={{ opacity: 1, y: 0, x: "-50%" }}
           viewport={{ once: true, margin: "-50px" }}
@@ -106,7 +106,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
 
         {/* Giraffe */}
         <motion.div 
-          className="absolute bottom-[28%] right-[15%] z-[5] w-20 sm:w-32 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[24%] sm:bottom-[28%] right-[4%] sm:right-[15%] z-[5] w-14 sm:w-32 cursor-pointer pointer-events-auto"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}

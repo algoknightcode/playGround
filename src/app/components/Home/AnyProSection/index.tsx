@@ -39,10 +39,10 @@ const categories = [
 
 export const AnyProSection = () => {
   return (
-    <section className="bg-white w-full py-24 px-6 sm:px-10 lg:px-16 font-quicksand overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-white w-full py-6 sm:py-8 md:py-12 px-4 sm:px-6 lg:px-12 font-quicksand overflow-hidden">
+      <div className="max-w-[1400px] mx-auto">
         
-        <div className="bg-amber-400 rounded-[2.5rem] p-8 md:p-12 lg:p-16 flex flex-col xl:flex-row items-center gap-12 lg:gap-16 relative shadow-2xl border-4 border-white">
+        <div className="bg-amber-400 rounded-[2.5rem] p-8 md:p-12 lg:p-14 flex flex-col xl:flex-row items-center gap-10 lg:gap-14 relative shadow-2xl border-4 border-white">
           
           {/* Decorative Elements */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none"></div>

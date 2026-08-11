@@ -85,11 +85,11 @@ export default function HeroBanner() {
           "
         />
 
-        {/* Content */}
-        <div className="relative z-20 mx-auto grid w-full max-w-[1400px] grid-cols-1 items-center gap-8 px-6 pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-12 sm:px-8 md:px-10 lg:grid-cols-12 lg:gap-10 lg:px-12 lg:pb-16">
+        {/* Content Container (Mobile: Image on top, Text on bottom. Desktop: Text left, Image right) */}
+        <div className="relative z-20 mx-auto flex flex-col-reverse lg:grid lg:grid-cols-12 w-full max-w-[1400px] items-center gap-8 px-6 pt-4 sm:pt-6 md:pt-8 lg:pt-10 pb-12 sm:px-8 md:px-10 lg:gap-10 lg:px-12 lg:pb-16">
 
-          {/* Text */}
-          <div className="flex flex-col items-center space-y-4 text-center text-white sm:space-y-5 lg:col-span-6 lg:items-start lg:text-left">
+          {/* Text Content */}
+          <div className="flex flex-col items-center space-y-4 text-center text-white sm:space-y-5 lg:col-span-6 lg:items-start lg:text-left w-full">
 
             <h1 className="text-4xl font-extrabold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Play School Furniture.
@@ -124,7 +124,7 @@ export default function HeroBanner() {
           </div>
 
           {/* Playground Image Slideshow */}
-          <div className="relative flex justify-center lg:col-span-6 lg:justify-end items-center min-h-[350px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[550px] w-full">
+          <div className="relative flex justify-center lg:col-span-6 lg:justify-end items-center min-h-[280px] sm:min-h-[420px] md:min-h-[480px] lg:min-h-[550px] w-full">
             {PLAYSTATION_IMAGES.map((imgSrc, index) => (
               <Image
                 key={imgSrc}
@@ -136,7 +136,7 @@ export default function HeroBanner() {
                 sizes="(max-width: 1024px) 90vw, 793px"
                 className={`
                   absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 lg:left-auto lg:right-0 lg:translate-x-0
-                  h-auto w-full max-w-[525px] object-contain lg:max-w-[683px]
+                  h-auto w-full max-w-[340px] sm:max-w-[525px] object-contain lg:max-w-[683px]
                   transition-opacity duration-1000 ease-in-out pointer-events-none
                   ${index === currentImageIndex ? "opacity-100 z-10" : "opacity-0 z-0"}
                 `}

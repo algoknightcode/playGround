@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export const FeaturesGrid: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
+
   const features = [
     {
       title: 'Money Return',
@@ -26,7 +32,7 @@ export const FeaturesGrid: React.FC = () => {
       bgColor: 'bg-[#F0F5FA]',
       borderColor: 'hover:border-[#3B82F6]/40',
       icon: (
-        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:scale-120 group-hover:rotate-12">
+        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
           <path d="M16 3C16 3 8 10.5 8 18.5C8 23.1944 11.5817 27 16 27C20.4183 27 24 23.1944 24 18.5C24 10.5 16 3 16 3Z" fill="#F88C00"/>
           <text x="16" y="21.5" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">%</text>
         </svg>
@@ -67,61 +73,140 @@ export const FeaturesGrid: React.FC = () => {
     }
   ];
 
+  // Auto-swipe functionality for mobile
+  useEffect(() => {
+    if (isPaused) return;
+
+    const timer = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, [isPaused, features.length]);
+
+  // Touch Swipe Handlers for Mobile
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setIsPaused(true);
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) {
+      setIsPaused(false);
+      return;
+    }
+
+    const distance = touchStartX.current - touchEndX.current;
+    const isSwipeLeft = distance > 40;
+    const isSwipeRight = distance < -40;
+
+    if (isSwipeLeft) {
+      setCurrentIndex((prev) => (prev + 1) % features.length);
+    } else if (isSwipeRight) {
+      setCurrentIndex((prev) => (prev === 0 ? features.length - 1 : prev - 1));
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+    setIsPaused(false);
+  };
+
   return (
-    <section className="relative w-full bg-[#E0F8F8] px-6 lg:px-12 py-8 font-fredoka overflow-hidden">
+    <section className="relative w-full bg-[#E0F8F8] px-4 sm:px-6 lg:px-12 py-8 font-fredoka overflow-hidden select-none">
       
       {/* Top Glow Blending Overlay */}
-      <div className="absolute top-0 left-0 right-0 h-24 md:h-32 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
-      
-      {/* ═══ SUBTLE FLOATING UMBRELLA ACCENT (NO WHITE BOX BACKGROUND) ═══ */}
-      <div className="absolute top-6 lg:top-8 right-8 lg:right-16 z-20 pointer-events-none opacity-85 hover:opacity-100 transition-opacity">
+      <div className="absolute top-0 left-0 right-0 h-20 md:h-32 bg-gradient-to-b from-white to-transparent pointer-events-none z-10" />
+
+      {/* Floating Umbrella Accent */}
+      <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-8 lg:right-16 z-20 pointer-events-none opacity-85 hover:opacity-100 transition-opacity">
         <div className="relative animate-bounce duration-1000">
-          <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-6 hover:rotate-0 transition-transform duration-300 drop-shadow-md">
-            {/* Umbrella Canopy Panels */}
+          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-6 sm:w-10 sm:h-10 transition-transform duration-300 drop-shadow-md">
             <path d="M32 8C16.536 8 4 20.536 4 36H18C18 32.686 24.284 30 32 30C39.716 30 46 32.686 46 36H60C60 20.536 47.464 8 32 8Z" fill="#FF6B6B" />
-            {/* Panel 1 */}
             <path d="M18 36C18 20.536 24.284 8 32 8C24.284 8 18 20.536 18 36Z" fill="#4ECDC4" />
-            {/* Panel 2 */}
             <path d="M46 36C46 20.536 39.716 8 32 8C39.716 8 46 20.536 46 36Z" fill="#FFE66D" />
-            {/* Top Tip */}
             <path d="M32 4V8" stroke="#1E293B" strokeWidth="3" strokeLinecap="round" />
-            {/* Umbrella Handle Stick */}
             <path d="M32 36V50C32 53.3137 29.3137 56 26 56C22.6863 56 20 53.3137 20 50" stroke="#1E293B" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-            {/* Tiny Water Drops */}
             <circle cx="8" cy="46" r="1.8" fill="#38BDF8" />
             <circle cx="56" cy="44" r="2" fill="#38BDF8" />
           </svg>
         </div>
       </div>
 
-      {/* Full-width Container matching navbar max-w */}
+      {/* Main Container */}
       <div className="max-w-[1400px] mx-auto relative z-10">
         
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {features.map((feature, index) => (
-            <div
-              key={index}
-              className={`group relative flex items-center gap-4 sm:gap-5 rounded-2xl px-6 py-6 border-2 border-transparent ${feature.borderColor} transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${feature.bgColor}`}
-            >
-              {/* Icon Circle with Hover Effects */}
-              <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white shadow-md border border-black/5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg">
-                {feature.icon}
+        {/* ═══ MOBILE AUTO-SWIPE CAROUSEL (Visible on < sm) ═══ */}
+        <div 
+          className="sm:hidden overflow-hidden w-full pt-2 pb-3"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div 
+            className="flex transition-transform duration-500 ease-out"
+            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          >
+            {features.map((feature, index) => (
+              <div key={index} className="w-full flex-shrink-0 px-1">
+                <CardItem feature={feature} />
               </div>
+            ))}
+          </div>
 
-              {/* Text Content */}
-              <div className="flex flex-col">
-                <h3 className="text-[17.5px] font-extrabold text-[#1E293B] tracking-tight group-hover:text-[#F97316] transition-colors leading-snug">
-                  {feature.title}
-                </h3>
-                <p className="mt-1 text-[14px] font-semibold text-[#64748B] leading-snug">
-                  {feature.subtitle}
-                </p>
-              </div>
-            </div>
+          {/* Carousel Pagination Dots */}
+          <div className="flex justify-center items-center gap-2 mt-4">
+            {features.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentIndex(index)}
+                aria-label={`Go to slide ${index + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === index ? 'w-6 bg-[#F97316]' : 'w-2 bg-slate-300'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ═══ DESKTOP & TABLET GRID (Visible on >= sm) ═══ */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          {features.map((feature, index) => (
+            <CardItem key={index} feature={feature} />
           ))}
         </div>
+
       </div>
     </section>
+  );
+};
+
+// Reusable Feature Card Component
+const CardItem: React.FC<{ feature: any }> = ({ feature }) => {
+  return (
+    <div
+      className={`group relative flex items-center gap-4 sm:gap-5 rounded-2xl px-5 sm:px-6 py-5 sm:py-6 border-2 border-transparent ${feature.borderColor} transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${feature.bgColor} h-full`}
+    >
+      {/* Icon Circle */}
+      <div className="flex h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white shadow-md border border-black/5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg">
+        {feature.icon}
+      </div>
+
+      {/* Text Content */}
+      <div className="flex flex-col">
+        <h3 className="text-[16px] sm:text-[17.5px] font-extrabold text-[#1E293B] tracking-tight group-hover:text-[#F97316] transition-colors leading-snug">
+          {feature.title}
+        </h3>
+        <p className="mt-0.5 sm:mt-1 text-[13px] sm:text-[14px] font-semibold text-[#64748B] leading-snug">
+          {feature.subtitle}
+        </p>
+      </div>
+    </div>
   );
 };
 
