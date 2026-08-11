@@ -10,7 +10,6 @@ import { FeaturesGrid } from './components/FeaturesGrid';
 // Dynamic lazy loading for heavy below-the-fold components to make page load & scroll instantly smooth
 const ToyWindmillScroll = dynamic(() => import('./components/Home/ToyWindmillScroll').then((m) => m.ToyWindmillScroll), { ssr: true });
 const Marquee2 = dynamic(() => import('./components/Home/Marquee2'), { ssr: true });
-const ToysForEveryNeed = dynamic(() => import('./components/Home/ToysEveryNeed'), { ssr: true });
 const ShopByCategories = dynamic(() => import('./components/Home/ShopByCategories'), { ssr: true });
 const ShopByAge = dynamic(() => import('./components/Home/ShopByAge'), { ssr: true });
 const SplitVantage = dynamic(() => import('./components/Home/splitVantage'), { ssr: true });
@@ -38,7 +37,6 @@ export default function Home() {
       <FeaturesGrid />
       <ToyWindmillScroll />
       <Marquee2 />
-      <ToysForEveryNeed />
       <ShopByCategories />
       <ShopByAge />
       <SplitVantage />

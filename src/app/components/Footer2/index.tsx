@@ -89,14 +89,12 @@ const Footer2 = () => {
         </motion.div>
       </div>
 
-
-      
       {/* --- Top Content Section --- */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-8 lg:gap-4">
           
           {/* Column 1: Brand & Contact Info */}
-          <div className="space-y-5">
+          <div className="space-y-5 lg:col-span-3">
             {/* Logo */}
             <a href="/" className="inline-block -mt-3 sm:-mt-5 mb-1">
               <img 
@@ -127,19 +125,17 @@ const Footer2 = () => {
             </ul>
           </div>
 
-          {/* Column 2: Quick Links / Navigation */}
-          <div>
-            <h3 className="text-lg font-black text-gray-900 mb-2">Navigation</h3>
+          {/* Column 2: About Us */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-black text-gray-900 mb-2">About Us</h3>
             <div className="w-10 h-1 bg-[#FF6B6B] mb-6 rounded-full"></div>
             <ul className="space-y-3 text-sm">
               {[
-                { name: 'Gallery Showcase', href: '/gallery' },
                 { name: 'About Us', href: '/about' },
                 { name: 'Our Story', href: '/ourstory' },
                 { name: 'Who We Are', href: '/whoweare' },
-                { name: 'Exhibition', href: '/exhibition' },
                 { name: 'Why Choose Us', href: '/why-choose-us' },
-                { name: 'Blogs & Journal', href: '/blogs' },
+                { name: 'Careers', href: '/careers' },
               ].map((link) => (
                 <li key={link.name}>
                   <a href={link.href} className="text-gray-600 hover:text-[#FF6B6B] font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
@@ -150,8 +146,27 @@ const Footer2 = () => {
             </ul>
           </div>
 
-          {/* Column 3: Customer Support */}
-          <div>
+          {/* Column 3: News & Events */}
+          <div className="lg:col-span-2">
+            <h3 className="text-lg font-black text-gray-900 mb-2">News &amp; Events</h3>
+            <div className="w-10 h-1 bg-amber-400 mb-6 rounded-full"></div>
+            <ul className="space-y-3 text-sm">
+              {[
+                { name: 'Exhibition', href: '/exhibition' },
+                { name: 'Blogs & Journal', href: '/blogs' },
+                { name: 'Gallery Showcase', href: '/gallery' },
+              ].map((link) => (
+                <li key={link.name}>
+                  <a href={link.href} className="text-gray-600 hover:text-amber-400 font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform transition-transform">
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Customer Support */}
+          <div className="lg:col-span-2">
             <h3 className="text-lg font-black text-gray-900 mb-2">Customer Support</h3>
             <div className="w-10 h-1 bg-[#00C4B5] mb-6 rounded-full"></div>
             <ul className="space-y-3 text-sm">
@@ -165,8 +180,8 @@ const Footer2 = () => {
             </ul>
           </div>
 
-          {/* Column 4: Newsletter */}
-          <div>
+          {/* Column 5: Newsletter */}
+          <div className="lg:col-span-3">
             <h3 className="text-lg font-black text-gray-900 mb-2">Subscribe Our NewsLetter</h3>
             <div className="w-10 h-1 bg-orange-500 mb-6 rounded-full"></div>
             <p className="text-sm mb-6 text-gray-500 leading-relaxed">

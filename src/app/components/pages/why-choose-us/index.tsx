@@ -38,6 +38,13 @@ const reasons = [
   },
 ];
 
+const pillars = [
+  { title: "Scandinavian Design", dept: "Modern Aesthetics", label1: "Sleek", label2: "Design", color: "from-cyan-400 to-blue-500" },
+  { title: "Ergonomic Layouts", dept: "Child Comfort", label1: "Comfy", label2: "Fit", color: "from-pink-400 to-rose-500" },
+  { title: "Tough & Durable", dept: "Built to Last", label1: "Solid", label2: "Build", color: "from-amber-400 to-orange-500" },
+  { title: "Interactive Elements", dept: "Play Integration", label1: "Active", label2: "Play", color: "from-emerald-400 to-teal-500" },
+];
+
 export default function WhyChooseUsPageContent() {
   const mainRef = useRef<HTMLDivElement>(null);
   const heroRef = useRef<HTMLElement>(null);
@@ -162,6 +169,28 @@ export default function WhyChooseUsPageContent() {
       ref={mainRef}
       className="bg-[#082f49] text-white font-quicksand selection:bg-pink-500 selection:text-white relative"
     >
+      {/* Toy Box 3D Styles */}
+      <style>{`
+        .preserve-3d { transform-style: preserve-3d; }
+        .toy-box-lid {
+          transform-origin: top center;
+          transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+          backface-visibility: hidden;
+        }
+        .toy-box:hover .toy-box-lid {
+          transform: rotateX(115deg);
+        }
+        .jack-in-box {
+          transform: translateY(60%) scale(0.6);
+          opacity: 0;
+          transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s,
+                      opacity 0.3s ease 0.15s;
+        }
+        .toy-box:hover .jack-in-box {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      `}</style>
       
       {/* ─── 1. HERO ─────────────────────────────────────── */}
       <section
@@ -282,7 +311,62 @@ export default function WhyChooseUsPageContent() {
         })}
       </section>
 
-      {/* ─── 3. QUALITY & SAFETY SECTION ─────────────────── */}
+      {/* ─── 3. TOY BOX PILLARS ──────────────────────────── */}
+      <section className="relative py-32 px-6 md:px-12 bg-[#082f49] z-10" style={{ perspective: "1000px" }}>
+        <div className="text-center mb-20 reveal-up">
+          <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tight inline-block mb-6">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-amber-400">
+              Unbox Our Pillars
+            </span>
+          </h2>
+          <p className="text-xl text-cyan-200 font-medium max-w-2xl mx-auto">
+            Hover each box to reveal how we design our playroom products.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto reveal-up">
+          {pillars.map((pillar, idx) => (
+            <div
+              key={idx}
+              className="toy-box preserve-3d relative w-full aspect-square cursor-pointer"
+              style={{ perspective: "800px" }}
+            >
+              {/* Inside — revealed on hover */}
+              <div className="absolute inset-0 bg-white rounded-3xl p-6 shadow-xl border-8 border-cyan-100 flex flex-col items-center justify-center overflow-hidden">
+                <div className="jack-in-box flex flex-col items-center text-center">
+                  <Star className="w-12 h-12 text-amber-400 fill-amber-300 mb-4" />
+                  <span className="text-[#0ea5e9] font-bold text-xs uppercase tracking-widest mb-2">{pillar.dept}</span>
+                  <h3 className="text-2xl font-black text-[#082f49] leading-tight mb-6">{pillar.title}</h3>
+                  <a href="/products" className="bg-pink-500 text-white px-6 py-3 rounded-full font-bold shadow-lg hover:bg-pink-600 transition-colors flex items-center gap-2 text-sm">
+                    Explore Now <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Lid */}
+              <div
+                className={`toy-box-lid absolute inset-0 bg-gradient-to-br ${pillar.color} rounded-3xl p-8 shadow-2xl flex flex-col justify-between border-4 border-white/20 overflow-hidden z-10`}
+              >
+                <div className="absolute -right-6 -top-6 w-32 h-32 bg-white/10 rounded-full blur-2xl" />
+                <span className="text-white/70 font-black tracking-widest uppercase text-xs">
+                  Pillar #{idx + 1}
+                </span>
+                <div className="text-center">
+                  <div className="w-16 h-16 mx-auto bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/30 mb-4">
+                    <Zap className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-black text-white leading-none">{pillar.label1}<br/>{pillar.label2}</h3>
+                </div>
+                <p className="text-center text-white/50 font-bold uppercase text-xs tracking-widest">
+                  Hover to Open ↑
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ─── 4. QUALITY & SAFETY SECTION ─────────────────── */}
       <section className="relative py-24 px-6 md:px-12 bg-[#082f49] z-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
