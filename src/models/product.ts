@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import "@/models/Category";
 
 const productSchema = new mongoose.Schema(
     {
@@ -16,18 +17,27 @@ const productSchema = new mongoose.Schema(
             trim: true,
         },
 
-        images: [
-            {
-                url: {
-                    type: String,
-                    required: true,
-                },
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category",
+            required: true,
+        },
 
-                imageKey: {
-                    type: String,
-                    required: true,
+        images: [
+            new mongoose.Schema(
+                {
+                    url: {
+                        type: String,
+                        required: true,
+                    },
+
+                    imageKey: {
+                        type: String,
+                        required: true,
+                    },
                 },
-            },
+                { _id: false }
+            ),
         ],
 
         shortDescription: {
@@ -42,17 +52,20 @@ const productSchema = new mongoose.Schema(
         },
 
         specifications: [
-            {
-                key: {
-                    type: String,
-                    trim: true,
-                },
+            new mongoose.Schema(
+                {
+                    key: {
+                        type: String,
+                        trim: true,
+                    },
 
-                value: {
-                    type: String,
-                    trim: true,
+                    value: {
+                        type: String,
+                        trim: true,
+                    },
                 },
-            },
+                { _id: false }
+            ),
         ],
 
         metaTitle: {
@@ -69,6 +82,10 @@ const productSchema = new mongoose.Schema(
         timestamps: true,
     }
 );
+
+if (process.env.NODE_ENV === "development") {
+    delete (mongoose.models as any).Product;
+}
 
 const Product =
     mongoose.models.Product ||

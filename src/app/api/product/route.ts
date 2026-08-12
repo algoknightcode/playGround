@@ -2,16 +2,26 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import connectDB from "@/lib/mongodb";
 import Product from "@/models/product";
+import Category from "@/models/Category";
 import { uploadToR2 } from "@/utils/uploadToR2";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 // GET ALL PRODUCTS
 export async function GET() {
     try {
         await connectDB();
 
-        const products = await Product.find().sort({
-            createdAt: -1,
-        });
+        const products = await Product.find()
+            .populate({
+                path: "category",
+                select: "name slug",
+                strictPopulate: false,
+            })
+            .sort({
+                createdAt: -1,
+            });
 
         return NextResponse.json(
             {
@@ -54,6 +64,10 @@ export async function POST(req: Request) {
         const slug = (
             formData.get("slug") as string
         )?.trim().toLowerCase();
+
+        const category = (
+            formData.get("category") as string
+        )?.trim();
 
         const shortDescription = (
             formData.get("shortDescription") as string
@@ -100,6 +114,7 @@ export async function POST(req: Request) {
         if (
             !productName ||
             !slug ||
+            !category ||
             !shortDescription ||
             !longDescription
         ) {
@@ -107,7 +122,24 @@ export async function POST(req: Request) {
                 {
                     success: false,
                     message:
-                        "Product name, slug, short description and long description are required",
+                        "Product name, slug, category, short description and long description are required",
+                },
+                { status: 400 }
+            );
+        }
+
+
+        // -----------------------------
+        // CHECK CATEGORY EXISTS
+        // -----------------------------
+
+        const categoryExists = await Category.findById(category);
+
+        if (!categoryExists) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Selected category does not exist",
                 },
                 { status: 400 }
             );
@@ -217,6 +249,7 @@ export async function POST(req: Request) {
         const product = await Product.create({
             productName,
             slug,
+            category,
 
             images: uploadedImages,
 

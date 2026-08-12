@@ -2,8 +2,12 @@ import { NextResponse } from "next/server";
 import crypto from "crypto";
 import connectDB from "@/lib/mongodb";
 import Product from "@/models/product";
+import Category from "@/models/Category";
 import { uploadToR2 } from "@/app/utils/uploadToR2";
 import { deleteFromR2 } from "@/app/utils/deleteFromR2";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 // ==========================================
 // GET SINGLE PRODUCT
@@ -20,6 +24,10 @@ export async function GET(
 
         const product = await Product.findOne({
             slug: slug.toLowerCase(),
+        }).populate({
+            path: "category",
+            select: "name slug",
+            strictPopulate: false,
         });
 
         if (!product) {
@@ -98,6 +106,9 @@ export async function PUT(
                 ?.trim()
                 .toLowerCase();
 
+        const category =
+            (formData.get("category") as string | null)?.trim();
+
         const shortDescription =
             (formData.get("shortDescription") as string | null)?.trim();
 
@@ -109,6 +120,27 @@ export async function PUT(
 
         const metaDescription =
             (formData.get("metaDescription") as string | null)?.trim();
+
+
+        // ==========================================
+        // CATEGORY VALIDATION
+        // ==========================================
+
+        if (category) {
+            const categoryExists = await Category.findById(category);
+
+            if (!categoryExists) {
+                return NextResponse.json(
+                    {
+                        success: false,
+                        message: "Selected category does not exist",
+                    },
+                    { status: 400 }
+                );
+            }
+
+            product.category = category;
+        }
 
 
         // ==========================================
