@@ -91,7 +91,7 @@ export default function ShopByAge() {
         </motion.div>
 
         {/* 6 Blobby Star Cards (3x2 Grid on Mobile, 6 Grid on Desktop) */}
-        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-6 md:gap-8 justify-items-center items-center pt-2 max-w-5xl mx-auto">
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-6 lg:gap-8 xl:gap-10 justify-items-center items-center pt-2 max-w-7xl mx-auto">
           {AGE_CATEGORIES.map((cat, idx) => (
             <motion.a
               key={cat.id}
@@ -106,7 +106,7 @@ export default function ShopByAge() {
                 transition: { type: 'spring', stiffness: 350, damping: 15 }
               }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-28 h-28 sm:w-40 sm:h-40 lg:w-44 lg:h-44 flex items-center justify-center cursor-pointer group select-none"
+              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-36 lg:h-36 xl:w-40 xl:h-40 flex items-center justify-center cursor-pointer group select-none"
             >
               {/* SVG Blobby Star Background */}
               <svg 

@@ -84,18 +84,18 @@ export const ToyWindmillScroll: React.FC = () => {
             className="flex flex-col items-center lg:items-start gap-4 max-w-2xl"
           >
             {/* Heading */}
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-black leading-[1.2] tracking-tight text-white font-quicksand drop-shadow-sm">
-              Made for Little Hands.<br />
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[44px] font-black leading-snug tracking-tight text-white font-quicksand drop-shadow-md">
+              <span>Made for Little Hands.</span><br />
               <span 
-                className="bg-gradient-to-r from-[#6bd0dc] to-[#00BFA6] bg-clip-text text-transparent"
-                style={{ WebkitTextStroke: "1.5px white" }}
+                className="text-white font-black inline-block"
+                style={{ WebkitTextStroke: "0px transparent" }}
               >
                 Built for Big Imaginations.
               </span>
             </h2>
 
-            {/* Subtitle */}
-            <p className="text-sm sm:text-base md:text-lg text-white font-bold leading-relaxed max-w-xl font-quicksand drop-shadow-sm">
+            {/* Subtitle (Hidden on mobile, visible on desktop) */}
+            <p className="hidden lg:block text-sm sm:text-base md:text-lg text-white font-bold leading-relaxed max-w-xl font-quicksand drop-shadow-sm">
               Discover thoughtfully crafted toys, play equipment, and <strong className="font-black text-[#00BFA6]" style={{ WebkitTextStroke: "1px white" }}>Play School Furniture</strong> designed to inspire creativity, encourage learning, and make every childhood space more exciting.
             </p>
 
@@ -105,13 +105,6 @@ export const ToyWindmillScroll: React.FC = () => {
                 <span>Request B2B Wholesale Quote</span>
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </button>
-
-              <button className="inline-flex items-center gap-2 rounded-full bg-white/90 border border-sky-200 text-[#0284C7] hover:bg-sky-50 font-extrabold text-xs sm:text-sm px-5 py-3 shadow-sm hover:scale-105 transition-[transform,background-color,box-shadow] duration-300 cursor-pointer whitespace-nowrap font-quicksand">
-                <span>Bulk Catalog PDF</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </button>
             </div>

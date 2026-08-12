@@ -4,6 +4,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 
 import PlayfulHeader from './components/Navbar';
+import MainBanner from './components/MainBanner';
 import HeroBanner from './components/Home/HeroBanner';
 import { FeaturesGrid } from './components/FeaturesGrid';
 
@@ -35,7 +36,8 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-white text-[#2D3436]">
       <PlayfulHeader />
-      <HeroBanner />
+      <MainBanner />
+      {/* <HeroBanner /> */}
    
       <FeaturesGrid />
       

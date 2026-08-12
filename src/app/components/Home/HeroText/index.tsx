@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const HeroTextSection: React.FC = () => {
   return (
-    <section className="relative min-h-[48vh] flex items-center w-full overflow-hidden py-6 md:py-8 font-quicksand">
+    <section className="hidden sm:flex relative min-h-[48vh] items-center w-full overflow-hidden py-6 md:py-8 font-quicksand">
       {/* Full-bleed background image */}
       <div className="absolute inset-0 z-0">
         <img 

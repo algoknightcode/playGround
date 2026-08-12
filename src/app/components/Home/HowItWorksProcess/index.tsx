@@ -3,6 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Phone, Ruler, FileText, Wrench, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 interface ProcessStep {
   number: string;
@@ -92,7 +98,7 @@ export default function HowItWorksProcess() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-10 max-w-3xl">
+        <div className="mb-8 sm:mb-10 max-w-3xl">
           <motion.span 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -115,71 +121,121 @@ export default function HowItWorksProcess() {
           </p>
         </div>
 
-        {/* 5-Step Animated Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 relative">
+        {/* 📱 MOBILE VIEW: AUTO-SWIPE ONE CARD AT A TIME (< sm) */}
+        <div className="block sm:hidden w-full relative pb-9">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            slidesPerView={1}
+            spaceBetween={16}
+            loop={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            className="w-full how-it-works-swiper !pb-8"
+          >
+            {STEPS.map((step, idx) => (
+              <SwiperSlide key={step.number}>
+                <StepCard step={step} idx={idx} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* 🖥️ DESKTOP VIEW: 5-COLUMN GRID (>= sm) */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-6 relative">
           {STEPS.map((step, idx) => (
-            <motion.div
-              key={step.number}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.12 }}
-              whileHover={{ 
-                y: -10,
-                scale: 1.02,
-                transition: { type: 'spring', stiffness: 300, damping: 15 }
-              }}
-              className={`${step.bgColor} ${step.hoverBg} border-2 border-[#2D3436]/20 hover:border-[#2D3436] rounded-[2.2rem] p-6 shadow-md hover:shadow-xl flex flex-col justify-between transition-all duration-300 relative group cursor-pointer overflow-hidden`}
-            >
-              {/* Subtle Card Glow / Shine on Hover */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-              <div>
-                {/* Step Number & Floating Animated Icon Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <motion.span 
-                    className={`text-4xl font-black text-[#2D3436]/25 transition-colors ${step.hoverNumber}`}
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 3, repeat: Infinity, delay: idx * 0.4 }}
-                  >
-                    {step.number}
-                  </motion.span>
-
-                  <motion.div 
-                    whileHover={{ scale: 1.15, rotate: -8 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-                    className={`w-12 h-12 ${step.iconBg} text-white rounded-2xl border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436] flex items-center justify-center`}
-                  >
-                    {step.icon}
-                  </motion.div>
-                </div>
-
-                {/* Title & Description */}
-                <h3 className={`text-xl font-black text-[#2D3436] mb-3 leading-snug transition-colors ${step.hoverText}`}>
-                  {step.title}
-                </h3>
-                <p className={`text-gray-600 text-sm leading-relaxed font-medium transition-colors ${step.hoverDesc}`}>
-                  {step.description}
-                </p>
-              </div>
-
-              {/* Bottom Badge Accent with Animated Arrow */}
-              <div className="mt-6 pt-4 border-t-2 border-dashed border-[#2D3436]/15 flex items-center justify-between">
-                <span className={`text-xs font-black text-[#2D3436] uppercase tracking-wider transition-colors ${step.hoverText}`}>
-                  {step.badgeText}
-                </span>
-                <motion.div
-                  animate={{ x: [0, 4, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  <ArrowRight className={`w-4 h-4 text-[#2D3436] transition-colors ${step.hoverText}`} />
-                </motion.div>
-              </div>
-            </motion.div>
+            <StepCard key={step.number} step={step} idx={idx} />
           ))}
         </div>
 
       </div>
+
+      {/* Custom Swiper Pagination Styling */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .how-it-works-swiper .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #FF6B6B;
+          opacity: 0.35;
+          transition: all 0.3s ease;
+        }
+        .how-it-works-swiper .swiper-pagination-bullet-active {
+          width: 24px;
+          border-radius: 4px;
+          background: #FF6B6B;
+          opacity: 1;
+        }
+        .how-it-works-swiper .swiper-pagination {
+          bottom: 0px !important;
+        }
+      ` }} />
     </section>
   );
 }
+
+// Reusable Step Card Component
+const StepCard: React.FC<{ step: ProcessStep; idx: number }> = ({ step, idx }) => {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: idx * 0.12 }}
+      whileHover={{ 
+        y: -10,
+        scale: 1.02,
+        transition: { type: 'spring', stiffness: 300, damping: 15 }
+      }}
+      className={`${step.bgColor} ${step.hoverBg} border-2 border-[#2D3436]/20 hover:border-[#2D3436] rounded-[2.2rem] p-6 shadow-md hover:shadow-xl flex flex-col justify-between transition-all duration-300 relative group cursor-pointer overflow-hidden h-full min-h-[320px]`}
+    >
+      {/* Subtle Card Glow / Shine on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+      <div>
+        {/* Step Number & Floating Animated Icon Header */}
+        <div className="flex items-center justify-between mb-6">
+          <motion.span 
+            className={`text-4xl font-black text-[#2D3436]/25 transition-colors ${step.hoverNumber}`}
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity, delay: idx * 0.4 }}
+          >
+            {step.number}
+          </motion.span>
+
+          <motion.div 
+            whileHover={{ scale: 1.15, rotate: -8 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            className={`w-12 h-12 ${step.iconBg} text-white rounded-2xl border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436] flex items-center justify-center`}
+          >
+            {step.icon}
+          </motion.div>
+        </div>
+
+        {/* Title & Description */}
+        <h3 className={`text-xl font-black text-[#2D3436] mb-3 leading-snug transition-colors ${step.hoverText}`}>
+          {step.title}
+        </h3>
+        <p className={`text-gray-600 text-sm leading-relaxed font-medium transition-colors ${step.hoverDesc}`}>
+          {step.description}
+        </p>
+      </div>
+
+      {/* Bottom Badge Accent with Animated Arrow */}
+      <div className="mt-6 pt-4 border-t-2 border-dashed border-[#2D3436]/15 flex items-center justify-between">
+        <span className={`text-xs font-black text-[#2D3436] uppercase tracking-wider transition-colors ${step.hoverText}`}>
+          {step.badgeText}
+        </span>
+        <motion.div
+          animate={{ x: [0, 4, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity }}
+        >
+          <ArrowRight className={`w-4 h-4 text-[#2D3436] transition-colors ${step.hoverText}`} />
+        </motion.div>
+      </div>
+    </motion.div>
+  );
+};

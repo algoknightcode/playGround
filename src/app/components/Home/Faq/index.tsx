@@ -75,7 +75,11 @@ export const FaqInteractivePreview = () => {
       
       {/* Absolute Background Image Container - Scoped only to FAQ section */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1597200381847-30ec200eeb9a?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center opacity-75 mix-blend-overlay"></div>
+        <img 
+          src="/assets/faq/sky-image.png_202608121708.jpeg"
+          alt="FAQ Sky Background"
+          className="w-full h-full object-cover opacity-85 mix-blend-overlay"
+        />
       </div>
 
       {/* ═══ FLOATING BOBBING CLOUDS (PLAYFUL ACCENTS) ═══ */}
@@ -116,19 +120,24 @@ export const FaqInteractivePreview = () => {
                 className={cn(
                   'w-full text-left px-6 py-5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group backdrop-blur-md border',
                   activeItem.id === item.id
-                    ? 'bg-white text-slate-900 shadow-2xl scale-[1.02] border-white'
-                    : 'bg-white/20 text-white hover:bg-white/30 border-white/30'
+                    ? 'bg-[#0D1C3A] text-white shadow-2xl scale-[1.02] border-2 border-[#00C4B5]'
+                    : 'bg-white/70 hover:bg-white/90 text-[#007A70] border-white/60 shadow-sm'
                 )}
               >
-                <span className="text-base sm:text-lg font-bold tracking-wide">
+                <span 
+                  className={cn(
+                    "text-base sm:text-lg font-extrabold tracking-tight transition-colors duration-300",
+                    activeItem.id === item.id ? "text-white" : "text-[#007A70]"
+                  )}
+                >
                   {item.question}
                 </span>
                 <ArrowRight
                   className={cn(
                     'w-5 h-5 flex-shrink-0 transition-all duration-300',
                     activeItem.id === item.id
-                      ? 'translate-x-0 opacity-100 text-slate-900'
-                      : '-translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 text-white'
+                      ? 'translate-x-0 opacity-100 text-[#00C4B5]'
+                      : '-translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 text-[#007A70]'
                   )}
                 />
               </motion.button>

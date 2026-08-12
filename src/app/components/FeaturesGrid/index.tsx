@@ -1,20 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination } from 'swiper/modules';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 export const FeaturesGrid: React.FC = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-
-  const touchStartX = useRef<number | null>(null);
-  const touchEndX = useRef<number | null>(null);
-
   const features = [
     {
       title: 'Money Return',
-      subtitle: 'Back guarantee under 7 days.',
-      bgColor: 'bg-[#FFF8F0]',
-      borderColor: 'hover:border-[#F49C14]/40',
+      subtitle: 'Back guarantee under 7 days',
+      badge: '7-Day Guarantee',
+      bgColor: 'bg-gradient-to-br from-[#FFF8F0] to-[#FFF3E4]',
+      iconBg: 'bg-gradient-to-tr from-[#FFE8CC] to-[#FFF0DB]',
+      borderColor: 'border-[#F49C14]/20 hover:border-[#F49C14]',
+      textColor: 'text-[#C27100]',
       icon: (
-        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-[-10deg] group-hover:scale-110">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-[-10deg] group-hover:scale-110">
           <path d="M16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round"/>
           <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 6"/>
           <path d="M4 12L4 16L8 16" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -28,11 +33,14 @@ export const FeaturesGrid: React.FC = () => {
     },
     {
       title: 'Member Discount',
-      subtitle: 'On every order over $2000',
-      bgColor: 'bg-[#F0F5FA]',
-      borderColor: 'hover:border-[#3B82F6]/40',
+      subtitle: 'On orders over $2000',
+      badge: 'Save Big',
+      bgColor: 'bg-gradient-to-br from-[#F0F5FA] to-[#E3EEF8]',
+      iconBg: 'bg-gradient-to-tr from-[#DBE8F6] to-[#EBF3FB]',
+      borderColor: 'border-[#3B82F6]/20 hover:border-[#3B82F6]',
+      textColor: 'text-[#1D4ED8]',
       icon: (
-        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
           <path d="M16 3C16 3 8 10.5 8 18.5C8 23.1944 11.5817 27 16 27C20.4183 27 24 23.1944 24 18.5C24 10.5 16 3 16 3Z" fill="#F88C00"/>
           <text x="16" y="21.5" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">%</text>
         </svg>
@@ -40,11 +48,14 @@ export const FeaturesGrid: React.FC = () => {
     },
     {
       title: 'Home Delivery',
-      subtitle: 'Free delivery to your home',
-      bgColor: 'bg-[#EBFBF7]',
-      borderColor: 'hover:border-[#00B8A9]/40',
+      subtitle: 'Free delivery to your door',
+      badge: 'Free Shipping',
+      bgColor: 'bg-gradient-to-br from-[#EBFBF7] to-[#D5F7EE]',
+      iconBg: 'bg-gradient-to-tr from-[#C5F4E7] to-[#E2FAF3]',
+      borderColor: 'border-[#00B8A9]/20 hover:border-[#00B8A9]',
+      textColor: 'text-[#007A70]',
       icon: (
-        <svg width="36" height="36" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1.5 group-hover:scale-110">
+        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1.5 group-hover:scale-110">
           <path d="M5 12C5 10.8954 5.89543 10 7 10H17V20H7C5.89543 20 5 19.1046 5 18V12Z" fill="#00B8A9"/>
           <path d="M17 12H21.5L24 15.5V20H17V12Z" fill="#0D1E3E"/>
           <path d="M2 13H5" stroke="#F49C14" strokeWidth="2" strokeLinecap="round"/>
@@ -60,10 +71,13 @@ export const FeaturesGrid: React.FC = () => {
     {
       title: '24/7 Support',
       subtitle: 'Dedicated support in 24hrs',
-      bgColor: 'bg-[#FFF0F3]',
-      borderColor: 'hover:border-[#EC4899]/40',
+      badge: 'Fast Support',
+      bgColor: 'bg-gradient-to-br from-[#FFF0F3] to-[#FFE0E6]',
+      iconBg: 'bg-gradient-to-tr from-[#FFD1DC] to-[#FFEBF0]',
+      borderColor: 'border-[#EC4899]/20 hover:border-[#EC4899]',
+      textColor: 'text-[#BE185D]',
       icon: (
-        <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-[15deg] group-hover:scale-110">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-[15deg] group-hover:scale-110">
           <path d="M16 4C22.6274 4 28 9.37258 28 16C28 22.6274 22.6274 28 16 28" stroke="#F88C00" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 6"/>
           <path d="M25 7L28 4L29 8" stroke="#F88C00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M10.2792 10.3802C11.5177 9.14173 12.8711 9.4796 13.9234 10.5319L14.733 11.3415C15.8239 12.4324 15.6983 13.8055 14.5126 14.9912L13.7828 15.721C14.7211 17.5186 16.2759 18.9959 18.1504 19.8524L18.8471 19.1557C20.0329 17.97 21.4059 17.8444 22.4969 18.9353L23.3065 19.7449C24.3588 20.7972 24.6966 22.1506 23.4582 23.3891C22.5034 24.3439 20.8933 24.8143 19.0601 24.3298C15.7483 23.4545 11.528 20.2157 9.69976 17.1517C8.68536 15.4516 8.56708 13.6844 9.13524 12.4172C9.44439 11.7278 9.84365 11.2332 10.2792 10.3802Z" fill="#00B8A9"/>
@@ -73,56 +87,19 @@ export const FeaturesGrid: React.FC = () => {
     }
   ];
 
-  // Auto-swipe functionality for mobile
-  useEffect(() => {
-    if (isPaused) return;
-
-    const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % features.length);
-    }, 3500);
-
-    return () => clearInterval(timer);
-  }, [isPaused, features.length]);
-
-  // Touch Swipe Handlers for Mobile
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setIsPaused(true);
-    touchStartX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    touchEndX.current = e.targetTouches[0].clientX;
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStartX.current || !touchEndX.current) {
-      setIsPaused(false);
-      return;
-    }
-
-    const distance = touchStartX.current - touchEndX.current;
-    const isSwipeLeft = distance > 40;
-    const isSwipeRight = distance < -40;
-
-    if (isSwipeLeft) {
-      setCurrentIndex((prev) => (prev + 1) % features.length);
-    } else if (isSwipeRight) {
-      setCurrentIndex((prev) => (prev === 0 ? features.length - 1 : prev - 1));
-    }
-
-    touchStartX.current = null;
-    touchEndX.current = null;
-    setIsPaused(false);
-  };
+  // Group features into pairs of 2 for mobile slides
+  const mobileFeaturePairs = [
+    [features[0], features[1]],
+    [features[2], features[3]],
+  ];
 
   return (
-    <section className="relative w-full bg-[#E0F8F8] px-4 sm:px-6 lg:px-12 py-8 font-fredoka overflow-hidden select-none">
+    <section className="relative w-full bg-gradient-to-b from-[#E0F8F8] to-[#D2F2F2] px-3 sm:px-6 lg:px-12 py-8 sm:py-14 font-quicksand overflow-hidden select-none">
       
-
       {/* Floating Umbrella Accent */}
-      <div className="absolute top-4 sm:top-6 lg:top-8 right-4 sm:right-8 lg:right-16 z-20 pointer-events-none opacity-85 hover:opacity-100 transition-opacity">
+      <div className="absolute top-3 sm:top-6 right-3 sm:right-10 z-20 pointer-events-none opacity-90">
         <div className="relative animate-bounce duration-1000">
-          <svg width="36" height="36" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-6 sm:w-10 sm:h-10 transition-transform duration-300 drop-shadow-md">
+          <svg width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-6 sm:w-12 sm:h-12 transition-transform duration-300 drop-shadow-md">
             <path d="M32 8C16.536 8 4 20.536 4 36H18C18 32.686 24.284 30 32 30C39.716 30 46 32.686 46 36H60C60 20.536 47.464 8 32 8Z" fill="#FF6B6B" />
             <path d="M18 36C18 20.536 24.284 8 32 8C24.284 8 18 20.536 18 36Z" fill="#4ECDC4" />
             <path d="M46 36C46 20.536 39.716 8 32 8C39.716 8 46 20.536 46 36Z" fill="#FFE66D" />
@@ -137,70 +114,86 @@ export const FeaturesGrid: React.FC = () => {
       {/* Main Container */}
       <div className="max-w-[1400px] mx-auto relative z-10">
         
-        {/* ═══ MOBILE AUTO-SWIPE CAROUSEL (Visible on < sm) ═══ */}
-        <div 
-          className="sm:hidden overflow-hidden w-full pt-2 pb-3"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        >
-          <div 
-            className="flex transition-transform duration-500 ease-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        {/* 📱 MOBILE VIEW: AUTO-SWIPE TWO CARDS AT A TIME (< sm) */}
+        <div className="block sm:hidden w-full relative pb-9">
+          <Swiper
+            modules={[Autoplay, Pagination]}
+            slidesPerView={1}
+            spaceBetween={12}
+            loop={true}
+            autoplay={{
+              delay: 3500,
+              disableOnInteraction: false,
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            className="w-full features-grid-swiper !pb-8"
           >
-            {features.map((feature, index) => (
-              <div key={index} className="w-full flex-shrink-0 px-1">
-                <CardItem feature={feature} />
-              </div>
+            {mobileFeaturePairs.map((pair, index) => (
+              <SwiperSlide key={index}>
+                <div className="grid grid-cols-2 gap-3">
+                  {pair.map((feature, fIdx) => (
+                    <FeatureCard key={fIdx} feature={feature} />
+                  ))}
+                </div>
+              </SwiperSlide>
             ))}
-          </div>
-
-          {/* Carousel Pagination Dots */}
-          <div className="flex justify-center items-center gap-2 mt-4">
-            {features.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                aria-label={`Go to slide ${index + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  currentIndex === index ? 'w-6 bg-[#F97316]' : 'w-2 bg-slate-300'
-                }`}
-              />
-            ))}
-          </div>
+          </Swiper>
         </div>
 
-        {/* ═══ DESKTOP & TABLET GRID (Visible on >= sm) ═══ */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+        {/* 🖥️ DESKTOP VIEW: 4-COLUMN GRID (>= sm) */}
+        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
           {features.map((feature, index) => (
-            <CardItem key={index} feature={feature} />
+            <FeatureCard key={index} feature={feature} />
           ))}
         </div>
 
       </div>
+
+      {/* Custom Swiper Pagination Styling */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        .features-grid-swiper .swiper-pagination-bullet {
+          width: 8px;
+          height: 8px;
+          background: #F97316;
+          opacity: 0.35;
+          transition: all 0.3s ease;
+        }
+        .features-grid-swiper .swiper-pagination-bullet-active {
+          width: 24px;
+          border-radius: 4px;
+          background: #F97316;
+          opacity: 1;
+        }
+        .features-grid-swiper .swiper-pagination {
+          bottom: 0px !important;
+        }
+      ` }} />
     </section>
   );
 };
 
 // Reusable Feature Card Component
-const CardItem: React.FC<{ feature: any }> = ({ feature }) => {
+const FeatureCard: React.FC<{ feature: any }> = ({ feature }) => {
   return (
     <div
-      className={`group relative flex items-center gap-4 sm:gap-5 rounded-2xl px-5 sm:px-6 py-5 sm:py-6 border-2 border-transparent ${feature.borderColor} transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer ${feature.bgColor} h-full`}
+      className={`group relative flex flex-col sm:flex-row items-center sm:items-center text-center sm:text-left gap-2.5 sm:gap-5 rounded-2xl p-3.5 sm:p-6 border-2 ${feature.borderColor} ${feature.bgColor} transition-all duration-300 hover:shadow-xl hover:-translate-y-1 cursor-pointer shadow-sm h-full`}
     >
-      {/* Icon Circle */}
-      <div className="flex h-14 w-14 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-2xl bg-white shadow-md border border-black/5 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-lg">
+      {/* Icon Circle Box */}
+      <div className={`flex h-12 w-12 sm:h-16 sm:w-16 flex-shrink-0 items-center justify-center rounded-xl sm:rounded-2xl ${feature.iconBg} shadow-sm border border-white/60 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6`}>
         {feature.icon}
       </div>
 
       {/* Text Content */}
-      <div className="flex flex-col">
-        <h3 className="text-[16px] sm:text-[17.5px] font-extrabold text-[#1E293B] tracking-tight group-hover:text-[#F97316] transition-colors leading-snug">
+      <div className="flex flex-col items-center sm:items-start">
+        <span className={`text-[9px] sm:text-[11px] font-black uppercase tracking-wider ${feature.textColor} mb-0.5 hidden sm:inline-block`}>
+          {feature.badge}
+        </span>
+        <h3 className="text-xs sm:text-[17.5px] font-black text-[#1E293B] tracking-tight group-hover:text-[#F97316] transition-colors leading-snug">
           {feature.title}
         </h3>
-        <p className="mt-0.5 sm:mt-1 text-[13px] sm:text-[14px] font-semibold text-[#64748B] leading-snug">
+        <p className="mt-0.5 text-[10px] sm:text-[13.5px] font-bold text-slate-500 leading-snug line-clamp-2">
           {feature.subtitle}
         </p>
       </div>
