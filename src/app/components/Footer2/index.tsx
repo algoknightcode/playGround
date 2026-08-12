@@ -179,47 +179,44 @@ const Footer2 = () => {
             </div>
           </div>
 
-          {/* Column 5: Premium Newsletter Card */}
-          <div className="lg:col-span-3 bg-gradient-to-br from-amber-400 via-orange-400 to-[#FF6B6B] p-6 sm:p-7 rounded-3xl text-white shadow-lg relative overflow-hidden border border-white/40">
-            
-            {/* Background Decorative Sparkle SVG */}
-            <div className="absolute -right-4 -bottom-4 opacity-20 pointer-events-none">
-              <Sparkles className="w-32 h-32 text-white" />
-            </div>
-
-            <div className="relative z-10">
-              <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-xs px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider text-white mb-3">
-                <Send className="w-3 h-3 text-yellow-200" />
+          {/* Column 5: Snug Newsletter Card */}
+          <div className="lg:col-span-3 flex flex-col lg:mb-4 bg-[#BDECF0] px-4 pt-4 pb-6 sm:px-5 sm:pt-5 sm:pb-8 rounded-2xl sm:rounded-3xl text-[#0F2942] shadow-sm relative overflow-hidden border border-[#00C4B5]/20">
+            <div className="relative z-10 flex-1 flex flex-col">
+              <div>
+              <div className="inline-flex items-center gap-1.5 bg-[#00C4B5] text-white px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 shadow-xs">
+                <Send className="w-3 h-3 text-white" />
                 Stay Updated
               </div>
 
-              <h3 className="text-lg sm:text-xl font-black text-white mb-2 leading-tight">
+              <h3 className="text-base sm:text-lg font-black text-[#0F2942] mb-1 leading-tight">
                 Subscribe Our Newsletter
               </h3>
               
-              <p className="text-xs sm:text-sm mb-5 text-white/95 leading-relaxed font-semibold">
+              <p className="text-xs sm:text-sm mb-3 text-[#0F2942]/80 leading-relaxed font-semibold">
                 Never miss our latest toy releases, deals, and play guides.
               </p>
               
               {/* Input Form */}
-              <div className="relative flex items-center w-full mb-5">
-                <div className="absolute left-3.5 text-gray-400">
-                  <Mail size={16} />
+              <div className="relative flex items-center w-full mb-3">
+                <div className="absolute left-3 text-gray-400">
+                  <Mail size={15} />
                 </div>
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="w-full py-3 pl-10 pr-12 rounded-2xl border border-white/40 focus:outline-none focus:bg-white bg-white/95 text-slate-800 text-xs sm:text-sm shadow-inner transition-all font-semibold placeholder:text-gray-400"
+                  className="w-full py-2.5 pl-9 pr-11 rounded-xl border border-white/60 focus:outline-none focus:bg-white bg-white text-slate-800 text-xs sm:text-sm shadow-xs transition-all font-semibold placeholder:text-gray-400"
                 />
-                <button className="absolute right-1.5 top-1.5 bottom-1.5 bg-[#00C4B5] hover:bg-[#00b0a2] text-white px-3.5 rounded-xl transition-all flex items-center justify-center shadow-md hover:scale-105 active:scale-95">
-                  <ArrowRight size={16} />
+                <button className="absolute right-1 top-1 bottom-1 bg-[#00C4B5] hover:bg-[#00b0a2] text-white px-3 rounded-lg transition-all flex items-center justify-center shadow-sm hover:scale-105 active:scale-95">
+                  <ArrowRight size={15} />
                 </button>
               </div>
 
+              </div>
+
               {/* Social Icons */}
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-2 mt-auto pt-4">
                 {[FacebookIcon, TwitterIcon, LinkedinIcon, InstagramIcon, TiktokIcon].map((Icon, idx) => (
-                  <a key={idx} href="#" className="w-8 h-8 rounded-xl bg-white/20 hover:bg-white hover:text-[#00C4B5] text-white flex items-center justify-center transition-all duration-200 shadow-xs backdrop-blur-xs">
+                  <a key={idx} href="#" className="w-8 h-8 rounded-xl bg-white hover:bg-[#00C4B5] text-[#0F2942] hover:text-white flex items-center justify-center transition-all duration-200 shadow-xs">
                     <Icon />
                   </a>
                 ))}
