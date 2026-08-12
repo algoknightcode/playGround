@@ -85,18 +85,18 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
         ref={sectionRef}
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-6 sm:px-12 z-20 scroll-mt-10 overflow-hidden"
+        className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-3 sm:px-12 z-20 scroll-mt-10 overflow-hidden"
       >
         
-        {/* Parallax Clouds (Removed drop-shadow) */}
-        <div ref={(el) => { cloudsRef.current.c1 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out left-[10%] top-0">
-          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-28 sm:w-36 h-auto" />
+        {/* Parallax Clouds */}
+        <div ref={(el) => { cloudsRef.current.c1 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out left-[3%] sm:left-[10%] -top-2 md:top-0">
+          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-20 sm:w-28 md:w-36 h-auto" />
         </div>
-        <div ref={(el) => { cloudsRef.current.c2 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out left-[45%] top-10">
+        <div ref={(el) => { cloudsRef.current.c2 = el; }} className="hidden md:block absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out left-[45%] top-10">
           <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-32 sm:w-40 h-auto" />
         </div>
-        <div ref={(el) => { cloudsRef.current.c3 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out right-[10%] -top-5">
-          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-40 sm:w-48 h-auto" />
+        <div ref={(el) => { cloudsRef.current.c3 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out right-[3%] sm:right-[10%] -top-4 md:-top-5">
+          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-24 sm:w-36 md:w-48 h-auto" />
         </div>
 
         {/* Static Decorative Stars (Removed continuous animate-pulse) */}

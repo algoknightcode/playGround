@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion, Variants } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Sparkles, Star, Cloud } from 'lucide-react';
 
 const categories = [
@@ -32,6 +32,18 @@ const categories = [
 ];
 
 export const ShopByCategories: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-swipe functionality for mobile view
+  useEffect(() => {
+    if (isPaused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % categories.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, [isPaused]);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -51,7 +63,7 @@ export const ShopByCategories: React.FC = () => {
   return (
     <section className="relative w-full bg-[#00C4B5] py-6 md:py-8 px-6 md:px-12 overflow-hidden font-quicksand">
       
-      {/* ═══ PINNED STICKY VIEWPORT ═══ */}
+      {/* ═══ BACKGROUND DECORATIVE ELEMENTS ═══ */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
         <motion.div
           animate={{ y: [0, -10, 0], rotate: [0, 6, 0] }}
@@ -106,17 +118,72 @@ export const ShopByCategories: React.FC = () => {
             Shop by Categories
           </h2>
           <p className="text-white/90 text-xs md:text-sm max-w-lg leading-relaxed font-semibold">
-            Lorem ipsum dolor sit amet consectetur. Id fames there are many vulputate eget dolor.
+            Explore our wide range of play products carefully designed for your child&apos;s growth and entertainment.
           </p>
         </motion.div>
 
-        {/* Categories Grid */}
+        {/* ═══ MOBILE VIEW: SINGLE CARD AUTO-SWIPE CAROUSEL (< sm) ═══ */}
+        <div 
+          className="block sm:hidden relative w-full overflow-hidden pt-1 pb-2"
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <div className="relative min-h-[220px] w-full flex items-center justify-center">
+            <AnimatePresence mode="wait">
+              {categories.map((cat, index) => {
+                if (index !== currentIndex) return null;
+                return (
+                  <motion.div
+                    key={cat.title}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="w-full max-w-[280px] bg-white rounded-[1.75rem] p-6 flex flex-col items-center justify-center cursor-pointer shadow-md"
+                  >
+                    <div className={`w-[110px] h-[110px] rounded-full flex items-center justify-center mb-4 relative z-10 ${cat.bg}`}>
+                      <img 
+                        src={cat.image} 
+                        alt={cat.title} 
+                        className="w-[72px] h-[72px] object-contain drop-shadow-sm"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="text-lg font-bold text-[#0D1C3A] text-center">
+                      {cat.title}
+                    </h3>
+                  </motion.div>
+                );
+              })}
+            </AnimatePresence>
+          </div>
+
+          {/* Swipe Indicator Dots */}
+          <div className="flex items-center justify-center gap-2 mt-4">
+            {categories.map((_, idx) => (
+              <button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                aria-label={`Go to category ${idx + 1}`}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  currentIndex === idx
+                    ? 'w-6 bg-white'
+                    : 'w-2 bg-white/40 hover:bg-white/60'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ═══ DESKTOP & TABLET VIEW: 4-COLUMN GRID (>= sm) ═══ */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
         >
           {categories.map((cat, index) => (
             <motion.div

@@ -90,8 +90,8 @@ export default function ShopByAge() {
           </p>
         </motion.div>
 
-        {/* 6 Blobby Star Cards Row */}
-        <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 md:gap-8 pt-2">
+        {/* 6 Blobby Star Cards (3x2 Grid on Mobile, 6 Grid on Desktop) */}
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-6 md:gap-8 justify-items-center items-center pt-2 max-w-5xl mx-auto">
           {AGE_CATEGORIES.map((cat, idx) => (
             <motion.a
               key={cat.id}
@@ -106,7 +106,7 @@ export default function ShopByAge() {
                 transition: { type: 'spring', stiffness: 350, damping: 15 }
               }}
               whileTap={{ scale: 0.95 }}
-              className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center cursor-pointer group select-none"
+              className="relative w-28 h-28 sm:w-40 sm:h-40 lg:w-44 lg:h-44 flex items-center justify-center cursor-pointer group select-none"
             >
               {/* SVG Blobby Star Background */}
               <svg 
@@ -121,10 +121,10 @@ export default function ShopByAge() {
 
               {/* Text Label inside Blob Star */}
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white pointer-events-none">
-                <span className="text-2xl sm:text-3xl font-black tracking-tight drop-shadow-sm leading-none">
+                <span className="text-xl sm:text-3xl font-black tracking-tight drop-shadow-sm leading-none">
                   {cat.label}
                 </span>
-                <span className="text-xs sm:text-sm font-bold opacity-90 mt-1 uppercase tracking-wider">
+                <span className="text-[10px] sm:text-sm font-bold opacity-90 mt-0.5 sm:mt-1 uppercase tracking-wider">
                   {cat.subLabel}
                 </span>
               </div>

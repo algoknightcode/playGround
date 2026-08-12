@@ -3,7 +3,45 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+/**
+ * ----------------------------------------------------------------------
+ * MOBILE POSITIONING CONFIGURATION (Applies strictly to screens < 640px)
+ * ----------------------------------------------------------------------
+ * You can manually tweak position and size for each element on mobile view.
+ * Values can be percentage strings ('45%') or pixel strings ('20px').
+ * 
+ * - bottom: Controls Up / Down positioning
+ * - left / right: Controls Left / Right positioning
+ * - width / height: Controls element size on mobile
+ */
+export const DEFAULT_MOBILE_CONFIG = {
+  cat: {
+    bottom: '63%',   // Up/Down (increase to move UP, decrease to move DOWN)
+    left: '4%',      // Left/Right position
+    width: '48px',   // Size on mobile
+  },
+  zebra: {
+    bottom: '45%',   // Up/Down (increase to move UP, decrease to move DOWN)
+    left: '26%',     // Left/Right position
+    width: '50px',   // Size on mobile
+  },
+  mouse: {
+    bottom: '53%',   // Up/Down (increase to move UP, decrease to move DOWN)
+    left: '70%',     // Left/Right position
+    width: '54px',   // Size on mobile
+  },
+  giraffe: {
+    bottom: '60%',   // Up/Down (increase to move UP, decrease to move DOWN)
+    right: '6%',     // Left/Right position
+    width: '58px',   // Size on mobile
+  },
+  foregroundCloud: {
+    bottom: '10px',   // Up/Down offset (increase to move UP)
+    height: '160px', // Cloud height on mobile
+  },
+};
 
+export type MobileConfigType = Partial<typeof DEFAULT_MOBILE_CONFIG>;
 
 const MouseSVG = () => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full drop-shadow-md">
@@ -20,13 +58,24 @@ const MouseSVG = () => (
   </svg>
 );
 
-
-
 interface ShopElementsProps {
   bgColor?: string;
+  mobileConfig?: MobileConfigType;
 }
 
-export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElementsProps) {
+export default function ShopElementsSection({ 
+  bgColor = "bg-white",
+  mobileConfig = {}
+}: ShopElementsProps) {
+  // Merge user custom config with defaults
+  const config = {
+    cat: { ...DEFAULT_MOBILE_CONFIG.cat, ...mobileConfig.cat },
+    zebra: { ...DEFAULT_MOBILE_CONFIG.zebra, ...mobileConfig.zebra },
+    mouse: { ...DEFAULT_MOBILE_CONFIG.mouse, ...mobileConfig.mouse },
+    giraffe: { ...DEFAULT_MOBILE_CONFIG.giraffe, ...mobileConfig.giraffe },
+    foregroundCloud: { ...DEFAULT_MOBILE_CONFIG.foregroundCloud, ...mobileConfig.foregroundCloud },
+  };
+
   return (
     <section className={`relative w-full ${bgColor} pt-12 pb-0 overflow-hidden`}>
       {/* Clouds and Characters Area */}
@@ -37,7 +86,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
           className="absolute top-0 left-0 w-full h-full"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 1.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
         >
           <img 
@@ -50,10 +99,15 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
         {/* Characters between clouds */}
         {/* Cat */}
         <motion.div 
-          className="absolute bottom-[32%] sm:bottom-[35%] left-[2%] sm:left-[5%] z-[5] w-12 sm:w-26 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[var(--mob-bottom)] sm:bottom-[35%] left-[var(--mob-left)] sm:left-[5%] z-[5] w-[var(--mob-width)] sm:w-26 cursor-pointer pointer-events-auto"
+          style={{
+            '--mob-bottom': config.cat.bottom,
+            '--mob-left': config.cat.left,
+            '--mob-width': config.cat.width,
+          } as React.CSSProperties}
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
@@ -70,10 +124,15 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
 
         {/* Zebra */}
         <motion.div 
-          className="absolute bottom-[34%] sm:bottom-[38%] left-[22%] sm:left-[25%] z-[5] w-14 sm:w-30 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[var(--mob-bottom)] sm:bottom-[38%] left-[var(--mob-left)] sm:left-[25%] z-[5] w-[var(--mob-width)] sm:w-30 cursor-pointer pointer-events-auto"
+          style={{
+            '--mob-bottom': config.zebra.bottom,
+            '--mob-left': config.zebra.left,
+            '--mob-width': config.zebra.width,
+          } as React.CSSProperties}
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 1.2, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
@@ -90,10 +149,15 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
 
         {/* Mouse */}
         <motion.div 
-          className="absolute bottom-[36%] sm:bottom-[40%] left-[54%] sm:left-[60%] -translate-x-1/2 z-[5] w-16 sm:w-32 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[var(--mob-bottom)] sm:bottom-[40%] left-[var(--mob-left)] sm:left-[60%] -translate-x-1/2 z-[5] w-[var(--mob-width)] sm:w-32 cursor-pointer pointer-events-auto"
+          style={{
+            '--mob-bottom': config.mouse.bottom,
+            '--mob-left': config.mouse.left,
+            '--mob-width': config.mouse.width,
+          } as React.CSSProperties}
           initial={{ opacity: 0, y: 60, x: "-50%" }}
           whileInView={{ opacity: 1, y: 0, x: "-50%" }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 1.2, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
@@ -106,10 +170,15 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
 
         {/* Giraffe */}
         <motion.div 
-          className="absolute bottom-[24%] sm:bottom-[28%] right-[4%] sm:right-[15%] z-[5] w-14 sm:w-32 cursor-pointer pointer-events-auto"
+          className="absolute bottom-[var(--mob-bottom)] sm:bottom-[28%] right-[var(--mob-right)] sm:right-[15%] z-[5] w-[var(--mob-width)] sm:w-32 cursor-pointer pointer-events-auto"
+          style={{
+            '--mob-bottom': config.giraffe.bottom,
+            '--mob-right': config.giraffe.right,
+            '--mob-width': config.giraffe.width,
+          } as React.CSSProperties}
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 1.2, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
@@ -126,10 +195,14 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
 
         {/* Foreground Cloud (Cloud 2) */}
         <motion.div 
-          className="absolute bottom-[-10px] left-0 w-full z-10 pointer-events-none"
+          className="absolute bottom-[var(--mob-bottom)] sm:bottom-0 left-0 w-full h-[var(--mob-height)] sm:h-[180px] md:h-[230px] z-10 pointer-events-none"
+          style={{
+            '--mob-bottom': config.foregroundCloud.bottom,
+            '--mob-height': config.foregroundCloud.height,
+          } as React.CSSProperties}
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-20px" }}
           transition={{ duration: 1.6, delay: 0, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
@@ -147,7 +220,7 @@ export default function ShopElementsSection({ bgColor = "bg-white" }: ShopElemen
             <img 
               src="/assets/clouds/cloud2.png" 
               alt="Foreground Cloud" 
-              className="w-full h-auto object-cover object-bottom pointer-events-none"
+              className="w-full h-full object-cover object-bottom pointer-events-none"
             />
           </motion.div>
         </motion.div>

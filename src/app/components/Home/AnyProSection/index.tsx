@@ -1,39 +1,39 @@
 "use client";
 
 import React from "react";
-import { ArrowRight, Dumbbell, Gamepad2, Droplets, Trophy, Activity, Target } from "lucide-react";
+import { ArrowRight, Armchair, Baby, Puzzle, Sparkles, Tent, Smile } from "lucide-react";
 import { motion } from "framer-motion";
 
 const categories = [
   {
-    title: "Outdoor Gym Equipment",
-    desc: "Parks, societies, municipal areas",
-    icon: <Dumbbell className="w-6 h-6 text-[#00C4B5]" />,
+    title: "Kids & Preschool Furniture",
+    desc: "Study tables, activity chairs & storage",
+    icon: <Armchair className="w-6 h-6 text-[#00C4B5]" />,
   },
   {
-    title: "Sports Equipment",
-    desc: "Badminton, table tennis, sports goods",
-    icon: <Trophy className="w-6 h-6 text-[#FF6B6B]" />,
+    title: "Slides & Play Towers",
+    desc: "Indoor slides, swings & play centers",
+    icon: <Sparkles className="w-6 h-6 text-[#FF6B6B]" />,
   },
   {
-    title: "Game Tables",
-    desc: "Foosball, air hockey, carrom, pool",
-    icon: <Gamepad2 className="w-6 h-6 text-amber-500" />,
+    title: "Educational & STEM Toys",
+    desc: "Building blocks, puzzles & learning kits",
+    icon: <Puzzle className="w-6 h-6 text-amber-500" />,
   },
   {
-    title: "Exercise Balls & Gym",
-    desc: "Indoor fitness accessories",
-    icon: <Activity className="w-6 h-6 text-indigo-500" />,
+    title: "Riders & Rocking Toys",
+    desc: "Rocking horses, ride-on cars & balance bikes",
+    icon: <Smile className="w-6 h-6 text-indigo-500" />,
   },
   {
-    title: "Swimming Pools",
-    desc: "Kids pools & accessories",
-    icon: <Droplets className="w-6 h-6 text-cyan-500" />,
+    title: "Playhouses & Tents",
+    desc: "Pop-up tents, playhouses & ball pits",
+    icon: <Tent className="w-6 h-6 text-cyan-500" />,
   },
   {
-    title: "Activity Toys",
-    desc: "Active play for all ages",
-    icon: <Target className="w-6 h-6 text-rose-500" />,
+    title: "Soft Play & Activity Toys",
+    desc: "Foam climbers, mat sets & indoor play",
+    icon: <Baby className="w-6 h-6 text-rose-500" />,
   }
 ];
 
@@ -50,19 +50,19 @@ export const AnyProSection = () => {
           {/* Left Side Content */}
           <div className="xl:w-5/12 flex flex-col items-start text-left relative z-10">
             <div className="bg-[#00C4B5] text-white text-xs sm:text-sm font-black px-4 py-1.5 uppercase tracking-widest rounded-full mb-6 shadow-sm">
-              Introducing Sub-Brand
+              Featured Kids Collection
             </div>
             
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6 tracking-tight leading-tight text-slate-900">
-              Meet <span className="text-white drop-shadow-sm">ANY PRO</span>
+              Meet <span className="text-white drop-shadow-sm">KIDS ZONE</span>
             </h2>
             
             <p className="text-slate-800 text-base sm:text-lg leading-relaxed mb-10 max-w-lg font-bold">
-              Toy Park's sports and fitness sub-brand — covering outdoor gym equipment, sports goods, game tables, and active lifestyle products for parks, societies, schools, and fitness centres.
+              Toy Park&apos;s kids toys and playground furniture sub-brand — covering play school tables, slides, educational kits, riders, playhouses, and soft play equipment for homes, preschools, and play areas.
             </p>
             
-            <a href="/anypro" className="inline-flex items-center gap-2 bg-[#FF6B6B] hover:bg-[#ff5252] text-white font-black py-4 px-8 rounded-full transition-transform hover:-translate-y-1 text-base sm:text-lg shadow-[0_4px_0_rgb(220,38,38)] hover:shadow-[0_2px_0_rgb(220,38,38)] active:translate-y-0 active:shadow-none">
-              Explore ANY PRO <ArrowRight className="w-5 h-5" />
+            <a href="/kids-zone" className="inline-flex items-center gap-2 bg-[#FF6B6B] hover:bg-[#ff5252] text-white font-black py-4 px-8 rounded-full transition-transform hover:-translate-y-1 text-base sm:text-lg shadow-[0_4px_0_rgb(220,38,38)] hover:shadow-[0_2px_0_rgb(220,38,38)] active:translate-y-0 active:shadow-none">
+              Explore KIDS ZONE <ArrowRight className="w-5 h-5" />
             </a>
           </div>
 

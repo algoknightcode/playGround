@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, PackageCheck, Building2, ShieldCheck } from 'lucide-react';
+import { Award, PackageCheck, Building2, ShieldCheck, Rocket, Sparkles, Headphones } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const stats = [
@@ -10,16 +10,34 @@ const stats = [
 ];
 
 const b2bSchedules = [
-  { id: 1, name: "Start Small, Scale Smart", time: "Wholesale orders from just 50 units" },
-  { id: 2, name: "Make It Yours", time: "OEM & private-label branding available" },
-  { id: 3, name: "Real People. Real Support.", time: "Mon – Sat | 9 AM – 7 PM" },
+  { 
+    id: 1, 
+    name: "Start Small, Scale Smart", 
+    time: "Wholesale orders from just 50 units",
+    icon: Rocket,
+    bgColor: "bg-amber-50 text-amber-500",
+  },
+  { 
+    id: 2, 
+    name: "Make It Yours", 
+    time: "OEM & private-label branding available",
+    icon: Sparkles,
+    bgColor: "bg-pink-50 text-rose-500",
+  },
+  { 
+    id: 3, 
+    name: "Real People. Real Support.", 
+    time: "Mon – Sat | 9 AM – 7 PM",
+    icon: Headphones,
+    bgColor: "bg-teal-50 text-teal-500",
+  },
 ];
  
 const BusinessStats = () => {
   return (
-    <section className="w-full relative bg-white py-16 font-quicksand overflow-hidden">
+    <section className="w-full relative bg-white py-6 sm:py-16 font-quicksand overflow-hidden">
       {/* CYAN BLUE SECTION */}
-      <div className="relative max-w-7xl mx-auto bg-[#00C4B5] rounded-3xl sm:rounded-[3rem] px-6 sm:px-12 py-16 lg:py-24 mb-16 lg:mb-32 shadow-lg">
+      <div className="relative max-w-7xl mx-auto bg-[#00C4B5] rounded-3xl sm:rounded-[3rem] px-4 sm:px-12 pt-8 pb-16 sm:py-16 lg:py-24 mb-10 sm:mb-20 lg:mb-32 shadow-xl">
         
         {/* Animated Floating Sun Icon */}
         <motion.div 
@@ -44,16 +62,23 @@ const BusinessStats = () => {
         </motion.div>
  
         {/* Stats Grid */}
-        <div className="relative z-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0">
+        <div className="relative z-20 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-2 sm:gap-8">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
-              <div key={stat.id} className={`flex flex-col items-center text-center text-white ${index !== stats.length - 1 ? 'lg:border-r lg:border-white/30 lg:border-dashed' : ''} px-4`}>
-                <div className="mb-4 text-white/90">
-                  <Icon size={48} strokeWidth={1.5} />
+              <div 
+                key={stat.id} 
+                className={`flex flex-col items-center text-center text-white relative px-2 py-1 ${
+                  index % 2 === 0 ? 'after:content-[""] after:absolute after:right-0 after:top-2 after:bottom-2 after:w-[1px] after:bg-white/20 sm:after:hidden' : ''
+                } ${index < 2 ? 'before:content-[""] before:absolute before:bottom-0 before:left-4 before:right-4 before:h-[1px] before:bg-white/20 sm:before:hidden' : ''} ${
+                  index !== stats.length - 1 ? 'lg:border-r lg:border-white/30 lg:border-dashed' : ''
+                }`}
+              >
+                <div className="mb-2 sm:mb-4 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-xs">
+                  <Icon className="w-5 h-5 sm:w-8 sm:h-8 text-white" strokeWidth={2} />
                 </div>
-                <h3 className="text-4xl sm:text-5xl font-black mb-2 tracking-tight">{stat.value}</h3>
-                <p className="text-sm sm:text-base font-semibold text-white/90 tracking-wide">{stat.label}</p>
+                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black mb-0.5 sm:mb-1 tracking-tight drop-shadow-xs">{stat.value}</h3>
+                <p className="text-[11px] sm:text-base font-bold text-white/95 tracking-wide leading-tight">{stat.label}</p>
               </div>
             );
           })}
@@ -61,44 +86,55 @@ const BusinessStats = () => {
       </div>
  
       {/* YELLOW SECTION */}
-      <div className="relative z-30 max-w-6xl mx-auto -mt-24 sm:-mt-32 lg:-mt-48 px-4 sm:px-6">
-        <div className="bg-[#FFD400] rounded-3xl p-8 sm:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row gap-12 lg:gap-16 relative overflow-hidden">
+      <div className="relative z-30 max-w-6xl mx-auto -mt-12 sm:-mt-28 lg:-mt-48 px-3 sm:px-6">
+        <div className="bg-[#FFD400] rounded-3xl p-5 sm:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-16 relative overflow-hidden border-2 border-white/60">
           
           {/* Arrow up circle (bottom right) */}
-          <div className="absolute bottom-6 right-6 w-12 h-12 bg-[#FF6B6B] rounded-full flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-105 transition-transform">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-[#FF6B6B] rounded-full flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-105 transition-transform z-20">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 19V5M5 12l7-7 7 7"/>
             </svg>
           </div>
  
           {/* Left: Text */}
           <div className="flex-1 lg:border-r lg:border-black/10 lg:border-dashed lg:pr-12">
-            <div className="inline-block bg-[#00C4B5] text-white px-5 py-2 rounded-full text-sm font-bold tracking-wide mb-6">
+            <div className="inline-flex items-center gap-1.5 bg-[#00C4B5] text-white px-3.5 py-1.5 sm:px-5 sm:py-2 rounded-full text-[11px] sm:text-sm font-extrabold tracking-wide mb-3 sm:mb-6 shadow-xs">
+              <span className="w-1.5 h-1.5 bg-yellow-300 rounded-full animate-pulse" />
               B2B Trade &amp; Wholesale
             </div>
-            <h2 className="text-4xl sm:text-5xl font-black text-[#0B1A30] leading-tight mb-6 relative inline-block">
+            
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black text-[#0B1A30] leading-tight mb-3 sm:mb-6 relative inline-block">
               Stock What Kids Love.
               {/* Squiggly red underline */}
-              <svg className="absolute -bottom-3 left-0 w-full h-4 text-[#FF6B6B]" viewBox="0 0 200 20" preserveAspectRatio="none">
+              <svg className="absolute -bottom-2 sm:-bottom-3 left-0 w-full h-3 sm:h-4 text-[#FF6B6B]" viewBox="0 0 200 20" preserveAspectRatio="none">
                 <path d="M0 10 Q 50 20, 100 10 T 200 10" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
               </svg>
             </h2>
-            <p className="text-[#0B1A30]/80 font-semibold leading-relaxed text-base mt-4 max-w-md">
-              Why settle for ordinary products when you can stock toys and kids’ furniture designed to catch attention, deliver quality, and keep customers coming back? Get direct wholesale access, flexible order quantities, and customization options—all backed by a team that understands what growing businesses need.
+
+            <p className="text-[#0B1A30]/85 font-semibold leading-relaxed text-xs sm:text-base mt-3 max-w-md">
+              Why settle for ordinary products when you can stock toys and kids’ furniture designed to catch attention, deliver quality, and keep customers coming back? Get direct wholesale access, flexible order quantities, and customization options.
             </p>
           </div>
  
-          {/* Right: Time list */}
-          <div className="flex-1 flex flex-col justify-center gap-4">
-            {b2bSchedules.map((item) => (
-              <div key={item.id} className="bg-white rounded-3xl px-6 sm:px-8 py-4 sm:py-5 grid grid-cols-1 sm:grid-cols-12 items-center shadow-sm hover:shadow-md transition-shadow gap-2 sm:gap-4">
-                <span className="font-bold text-[#0B1A30] text-base sm:text-lg col-span-1 sm:col-span-5">{item.name}</span>
-                <div className="hidden sm:flex col-span-1 justify-center">
-                  <div className="h-6 w-px bg-gray-200 border-r border-dashed border-gray-300"></div>
+          {/* Right: B2B Schedule Cards */}
+          <div className="flex-1 flex flex-col justify-center gap-3 sm:gap-4 pb-6 sm:pb-0">
+            {b2bSchedules.map((item) => {
+              const ItemIcon = item.icon;
+              return (
+                <div 
+                  key={item.id} 
+                  className="bg-white rounded-2xl sm:rounded-3xl p-4 sm:px-6 sm:py-4.5 flex items-center gap-3.5 sm:gap-5 shadow-sm hover:shadow-md transition-all border border-black/5"
+                >
+                  <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl ${item.bgColor} flex-shrink-0 flex items-center justify-center shadow-xs`}>
+                    <ItemIcon className="w-5 h-5 sm:w-6 sm:h-6" strokeWidth={2.2} />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="font-extrabold text-[#0B1A30] text-sm sm:text-base leading-snug">{item.name}</span>
+                    <span className="font-semibold text-gray-500 text-xs sm:text-sm mt-0.5 leading-snug">{item.time}</span>
+                  </div>
                 </div>
-                <span className="font-bold text-gray-600 sm:text-right col-span-1 sm:col-span-6 text-sm sm:text-base">{item.time}</span>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
