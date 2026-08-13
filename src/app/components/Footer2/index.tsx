@@ -87,7 +87,7 @@ const Footer2 = () => {
             </a>
 
             {/* Contact Info List with Colored Badges */}
-            <ul className="space-y-3 text-xs sm:text-sm">
+            <ul className="space-y-3 text-[13px] sm:text-[15px]">
               <li className="flex items-start gap-3 text-gray-700 hover:text-[#00C4B5] transition-colors">
                 <div className="w-7 h-7 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0 text-[#00C4B5] mt-0.5">
                   <MapPin size={15} />
@@ -119,11 +119,11 @@ const Footer2 = () => {
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:col-span-6 gap-6 sm:gap-4 lg:grid-cols-6">
             {/* Column 2: About Us */}
             <div className="lg:col-span-2">
-              <h3 className="text-base sm:text-lg font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
+              <h3 className="text-[17px] sm:text-[19px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
                 <span>About Us</span>
               </h3>
               <div className="w-8 sm:w-10 h-1 bg-[#FF6B6B] mb-3 sm:mb-6 rounded-full"></div>
-              <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
+              <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[15px]">
                 {[
                   { name: 'About Us', href: '/about' },
                   { name: 'Our Story', href: '/ourstory' },
@@ -142,11 +142,11 @@ const Footer2 = () => {
 
             {/* Column 3: News & Events */}
             <div className="lg:col-span-2">
-              <h3 className="text-base sm:text-lg font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
+              <h3 className="text-[17px] sm:text-[19px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
                 <span>News &amp; Events</span>
               </h3>
               <div className="w-8 sm:w-10 h-1 bg-amber-400 mb-3 sm:mb-6 rounded-full"></div>
-              <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
+              <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[15px]">
                 {[
                   { name: 'Exhibition', href: '/exhibition' },
                   { name: 'Blogs & Journal', href: '/blogs' },
@@ -163,11 +163,11 @@ const Footer2 = () => {
 
             {/* Column 4: Customer Support */}
             <div className="col-span-2 sm:col-span-1 lg:col-span-2 pt-2 sm:pt-0">
-              <h3 className="text-base sm:text-lg font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
+              <h3 className="text-[17px] sm:text-[19px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
                 <span>Customer Support</span>
               </h3>
               <div className="w-8 sm:w-10 h-1 bg-[#00C4B5] mb-3 sm:mb-6 rounded-full"></div>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2.5 sm:gap-3 text-xs sm:text-sm">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2.5 sm:gap-3 text-[13px] sm:text-[15px]">
                 {['Contact Us', 'Store List', 'Opening Hours', 'Returns & Exchanges', 'Refund & Returns', 'Privacy Policy'].map((link) => (
                   <li key={link}>
                     <a href="#" className="text-gray-600 hover:text-[#00C4B5] font-bold transition-colors duration-200 inline-block hover:translate-x-1 transform">
@@ -183,16 +183,16 @@ const Footer2 = () => {
           <div className="lg:col-span-3 flex flex-col lg:mb-4 bg-[#BDECF0] px-4 pt-4 pb-6 sm:px-5 sm:pt-5 sm:pb-8 rounded-2xl sm:rounded-3xl text-[#0F2942] shadow-sm relative overflow-hidden border border-[#00C4B5]/20">
             <div className="relative z-10 flex-1 flex flex-col">
               <div>
-              <div className="inline-flex items-center gap-1.5 bg-[#00C4B5] text-white px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider mb-2 shadow-xs">
+              <div className="inline-flex items-center gap-1.5 bg-[#00C4B5] text-white px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider mb-2 shadow-xs">
                 <Send className="w-3 h-3 text-white" />
                 Stay Updated
               </div>
 
-              <h3 className="text-base sm:text-lg font-black text-[#0F2942] mb-1 leading-tight">
+              <h3 className="text-[17px] sm:text-[19px] font-black text-[#0F2942] mb-1 leading-tight">
                 Subscribe Our Newsletter
               </h3>
               
-              <p className="text-xs sm:text-sm mb-3 text-[#0F2942]/80 leading-relaxed font-semibold">
+              <p className="text-[13px] sm:text-[15px] mb-3 text-[#0F2942]/80 leading-relaxed font-semibold">
                 Never miss our latest toy releases, deals, and play guides.
               </p>
               
@@ -204,7 +204,7 @@ const Footer2 = () => {
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
-                  className="w-full py-2.5 pl-9 pr-11 rounded-xl border border-white/60 focus:outline-none focus:bg-white bg-white text-slate-800 text-xs sm:text-sm shadow-xs transition-all font-semibold placeholder:text-gray-400"
+                  className="w-full py-2.5 pl-9 pr-11 rounded-xl border border-white/60 focus:outline-none focus:bg-white bg-white text-slate-800 text-[13px] sm:text-[15px] shadow-xs transition-all font-semibold placeholder:text-gray-400"
                 />
                 <button className="absolute right-1 top-1 bottom-1 bg-[#00C4B5] hover:bg-[#00b0a2] text-white px-3 rounded-lg transition-all flex items-center justify-center shadow-sm hover:scale-105 active:scale-95">
                   <ArrowRight size={15} />
