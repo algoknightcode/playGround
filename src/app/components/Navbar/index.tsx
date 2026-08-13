@@ -247,15 +247,11 @@ export default function KidzaNavbar() {
 
         {/* ═══ 2. MAIN NAVBAR ═══ */}
         <nav
-          className={`px-4 sm:px-6 lg:px-12 py-1 flex items-center justify-between relative z-50 transition-all duration-500 ${
+          className={`px-4 sm:px-6 lg:px-12 py-1 flex items-center justify-between sticky top-0 z-50 transition-[background-color,box-shadow] duration-300 ${
             scrolled
-              ? 'bg-white/80 backdrop-blur-2xl shadow-lg shadow-black/8 border-b border-white/60'
+              ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100'
               : 'bg-white shadow-sm'
           }`}
-          style={{
-            position: scrolled ? 'sticky' : 'relative',
-            top: 0,
-          }}
         >
           <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between gap-4">
 
