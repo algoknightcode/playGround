@@ -83,10 +83,6 @@ const productSchema = new mongoose.Schema(
     }
 );
 
-if (process.env.NODE_ENV === "development") {
-    delete (mongoose.models as any).Product;
-}
-
 const Product =
     mongoose.models.Product ||
     mongoose.model("Product", productSchema);

@@ -94,10 +94,10 @@ export const FeaturesGrid: React.FC = () => {
   ];
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E0F8F8] to-[#D2F2F2] px-3 sm:px-6 lg:px-12 py-8 sm:py-14 font-quicksand overflow-hidden select-none">
+    <section className="relative w-full bg-gradient-to-b from-[#E0F8F8] to-[#D2F2F2] px-3 sm:px-6 lg:px-12 py-5 sm:py-8 font-quicksand overflow-hidden select-none">
       
       {/* Floating Umbrella Accent */}
-      <div className="absolute top-3 sm:top-6 right-3 sm:right-10 z-20 pointer-events-none opacity-90">
+      <div className="absolute top-2 sm:top-3 right-3 sm:right-10 z-20 pointer-events-none opacity-90">
         <div className="relative animate-bounce duration-1000">
           <svg width="38" height="38" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-6 sm:w-12 sm:h-12 transition-transform duration-300 drop-shadow-md">
             <path d="M32 8C16.536 8 4 20.536 4 36H18C18 32.686 24.284 30 32 30C39.716 30 46 32.686 46 36H60C60 20.536 47.464 8 32 8Z" fill="#FF6B6B" />

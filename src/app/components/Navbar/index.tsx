@@ -13,7 +13,7 @@ export default function KidzaNavbar() {
     <header className="w-full font-quicksand relative z-50">
       
       {/* ═══ 1. CYAN TOP BAR ═══ */}
-      <div className="relative bg-[#62C4D2] text-white text-xs sm:text-sm px-4 sm:px-6 lg:px-12 pt-2 pb-3.5 sm:pb-4 z-20">
+      <div className="bg-[#62C4D2] text-white text-xs sm:text-sm px-4 sm:px-6 lg:px-12 py-2.5">
         <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center gap-2 md:gap-4 text-center md:text-left">
           
           {/* Left Text */}
@@ -40,27 +40,10 @@ export default function KidzaNavbar() {
           </div>
 
         </div>
-
-        {/* Seamless Scalloped Wave Overlay */}
-        <div className="absolute left-0 right-0 -bottom-3 sm:-bottom-4 w-full h-5 sm:h-8 overflow-hidden leading-none z-20 pointer-events-none">
-          <div 
-            className="w-full h-full bg-[#62C4D2]"
-            style={{
-              WebkitMaskImage: "url('/assets/navbar/wavy%20design%20.png')",
-              maskImage: "url('/assets/navbar/wavy%20design%20.png')",
-              WebkitMaskSize: '100% 100%',
-              maskSize: '100% 100%',
-              WebkitMaskRepeat: 'no-repeat',
-              maskRepeat: 'no-repeat',
-              WebkitMaskPosition: 'bottom center',
-              maskPosition: 'bottom center',
-            }}
-          />
-        </div>
       </div>
 
       {/* ═══ 2. MAIN WHITE NAVBAR ═══ */}
-      <nav className="bg-white px-4 sm:px-6 lg:px-12 pt-1.5 pb-1 flex items-center justify-between relative z-50">
+      <nav className="bg-white px-4 sm:px-6 lg:px-12 py-2 flex items-center justify-between relative z-50">
         
         <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between gap-4">
           
