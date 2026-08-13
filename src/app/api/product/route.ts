@@ -39,6 +39,7 @@ export async function GET() {
             {
                 success: false,
                 message: "Failed to fetch products",
+                error: error instanceof Error ? error.message : String(error),
             },
             { status: 500 }
         );
