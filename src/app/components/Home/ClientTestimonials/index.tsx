@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules';
-import { motion } from 'framer-motion';
+import type { Swiper as SwiperClass } from 'swiper';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -46,8 +47,7 @@ const testimonialsData: Testimonial[] = [
 
 export const ClientTestimonials: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const [swiperRef, setSwiperRef] = useState<any>(null);
+  const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
 
   return (
     <div className="relative w-full bg-[#FFFFFF] py-12 sm:py-24 px-4 sm:px-6 md:px-12 font-sans antialiased overflow-hidden select-none">
@@ -58,13 +58,13 @@ export const ClientTestimonials: React.FC = () => {
         {/* LEFT COLUMN: Section Header */}
         <div className="lg:col-span-5 relative flex flex-col justify-between h-full text-center lg:text-left">
           <div>
-            <span className="text-xs sm:text-sm font-bold uppercase tracking-widest text-[#2D3436]/70 block mb-2">
+            <span className="text-[14px] sm:text-sm font-bold uppercase tracking-widest text-[#2D3436]/70 block mb-2">
               TOP REVIEWS
             </span>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black text-[#2D3436] tracking-tight mb-3 sm:mb-4">
+            <h2 className="text-[32px] sm:text-5xl lg:text-6xl font-black text-[#2D3436] tracking-tight mb-3 sm:mb-4">
               Client Testimonials
             </h2>
-            <p className="text-[#636E72] text-sm sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-6 sm:mb-8 font-semibold">
+            <p className="text-[#636E72] text-base sm:text-lg leading-relaxed max-w-md mx-auto lg:mx-0 mb-6 sm:mb-8 font-semibold">
               Read real feedback from teachers, parents, and designers who love our toys and furniture.
             </p>
           </div>
@@ -89,12 +89,8 @@ export const ClientTestimonials: React.FC = () => {
         {/* RIGHT COLUMN: Card Container */}
         <div className="lg:col-span-7 relative">
           
-          {/* Playful Giraffe SVG standing at the card's edge */}
-          <motion.div 
-            animate={{ x: [-6, 6, -6] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute -left-24 bottom-0 z-0 pointer-events-none hidden lg:block"
-          >
+          {/* Playful Giraffe SVG standing at the card's edge (Pure CSS Floating) */}
+          <div className="absolute -left-24 bottom-0 z-0 pointer-events-none hidden lg:block animate-float-gir">
             <svg className="w-28 sm:w-32 h-auto drop-shadow-md" viewBox="0 0 100 160" fill="none">
               <rect x="26" y="110" width="6" height="45" rx="3" fill="#D8BE9A" />
               <rect x="38" y="110" width="6" height="45" rx="3" fill="#C5AA85" />
@@ -115,19 +111,15 @@ export const ClientTestimonials: React.FC = () => {
               <path d="M78,100 Q88,105 85,115" stroke="#E8D2B4" strokeWidth="3" fill="none" />
               <circle cx="85" cy="115" r="3" fill="#F4A261" />
             </svg>
-          </motion.div>
+          </div>
  
           {/* Main Teal Testimonial Card */}
           <div className="relative z-10 bg-[#4ECDC4] text-white rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-10 shadow-2xl overflow-hidden border-4 border-white/20 min-h-[300px] flex items-center justify-center">
             
-            {/* --- FLOATING DECORATIVE SVGS ON CARD --- */}
+            {/* --- FLOATING DECORATIVE SVGS ON CARD (CSS ANIMATED) --- */}
             
             {/* 1. Top Left Flying Red Toy Car SVG */}
-            <motion.div 
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-3 left-4 sm:left-6 z-20 pointer-events-none opacity-90"
-            >
+            <div className="absolute top-3 left-4 sm:left-6 z-20 pointer-events-none opacity-90 animate-float-y">
               <svg className="w-12 h-9 sm:w-16 sm:h-12 text-[#FF6B6B]" viewBox="0 0 100 60" fill="currentColor">
                 <path d="M15,35 L25,18 C28,12 35,10 50,10 L70,10 C80,10 85,15 88,25 L95,35 C98,35 100,40 100,45 L100,50 C100,52 98,55 95,55 L85,55 C85,48 78,42 70,42 C62,42 55,48 55,55 L35,55 C35,48 28,42 20,42 C12,42 5,48 5,55 L0,55 L0,45 C0,40 5,35 15,35 Z" />
                 <circle cx="20" cy="52" r="7" fill="#FFE66D" stroke="#2D3436" strokeWidth="2" />
@@ -135,14 +127,10 @@ export const ClientTestimonials: React.FC = () => {
                 <rect x="32" y="16" width="18" height="15" rx="3" fill="#FFFFFF" opacity="0.8" />
                 <rect x="54" y="16" width="20" height="15" rx="3" fill="#FFFFFF" opacity="0.8" />
               </svg>
-            </motion.div>
+            </div>
 
             {/* 2. Top Right Rainbow with Clouds SVG */}
-            <motion.div 
-              animate={{ y: [0, 5, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute top-4 right-4 z-20 pointer-events-none opacity-80"
-            >
+            <div className="absolute top-4 right-4 z-20 pointer-events-none opacity-80 animate-float-y-reverse">
               <svg className="w-12 sm:w-16 h-10 sm:h-12" viewBox="0 0 100 70" fill="none">
                 <path d="M10,60 A40,40 0 0,1 90,60" stroke="#FF6B6B" strokeWidth="5" strokeLinecap="round" />
                 <path d="M20,60 A30,30 0 0,1 80,60" stroke="#FFE66D" strokeWidth="5" strokeLinecap="round" />
@@ -150,32 +138,24 @@ export const ClientTestimonials: React.FC = () => {
                 <circle cx="12" cy="58" r="10" fill="#FFFFFF" />
                 <circle cx="88" cy="58" r="10" fill="#FFFFFF" />
               </svg>
-            </motion.div>
+            </div>
 
             {/* 3. Bottom Solid White Cloud SVG */}
-            <motion.div 
-              animate={{ x: [0, -10, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-3 left-6 sm:left-[54%] z-20 pointer-events-none opacity-50"
-            >
+            <div className="absolute bottom-3 left-6 sm:left-[54%] z-20 pointer-events-none opacity-50 animate-float-x">
               <svg className="w-10 sm:w-12 h-6 sm:h-8 text-white" viewBox="0 0 100 60" fill="currentColor">
                 <path d="M20,50 C10,50 0,40 0,28 C0,15 15,8 30,10 C40,0 65,0 75,12 C88,12 100,20 100,32 C100,45 85,50 70,50 Z" />
               </svg>
-            </motion.div>
+            </div>
 
             {/* 4. Bottom Right Smiling Star SVG */}
-            <motion.div 
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-              className="absolute bottom-4 right-4 sm:right-8 z-20 pointer-events-none text-[#D8BE9A]"
-            >
+            <div className="absolute bottom-4 right-4 sm:right-8 z-20 pointer-events-none text-[#D8BE9A] animate-pulse-subtle">
               <svg className="w-7 h-7 sm:w-8 sm:h-8" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
                 <circle cx="10" cy="12" r="1" fill="#2D3436" />
                 <circle cx="14" cy="12" r="1" fill="#2D3436" />
                 <path d="M10.5,15 Q12,17 13.5,15" stroke="#2D3436" strokeWidth="1" fill="none" />
               </svg>
-            </motion.div>
+            </div>
 
             <Swiper
               slidesPerView={1}
@@ -192,12 +172,18 @@ export const ClientTestimonials: React.FC = () => {
                     
                     {/* --- CARD LEFT COLUMN: AVATAR & NAME --- */}
                     <div className="flex flex-col items-center text-center space-y-2 min-w-[130px]">
-                      <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white/40 shadow-lg">
-                        <img src={t.avatar} alt={t.name} className="w-full h-full object-cover" />
+                      <div className="relative w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden border-4 border-white/40 shadow-lg">
+                        <Image 
+                          src={t.avatar} 
+                          alt={t.name} 
+                          width={96}
+                          height={96}
+                          className="w-full h-full object-cover" 
+                        />
                       </div>
                       <div>
-                        <h3 className="text-lg sm:text-xl font-extrabold text-white tracking-wide">{t.name}</h3>
-                        <p className="text-[10px] sm:text-xs font-bold text-white/80 tracking-widest uppercase">{t.role}</p>
+                        <h3 className="text-[20px] sm:text-xl font-extrabold text-white tracking-wide">{t.name}</h3>
+                        <p className="text-xs sm:text-xs font-bold text-white/80 tracking-widest uppercase">{t.role}</p>
                       </div>
                     </div>
 
@@ -206,30 +192,20 @@ export const ClientTestimonials: React.FC = () => {
 
                     {/* --- CARD RIGHT COLUMN: RATING & QUOTE --- */}
                     <div className="flex-1 space-y-2 sm:space-y-3 text-center md:text-left flex flex-col items-center md:items-start">
-                      {/* 5 Playful Wobbling Stars */}
+                      {/* Static Yellow Rating Stars */}
                       <div className="flex items-center justify-center md:justify-start gap-1 text-white">
                         {[...Array(t.rating)].map((_, i) => (
-                          <motion.svg
+                          <svg
                             key={i}
-                            animate={{
-                              scale: [1, 1.15, 0.95, 1.1, 1],
-                              rotate: [0, 10, -10, 5, 0]
-                            }}
-                            transition={{
-                              duration: 2.5,
-                              repeat: Infinity,
-                              ease: 'easeInOut',
-                              delay: i * 0.2
-                            }}
                             className="w-4 h-4 sm:w-5 sm:h-5 fill-[#FFE66D]"
                             viewBox="0 0 24 24"
                           >
                             <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                          </motion.svg>
+                          </svg>
                         ))}
                       </div>
 
-                      <p className="text-white/95 text-xs sm:text-base leading-relaxed font-semibold max-w-full">
+                      <p className="text-white/95 text-sm sm:text-base leading-relaxed font-semibold max-w-full">
                         &quot;{t.quote}&quot;
                       </p>
                     </div>
@@ -242,6 +218,36 @@ export const ClientTestimonials: React.FC = () => {
         </div>
 
       </div>
+
+      {/* Zero-overhead CSS Animations for smooth floating visuals */}
+      <style jsx>{`
+        @keyframes floatY {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+        }
+        @keyframes floatYReverse {
+          0%, 100% { transform: translateY(0px); }
+          50% { transform: translateY(5px); }
+        }
+        @keyframes floatX {
+          0%, 100% { transform: translateX(0px); }
+          50% { transform: translateX(-8px); }
+        }
+        @keyframes floatGiraffe {
+          0%, 100% { transform: translateX(-6px); }
+          50% { transform: translateX(6px); }
+        }
+        @keyframes pulseSubtle {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.08); }
+        }
+
+        .animate-float-y { animation: floatY 3.5s ease-in-out infinite; }
+        .animate-float-y-reverse { animation: floatYReverse 4s ease-in-out infinite; }
+        .animate-float-x { animation: floatX 5s ease-in-out infinite; }
+        .animate-float-gir { animation: floatGiraffe 4s ease-in-out infinite; }
+        .animate-pulse-subtle { animation: pulseSubtle 3s ease-in-out infinite; }
+      `}</style>
     </div>
   );
 };

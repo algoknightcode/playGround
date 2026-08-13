@@ -1,8 +1,10 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Printer, ArrowRight, Cloud, Sparkles, Send } from 'lucide-react';
+import { MapPin, Phone, Mail, Printer, ArrowRight, Cloud, Send } from 'lucide-react';
 
 const FacebookIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg {...props} width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
@@ -36,7 +38,7 @@ const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const Footer2 = () => {
   return (
-    <footer className="relative bg-white pt-10 sm:pt-16 pb-36 sm:pb-48 md:pb-60 lg:pb-72 font-quicksand text-gray-600 overflow-hidden">
+    <footer className="relative bg-white pt-4 sm:pt-16 pb-36 sm:pb-48 md:pb-60 lg:pb-72 font-quicksand text-gray-600 overflow-hidden">
       
       {/* ═══ TOP SCALLOPED FLUFFY CLOUD WAVE DIVIDER ═══ */}
       <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none -translate-y-[98%] text-white">
@@ -52,42 +54,44 @@ const Footer2 = () => {
         </svg>
       </div>
 
-      {/* ═══ FLOATING BACKGROUND CLOUDS ═══ */}
+      {/* ═══ FLOATING BACKGROUND CLOUDS (MOBILE + DESKTOP) ═══ */}
       <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none">
         <motion.div
-          animate={{ x: ['-20vw', '115vw'] }}
-          transition={{ duration: 24, repeat: Infinity, ease: 'linear' }}
-          className="absolute top-10 left-0 text-[#38BDF8]/20"
+          animate={{ x: ['-30vw', '115vw'] }}
+          transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+          className="absolute top-6 sm:top-10 left-0 text-[#38BDF8]/20"
         >
-          <Cloud className="w-16 h-16 sm:w-20 sm:h-20 stroke-[1.8] fill-[#38BDF8]/5" />
+          <Cloud className="w-12 h-12 sm:w-20 sm:h-20 stroke-[1.8] fill-[#38BDF8]/5" />
         </motion.div>
 
         <motion.div
-          animate={{ x: ['-25vw', '115vw'] }}
-          transition={{ duration: 32, repeat: Infinity, ease: 'linear', delay: 10 }}
-          className="absolute top-28 left-0 text-[#00C4B5]/15"
+          animate={{ x: ['-35vw', '115vw'] }}
+          transition={{ duration: 32, repeat: Infinity, ease: 'linear', delay: 8 }}
+          className="absolute top-20 sm:top-28 left-0 text-[#00C4B5]/15"
         >
-          <Cloud className="w-20 h-20 sm:w-28 sm:h-28 stroke-[1.8] fill-[#00C4B5]/5" />
+          <Cloud className="w-16 h-16 sm:w-28 sm:h-28 stroke-[1.8] fill-[#00C4B5]/5" />
         </motion.div>
       </div>
 
       {/* --- Top Content Section --- */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-4">
           
           {/* Column 1: Brand & Contact Info */}
-          <div className="space-y-4 lg:col-span-3">
+          <div className="space-y-1 sm:space-y-4 lg:col-span-3">
             {/* Logo */}
-            <a href="/" className="inline-block -mt-1 sm:-mt-5 mb-1">
-              <img 
+            <Link href="/" className="inline-block -mt-2 sm:-mt-5 mb-0 sm:mb-1">
+              <Image 
                 src="/assets/clean_logo_toypark.webp" 
                 alt="ToyPark Logo" 
-                className="h-16 sm:h-28 md:h-34 w-auto max-w-[220px] sm:max-w-[320px] object-contain transform hover:scale-105 transition-transform" 
+                width={320}
+                height={120}
+                className="h-20 sm:h-28 md:h-34 w-auto max-w-[260px] sm:max-w-[320px] object-contain transform hover:scale-105 transition-transform" 
               />
-            </a>
+            </Link>
 
-            {/* Contact Info List with Colored Badges */}
-            <ul className="space-y-3 text-[13px] sm:text-[15px]">
+            {/* Contact Info List */}
+            <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base">
               <li className="flex items-start gap-3 text-gray-700 hover:text-[#00C4B5] transition-colors">
                 <div className="w-7 h-7 rounded-xl bg-teal-50 flex items-center justify-center flex-shrink-0 text-[#00C4B5] mt-0.5">
                   <MapPin size={15} />
@@ -115,15 +119,15 @@ const Footer2 = () => {
             </ul>
           </div>
 
-          {/* Quick Links Group Container (2-Column Grid on Mobile) */}
+          {/* Quick Links Group Container */}
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:col-span-6 gap-6 sm:gap-4 lg:grid-cols-6">
             {/* Column 2: About Us */}
             <div className="lg:col-span-2">
-              <h3 className="text-[17px] sm:text-[19px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
+              <h3 className="text-lg sm:text-[20px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
                 <span>About Us</span>
               </h3>
               <div className="w-8 sm:w-10 h-1 bg-[#FF6B6B] mb-3 sm:mb-6 rounded-full"></div>
-              <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[15px]">
+              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
                 {[
                   { name: 'About Us', href: '/about' },
                   { name: 'Our Story', href: '/ourstory' },
@@ -132,9 +136,9 @@ const Footer2 = () => {
                   { name: 'Careers', href: '/careers' },
                 ].map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="text-gray-600 hover:text-[#FF6B6B] font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform">
+                    <Link href={link.href} className="text-gray-600 hover:text-[#FF6B6B] font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform">
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -142,20 +146,20 @@ const Footer2 = () => {
 
             {/* Column 3: News & Events */}
             <div className="lg:col-span-2">
-              <h3 className="text-[17px] sm:text-[19px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
+              <h3 className="text-lg sm:text-[20px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
                 <span>News &amp; Events</span>
               </h3>
               <div className="w-8 sm:w-10 h-1 bg-amber-400 mb-3 sm:mb-6 rounded-full"></div>
-              <ul className="space-y-2.5 sm:space-y-3 text-[13px] sm:text-[15px]">
+              <ul className="space-y-2.5 sm:space-y-3 text-sm sm:text-base">
                 {[
                   { name: 'Exhibition', href: '/exhibition' },
                   { name: 'Blogs & Journal', href: '/blogs' },
                   { name: 'Gallery Showcase', href: '/gallery' },
                 ].map((link) => (
                   <li key={link.name}>
-                    <a href={link.href} className="text-gray-600 hover:text-amber-400 font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform">
+                    <Link href={link.href} className="text-gray-600 hover:text-amber-400 font-extrabold transition-colors duration-200 inline-block hover:translate-x-1 transform">
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -163,54 +167,53 @@ const Footer2 = () => {
 
             {/* Column 4: Customer Support */}
             <div className="col-span-2 sm:col-span-1 lg:col-span-2 pt-2 sm:pt-0">
-              <h3 className="text-[17px] sm:text-[19px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
+              <h3 className="text-lg sm:text-[20px] font-black text-gray-900 mb-1.5 sm:mb-2 flex items-center gap-2">
                 <span>Customer Support</span>
               </h3>
               <div className="w-8 sm:w-10 h-1 bg-[#00C4B5] mb-3 sm:mb-6 rounded-full"></div>
-              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2.5 sm:gap-3 text-[13px] sm:text-[15px]">
+              <ul className="grid grid-cols-2 sm:grid-cols-1 gap-2.5 sm:gap-3 text-sm sm:text-base">
                 {['Contact Us', 'Store List', 'Opening Hours', 'Returns & Exchanges', 'Refund & Returns', 'Privacy Policy'].map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-gray-600 hover:text-[#00C4B5] font-bold transition-colors duration-200 inline-block hover:translate-x-1 transform">
+                    <Link href="#" className="text-gray-600 hover:text-[#00C4B5] font-bold transition-colors duration-200 inline-block hover:translate-x-1 transform">
                       {link}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           </div>
 
-          {/* Column 5: Snug Newsletter Card */}
+          {/* Column 5: Newsletter Card */}
           <div className="lg:col-span-3 flex flex-col lg:mb-4 bg-[#BDECF0] px-4 pt-4 pb-6 sm:px-5 sm:pt-5 sm:pb-8 rounded-2xl sm:rounded-3xl text-[#0F2942] shadow-sm relative overflow-hidden border border-[#00C4B5]/20">
             <div className="relative z-10 flex-1 flex flex-col">
               <div>
-              <div className="inline-flex items-center gap-1.5 bg-[#00C4B5] text-white px-2.5 py-1 rounded-full text-[11px] font-black uppercase tracking-wider mb-2 shadow-xs">
-                <Send className="w-3 h-3 text-white" />
-                Stay Updated
-              </div>
-
-              <h3 className="text-[17px] sm:text-[19px] font-black text-[#0F2942] mb-1 leading-tight">
-                Subscribe Our Newsletter
-              </h3>
-              
-              <p className="text-[13px] sm:text-[15px] mb-3 text-[#0F2942]/80 leading-relaxed font-semibold">
-                Never miss our latest toy releases, deals, and play guides.
-              </p>
-              
-              {/* Input Form */}
-              <div className="relative flex items-center w-full mb-3">
-                <div className="absolute left-3 text-gray-400">
-                  <Mail size={15} />
+                <div className="inline-flex items-center gap-1.5 bg-[#00C4B5] text-white px-2.5 py-1 rounded-full text-xs font-black uppercase tracking-wider mb-2 shadow-xs">
+                  <Send className="w-3 h-3 text-white" />
+                  Stay Updated
                 </div>
-                <input 
-                  type="email" 
-                  placeholder="Enter your email" 
-                  className="w-full py-2.5 pl-9 pr-11 rounded-xl border border-white/60 focus:outline-none focus:bg-white bg-white text-slate-800 text-[13px] sm:text-[15px] shadow-xs transition-all font-semibold placeholder:text-gray-400"
-                />
-                <button className="absolute right-1 top-1 bottom-1 bg-[#00C4B5] hover:bg-[#00b0a2] text-white px-3 rounded-lg transition-all flex items-center justify-center shadow-sm hover:scale-105 active:scale-95">
-                  <ArrowRight size={15} />
-                </button>
-              </div>
 
+                <h3 className="text-lg sm:text-[20px] font-black text-[#0F2942] mb-1 leading-tight">
+                  Subscribe Our Newsletter
+                </h3>
+                
+                <p className="text-sm sm:text-base mb-3 text-[#0F2942]/80 leading-relaxed font-semibold">
+                  Never miss our latest toy releases, deals, and play guides.
+                </p>
+                
+                {/* Input Form */}
+                <div className="relative flex items-center w-full mb-3">
+                  <div className="absolute left-3 text-gray-400">
+                    <Mail size={15} />
+                  </div>
+                  <input 
+                    type="email" 
+                    placeholder="Enter your email" 
+                    className="w-full py-2.5 pl-9 pr-11 rounded-xl border border-white/60 focus:outline-none focus:bg-white bg-white text-slate-800 text-sm sm:text-base shadow-xs transition-all font-semibold placeholder:text-gray-400"
+                  />
+                  <button className="absolute right-1 top-1 bottom-1 bg-[#00C4B5] hover:bg-[#00b0a2] text-white px-3 rounded-lg transition-all flex items-center justify-center shadow-sm hover:scale-105 active:scale-95">
+                    <ArrowRight size={15} />
+                  </button>
+                </div>
               </div>
 
               {/* Social Icons */}
@@ -226,40 +229,50 @@ const Footer2 = () => {
         </div>
       </div>
 
-      {/* --- Bottom Animated Grass Section --- */}
+      {/* --- Bottom Animated Grass & Children Section --- */}
       <div className="absolute bottom-0 left-0 w-full z-10 pointer-events-none">
         
         {/* Animated Child 1 */}
-        <motion.img 
-          src="/assets/Footer_images/Child1.svg" 
-          alt="Child on left"
+        <motion.div 
           className="absolute z-20 left-[2%] sm:left-[5%] lg:left-[5%] bottom-[15px] sm:bottom-[60px] md:bottom-[70px] lg:bottom-[83px] w-20 sm:w-32 md:w-36 lg:w-[177px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-        />
+        >
+          <Image 
+            src="/assets/Footer_images/Child1.svg" 
+            alt=""
+            width={177}
+            height={200}
+            className="w-full h-auto"
+          />
+        </motion.div>
 
         {/* Animated Child 2 */}
-        <motion.img 
-          src="/assets/Footer_images/child2.svg" 
-          alt="Child on right"
+        <motion.div 
           className="absolute z-20 right-[2%] sm:right-[5%] lg:right-[6%] bottom-[20px] sm:bottom-[70px] md:bottom-[85px] lg:bottom-[100px] w-20 sm:w-32 md:w-36 lg:w-[147px]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-        />
+        >
+          <Image 
+            src="/assets/Footer_images/child2.svg" 
+            alt=""
+            width={147}
+            height={180}
+            className="w-full h-auto"
+          />
+        </motion.div>
 
-        {/* Grass Background */}
-        <motion.img 
+        {/* Static Grass Image */}
+        <Image 
           src="/assets/Footer_images/greengrass.png" 
-          alt="Grass Background"
+          alt=""
+          width={1920}
+          height={435}
           className="w-full object-cover object-top h-[140px] sm:h-[220px] md:h-[300px] lg:h-[435px]"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
         />
 
         {/* Copyright Bar */}

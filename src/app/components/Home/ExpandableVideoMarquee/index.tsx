@@ -12,8 +12,8 @@ interface ExpandableVideoMarqueeProps {
 }
 
 export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
-  videoSrc = '/video/Toy_park1.mp4',
-  mobileVideoSrc = '/video/Toy_park1_mobile.mp4',
+  videoSrc = 'https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Toy_park1.mp4',
+  mobileVideoSrc = 'https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Toy_park1.mp4',
   tickerText = 'play.Grow KIDS toys and Furniture • ',
   badgeText = 'NEW COLLECTION 2026',
 }) => {
@@ -21,7 +21,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
   const desktopVideoRef = useRef<HTMLVideoElement>(null);
   const mobileVideoRef = useRef<HTMLVideoElement>(null);
 
-  // IntersectionObserver controlling video play/pause for both desktop & mobile
+  // IntersectionObserver controlling video lazy loading & play/pause
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -34,7 +34,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '150px 0px' }
     );
 
     if (desktopVideoRef.current) observer.observe(desktopVideoRef.current);
@@ -115,7 +115,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           <div className="w-full aspect-video rounded-2xl border-3 border-[#2D3436] shadow-[5px_5px_0px_0px_#2D3436] bg-[#FFE66D] overflow-hidden relative">
             <video
               ref={mobileVideoRef}
-              preload="metadata"
+              preload="none"
               loop
               muted
               playsInline
@@ -209,7 +209,7 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           >
             <video
               ref={desktopVideoRef}
-              preload="metadata"
+              preload="none"
               loop
               muted
               playsInline

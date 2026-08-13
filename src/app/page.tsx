@@ -52,10 +52,12 @@ export default function Home() {
       <ShopElementsSection />
       <WhoWeAre />
       <CloudStatsBanner />
+        <HeroSubBanner />
       <ExpandableVideoMarquee />
+     
       <ShopByAge />
       <DealsSection />
-      <HeroSubBanner />
+     
       <BusinessStats />
       <HowItWorksProcess />
       

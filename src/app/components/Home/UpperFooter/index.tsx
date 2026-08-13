@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 
 interface UpperFooterProps {
   className?: string;
@@ -9,7 +10,15 @@ interface UpperFooterProps {
 export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:mt-24 lg:mt-32" }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVideoVisible, setIsVideoVisible] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const rafId = useRef<number | null>(null);
+
+  // Check touch capabilities once on mount to avoid calling matchMedia on every mouse move tick
+  const isTouchDevice = useRef(false);
+
+  useEffect(() => {
+    isTouchDevice.current = window.matchMedia('(pointer: coarse)').matches;
+  }, []);
 
   // Lazy-load video when footer approaches viewport
   useEffect(() => {
@@ -23,14 +32,14 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
           observer.disconnect();
         }
       },
-      { rootMargin: '200px' } // Preloads 200px before coming into view
+      { rootMargin: '200px' }
     );
 
     observer.observe(target);
     return () => observer.disconnect();
   }, []);
 
-  // Ref-based mouse parallax throttled with requestAnimationFrame
+  // Ref-based mouse parallax throttled with requestAnimationFrame (Desktop only)
   const cloudsRef = useRef<{ 
     c1: HTMLDivElement | null; 
     c2: HTMLDivElement | null; 
@@ -38,6 +47,9 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
   }>({ c1: null, c2: null, c3: null });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Fast boolean check for touch devices
+    if (isTouchDevice.current) return;
+
     if (rafId.current !== null) return;
 
     const rect = e.currentTarget.getBoundingClientRect();
@@ -53,6 +65,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
   };
 
   const handleMouseLeave = () => {
+    if (isTouchDevice.current) return;
+
     if (rafId.current !== null) {
       cancelAnimationFrame(rafId.current);
       rafId.current = null;
@@ -60,6 +74,11 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
     if (cloudsRef.current.c1) cloudsRef.current.c1.style.transform = 'translate3d(0px, 0px, 0)';
     if (cloudsRef.current.c2) cloudsRef.current.c2.style.transform = 'translate3d(0px, 0px, 0)';
     if (cloudsRef.current.c3) cloudsRef.current.c3.style.transform = 'translate3d(0px, 0px, 0)';
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitted(true);
   };
 
   return (
@@ -71,6 +90,7 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
           className="w-full h-24 sm:h-32 md:h-40 block" 
           viewBox="0 0 1440 190" 
           preserveAspectRatio="none"
+          aria-hidden="true"
         >
           <path 
             d="M0,128L48,117.3C96,107,192,85,288,85.3C384,85,480,107,576,128C672,149,768,171,864,165.3C960,160,1056,128,1152,112C1248,96,1344,96,1392,96L1440,96L1440,190L0,190Z" 
@@ -86,24 +106,58 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         className="relative w-full bg-[#BDECF0] text-[#0F2942] pt-6 pb-12 sm:pb-16 px-3 sm:px-12 z-20 scroll-mt-10 overflow-hidden"
+        style={{ contain: 'paint' }}
       >
         
         {/* Parallax Clouds */}
-        <div ref={(el) => { cloudsRef.current.c1 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out left-[3%] sm:left-[10%] -top-2 md:top-0">
-          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-20 sm:w-28 md:w-36 h-auto" />
+        <div 
+          ref={(el) => { cloudsRef.current.c1 = el; }} 
+          className="absolute opacity-80 pointer-events-none z-10 left-[3%] sm:left-[10%] -top-2 md:top-0"
+          aria-hidden="true"
+        >
+          <Image 
+            src="/assets/upperFooter/cloud_string.webp" 
+            alt="" 
+            width={144} 
+            height={80} 
+            className="w-20 sm:w-28 md:w-36 h-auto object-contain"
+            loading="lazy"
+          />
         </div>
-        <div ref={(el) => { cloudsRef.current.c2 = el; }} className="hidden md:block absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out left-[45%] top-10">
-          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-32 sm:w-40 h-auto" />
+        <div 
+          ref={(el) => { cloudsRef.current.c2 = el; }} 
+          className="hidden md:block absolute opacity-80 pointer-events-none z-10 left-[45%] top-10"
+          aria-hidden="true"
+        >
+          <Image 
+            src="/assets/upperFooter/cloud_string.webp" 
+            alt="" 
+            width={160} 
+            height={90} 
+            className="w-32 sm:w-40 h-auto object-contain"
+            loading="lazy"
+          />
         </div>
-        <div ref={(el) => { cloudsRef.current.c3 = el; }} className="absolute opacity-80 pointer-events-none z-10 transition-transform duration-300 ease-out right-[3%] sm:right-[10%] -top-4 md:-top-5">
-          <img src="/assets/upperFooter/cloud_string.webp" alt="Cloud" className="w-24 sm:w-36 md:w-48 h-auto" />
+        <div 
+          ref={(el) => { cloudsRef.current.c3 = el; }} 
+          className="absolute opacity-80 pointer-events-none z-10 right-[3%] sm:right-[10%] -top-4 md:-top-5"
+          aria-hidden="true"
+        >
+          <Image 
+            src="/assets/upperFooter/cloud_string.webp" 
+            alt="" 
+            width={192} 
+            height={100} 
+            className="w-24 sm:w-36 md:w-48 h-auto object-contain"
+            loading="lazy"
+          />
         </div>
 
-        {/* Static Decorative Stars (Removed continuous animate-pulse) */}
-        <div className="absolute top-[20%] left-[25%] text-[#70C1D6] opacity-70 w-5 h-5 select-none">✦</div>
-        <div className="absolute top-[15%] right-[35%] text-[#70C1D6] opacity-70 w-4 h-4 select-none">✦</div>
-        <div className="absolute bottom-[20%] left-[15%] text-[#70C1D6] opacity-70 w-6 h-6 select-none">✦</div>
-        <div className="absolute top-[40%] right-[10%] text-[#70C1D6] opacity-70 w-5 h-5 select-none">✦</div>
+        {/* Static Decorative Stars */}
+        <div className="absolute top-[20%] left-[25%] text-[#70C1D6] opacity-70 w-5 h-5 select-none pointer-events-none" aria-hidden="true">✦</div>
+        <div className="absolute top-[15%] right-[35%] text-[#70C1D6] opacity-70 w-4 h-4 select-none pointer-events-none" aria-hidden="true">✦</div>
+        <div className="absolute bottom-[20%] left-[15%] text-[#70C1D6] opacity-70 w-6 h-6 select-none pointer-events-none" aria-hidden="true">✦</div>
+        <div className="absolute top-[40%] right-[10%] text-[#70C1D6] opacity-70 w-5 h-5 select-none pointer-events-none" aria-hidden="true">✦</div>
 
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 relative z-20 mt-4">
           
@@ -116,128 +170,137 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
               Have questions? We'd love to hear from you. Drop us a message below.
             </p>
             
-            {/* Playful Video Frame (Lightweight Shadow) */}
-            <div className="relative w-full max-w-[520px] aspect-video">
-              <div className="absolute inset-0 bg-white rounded-[2.5rem] shadow-md"></div>
-              <div className="relative w-full h-full p-3 bg-white rounded-[2.5rem] shadow-md z-10">
-                {isVideoVisible ? (
-                  <video 
-                    src="/video/toy_park_3.mp4" 
-                    autoPlay 
-                    loop 
-                    muted 
-                    playsInline 
-                    preload="metadata"
-                    className="w-full h-full object-cover rounded-[2rem] bg-gray-100"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gray-100 rounded-[2rem]" />
-                )}
-              </div>
+            {/* Playful Video Frame */}
+            <div className="relative w-full max-w-[520px] aspect-video p-3 bg-white rounded-[2.5rem] shadow-sm z-10">
+              {isVideoVisible ? (
+                <video 
+                  src="https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/toy_park_3.mp4" 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline 
+                  preload="none"
+                  className="w-full h-full object-cover rounded-[2rem] bg-gray-100"
+                />
+              ) : (
+                <div className="w-full h-full bg-gray-100 rounded-[2rem]" />
+              )}
             </div>
           </div>
- 
-          {/* Right: Solid/Light Glass Form (Removed backdrop-blur & heavy shadows) */}
+
+          {/* Right: Solid/Light Glass Form */}
           <div className="w-full lg:w-7/12 flex justify-center lg:justify-end relative z-20">
-            <form 
-              onSubmit={(e) => { e.preventDefault(); alert('Thank you! Your message has been sent.'); }} 
-              className="w-full max-w-2xl flex flex-col gap-5 bg-white/35 p-8 sm:p-10 rounded-[2.5rem] border border-white/50 shadow-md"
-            >
-              {/* Row 1: Name & Email */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Full Name</label>
-                  <input 
-                    type="text" 
-                    required 
-                    placeholder="John Doe" 
-                    className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
-                  />
+            {isSubmitted ? (
+              <div className="w-full max-w-2xl bg-white/50 p-8 sm:p-12 rounded-[2.5rem] border border-white/60 shadow-sm text-center font-quicksand">
+                <div className="w-16 h-16 bg-[#4ECDC4] text-white rounded-full flex items-center justify-center mx-auto mb-4 text-2xl font-bold">
+                  ✓
                 </div>
- 
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Email Address</label>
-                  <input 
-                    type="email" 
-                    required 
-                    placeholder="john@example.com" 
-                    className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
-                  />
-                </div>
+                <h3 className="text-2xl sm:text-3xl font-black text-[#0F2942] mb-2">Thank You!</h3>
+                <p className="text-slate-700 font-extrabold text-base sm:text-lg">
+                  Your message has been sent successfully. We will get back to you shortly.
+                </p>
               </div>
- 
-              {/* Row 2: Company & Phone */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Company Name</label>
-                  <input 
-                    type="text" 
-                    placeholder="Optional" 
-                    className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
-                  />
-                </div>
- 
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Phone Number</label>
-                  <div className="flex items-center bg-white/40 rounded-2xl border border-transparent focus-within:border-[#70C1D6] focus-within:bg-white/90 transition-colors shadow-sm overflow-hidden">
-                    <span className="pl-4 pr-3 py-3.5 text-[#0F2942]/50 font-semibold border-r border-[#0F2942]/10 select-none">
-                      +91
-                    </span>
+            ) : (
+              <form 
+                onSubmit={handleSubmit} 
+                className="w-full max-w-2xl flex flex-col gap-5 bg-white/35 p-8 sm:p-10 rounded-[2.5rem] border border-white/50 shadow-sm"
+              >
+                {/* Row 1: Name & Email */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Full Name</label>
                     <input 
-                      type="tel" 
+                      type="text" 
                       required 
-                      placeholder="98765 43210" 
-                      className="w-full px-4 py-3.5 bg-transparent text-[#0F2942] text-sm font-semibold focus:outline-none placeholder:text-[#0F2942]/30"
+                      placeholder="Enter your name" 
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Email Address</label>
+                    <input 
+                      type="email" 
+                      required 
+                      placeholder="Enter your email" 
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
                     />
                   </div>
                 </div>
-              </div>
- 
-              {/* Row 3: State & City */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">State</label>
-                  <input 
-                    type="text" 
-                    required 
-                    placeholder="e.g. Maharashtra" 
-                    className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
-                  />
-                </div>
- 
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">City</label>
-                  <input 
-                    type="text" 
-                    required 
-                    placeholder="e.g. Mumbai" 
-                    className="w-full px-5 py-3.5 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30"
-                  />
-                </div>
-              </div>
- 
-              {/* Row 4: Message */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Your Message</label>
-                <textarea 
-                  rows={3} 
-                  required 
-                  placeholder="How can we help you today?" 
-                  className="w-full px-5 py-4 rounded-2xl bg-white/40 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white/90 focus:outline-none focus:border-[#70C1D6] transition-colors shadow-sm placeholder:text-[#0F2942]/30 resize-none"
-                />
-              </div>
 
-              {/* Submit Button */}
-              <button 
-                type="submit" 
-                className="w-full mt-2 py-4 rounded-2xl bg-[#4ECDC4] text-white font-black text-sm tracking-widest uppercase hover:bg-[#3dbcb3] active:scale-[0.98] transition-colors duration-200 shadow-md flex items-center justify-center gap-3 group"
-              >
-                <span>Send Message</span>
-                <svg className="w-5 h-5 transform group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-              </button>
-            </form>
+                {/* Row 2: Company & Phone */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Company Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Company name (optional)" 
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Phone Number</label>
+                    <div className="flex items-center bg-white/50 rounded-2xl border border-transparent focus-within:border-[#70C1D6] focus-within:bg-white transition-colors overflow-hidden">
+                      <span className="pl-4 pr-3 py-3.5 text-[#0F2942]/60 font-semibold border-r border-[#0F2942]/10 select-none">
+                        +91
+                      </span>
+                      <input 
+                        type="tel" 
+                        required 
+                        placeholder="Enter 10-digit number" 
+                        className="w-full px-4 py-3.5 bg-transparent text-[#0F2942] text-sm font-semibold focus:outline-none placeholder:text-[#0F2942]/50"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 3: State & City */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">State</label>
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder="State" 
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">City</label>
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder="City" 
+                      className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
+                    />
+                  </div>
+                </div>
+
+                {/* Row 4: Message */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Your Message</label>
+                  <textarea 
+                    rows={3} 
+                    required 
+                    placeholder="Write your message..." 
+                    className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50 resize-none"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button 
+                  type="submit" 
+                  className="w-full mt-2 py-4 rounded-2xl bg-[#4ECDC4] text-white font-black text-sm tracking-widest uppercase hover:bg-[#3dbcb3] active:scale-[0.98] transition-colors duration-200 shadow-sm flex items-center justify-center gap-3 group"
+                >
+                  <span>Send Message</span>
+                  <svg className="w-5 h-5 transform group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                  </svg>
+                </button>
+              </form>
+            )}
           </div>
 
         </div>
