@@ -145,7 +145,7 @@ export default function OurStoryComponent() {
     <div className="w-full bg-[#FAFCFC] font-quicksand text-[#2D3436] relative overflow-hidden">
       
       {/* ═══ 1. BACKGROUND VIDEO (95vh COVER) WITH WHITE OVERLAY NAVBAR ═══ */}
-      <div className="w-full h-[95vh] overflow-hidden bg-black relative">
+      <div className="w-full aspect-square sm:aspect-auto sm:h-[85vh] md:h-[95vh] overflow-hidden bg-black relative">
         <video
           src="/video/Website_video_showing_playground…_1080p_202608070041.mp4"
           className="w-full h-full object-cover block absolute inset-0 z-0 brightness-[1.02] contrast-[1.04]"
@@ -157,8 +157,8 @@ export default function OurStoryComponent() {
 
         {/* Overlay Navbar with Centered OUR STORY */}
         <header className="absolute top-0 left-0 right-0 z-50 text-white font-quicksand">
-          <nav className="px-6 lg:px-12 py-6 flex items-center justify-between">
-            <div className="max-w-[1400px] w-full mx-auto flex items-center justify-between">
+          <nav className="px-4 sm:px-6 lg:px-12 py-4 sm:py-6 flex items-center justify-between">
+            <div className="max-w-[1400px] w-full mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
               
               {/* LEFT: ToyPark Logo */}
               <div className="flex items-center">
@@ -166,14 +166,14 @@ export default function OurStoryComponent() {
                   <img 
                     src="/assets/ToyPark_logo.png" 
                     alt="ToyPark Logo" 
-                    className="h-14 sm:h-18 md:h-20 w-auto object-contain max-w-[260px] transform hover:scale-105 transition-transform brightness-0 invert" 
+                    className="h-10 sm:h-14 md:h-20 w-auto object-contain max-w-[180px] sm:max-w-[260px] transform hover:scale-105 transition-transform brightness-0 invert" 
                   />
                 </a>
               </div>
 
               {/* CENTER: OUR STORY (Clean White Overlay Text) */}
               <div className="flex items-center justify-center">
-                <span className="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-[0.2em] text-white drop-shadow-lg bg-white/10 backdrop-blur-md px-8 py-2.5 rounded-full border-2 border-white/80">
+                <span className="text-sm sm:text-lg md:text-2xl font-extrabold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white drop-shadow-lg bg-white/10 backdrop-blur-md px-5 sm:px-8 py-1.5 sm:py-2.5 rounded-full border-2 border-white/80">
                   OUR STORY
                 </span>
               </div>
@@ -181,9 +181,9 @@ export default function OurStoryComponent() {
               {/* RIGHT: Home Button */}
               <div className="flex items-center">
                 <a href="/">
-                  <button className="px-6 py-2.5 rounded-full border-2 border-white text-white font-extrabold text-sm sm:text-base flex items-center gap-2 transition-all hover:bg-white/20 backdrop-blur-md">
+                  <button className="px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full border-2 border-white text-white font-extrabold text-xs sm:text-base flex items-center gap-1.5 sm:gap-2 transition-all hover:bg-white/20 backdrop-blur-md">
                     <span>Home</span>
-                    <ArrowRight className="w-4 h-4 stroke-[3] text-white" />
+                    <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3] text-white" />
                   </button>
                 </a>
               </div>
@@ -194,7 +194,7 @@ export default function OurStoryComponent() {
       </div>
 
       {/* ═══ 2. INTERACTIVE SCROLL STORY SECTION (EDITORIAL LUXURY) ═══ */}
-      <section className="pt-24 pb-8 px-8 md:px-16 max-w-[1400px] mx-auto text-center flex flex-col items-center relative">
+      <section className="pt-16 pb-6 px-4 sm:px-8 md:px-16 max-w-[1400px] mx-auto text-center flex flex-col items-center relative">
         
         {/* Left Floating Masked Mascot SVG */}
         <div className="hidden md:block absolute left-2 lg:left-12 top-[10%] -translate-y-1/2 animate-bounce [animation-duration:6s] z-10 select-none">
@@ -232,7 +232,7 @@ export default function OurStoryComponent() {
 
         {/* Main Headline */}
         <h1 
-          className={`text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-quicksand leading-tight tracking-tight max-w-5xl w-full mb-12 font-normal transition-all duration-1000 ${
+          className={`text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-quicksand leading-tight tracking-tight max-w-5xl w-full mb-8 sm:mb-12 font-normal transition-all duration-1000 ${
             headlineProgress > 0.15 
               ? 'text-[#00A89B] opacity-100 scale-100' 
               : 'text-gray-400 opacity-40 scale-95'
@@ -242,7 +242,7 @@ export default function OurStoryComponent() {
         </h1>
 
         {/* 1st Story Text Paragraph */}
-        <div className="max-w-4xl w-full text-center space-y-6 text-lg md:text-xl leading-relaxed text-[#475569] font-medium mb-16">
+        <div className="max-w-4xl w-full text-center space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl leading-relaxed text-[#475569] font-medium mb-10 sm:mb-16">
           <p>
             Toy Park is a premier playground & interactive play studio based in Delhi since 2002, where ergonomic safety and vibrant aesthetics develop as one unified vision. Every line is intentional; every climb, slide, and structure is engineered to move, play, and endure.
           </p>
@@ -254,17 +254,17 @@ export default function OurStoryComponent() {
         {/* Interactive Link Button */}
         <a 
           href="/about" 
-          className="inline-flex items-center gap-2 text-base uppercase tracking-widest font-bold text-[#0F2228] border-b-2 border-[#0F2228] pb-1 hover:text-[#00A89B] hover:border-[#00A89B] transition-colors mb-16"
+          className="inline-flex items-center gap-2 text-sm sm:text-base uppercase tracking-widest font-bold text-[#0F2228] border-b-2 border-[#0F2228] pb-1 hover:text-[#00A89B] hover:border-[#00A89B] transition-colors mb-10 sm:mb-16"
         >
           <span>ABOUT US</span>
-          <ArrowUpRight className="w-5 h-5" />
+          <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5" />
         </a>
 
         {/* ═══ 3. ANIMATED SCROLL LINE & BULLET INTERACTION ═══ */}
         <div ref={lineSectionRef} className="relative w-full py-4 flex flex-col items-center justify-center">
           
           {/* Vertical Line Container */}
-          <div className="relative w-[1.5px] h-16 md:h-24 bg-gray-300 rounded-full overflow-visible">
+          <div className="relative w-[1.5px] h-12 sm:h-24 bg-gray-300 rounded-full overflow-visible">
             
             {/* Moving Thick Line Bullet Indicator */}
             <div 
@@ -277,9 +277,9 @@ export default function OurStoryComponent() {
           </div>
 
           {/* 2nd Section Scroll Text Reveal */}
-          <div className="mt-12 space-y-6 max-w-4xl w-full text-center">
+          <div className="mt-8 sm:mt-12 space-y-4 sm:space-y-6 max-w-4xl w-full text-center">
             <h2 
-              className={`text-4xl md:text-6xl font-quicksand transition-all duration-700 font-normal ${
+              className={`text-2xl sm:text-4xl md:text-6xl font-quicksand transition-all duration-700 font-normal ${
                 lineProgress > 0.2 
                   ? 'text-[#00A89B] opacity-100 scale-100' 
                   : 'text-gray-400 opacity-50 scale-95'
@@ -289,7 +289,7 @@ export default function OurStoryComponent() {
             </h2>
 
             <div 
-              className={`space-y-6 text-lg md:text-xl leading-relaxed font-medium transition-all duration-700 ${
+              className={`space-y-4 sm:space-y-6 text-base sm:text-lg md:text-xl leading-relaxed font-medium transition-all duration-700 ${
                 lineProgress > 0.35 
                   ? 'text-[#0F2228] opacity-100' 
                   : 'text-gray-400 opacity-40'
@@ -309,7 +309,7 @@ export default function OurStoryComponent() {
       </section>
 
       {/* ═══ 4. FEATURED MASTERPIECES OVERLAY WITH BABY CYAN TINT & ALL PROJECTS LINK ═══ */}
-      <section className="relative w-full min-h-[650px] mt-0 mb-6 overflow-hidden bg-slate-900 group shadow-2xl">
+      <section className="relative w-full min-h-[500px] sm:min-h-[650px] mt-0 mb-6 overflow-hidden bg-slate-900 group shadow-2xl">
         
         {/* Full Width Background Image */}
         <img
@@ -319,19 +319,19 @@ export default function OurStoryComponent() {
         />
 
         {/* Soft Baby Blue / Cyan Tint Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#E0F7F6]/95 via-[#E0F7F6]/80 to-transparent pointer-events-none z-10 w-full lg:w-[60%]" />
+        <div className="absolute inset-0 bg-[#E0F7F6]/95 sm:bg-gradient-to-r sm:from-[#E0F7F6]/95 sm:via-[#E0F7F6]/85 sm:to-transparent pointer-events-none z-10 w-full sm:w-[70%] lg:w-[60%]" />
 
-        <div className="relative z-20 max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[650px] items-center px-6 lg:px-12 py-12">
+        <div className="relative z-20 max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[500px] sm:min-h-[650px] items-center px-4 sm:px-6 lg:px-12 py-8 sm:py-12">
           
           {/* Left Side: Overlaid Text on Image Wall - Shifted Left with Baby Cyan Tint */}
-          <div className="lg:col-span-5 flex flex-col justify-between space-y-10 py-6">
+          <div className="lg:col-span-5 flex flex-col justify-between space-y-6 sm:space-y-10 py-4 sm:py-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-quicksand tracking-tight text-[#0F2228] mb-10 font-normal">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-quicksand tracking-tight text-[#0F2228] mb-6 sm:mb-10 font-normal">
                 Featured masterpieces
               </h2>
 
               {/* List items with bottom border */}
-              <div className="space-y-4 font-quicksand text-sm md:text-base">
+              <div className="space-y-3 sm:space-y-4 font-quicksand text-xs sm:text-sm md:text-base">
                 {[
                   { name: "KIDZA PLAYROOM SYSTEM", category: "INDOOR PLAY 2-6 YRS" },
                   { name: "OUTDOOR ADVENTURE TOWER", category: "MULTIPLAY PARK" },
@@ -343,12 +343,12 @@ export default function OurStoryComponent() {
                 ].map((item, idx) => (
                   <div 
                     key={idx} 
-                    className="flex items-center justify-between border-b border-[#0F2228]/20 pb-3 hover:border-[#00A89B] transition-colors cursor-pointer group/item"
+                    className="flex items-center justify-between border-b border-[#0F2228]/20 pb-2 sm:pb-3 hover:border-[#00A89B] transition-colors cursor-pointer group/item"
                   >
                     <span className="font-bold text-[#0F2228] group-hover/item:text-[#00A89B] transition-colors tracking-wide">
                       {item.name}
                     </span>
-                    <span className="text-xs uppercase tracking-widest text-[#475569] font-semibold group-hover/item:text-[#00A89B] transition-colors">
+                    <span className="text-[10px] sm:text-xs uppercase tracking-widest text-[#475569] font-semibold group-hover/item:text-[#00A89B] transition-colors">
                       {item.category}
                     </span>
                   </div>
@@ -371,11 +371,11 @@ export default function OurStoryComponent() {
       </section>
 
       {/* ═══ 5. SEA OF HONORS & 3 CODE-DESIGNED UI AWARD CARDS SECTION WITH VERTICAL SCROLL LINE ═══ */}
-      <section className="pt-4 pb-12 px-6 md:px-12 max-w-[1400px] mx-auto text-center flex flex-col items-center">
+      <section className="pt-2 pb-8 sm:pb-12 px-4 sm:px-6 md:px-12 max-w-[1400px] mx-auto text-center flex flex-col items-center">
         
         {/* Animated Scroll Line & Bullet Indicator Above Cards Section */}
         <div ref={cardsLineSectionRef} className="relative w-full py-4 flex flex-col items-center justify-center">
-          <div className="relative w-[1.5px] h-16 md:h-24 bg-gray-300 rounded-full overflow-visible">
+          <div className="relative w-[1.5px] h-12 sm:h-24 bg-gray-300 rounded-full overflow-visible">
             <div 
               className="absolute left-1/2 -translate-x-1/2 w-[3.5px] bg-[#00A89B] rounded-full shadow-sm"
               style={{ 
@@ -387,12 +387,12 @@ export default function OurStoryComponent() {
         </div>
 
         {/* Section Heading */}
-        <div className="space-y-4 max-w-4xl text-center mb-16">
-          <span className="text-xs font-extrabold uppercase tracking-widest text-[#00A89B] bg-white px-6 py-2 rounded-full border border-[#00C4B5]/40 shadow-sm inline-block">
+        <div className="space-y-3 sm:space-y-4 max-w-4xl text-center mb-8 sm:mb-16">
+          <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-[#00A89B] bg-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full border border-[#00C4B5]/40 shadow-sm inline-block">
             GLOBAL RECOGNITION & CERTIFICATIONS
           </span>
           <h2 
-            className={`text-4xl sm:text-5xl md:text-6xl font-quicksand transition-all duration-700 font-normal ${
+            className={`text-3xl sm:text-5xl md:text-6xl font-quicksand transition-all duration-700 font-normal ${
               cardsLineProgress > 0.2 
                 ? 'text-[#00A89B] opacity-100 scale-100' 
                 : 'text-gray-400 opacity-50 scale-95'
@@ -400,13 +400,13 @@ export default function OurStoryComponent() {
           >
             Sea of honors
           </h2>
-          <p className="text-lg md:text-xl text-[#475569] font-medium leading-relaxed max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-[#475569] font-medium leading-relaxed max-w-2xl mx-auto">
             Design recognized at the highest level of craftsmanship. Our play spaces have earned prestigious safety certifications and design awards worldwide.
           </p>
         </div>
 
         {/* 3 Pure Code-Designed UI Cards Grid */}
-        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+        <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
           {[
             {
               year: "2025",
@@ -440,31 +440,31 @@ export default function OurStoryComponent() {
             return (
               <div 
                 key={idx}
-                className="group relative flex flex-col justify-between p-8 md:p-10 rounded-3xl bg-white border-2 border-[#00C4B5]/20 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-left overflow-hidden"
+                className="group relative flex flex-col justify-between p-6 sm:p-8 md:p-10 rounded-3xl bg-white border-2 border-[#00C4B5]/20 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-500 text-left overflow-hidden"
               >
                 {/* Top Badge & Code Graphic */}
                 <div>
-                  <div className="flex items-center justify-between mb-8">
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center border border-[#00C4B5]/30 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
-                      <IconComp className="w-7 h-7 text-[#00A89B]" />
+                  <div className="flex items-center justify-between mb-6 sm:mb-8">
+                    <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br ${card.gradient} flex items-center justify-center border border-[#00C4B5]/30 group-hover:scale-110 transition-transform duration-300 shadow-md`}>
+                      <IconComp className="w-6 h-6 sm:w-7 sm:h-7 text-[#00A89B]" />
                     </div>
-                    <span className="text-2xl font-quicksand font-black text-[#0F2228]/20 group-hover:text-[#00A89B] transition-colors">
+                    <span className="text-xl sm:text-2xl font-quicksand font-black text-[#0F2228]/20 group-hover:text-[#00A89B] transition-colors">
                       {card.year}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl md:text-3xl font-quicksand font-bold text-[#0F2228] group-hover:text-[#00A89B] transition-colors leading-tight mb-4">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-quicksand font-bold text-[#0F2228] group-hover:text-[#00A89B] transition-colors leading-tight mb-3 sm:mb-4">
                     {card.title}
                   </h3>
 
-                  <p className="text-sm md:text-base text-[#64748B] leading-relaxed font-medium mb-8">
+                  <p className="text-xs sm:text-sm md:text-base text-[#64748B] leading-relaxed font-medium mb-6 sm:mb-8">
                     {card.desc}
                   </p>
                 </div>
 
                 {/* Bottom Badge */}
-                <div className="pt-4 border-t border-gray-100">
-                  <span className="text-xs font-extrabold uppercase tracking-widest text-[#00A89B] bg-[#E0F7F6] px-4 py-2 rounded-full inline-block border border-[#00C4B5]/30">
+                <div className="pt-3 sm:pt-4 border-t border-gray-100">
+                  <span className="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-[#00A89B] bg-[#E0F7F6] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full inline-block border border-[#00C4B5]/30">
                     {card.badge}
                   </span>
                 </div>
@@ -475,11 +475,12 @@ export default function OurStoryComponent() {
 
       </section>
 
-      <section className="pt-0 pb-0 my-0 px-6 md:px-12 max-w-6xl mx-auto flex flex-col items-center text-center">
+      {/* 6. TOY PARK STORYBOOK */}
+      <section className="pt-0 pb-0 my-0 px-4 sm:px-6 md:px-12 max-w-6xl mx-auto flex flex-col items-center text-center">
         
         {/* Animated Scroll Line & Bullet Indicator Above Storybook Section */}
         <div ref={storybookLineSectionRef} className="relative w-full py-4 flex flex-col items-center justify-center">
-          <div className="relative w-[1.5px] h-16 md:h-24 bg-gray-300 rounded-full overflow-visible">
+          <div className="relative w-[1.5px] h-12 sm:h-24 bg-gray-300 rounded-full overflow-visible">
             <div 
               className="absolute left-1/2 -translate-x-1/2 w-[3.5px] bg-[#00A89B] rounded-full shadow-sm"
               style={{ 
@@ -491,18 +492,18 @@ export default function OurStoryComponent() {
         </div>
 
         {/* Headline with SVG beside it */}
-        <div className="flex items-center justify-center gap-3 sm:gap-4 mb-2">
+        <div className="flex items-center justify-center gap-2 sm:gap-4 mb-2">
           <h2 
-            className={`text-3xl sm:text-4xl md:text-5xl font-quicksand font-normal tracking-tight transition-all duration-700 ${
+            className={`text-2xl sm:text-4xl md:text-5xl font-quicksand font-normal tracking-tight transition-all duration-700 ${
               storybookLineProgress > 0.2 
                 ? 'text-[#00A89B] opacity-100 scale-100' 
                 : 'text-gray-400 opacity-50 scale-95'
-            }`}
+              }`}
           >
             The Toy Park Storybook
           </h2>
           <div 
-            className="w-10 h-10 sm:w-12 sm:h-12 bg-[#00A89B] flex-shrink-0"
+            className="w-8 h-8 sm:w-12 sm:h-12 bg-[#00A89B] flex-shrink-0"
             style={{
               maskImage: 'url(/assets/ourStory/animal-kangaroo-svgrepo-com.svg)',
               WebkitMaskImage: 'url(/assets/ourStory/animal-kangaroo-svgrepo-com.svg)',
@@ -516,24 +517,24 @@ export default function OurStoryComponent() {
           />
         </div>
 
-        {/* Main Open Book Image with Negative Margins to crop blank pixels */}
-        <div className="w-full flex justify-center items-center drop-shadow-2xl hover:scale-[1.01] transition-transform duration-700 mt-[-150px] mb-[-140px]">
+        {/* Main Open Book Image with responsive negative margins to prevent clipping/overflow on mobile */}
+        <div className="w-full flex justify-center items-center drop-shadow-2xl hover:scale-[1.01] transition-transform duration-700 -mt-16 sm:-mt-24 md:-mt-36 lg:-mt-[150px] -mb-16 sm:-mb-24 md:-mb-32 lg:-mb-[140px] overflow-hidden">
           <img
             src="/assets/ourStory/Open_book_featuring_logo_and_202608081207 Background Removed.png"
             alt="Toy Park Open Book Story"
-            className="w-full max-w-5xl h-auto object-contain block"
+            className="w-full max-w-5xl h-auto object-contain block scale-110 sm:scale-100"
           />
         </div>
       </section>
 
       {/* ═══ 7. BOTTOM FOOTER BAR WITH SCROLL TO TOP BUTTON ═══ */}
-      <div className="pt-0 pb-4 px-6 md:px-16 max-w-[1400px] mx-auto flex justify-end items-center">
+      <div className="pt-4 pb-8 px-6 md:px-16 max-w-[1400px] mx-auto flex justify-end items-center">
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 rounded-full bg-[#1E293B] text-white flex items-center justify-center hover:bg-[#00A89B] transition-colors duration-300 shadow-md"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#1E293B] text-white flex items-center justify-center hover:bg-[#00A89B] transition-colors duration-300 shadow-md"
           title="Scroll to top"
         >
-          <ChevronUp className="w-5 h-5" />
+          <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
         </button>
       </div>
 

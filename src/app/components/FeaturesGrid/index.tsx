@@ -94,7 +94,7 @@ export const FeaturesGrid: React.FC = () => {
   ];
 
   return (
-    <section className="relative w-full bg-gradient-to-b from-[#E0F8F8] to-[#D2F2F2] px-3 sm:px-6 lg:px-12 py-5 sm:py-8 font-quicksand overflow-hidden select-none">
+    <section className="relative w-full bg-gradient-to-b from-[#E0F8F8] to-[#D2F2F2] px-3 sm:px-6 lg:px-12 pt-5 pb-2 sm:py-6 font-quicksand overflow-hidden select-none">
       
       {/* Floating Umbrella Accent */}
       <div className="absolute top-2 sm:top-3 right-3 sm:right-10 z-20 pointer-events-none opacity-90">
@@ -115,7 +115,7 @@ export const FeaturesGrid: React.FC = () => {
       <div className="max-w-[1400px] mx-auto relative z-10">
         
         {/* 📱 MOBILE VIEW: AUTO-SWIPE TWO CARDS AT A TIME (< sm) */}
-        <div className="block sm:hidden w-full relative pb-9">
+        <div className="block sm:hidden w-full relative pb-5">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
@@ -128,7 +128,7 @@ export const FeaturesGrid: React.FC = () => {
             pagination={{
               clickable: true,
             }}
-            className="w-full features-grid-swiper !pb-8"
+            className="w-full features-grid-swiper !pb-5"
           >
             {mobileFeaturePairs.map((pair, index) => (
               <SwiperSlide key={index}>
@@ -167,7 +167,7 @@ export const FeaturesGrid: React.FC = () => {
           opacity: 1;
         }
         .features-grid-swiper .swiper-pagination {
-          bottom: 0px !important;
+          bottom: -4px !important;
         }
       ` }} />
     </section>

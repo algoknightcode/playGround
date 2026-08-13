@@ -2,6 +2,10 @@ import React from 'react';
 import { Award, PackageCheck, Building2, ShieldCheck, Rocket, Sparkles, Headphones } from 'lucide-react';
 import { motion } from 'framer-motion';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+
 const stats = [
   { id: 1, value: "15+", label: "Years B2B Excellence", icon: Award },
   { id: 2, value: "500+", label: "Toy & Furniture Models", icon: PackageCheck },
@@ -61,24 +65,49 @@ const BusinessStats = () => {
           </svg>
         </motion.div>
  
-        {/* Stats Grid */}
-        <div className="relative z-20 grid grid-cols-2 lg:grid-cols-4 gap-y-6 gap-x-2 sm:gap-8">
+        {/* Mobile & Tablet Slider (2 Stats Auto-Swipe) */}
+        <div className="block lg:hidden w-full relative z-20">
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={10}
+            autoplay={{ delay: 3500, disableOnInteraction: false }}
+            loop={true}
+            modules={[Autoplay]}
+            className="w-full pb-2"
+          >
+            {stats.map((stat) => {
+              const Icon = stat.icon;
+              return (
+                <SwiperSlide key={stat.id} className="flex justify-center">
+                  <div className="flex flex-col items-center text-center text-white px-2 py-1 w-full">
+                    <div className="mb-2 w-10 h-10 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-xs">
+                      <Icon className="w-5 h-5 text-white" strokeWidth={2} />
+                    </div>
+                    <h3 className="text-2xl font-black mb-0.5 tracking-tight drop-shadow-xs">{stat.value}</h3>
+                    <p className="text-[11px] font-bold text-white/95 tracking-wide leading-tight">{stat.label}</p>
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+
+        {/* Desktop View (Static Row of 4 Stats) */}
+        <div className="hidden lg:grid grid-cols-4 gap-8 relative z-20">
           {stats.map((stat, index) => {
             const Icon = stat.icon;
             return (
               <div 
                 key={stat.id} 
                 className={`flex flex-col items-center text-center text-white relative px-2 py-1 ${
-                  index % 2 === 0 ? 'after:content-[""] after:absolute after:right-0 after:top-2 after:bottom-2 after:w-[1px] after:bg-white/20 sm:after:hidden' : ''
-                } ${index < 2 ? 'before:content-[""] before:absolute before:bottom-0 before:left-4 before:right-4 before:h-[1px] before:bg-white/20 sm:before:hidden' : ''} ${
-                  index !== stats.length - 1 ? 'lg:border-r lg:border-white/30 lg:border-dashed' : ''
+                  index !== stats.length - 1 ? 'border-r border-white/30 border-dashed' : ''
                 }`}
               >
-                <div className="mb-2 sm:mb-4 w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-xs">
-                  <Icon className="w-5 h-5 sm:w-8 sm:h-8 text-white" strokeWidth={2} />
+                <div className="mb-4 w-14 h-14 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-xs">
+                  <Icon className="w-8 h-8 text-white" strokeWidth={2} />
                 </div>
-                <h3 className="text-2xl sm:text-4xl lg:text-5xl font-black mb-0.5 sm:mb-1 tracking-tight drop-shadow-xs">{stat.value}</h3>
-                <p className="text-[11px] sm:text-base font-bold text-white/95 tracking-wide leading-tight">{stat.label}</p>
+                <h3 className="text-4xl lg:text-5xl font-black mb-1 tracking-tight drop-shadow-xs">{stat.value}</h3>
+                <p className="text-base font-bold text-white/95 tracking-wide leading-tight">{stat.label}</p>
               </div>
             );
           })}
@@ -111,7 +140,7 @@ const BusinessStats = () => {
               </svg>
             </h2>
 
-            <p className="text-[#0B1A30]/85 font-semibold leading-relaxed text-xs sm:text-base mt-3 max-w-md">
+            <p className="hidden sm:block text-[#0B1A30]/85 font-semibold leading-relaxed text-xs sm:text-base mt-3 max-w-md">
               Why settle for ordinary products when you can stock toys and kids’ furniture designed to catch attention, deliver quality, and keep customers coming back? Get direct wholesale access, flexible order quantities, and customization options.
             </p>
           </div>

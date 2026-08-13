@@ -4,6 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
+
 interface StatItem {
   number: number;
   suffix: string;
@@ -34,57 +38,107 @@ export const CloudStatsBanner: React.FC = () => {
         </svg>
       </div>
 
-      {/* ═══ STATS CLOUD GRID (2x2 Grid on Mobile) ═══ */}
-      <div className="relative z-20 max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8 items-center justify-items-center pt-1">
-        {statsData.map((stat, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            whileHover={{ scale: 1.05, y: -3 }}
-            className="relative w-full max-w-[165px] sm:max-w-[230px] h-[105px] sm:h-[120px] flex flex-col items-center justify-center p-1 sm:p-2 cursor-pointer group"
+      <div className="relative z-20 max-w-7xl mx-auto flex items-center justify-center pt-1">
+        {/* Mobile & Tablet Slider (2 Clouds Auto-Swipe) */}
+        <div className="block lg:hidden w-full">
+          <Swiper
+            slidesPerView={2}
+            spaceBetween={10}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            loop={true}
+            modules={[Autoplay]}
+            className="w-full pb-2"
           >
-            {/* SVG Puffy Cloud Shape Background */}
-            <svg 
-              className="absolute inset-0 w-full h-full text-white filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:drop-shadow-[0_10px_20px_rgba(0,0,0,0.16)]" 
-              viewBox="0 0 280 160" 
-              fill="currentColor"
+            {statsData.map((stat, index) => (
+              <SwiperSlide key={index} className="flex justify-center">
+                <div className="relative w-full max-w-[165px] sm:max-w-[210px] h-[105px] sm:h-[120px] flex flex-col items-center justify-center p-1 sm:p-2 cursor-pointer group">
+                  <svg 
+                    className="absolute inset-0 w-full h-full text-white filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.12)]" 
+                    viewBox="0 0 280 160" 
+                    fill="currentColor"
+                  >
+                    <path d="M 50 120 
+                             C 20 120, 10 95, 30 75 
+                             C 15 50, 45 30, 70 45 
+                             C 90 20, 130 15, 150 40 
+                             C 175 15, 220 25, 230 55 
+                             C 260 55, 270 90, 245 110 
+                             C 260 130, 230 145, 205 135 
+                             C 185 145, 145 145, 130 135 
+                             C 105 145, 65 140, 50 120 Z" 
+                    />
+                  </svg>
+
+                  <div className="relative z-10 flex flex-col items-center justify-center text-center px-2 sm:px-3">
+                    <div className="text-xl sm:text-2xl font-black text-[#FF6B6B] tracking-tight flex items-baseline justify-center font-quicksand">
+                      <CountUp 
+                        end={stat.number} 
+                        duration={2.5} 
+                        decimals={stat.decimals || 0} 
+                        enableScrollSpy 
+                        scrollSpyOnce 
+                      />
+                      <span className="ml-0.5">{stat.suffix}</span>
+                    </div>
+
+                    <span className="text-[10px] sm:text-xs font-extrabold text-[#2D3436] tracking-wide mt-0.5 leading-tight">
+                      {stat.label}
+                    </span>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Desktop View (Static Row of 4 Clouds) */}
+        <div className="hidden lg:grid grid-cols-4 gap-8 items-center justify-items-center w-full">
+          {statsData.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20, scale: 0.9 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ scale: 1.05, y: -3 }}
+              className="relative w-full max-w-[230px] h-[120px] flex flex-col items-center justify-center p-2 cursor-pointer group"
             >
-              <path d="M 50 120 
-                       C 20 120, 10 95, 30 75 
-                       C 15 50, 45 30, 70 45 
-                       C 90 20, 130 15, 150 40 
-                       C 175 15, 220 25, 230 55 
-                       C 260 55, 270 90, 245 110 
-                       C 260 130, 230 145, 205 135 
-                       C 185 145, 145 145, 130 135 
-                       C 105 145, 65 140, 50 120 Z" 
-              />
-            </svg>
-
-            {/* Cloud Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center text-center px-2 sm:px-3">
-              {/* Counter Number */}
-              <div className="text-xl sm:text-2xl lg:text-3xl font-black text-[#FF6B6B] tracking-tight flex items-baseline justify-center font-quicksand">
-                <CountUp 
-                  end={stat.number} 
-                  duration={2.5} 
-                  decimals={stat.decimals || 0} 
-                  enableScrollSpy 
-                  scrollSpyOnce 
+              <svg 
+                className="absolute inset-0 w-full h-full text-white filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:drop-shadow-[0_10px_20px_rgba(0,0,0,0.16)]" 
+                viewBox="0 0 280 160" 
+                fill="currentColor"
+              >
+                <path d="M 50 120 
+                         C 20 120, 10 95, 30 75 
+                         C 15 50, 45 30, 70 45 
+                         C 90 20, 130 15, 150 40 
+                         C 175 15, 220 25, 230 55 
+                         C 260 55, 270 90, 245 110 
+                         C 260 130, 230 145, 205 135 
+                         C 185 145, 145 145, 130 135 
+                         C 105 145, 65 140, 50 120 Z" 
                 />
-                <span className="ml-0.5">{stat.suffix}</span>
-              </div>
+              </svg>
 
-              {/* Label */}
-              <span className="text-[10px] sm:text-xs font-extrabold text-[#2D3436] tracking-wide mt-0.5 leading-tight">
-                {stat.label}
-              </span>
-            </div>
-          </motion.div>
-        ))}
+              <div className="relative z-10 flex flex-col items-center justify-center text-center px-3">
+                <div className="text-2xl lg:text-3xl font-black text-[#FF6B6B] tracking-tight flex items-baseline justify-center font-quicksand">
+                  <CountUp 
+                    end={stat.number} 
+                    duration={2.5} 
+                    decimals={stat.decimals || 0} 
+                    enableScrollSpy 
+                    scrollSpyOnce 
+                  />
+                  <span className="ml-0.5">{stat.suffix}</span>
+                </div>
+
+                <span className="text-xs font-extrabold text-[#2D3436] tracking-wide mt-0.5 leading-tight">
+                  {stat.label}
+                </span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
