@@ -43,13 +43,14 @@ const FLOATING_ICONS = [
     id: 'paper-plane',
     src: '/assets/paper_plane_with_trail.png',
     alt: 'Paper Plane',
-    size: 180,
-    top: '5%',
-    left: '35%',
+    size: 240,
+    top: '18%',
+    left: '29%',
     rotation: -10,
     floatY: 20,
     duration: 3.5,
     delay: 0,
+    maskColor: '#0047BA',
   },
   {
     id: 'helicopter',
@@ -140,9 +141,10 @@ interface FloatingIconProps {
   floatY: number;
   duration: number;
   delay: number;
+  maskColor?: string;
 }
 
-const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, duration, delay }: FloatingIconProps) => (
+const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, duration, delay, maskColor }: FloatingIconProps) => (
   <div
     style={{
       top: top || 'auto',
@@ -153,7 +155,7 @@ const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, dura
       // Custom CSS properties
       ['--float-y' as any]: `-${floatY}px`,
     }}
-    className="hidden sm:block absolute z-20 pointer-events-none drop-shadow-md"
+    className="absolute z-20 pointer-events-none drop-shadow-md"
   >
     <div 
       style={{ 
@@ -162,13 +164,31 @@ const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, dura
       }} 
       className="w-full h-auto"
     >
-      <Image
-        src={src}
-        alt={alt}
-        width={size}
-        height={size}
-        className="w-auto h-auto object-contain"
-      />
+      {maskColor ? (
+        <div
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            backgroundColor: maskColor,
+            WebkitMaskImage: `url(${src})`,
+            maskImage: `url(${src})`,
+            WebkitMaskSize: 'contain',
+            maskSize: 'contain',
+            WebkitMaskRepeat: 'no-repeat',
+            maskRepeat: 'no-repeat',
+            WebkitMaskPosition: 'center',
+            maskPosition: 'center',
+          }}
+        />
+      ) : (
+        <Image
+          src={src}
+          alt={alt}
+          width={size}
+          height={size}
+          className="w-auto h-auto object-contain"
+        />
+      )}
     </div>
   </div>
 );
@@ -191,7 +211,7 @@ const ColoredHeadline = ({
   <>
     {/* Desktop View */}
     {desktopLines.length > 0 && (
-      <h1 className="hidden sm:block font-black text-[7.2vw] tracking-tight leading-[0.98] uppercase drop-shadow-sm">
+      <h1 className="hidden sm:block font-black text-[6.5vw] tracking-tight leading-[0.98] uppercase drop-shadow-sm">
         {desktopLines.map((line, idx) => (
           <span key={idx} className="block" style={{ color: line.color, textShadow: DESKTOP_TEXT_SHADOW }}>
             {line.text}
