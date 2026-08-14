@@ -110,10 +110,6 @@ export const ShopByCategories: React.FC = () => {
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="text-center mb-5 flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-1.5 bg-white/20 border border-white/40 rounded-full px-3 py-1 text-[10px] font-bold tracking-wider text-white uppercase mb-2 backdrop-blur-xs">
-            <span className="w-1.5 h-1.5 bg-[#FFE66D] rounded-full animate-pulse" />
-            Explore Universes
-          </div>
           <h2 className="text-2xl md:text-4xl font-black text-white mb-1.5 tracking-tight">
             Shop by Categories
           </h2>
@@ -141,7 +137,7 @@ export const ShopByCategories: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className="w-full max-w-[280px] bg-white rounded-[1.75rem] p-6 flex flex-col items-center justify-center cursor-pointer shadow-md"
+                    className="w-[90%] max-w-[340px] bg-white rounded-[1.75rem] py-5 px-6 flex flex-col items-center justify-center cursor-pointer shadow-md mx-auto"
                   >
                     <div className={`w-[110px] h-[110px] rounded-full flex items-center justify-center mb-4 relative z-10 ${cat.bg}`}>
                       <img 

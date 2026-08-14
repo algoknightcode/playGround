@@ -257,7 +257,7 @@ export default function ToysEveryNeed() {
         from-[#e8faf8]
         via-[#cff4f8]
         to-[#dffaf7]
-        py-12
+        pt-6 pb-12
         font-quicksand
         md:py-16
       "
@@ -368,21 +368,6 @@ export default function ToysEveryNeed() {
 
       {/* Header */}
       <header className="relative z-20 mb-10 px-4 text-center">
-        <div
-          className="
-            mb-4 inline-flex items-center gap-1.5
-            rounded-full
-            border border-[#70d9ce]
-            bg-white/80
-            px-3.5 py-1.5
-            text-[11px] font-bold
-            uppercase tracking-wider
-            text-[#1f4e4b]
-          "
-        >
-          <span className="h-1.5 w-1.5 rounded-full bg-[#2cbfb3]" />
-          Made for joy & growth
-        </div>
 
         <h2
           className="

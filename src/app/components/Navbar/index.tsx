@@ -189,9 +189,11 @@ export default function KidzaNavbar() {
 
         {/* ═══ 1. ANNOUNCEMENT BAR ═══ */}
         {announcementVisible && (
-          <div className="relative bg-gradient-to-r from-[#00C4B5] via-[#62C4D2] to-[#0284C7] text-white text-xs sm:text-sm overflow-hidden">
+          <div 
+            className="relative bg-gradient-to-r from-[#00C4B5] via-[#62C4D2] to-[#0284C7] text-white text-xs sm:text-sm overflow-hidden"
+          >
             {/* Shimmer overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-[shimmer_3s_linear_infinite]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_linear_infinite]" />
 
             <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-2.5 flex items-center justify-between gap-2 relative z-10">
 
@@ -404,7 +406,7 @@ export default function KidzaNavbar() {
               {/* Mobile Hamburger */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="xl:hidden relative flex items-center justify-center w-10 h-10 rounded-2xl overflow-hidden shadow-lg shadow-[#62C4D2]/30 active:scale-95 transition-all focus:outline-none group"
+                className="xl:hidden relative flex items-center justify-center w-10 h-10 rounded-2xl overflow-hidden shadow-lg shadow-[#F56B00]/30 active:scale-95 transition-all focus:outline-none group hover:shadow-[#008B74]/40"
                 aria-label="Toggle Navigation Menu"
               >
                 {/* Gradient background */}
@@ -518,6 +520,10 @@ export default function KidzaNavbar() {
 
       {/* ═══ GLOBAL KEYFRAMES ═══ */}
       <style>{`
+        @keyframes gradientMove {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
+        }
         @keyframes shimmer {
           from { transform: translateX(-100%); }
           to   { transform: translateX(100%); }
