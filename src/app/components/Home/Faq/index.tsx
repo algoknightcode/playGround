@@ -118,10 +118,10 @@ export const FaqInteractivePreview = () => {
                 onMouseEnter={() => setActiveItem(item)}
                 onClick={() => setActiveItem(item)}
                 className={cn(
-                  'w-full text-left px-6 py-5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group backdrop-blur-md border',
+                  'w-full text-left px-6 py-5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group border',
                   activeItem.id === item.id
-                    ? 'bg-[#0D1C3A] text-white shadow-2xl scale-[1.02] border-2 border-[#00C4B5]'
-                    : 'bg-white/70 hover:bg-white/90 text-[#007A70] border-white/60 shadow-sm'
+                    ? 'bg-[#0D1C3A] text-white shadow-xl scale-[1.02] border-2 border-[#00C4B5]'
+                    : 'bg-white/90 hover:bg-white text-[#007A70] border-white/60 shadow-sm'
                 )}
               >
                 <span 
@@ -153,7 +153,7 @@ export const FaqInteractivePreview = () => {
                 animate={{ opacity: 1, x: 0, scale: 1 }}
                 exit={{ opacity: 0, x: -20, scale: 0.98 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute inset-0 bg-white/95 backdrop-blur-xl rounded-3xl p-8 lg:p-10 flex flex-col justify-between shadow-2xl border border-white/60 overflow-hidden"
+                className="absolute inset-0 bg-white rounded-3xl p-8 lg:p-10 flex flex-col justify-between shadow-xl border border-white/60 overflow-hidden"
               >
                 <div className="space-y-4">
                   <div className="flex items-center gap-2 text-slate-500">

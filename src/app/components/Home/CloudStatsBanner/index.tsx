@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -94,17 +91,12 @@ export const CloudStatsBanner: React.FC = () => {
         {/* Desktop View (Static Row of 4 Clouds) */}
         <div className="hidden lg:grid grid-cols-4 gap-8 items-center justify-items-center w-full">
           {statsData.map((stat, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20, scale: 0.9 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ scale: 1.05, y: -3 }}
-              className="relative w-full max-w-[230px] h-[120px] flex flex-col items-center justify-center p-2 cursor-pointer group"
+              className="relative w-full max-w-[230px] h-[120px] flex flex-col items-center justify-center p-2 cursor-pointer group transition-transform duration-200 ease-out hover:scale-105 hover:-translate-y-1"
             >
               <svg 
-                className="absolute inset-0 w-full h-full text-white filter drop-shadow-[0_6px_12px_rgba(0,0,0,0.12)] transition-transform duration-300 group-hover:drop-shadow-[0_10px_20px_rgba(0,0,0,0.16)]" 
+                className="absolute inset-0 w-full h-full text-white filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.08)] transition-all duration-200 group-hover:drop-shadow-[0_8px_16px_rgba(0,0,0,0.12)]" 
                 viewBox="0 0 280 160" 
                 fill="currentColor"
               >
@@ -136,7 +128,7 @@ export const CloudStatsBanner: React.FC = () => {
                   {stat.label}
                 </span>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

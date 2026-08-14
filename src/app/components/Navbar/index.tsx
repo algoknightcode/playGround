@@ -82,7 +82,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
       onClick={onClose}
     >
       {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/60 backdrop-blur-md" />
+      <div className="absolute inset-0 bg-black/60" />
 
       {/* Modal */}
       <div
@@ -90,7 +90,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
         style={{ animation: 'searchSlideIn 0.25s cubic-bezier(0.34,1.56,0.64,1) both' }}
       >
-        <div className="bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl shadow-black/20 border border-white/60 overflow-hidden">
+        <div className="bg-white rounded-3xl shadow-xl shadow-black/20 border border-gray-100 overflow-hidden">
           {/* Search Input */}
           <div className="flex items-center gap-4 px-6 py-5 border-b border-gray-100">
             <Search className="w-5 h-5 text-[#62C4D2] shrink-0" strokeWidth={2.5} />
@@ -251,7 +251,7 @@ export default function KidzaNavbar() {
         <nav
           className={`px-4 sm:px-6 lg:px-12 py-1 flex items-center justify-between sticky top-0 z-50 transition-[background-color,box-shadow] duration-300 ${
             scrolled
-              ? 'bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100'
+              ? 'bg-white shadow-md border-b border-gray-100'
               : 'bg-white shadow-sm'
           }`}
         >
@@ -294,7 +294,7 @@ export default function KidzaNavbar() {
                     className="absolute left-0 mt-3 w-60 z-50"
                     style={{ animation: 'dropIn 0.2s cubic-bezier(0.34,1.56,0.64,1) both' }}
                   >
-                    <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/12 border border-gray-100/80 py-2 overflow-hidden">
+                    <div className="bg-white rounded-2xl shadow-xl shadow-black/12 border border-gray-100/80 py-2 overflow-hidden">
                       {/* Top accent */}
                       <div className="h-0.5 mx-3 mb-2 rounded-full bg-gradient-to-r from-[#62C4D2] via-[#f97316] to-[#FFD400]" />
 
@@ -348,7 +348,7 @@ export default function KidzaNavbar() {
                       style={{ transitionProperty: 'opacity, visibility, transform' }}
                     >
                       <div
-                        className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-black/12 border border-gray-100 overflow-hidden"
+                        className="bg-white rounded-2xl shadow-xl shadow-black/12 border border-gray-100 overflow-hidden"
                         style={{ animation: 'dropIn 0.2s cubic-bezier(0.34,1.56,0.64,1) both' }}
                       >
                         <div className="h-0.5 bg-gradient-to-r from-[#62C4D2] via-[#00C4B5] to-[#0284C7]" />
@@ -433,7 +433,7 @@ export default function KidzaNavbar() {
               style={{ animation: 'drawerSlideIn 0.3s cubic-bezier(0.34,1.2,0.64,1) both' }}
             >
               {/* Glassmorphism panel */}
-              <div className="bg-white/96 backdrop-blur-2xl border-t border-[#62C4D2]/20 shadow-2xl shadow-black/15">
+              <div className="bg-white border-t border-[#62C4D2]/20 shadow-xl shadow-black/15">
 
                 {/* Gradient top stripe */}
                 <div className="h-[3px] bg-gradient-to-r from-[#FF6B6B] via-[#FFD400] via-[#62C4D2] to-[#0284C7]" />
@@ -481,7 +481,7 @@ export default function KidzaNavbar() {
                     {/* Shimmer */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover/cta:translate-x-full transition-transform duration-700" />
                     <div className="flex items-center gap-3 relative z-10">
-                      <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                      <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
                         <Package className="w-5 h-5" strokeWidth={2.2} />
                       </div>
                       <div>

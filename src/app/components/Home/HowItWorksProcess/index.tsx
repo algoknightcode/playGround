@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Phone, Ruler, FileText, Wrench, ShieldCheck, ArrowRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
@@ -99,23 +96,12 @@ export default function HowItWorksProcess() {
         
         {/* Section Header */}
         <div className="mb-8 sm:mb-10 max-w-3xl">
-          <motion.span 
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-[#FFE66D] text-[#2D3436] text-xs font-black tracking-widest uppercase px-4 py-1.5 rounded-full border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] inline-block mb-3"
-          >
+          <span className="bg-[#FFE66D] text-[#2D3436] text-xs font-black tracking-widest uppercase px-4 py-1.5 rounded-full border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] inline-block mb-3">
             HOW IT WORKS
-          </motion.span>
-          <motion.h2 
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2D3436] tracking-tight leading-tight"
-          >
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2D3436] tracking-tight leading-tight">
             From First Call to <span className="text-[#FF6B6B] relative inline-block">Installation<span className="absolute left-0 bottom-1 w-full h-3 bg-[#4ECDC4]/30 -z-10 rounded-sm"></span></span>
-          </motion.h2>
+          </h2>
           <p className="text-gray-600 font-semibold text-base md:text-lg mt-3 leading-relaxed">
             Our proven 5-step process makes ordering playground equipment simple, transparent, and completely risk-free for institutional buyers.
           </p>
@@ -178,41 +164,28 @@ export default function HowItWorksProcess() {
 }
 
 // Reusable Step Card Component
-const StepCard: React.FC<{ step: ProcessStep; idx: number }> = ({ step, idx }) => {
+const StepCard: React.FC<{ step: ProcessStep; idx: number }> = ({ step }) => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: idx * 0.12 }}
-      whileHover={{ 
-        y: -10,
-        scale: 1.02,
-        transition: { type: 'spring', stiffness: 300, damping: 15 }
-      }}
-      className={`${step.bgColor} ${step.hoverBg} border-2 border-[#2D3436]/20 hover:border-[#2D3436] rounded-[2.2rem] p-6 shadow-md hover:shadow-xl flex flex-col justify-between transition-all duration-300 relative group cursor-pointer overflow-hidden h-full min-h-[320px]`}
+    <div
+      className={`${step.bgColor} ${step.hoverBg} border-2 border-[#2D3436]/20 hover:border-[#2D3436] rounded-[2.2rem] p-6 shadow-sm hover:shadow-lg hover:-translate-y-2 flex flex-col justify-between transition-all duration-300 relative group cursor-pointer overflow-hidden h-full min-h-[320px]`}
     >
       {/* Subtle Card Glow / Shine on Hover */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/0 via-white/30 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
       <div>
-        {/* Step Number & Floating Animated Icon Header */}
+        {/* Step Number & Floating Icon Header */}
         <div className="flex items-center justify-between mb-6">
-          <motion.span 
+          <span 
             className={`text-4xl font-black text-[#2D3436]/25 transition-colors ${step.hoverNumber}`}
-            animate={{ scale: [1, 1.05, 1] }}
-            transition={{ duration: 3, repeat: Infinity, delay: idx * 0.4 }}
           >
             {step.number}
-          </motion.span>
+          </span>
 
-          <motion.div 
-            whileHover={{ scale: 1.15, rotate: -8 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
-            className={`w-12 h-12 ${step.iconBg} text-white rounded-2xl border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436] flex items-center justify-center`}
+          <div 
+            className={`w-12 h-12 ${step.iconBg} text-white rounded-2xl border-2 border-[#2D3436] shadow-[3px_3px_0px_0px_#2D3436] flex items-center justify-center group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-200`}
           >
             {step.icon}
-          </motion.div>
+          </div>
         </div>
 
         {/* Title & Description */}
@@ -224,18 +197,15 @@ const StepCard: React.FC<{ step: ProcessStep; idx: number }> = ({ step, idx }) =
         </p>
       </div>
 
-      {/* Bottom Badge Accent with Animated Arrow */}
+      {/* Bottom Badge Accent with Arrow */}
       <div className="mt-6 pt-4 border-t-2 border-dashed border-[#2D3436]/15 flex items-center justify-between">
         <span className={`text-xs font-black text-[#2D3436] uppercase tracking-wider transition-colors ${step.hoverText}`}>
           {step.badgeText}
         </span>
-        <motion.div
-          animate={{ x: [0, 4, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        >
-          <ArrowRight className={`w-4 h-4 text-[#2D3436] transition-colors ${step.hoverText}`} />
-        </motion.div>
+        <div>
+          <ArrowRight className={`w-4 h-4 text-[#2D3436] group-hover:translate-x-1 transition-all ${step.hoverText}`} />
+        </div>
       </div>
-    </motion.div>
+    </div>
   );
 };

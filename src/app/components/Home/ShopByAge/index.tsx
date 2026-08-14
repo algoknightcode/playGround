@@ -1,7 +1,4 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
 
 interface AgeCategory {
   id: number;
@@ -72,13 +69,7 @@ export default function ShopByAge() {
       <div className="max-w-7xl mx-auto px-4 text-center">
         
         {/* Section Title Header */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 max-w-2xl mx-auto"
-        >
+        <div className="mb-6 max-w-2xl mx-auto">
           <span className="bg-[#FFE66D] text-[#2D3436] text-xs font-black tracking-widest uppercase px-4 py-1.5 rounded-full border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] inline-block mb-3">
             AGE-BASED DISCOVERY
           </span>
@@ -88,30 +79,20 @@ export default function ShopByAge() {
           <p className="text-gray-500 font-semibold text-sm sm:text-base mt-3 leading-relaxed">
             Find the perfect toys, furniture, and play equipment tailored specifically for your child’s developmental stage.
           </p>
-        </motion.div>
+        </div>
 
         {/* 6 Blobby Star Cards (3x2 Grid on Mobile, 6 Grid on Desktop) */}
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 sm:gap-6 lg:gap-8 xl:gap-10 justify-items-center items-center pt-2 max-w-7xl mx-auto">
-          {AGE_CATEGORIES.map((cat, idx) => (
-            <motion.a
+          {AGE_CATEGORIES.map((cat) => (
+            <a
               key={cat.id}
               href={cat.link}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.08 }}
-              whileHover={{ 
-                scale: 1.15,
-                rotate: 6,
-                transition: { type: 'spring', stiffness: 350, damping: 15 }
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-36 lg:h-36 xl:w-40 xl:h-40 flex items-center justify-center cursor-pointer group select-none"
+              className="relative w-28 h-28 sm:w-32 sm:h-32 md:w-36 md:h-36 lg:w-36 lg:h-36 xl:w-40 xl:h-40 flex items-center justify-center cursor-pointer group select-none transition-transform duration-200 ease-out hover:scale-110 hover:rotate-3 active:scale-95"
             >
               {/* SVG Blobby Star Background */}
               <svg 
                 viewBox="0 0 148 157" 
-                className="w-full h-full drop-shadow-md group-hover:drop-shadow-xl transition-all duration-300"
+                className="w-full h-full drop-shadow-md group-hover:drop-shadow-lg transition-all duration-200"
               >
                 <path 
                   d={cat.pathD} 
@@ -128,7 +109,7 @@ export default function ShopByAge() {
                   {cat.subLabel}
                 </span>
               </div>
-            </motion.a>
+            </a>
           ))}
         </div>
 

@@ -80,7 +80,7 @@ const BusinessStats = () => {
               return (
                 <SwiperSlide key={stat.id} className="flex justify-center">
                   <div className="flex flex-col items-center text-center text-white px-2 py-1 w-full">
-                    <div className="mb-2 w-10 h-10 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-xs">
+                    <div className="mb-2 w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-white" strokeWidth={2} />
                     </div>
                     <h3 className="text-2xl font-black mb-0.5 tracking-tight drop-shadow-xs">{stat.value}</h3>
@@ -103,7 +103,7 @@ const BusinessStats = () => {
                   index !== stats.length - 1 ? 'border-r border-white/30 border-dashed' : ''
                 }`}
               >
-                <div className="mb-4 w-14 h-14 rounded-full bg-white/15 flex items-center justify-center backdrop-blur-xs">
+                <div className="mb-4 w-14 h-14 rounded-full bg-white/20 flex items-center justify-center">
                   <Icon className="w-8 h-8 text-white" strokeWidth={2} />
                 </div>
                 <h3 className="text-4xl lg:text-5xl font-black mb-1 tracking-tight drop-shadow-xs">{stat.value}</h3>
@@ -116,10 +116,10 @@ const BusinessStats = () => {
  
       {/* YELLOW SECTION */}
       <div className="relative z-30 max-w-6xl mx-auto -mt-12 sm:-mt-28 lg:-mt-48 px-3 sm:px-6">
-        <div className="bg-[#FFD400] rounded-3xl p-5 sm:p-12 lg:p-16 shadow-2xl flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-16 relative overflow-hidden border-2 border-white/60">
+        <div className="bg-[#FFD400] rounded-3xl p-5 sm:p-12 lg:p-16 shadow-lg flex flex-col lg:flex-row gap-6 sm:gap-12 lg:gap-16 relative overflow-hidden border-2 border-white/60">
           
           {/* Arrow up circle (bottom right) */}
-          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-[#FF6B6B] rounded-full flex items-center justify-center text-white shadow-lg cursor-pointer hover:scale-105 transition-transform z-20">
+          <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 w-10 h-10 sm:w-12 sm:h-12 bg-[#FF6B6B] rounded-full flex items-center justify-center text-white shadow-md cursor-pointer hover:scale-105 transition-transform z-20">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 19V5M5 12l7-7 7 7"/>
             </svg>

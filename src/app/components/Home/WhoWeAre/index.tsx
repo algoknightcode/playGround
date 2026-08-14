@@ -1,7 +1,5 @@
-'use client';
-
 import React from 'react';
-import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { Check } from 'lucide-react';
 
 export const WhoWeAre: React.FC = () => {
@@ -10,13 +8,7 @@ export const WhoWeAre: React.FC = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 lg:gap-8 items-center">
 
         {/* Right Column: Text & Features — shown first on mobile via order */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-          className="lg:col-span-6 flex flex-col gap-4 sm:gap-6 order-1 lg:order-2"
-        >
+        <div className="lg:col-span-6 flex flex-col gap-4 sm:gap-6 order-1 lg:order-2">
           {/* Sub-badge */}
           <div className="flex items-center gap-2">
             <span className="inline-flex items-center gap-1.5 bg-[#FF5A5F]/10 border border-[#FF5A5F]/20 rounded-full px-3.5 py-1 text-xs font-black tracking-widest text-[#FF5A5F] uppercase">
@@ -96,24 +88,21 @@ export const WhoWeAre: React.FC = () => {
             </div>
 
           </div>
-        </motion.div>
+        </div>
 
         {/* Left Column: School Illustration — shown second on mobile */}
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="lg:col-span-6 flex justify-center items-center order-2 lg:order-1"
-        >
+        <div className="lg:col-span-6 flex justify-center items-center order-2 lg:order-1">
           <div className="relative w-full max-w-[220px] sm:max-w-xl">
-            <img
+            <Image
               src="/assets/school.png"
               alt="Our Journey of Inspiring Children"
-              className="w-full h-auto object-contain drop-shadow-md"
+              width={576}
+              height={400}
+              className="w-full h-auto object-contain drop-shadow-sm"
+              priority
             />
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

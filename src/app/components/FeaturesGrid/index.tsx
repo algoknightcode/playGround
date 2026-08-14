@@ -14,19 +14,19 @@ export const FeaturesGrid: React.FC = () => {
       title: 'Money Return',
       subtitle: 'Back guarantee under 7 days',
       badge: '7-Day Guarantee',
-      bgColor: 'bg-gradient-to-br from-[#FFF8F0] to-[#FFF3E4]',
-      iconBg: 'bg-gradient-to-tr from-[#FFE8CC] to-[#FFF0DB]',
-      borderColor: 'border-[#F49C14]/20 hover:border-[#F49C14]',
-      textColor: 'text-[#C27100]',
+      bgColor: 'bg-white',
+      iconBg: 'bg-teal-50',
+      borderColor: 'border-slate-100 hover:border-slate-200',
+      textColor: 'text-slate-500',
       icon: (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-[-10deg] group-hover:scale-110">
-          <path d="M16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 6"/>
-          <path d="M4 12L4 16L8 16" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M28 20L28 16L24 16" stroke="#F8C88A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M16 9C14.3431 9 13 10.3431 13 12V13C11.3431 13 10 14.3431 10 16V20C10 21.6569 11.3431 23 13 23H19C20.6569 23 22 21.6569 22 20V16C22 14.3431 20.6569 13 19 13V12C19 10.3431 17.6569 9 16 9Z" fill="#F49C14"/>
-          <path d="M13 12H19" stroke="#F49C14" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M14 9L18 9" stroke="#F49C14" strokeWidth="3" strokeLinecap="round"/>
+          <path d="M16 4C9.37258 4 4 9.37258 4 16C4 22.6274 9.37258 28 16 28" stroke="#00C4B5" strokeWidth="2.5" strokeLinecap="round"/>
+          <path d="M16 28C22.6274 28 28 22.6274 28 16C28 9.37258 22.6274 4 16 4" stroke="#00C4B5" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 6"/>
+          <path d="M4 12L4 16L8 16" stroke="#00C4B5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M28 20L28 16L24 16" stroke="#00C4B5" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M16 9C14.3431 9 13 10.3431 13 12V13C11.3431 13 10 14.3431 10 16V20C10 21.6569 11.3431 23 13 23H19C20.6569 23 22 21.6569 22 20V16C22 14.3431 20.6569 13 19 13V12C19 10.3431 17.6569 9 16 9Z" fill="#00C4B5"/>
+          <path d="M13 12H19" stroke="#00C4B5" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M14 9L18 9" stroke="#00C4B5" strokeWidth="3" strokeLinecap="round"/>
           <text x="16" y="19.5" fill="white" fontSize="9" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">$</text>
         </svg>
       )
@@ -35,13 +35,13 @@ export const FeaturesGrid: React.FC = () => {
       title: 'Member Discount',
       subtitle: 'On orders over $2000',
       badge: 'Save Big',
-      bgColor: 'bg-gradient-to-br from-[#F0F5FA] to-[#E3EEF8]',
-      iconBg: 'bg-gradient-to-tr from-[#DBE8F6] to-[#EBF3FB]',
-      borderColor: 'border-[#3B82F6]/20 hover:border-[#3B82F6]',
-      textColor: 'text-[#1D4ED8]',
+      bgColor: 'bg-white',
+      iconBg: 'bg-rose-50',
+      borderColor: 'border-slate-100 hover:border-slate-200',
+      textColor: 'text-slate-500',
       icon: (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:scale-110 group-hover:rotate-12">
-          <path d="M16 3C16 3 8 10.5 8 18.5C8 23.1944 11.5817 27 16 27C20.4183 27 24 23.1944 24 18.5C24 10.5 16 3 16 3Z" fill="#F88C00"/>
+          <path d="M16 3C16 3 8 10.5 8 18.5C8 23.1944 11.5817 27 16 27C20.4183 27 24 23.1944 24 18.5C24 10.5 16 3 16 3Z" fill="#FF6B6B"/>
           <text x="16" y="21.5" fill="white" fontSize="11" fontWeight="bold" fontFamily="sans-serif" textAnchor="middle">%</text>
         </svg>
       )
@@ -50,17 +50,17 @@ export const FeaturesGrid: React.FC = () => {
       title: 'Home Delivery',
       subtitle: 'Free delivery to your door',
       badge: 'Free Shipping',
-      bgColor: 'bg-gradient-to-br from-[#EBFBF7] to-[#D5F7EE]',
-      iconBg: 'bg-gradient-to-tr from-[#C5F4E7] to-[#E2FAF3]',
-      borderColor: 'border-[#00B8A9]/20 hover:border-[#00B8A9]',
-      textColor: 'text-[#007A70]',
+      bgColor: 'bg-white',
+      iconBg: 'bg-teal-50',
+      borderColor: 'border-slate-100 hover:border-slate-200',
+      textColor: 'text-slate-500',
       icon: (
         <svg width="34" height="34" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:translate-x-1.5 group-hover:scale-110">
-          <path d="M5 12C5 10.8954 5.89543 10 7 10H17V20H7C5.89543 20 5 19.1046 5 18V12Z" fill="#00B8A9"/>
+          <path d="M5 12C5 10.8954 5.89543 10 7 10H17V20H7C5.89543 20 5 19.1046 5 18V12Z" fill="#00C4B5"/>
           <path d="M17 12H21.5L24 15.5V20H17V12Z" fill="#0D1E3E"/>
-          <path d="M2 13H5" stroke="#F49C14" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M1 16H4" stroke="#F49C14" strokeWidth="2" strokeLinecap="round"/>
-          <path d="M3 19H5" stroke="#F49C14" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M2 13H5" stroke="#00C4B5" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M1 16H4" stroke="#00C4B5" strokeWidth="2" strokeLinecap="round"/>
+          <path d="M3 19H5" stroke="#00C4B5" strokeWidth="2" strokeLinecap="round"/>
           <circle cx="10" cy="21" r="2.5" fill="#0D1E3E"/>
           <circle cx="20" cy="21" r="2.5" fill="#0D1E3E"/>
           <circle cx="10" cy="21" r="1" fill="white"/>
@@ -72,15 +72,15 @@ export const FeaturesGrid: React.FC = () => {
       title: '24/7 Support',
       subtitle: 'Dedicated support in 24hrs',
       badge: 'Fast Support',
-      bgColor: 'bg-gradient-to-br from-[#FFF0F3] to-[#FFE0E6]',
-      iconBg: 'bg-gradient-to-tr from-[#FFD1DC] to-[#FFEBF0]',
-      borderColor: 'border-[#EC4899]/20 hover:border-[#EC4899]',
-      textColor: 'text-[#BE185D]',
+      bgColor: 'bg-white',
+      iconBg: 'bg-rose-50',
+      borderColor: 'border-slate-100 hover:border-slate-200',
+      textColor: 'text-slate-500',
       icon: (
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300 group-hover:rotate-[15deg] group-hover:scale-110">
-          <path d="M16 4C22.6274 4 28 9.37258 28 16C28 22.6274 22.6274 28 16 28" stroke="#F88C00" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 6"/>
-          <path d="M25 7L28 4L29 8" stroke="#F88C00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M10.2792 10.3802C11.5177 9.14173 12.8711 9.4796 13.9234 10.5319L14.733 11.3415C15.8239 12.4324 15.6983 13.8055 14.5126 14.9912L13.7828 15.721C14.7211 17.5186 16.2759 18.9959 18.1504 19.8524L18.8471 19.1557C20.0329 17.97 21.4059 17.8444 22.4969 18.9353L23.3065 19.7449C24.3588 20.7972 24.6966 22.1506 23.4582 23.3891C22.5034 24.3439 20.8933 24.8143 19.0601 24.3298C15.7483 23.4545 11.528 20.2157 9.69976 17.1517C8.68536 15.4516 8.56708 13.6844 9.13524 12.4172C9.44439 11.7278 9.84365 11.2332 10.2792 10.3802Z" fill="#00B8A9"/>
+          <path d="M16 4C22.6274 4 28 9.37258 28 16C28 22.6274 22.6274 28 16 28" stroke="#FF6B6B" strokeWidth="2.5" strokeLinecap="round" strokeDasharray="4 6"/>
+          <path d="M25 7L28 4L29 8" stroke="#FF6B6B" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M10.2792 10.3802C11.5177 9.14173 12.8711 9.4796 13.9234 10.5319L14.733 11.3415C15.8239 12.4324 15.6983 13.8055 14.5126 14.9912L13.7828 15.721C14.7211 17.5186 16.2759 18.9959 18.1504 19.8524L18.8471 19.1557C20.0329 17.97 21.4059 17.8444 22.4969 18.9353L23.3065 19.7449C24.3588 20.7972 24.6966 22.1506 23.4582 23.3891C22.5034 24.3439 20.8933 24.8143 19.0601 24.3298C15.7483 23.4545 11.528 20.2157 9.69976 17.1517C8.68536 15.4516 8.56708 13.6844 9.13524 12.4172C9.44439 11.7278 9.84365 11.2332 10.2792 10.3802Z" fill="#FF6B6B"/>
           <text x="12" y="15" fill="#0D1E3E" fontSize="6.5" fontWeight="bold" fontFamily="sans-serif">24H</text>
         </svg>
       )
