@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
+import dynamic from "next/dynamic";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useParams, useRouter } from "next/navigation";
@@ -14,6 +15,11 @@ import {
     Save,
     Loader2,
 } from "lucide-react";
+
+// Dynamically import JoditEditor for Next.js SSR compatibility
+const JoditEditor = dynamic(() => import("jodit-react"), {
+    ssr: false,
+});
 
 interface ProductImage {
     url: string;
@@ -121,6 +127,58 @@ export default function EditProductPage() {
 
     const [shortDescription, setShortDescription] = useState("");
     const [longDescription, setLongDescription] = useState("");
+
+    const shortDescRef = useRef(null);
+    const longDescRef = useRef(null);
+
+    const shortDescConfig = useMemo(
+        () => ({
+            readonly: false,
+            placeholder: "Brief summary of the product...",
+            height: 220,
+            minHeight: 180,
+            maxHeight: 400,
+            autoFocus: false,
+            spellcheck: true,
+            overflowY: "auto",
+            buttons: [
+                "source", "|",
+                "bold", "italic", "underline", "strikethrough", "|",
+                "font", "fontsize", "brush", "paragraph", "|",
+                "image", "table", "link", "|",
+                "align", "ul", "ol", "|",
+                "undo", "redo", "hr", "|",
+                "fullsize"
+            ],
+            statusbar: true,
+            toolbarAdaptive: false,
+        }),
+        []
+    );
+
+    const longDescConfig = useMemo(
+        () => ({
+            readonly: false,
+            placeholder: "Detailed product features and specifications...",
+            height: 320,
+            minHeight: 320,
+            maxHeight: 550,
+            autoFocus: false,
+            spellcheck: true,
+            overflowY: "auto",
+            buttons: [
+                "source", "|",
+                "bold", "italic", "underline", "strikethrough", "|",
+                "font", "fontsize", "brush", "paragraph", "|",
+                "image", "table", "link", "|",
+                "align", "undo", "redo", "hr", "|",
+                "fullsize"
+            ],
+            statusbar: true,
+            toolbarAdaptive: false,
+        }),
+        []
+    );
 
     const [metaTitle, setMetaTitle] = useState("");
     const [metaDescription, setMetaDescription] = useState("");
@@ -734,20 +792,15 @@ export default function EditProductPage() {
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     Short Description
                                 </label>
-
-                                <textarea
-                                    rows={4}
-                                    value={
-                                        shortDescription
-                                    }
-                                    onChange={(e) =>
-                                        setShortDescription(
-                                            e.target.value
-                                        )
-                                    }
-                                    placeholder="Enter short product description"
-                                    className="w-full border border-gray-300 rounded-lg p-4 text-black outline-none focus:border-black resize-none"
-                                />
+                                <div className="rounded-lg overflow-hidden border border-gray-300" data-lenis-prevent>
+                                    <JoditEditor
+                                        ref={shortDescRef}
+                                        value={shortDescription}
+                                        config={shortDescConfig}
+                                        onBlur={(newContent) => setShortDescription(newContent)}
+                                        onChange={() => {}}
+                                    />
+                                </div>
                             </div>
 
                             {/* LONG DESCRIPTION */}
@@ -755,20 +808,15 @@ export default function EditProductPage() {
                                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                                     Long Description
                                 </label>
-
-                                <textarea
-                                    rows={10}
-                                    value={
-                                        longDescription
-                                    }
-                                    onChange={(e) =>
-                                        setLongDescription(
-                                            e.target.value
-                                        )
-                                    }
-                                    placeholder="Enter detailed product description"
-                                    className="w-full border border-gray-300 rounded-lg p-4 text-black outline-none focus:border-black resize-y"
-                                />
+                                <div className="rounded-lg overflow-hidden border border-gray-300" data-lenis-prevent>
+                                    <JoditEditor
+                                        ref={longDescRef}
+                                        value={longDescription}
+                                        config={longDescConfig}
+                                        onBlur={(newContent) => setLongDescription(newContent)}
+                                        onChange={() => {}}
+                                    />
+                                </div>
                             </div>
 
                         </div>

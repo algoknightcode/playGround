@@ -12,6 +12,7 @@ import {
     Menu,
     X,
     ExternalLink,
+    FileText,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -20,6 +21,7 @@ const navItems = [
     { name: "Categories", href: "/admin/categories", icon: Tags },
     { name: "Add Product", href: "/admin/add-product", icon: PlusSquare },
     { name: "All Products", href: "/admin/products", icon: Package },
+    { name: "Blogs", href: "/admin/blogs", icon: FileText },
 ];
 
 export default function AdminLayout({

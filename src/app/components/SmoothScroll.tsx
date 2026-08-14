@@ -4,9 +4,10 @@ import { useEffect } from "react";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Disable Lenis on mobile & tablet viewports (< 1024px) or touch devices to prevent scroll trapping
+    // Disable Lenis in admin panel (/admin) or mobile & tablet viewports to prevent scroll trapping
+    const isAdminPath = typeof window !== "undefined" && window.location.pathname.startsWith("/admin");
     const isMobileViewport = window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 1024;
-    if (isMobileViewport) return;
+    if (isAdminPath || isMobileViewport) return;
 
     let lenisInstance: any;
     let rafId: number;
@@ -20,6 +21,15 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         gestureOrientation: "vertical",
         smoothWheel: true,
         touchMultiplier: 1.5,
+        prevent: (node: HTMLElement) => {
+          return (
+            node.classList?.contains("jodit-wysiwyg") ||
+            node.classList?.contains("jodit-workarea") ||
+            node.classList?.contains("jodit-container") ||
+            node.closest?.(".jodit-container") !== null ||
+            node.hasAttribute("data-lenis-prevent")
+          );
+        },
       });
 
       function raf(time: number) {
