@@ -25,7 +25,7 @@ export const ShopByCategories: React.FC = () => {
   }, [isPaused]);
 
   return (
-    <section className="relative w-full bg-[#00C4B5] py-8 md:py-12 px-6 md:px-12 overflow-hidden font-quicksand">
+    <section className="relative w-full bg-[#00C4B5] py-4 md:py-6 px-4 md:px-8 overflow-hidden font-quicksand">
       {/* Background Decorative Layer: Pure CSS animations for zero JS thread overhead */}
       <style jsx>{`
         @keyframes floatSlow {
@@ -54,8 +54,8 @@ export const ShopByCategories: React.FC = () => {
 
       <div className="max-w-[1400px] mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-8 flex flex-col items-center">
-          <h2 className="text-2xl md:text-4xl font-black text-white mb-2 tracking-tight">
+        <div className="text-center mb-4 flex flex-col items-center">
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-1 tracking-tight">
             Shop by Categories
           </h2>
           <p className="text-white/90 text-xs md:text-sm max-w-lg leading-relaxed font-semibold">

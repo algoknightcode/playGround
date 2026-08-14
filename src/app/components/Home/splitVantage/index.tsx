@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   motion,
   useScroll,
@@ -71,7 +71,127 @@ const projects: Project[] = [
   },
 ];
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const updateMatch = () => setIsMobile(media.matches);
+    updateMatch();
+
+    media.addEventListener('change', updateMatch);
+    return () => media.removeEventListener('change', updateMatch);
+  }, []);
+
+  return isMobile;
+}
+
 export default function PlayfulLightShowcase() {
+  const isMobile = useIsMobile();
+
+  if (isMobile === null) {
+    return (
+      <>
+        <div className="block md:hidden">
+          <MobileView />
+        </div>
+        <div className="hidden md:block">
+          <DesktopView />
+        </div>
+      </>
+    );
+  }
+
+  return isMobile ? <MobileView /> : <DesktopView />;
+}
+
+function MobileView() {
+  return (
+    <div className="w-full bg-[#FFFFFF] px-4 py-4 font-quicksand antialiased text-[#2D3436]">
+      <div className="max-w-md mx-auto">
+        
+        <div className="flex items-center justify-between mb-4">
+          <span className="bg-[#FFE66D] border-2 border-[#2D3436] px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-[#2D3436]">
+            FEATURED COLLECTIONS
+          </span>
+          <a
+            href="#"
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#4ECDC4] border-2 border-[#2D3436] text-[#2D3436] text-xs font-black uppercase tracking-wider"
+          >
+            <Sparkles className="w-3 h-3" />
+            <span>All</span>
+          </a>
+        </div>
+
+        <Swiper
+          modules={[Autoplay, Pagination]}
+          spaceBetween={16}
+          slidesPerView={1}
+          loop={true}
+          autoplay={{
+            delay: 3500,
+            disableOnInteraction: false,
+          }}
+          pagination={{ clickable: true }}
+          className="splitvantage-mobile-swiper !pb-10"
+        >
+          {projects.map((proj) => (
+            <SwiperSlide key={proj.id}>
+              <div className="bg-white rounded-[1.8rem] border-3 border-[#2D3436] p-4 shadow-[5px_5px_0px_0px_#2D3436] flex flex-col gap-4">
+                {/* Image Container */}
+                <div className="w-full aspect-[4/3] rounded-[1.2rem] border-2 border-[#2D3436] overflow-hidden bg-slate-50 relative">
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    loading="lazy"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+
+                {/* Title & Badge */}
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wide ${proj.badgeColor}`}>
+                      {proj.name}
+                    </span>
+                    <span className="text-base">{proj.icon}</span>
+                  </div>
+
+                  <h3 className="text-lg font-black text-[#2D3436] leading-snug">
+                    {proj.title}
+                  </h3>
+                </div>
+
+                {/* Specs */}
+                <div className="space-y-1.5 pt-2 border-t-2 border-[#2D3436] text-xs">
+                  <div className="flex justify-between items-center py-0.5">
+                    <span className="font-black text-[#636E72] uppercase text-[10px]">Age Group</span>
+                    <span className="font-extrabold text-[#2D3436] bg-white px-2 py-0.5 rounded-md border border-[#2D3436]">{proj.year}</span>
+                  </div>
+                  <div className="flex justify-between items-center py-0.5 border-t border-[#2D3436]/15">
+                    <span className="font-black text-[#636E72] uppercase text-[10px]">Play Type</span>
+                    <span className="font-extrabold text-[#2D3436] bg-white px-2 py-0.5 rounded-md border border-[#2D3436]">{proj.timeline}</span>
+                  </div>
+                </div>
+
+                {/* Button */}
+                <button
+                  type="button"
+                  className={`w-full py-3 px-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-between border-2 border-[#2D3436] cursor-pointer ${proj.btnColor}`}
+                >
+                  <span>EXPLORE COLLECTION</span>
+                  <ArrowRight className="w-4 h-4 stroke-[3]" />
+                </button>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+    </div>
+  );
+}
+
+function DesktopView() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -89,101 +209,9 @@ export default function PlayfulLightShowcase() {
 
   return (
     <>
-      {/* 
-        ========================================================
-        1. MOBILE VIEW: 100% Native Swiper Touch Slider
-        ========================================================
-      */}
-      <div className="block md:hidden w-full bg-[#FFFFFF] px-4 py-8 font-quicksand antialiased text-[#2D3436]">
-        <div className="max-w-md mx-auto">
-          
-          <div className="flex items-center justify-between mb-4">
-            <span className="bg-[#FFE66D] border-2 border-[#2D3436] px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-[#2D3436]">
-              FEATURED COLLECTIONS
-            </span>
-            <a
-              href="#"
-              className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#4ECDC4] border-2 border-[#2D3436] text-[#2D3436] text-xs font-black uppercase tracking-wider"
-            >
-              <Sparkles className="w-3 h-3" />
-              <span>All</span>
-            </a>
-          </div>
-
-          <Swiper
-            modules={[Autoplay, Pagination]}
-            spaceBetween={16}
-            slidesPerView={1}
-            loop={true}
-            autoplay={{
-              delay: 3500,
-              disableOnInteraction: false,
-            }}
-            pagination={{ clickable: true }}
-            className="splitvantage-mobile-swiper !pb-10"
-          >
-            {projects.map((proj) => (
-              <SwiperSlide key={proj.id}>
-                <div className="bg-white rounded-[1.8rem] border-3 border-[#2D3436] p-4 shadow-[5px_5px_0px_0px_#2D3436] flex flex-col gap-4">
-                  {/* Image Container */}
-                  <div className="w-full aspect-[4/3] rounded-[1.2rem] border-2 border-[#2D3436] overflow-hidden bg-slate-50 relative">
-                    <img
-                      src={proj.image}
-                      alt={proj.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  {/* Title & Badge */}
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wide ${proj.badgeColor}`}>
-                        {proj.name}
-                      </span>
-                      <span className="text-base">{proj.icon}</span>
-                    </div>
-
-                    <h3 className="text-lg font-black text-[#2D3436] leading-snug">
-                      {proj.title}
-                    </h3>
-                  </div>
-
-                  {/* Specs */}
-                  <div className="space-y-1.5 pt-2 border-t-2 border-[#2D3436] text-xs">
-                    <div className="flex justify-between items-center py-0.5">
-                      <span className="font-black text-[#636E72] uppercase text-[10px]">Age Group</span>
-                      <span className="font-extrabold text-[#2D3436] bg-white px-2 py-0.5 rounded-md border border-[#2D3436]">{proj.year}</span>
-                    </div>
-                    <div className="flex justify-between items-center py-0.5 border-t border-[#2D3436]/15">
-                      <span className="font-black text-[#636E72] uppercase text-[10px]">Play Type</span>
-                      <span className="font-extrabold text-[#2D3436] bg-white px-2 py-0.5 rounded-md border border-[#2D3436]">{proj.timeline}</span>
-                    </div>
-                  </div>
-
-                  {/* Button */}
-                  <button
-                    type="button"
-                    className={`w-full py-3 px-4 rounded-xl font-black text-xs uppercase tracking-wider flex items-center justify-between border-2 border-[#2D3436] cursor-pointer ${proj.btnColor}`}
-                  >
-                    <span>EXPLORE COLLECTION</span>
-                    <ArrowRight className="w-4 h-4 stroke-[3]" />
-                  </button>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
-
-      {/* 
-        ========================================================
-        2. DESKTOP VIEW: Scroll-driven Sticky Reveal
-        ========================================================
-      */}
       <div
         ref={containerRef}
-        className="hidden md:block relative w-full bg-[#FFFFFF] text-[#2D3436] select-none font-quicksand antialiased"
+        className="relative w-full bg-[#FFFFFF] text-[#2D3436] select-none font-quicksand antialiased"
         style={{ height: `${projects.length * 55}vh` }}
       >
         {/* ═══ PINNED STICKY VIEWPORT ═══ */}
@@ -203,7 +231,7 @@ export default function PlayfulLightShowcase() {
           </div>
 
           {/* Main Card Container */}
-          <div className="grid h-[85vh] w-full max-w-7xl grid-cols-12 gap-8 bg-white rounded-[2.5rem] p-10 border-4 border-[#2D3436] shadow-[8px_8px_0px_0px_#2D3436]">
+          <div className="grid h-[85vh] w-full max-w-7xl grid-cols-12 gap-8 bg-white rounded-[2.5rem] p-6 lg:p-8 border-4 border-[#2D3436] shadow-[8px_8px_0px_0px_#2D3436]">
             {/* Left Column */}
             <div className="col-span-5 flex flex-col justify-between pr-8 border-r-3 border-[#2D3436]">
               {/* Top Indicator */}

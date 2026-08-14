@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   useTransform,
   motion,
@@ -43,17 +43,40 @@ const kidsActivities = [
   },
 ];
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const updateMatch = () => setIsMobile(media.matches);
+    updateMatch();
+
+    media.addEventListener('change', updateMatch);
+    return () => media.removeEventListener('change', updateMatch);
+  }, []);
+
+  return isMobile;
+}
+
 export default function KidsStackingCards() {
-  return (
-    <>
-      <div className="block md:hidden">
-        <MobileView />
-      </div>
-      <div className="hidden md:block">
-        <DesktopView />
-      </div>
-    </>
-  );
+  const isMobile = useIsMobile();
+
+  // If server-side rendering or before hydration, render fallback wrapper
+  if (isMobile === null) {
+    return (
+      <>
+        <div className="block md:hidden">
+          <MobileView />
+        </div>
+        <div className="hidden md:block">
+          <DesktopView />
+        </div>
+      </>
+    );
+  }
+
+  // Pure conditional rendering: Only mount ONE view in DOM at runtime
+  return isMobile ? <MobileView /> : <DesktopView />;
 }
 
 // ==========================================
