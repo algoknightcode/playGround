@@ -8,29 +8,30 @@ import MainBanner from './components/MainBanner';
 import HeroBanner from './components/Home/HeroBanner';
 import { FeaturesGrid } from './components/FeaturesGrid';
 
-// Dynamic lazy loading for heavy below-the-fold components to make page load & scroll instantly smooth
-const ToyWindmillScroll = dynamic(() => import('./components/Home/ToyWindmillScroll').then((m) => m.ToyWindmillScroll));
-const Marquee2 = dynamic(() => import('./components/Home/Marquee2'));
-const ToysForEveryNeed = dynamic(() => import('./components/Home/ToysEveryNeed'));
-const ShopByCategories = dynamic(() => import('./components/Home/ShopByCategories'));
-const ShopByAge = dynamic(() => import('./components/Home/ShopByAge'));
-const SplitVantage = dynamic(() => import('./components/Home/splitVantage'));
-const ShopElementsSection = dynamic(() => import('./components/Home/ShopElementsSection'));
-const WhoWeAre = dynamic(() => import('./components/Home/WhoWeAre'));
-const CloudStatsBanner = dynamic(() => import('./components/Home/CloudStatsBanner'));
-const ExpandableVideoMarquee = dynamic(() => import('./components/Home/ExpandableVideoMarquee').then((m) => m.ExpandableVideoMarquee));
-const HeroSubBanner = dynamic(() => import('./components/Home/HeroSubBanner'));
-const BusinessStats = dynamic(() => import('./components/Home/BusinessStats'));
-const HowItWorksProcess = dynamic(() => import('./components/Home/HowItWorksProcess'));
-const DealsSection = dynamic(() => import('./components/Home/BestDeals'));
-const HeroTextSection = dynamic(() => import('./components/Home/HeroText'));
-const KidsStackingCards = dynamic(() => import('./components/Home/KidsStackingCards'));
-const ClientTestimonials = dynamic(() => import('./components/Home/ClientTestimonials').then((m) => m.ClientTestimonials));
-const FaqInteractivePreview = dynamic(() => import('./components/Home/Faq'));
-const KidsNewsSection = dynamic(() => import('./components/Home/newletter'));
-const AnyProSection = dynamic(() => import('./components/Home/AnyProSection').then(m => m.AnyProSection));
-const UpperFooter = dynamic(() => import('./components/Home/UpperFooter'));
-const Footer2 = dynamic(() => import('./components/Footer2'));
+import Marquee2 from './components/Home/Marquee2';
+import ToysForEveryNeed from './components/Home/ToysEveryNeed';
+import ShopByCategories from './components/Home/ShopByCategories';
+import ShopByAge from './components/Home/ShopByAge';
+import ShopElementsSection from './components/Home/ShopElementsSection';
+import WhoWeAre from './components/Home/WhoWeAre';
+import CloudStatsBanner from './components/Home/CloudStatsBanner';
+import HeroSubBanner from './components/Home/HeroSubBanner';
+import BusinessStats from './components/Home/BusinessStats';
+import HowItWorksProcess from './components/Home/HowItWorksProcess';
+import DealsSection from './components/Home/BestDeals';
+import HeroTextSection from './components/Home/HeroText';
+import FaqInteractivePreview from './components/Home/Faq';
+import KidsNewsSection from './components/Home/newletter';
+import UpperFooter from './components/Home/UpperFooter';
+import Footer2 from './components/Footer2';
+
+// Heavy below-the-fold or highly animated components remain dynamic to improve initial page load speed
+const ToyWindmillScroll = dynamic(() => import('./components/Home/ToyWindmillScroll').then((m) => m.ToyWindmillScroll), { ssr: false });
+const SplitVantage = dynamic(() => import('./components/Home/splitVantage'), { ssr: false });
+const ExpandableVideoMarquee = dynamic(() => import('./components/Home/ExpandableVideoMarquee').then((m) => m.ExpandableVideoMarquee), { ssr: false });
+const KidsStackingCards = dynamic(() => import('./components/Home/KidsStackingCards'), { ssr: false });
+const ClientTestimonials = dynamic(() => import('./components/Home/ClientTestimonials').then((m) => m.ClientTestimonials), { ssr: false });
+const AnyProSection = dynamic(() => import('./components/Home/AnyProSection').then((m) => m.AnyProSection), { ssr: false });
 
 export default function Home() {
   return (
