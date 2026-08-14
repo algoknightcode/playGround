@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import {
   ChevronDown, Mail, Phone, Search, Heart, ArrowRight,
   LayoutGrid, Shapes, Armchair, X, Home, Info, CalendarDays,
-  Image, PhoneCall, Handshake, Package, MapPin, Sparkles,
+  PhoneCall, Handshake, Package, MapPin, Sparkles,
 } from 'lucide-react';
 import { LiquidButton } from '../ui/buttonUi';
 
@@ -263,9 +264,12 @@ export default function KidzaNavbar() {
               {/* Logo */}
               <a href="/" className="flex items-center gap-2 cursor-pointer shrink-0 group">
                 <div className="relative">
-                  <img
+                  <Image
                     src="/assets/ToyPark_logo.png"
                     alt="ToyPark Logo"
+                    width={220}
+                    height={56}
+                    priority
                     className="h-14 sm:h-14 w-auto object-contain max-w-[200px] sm:max-w-[220px] transition-transform duration-300 group-hover:scale-105 drop-shadow-md"
                   />
                   {/* Subtle glow on hover */}

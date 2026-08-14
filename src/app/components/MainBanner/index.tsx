@@ -98,19 +98,29 @@ const ResponsiveBannerImage = ({ desktopSrc, mobileSrc, alt, priority = false }:
   return (
     <>
       {/* 🖥️ Desktop Banner Image */}
-      <img
-        src={desktopSrc}
-        alt={`${alt} Desktop`}
-        className="hidden sm:block w-full h-auto object-cover"
-        loading={priority ? 'eager' : 'lazy'}
-      />
+      <div className="hidden sm:block relative w-full h-auto">
+        <Image
+          src={desktopSrc}
+          alt={`${alt} Desktop`}
+          width={1920}
+          height={800}
+          priority={priority}
+          sizes="100vw"
+          className="w-full h-auto object-cover"
+        />
+      </div>
       {/* 📱 Mobile Banner Image */}
-      <img
-        src={mobileSrc}
-        alt={`${alt} Mobile`}
-        className="block sm:hidden w-full h-auto object-cover object-top"
-        loading={priority ? 'eager' : 'lazy'}
-      />
+      <div className="block sm:hidden relative w-full h-auto">
+        <Image
+          src={mobileSrc}
+          alt={`${alt} Mobile`}
+          width={800}
+          height={1000}
+          priority={priority}
+          sizes="100vw"
+          className="w-full h-auto object-cover object-top"
+        />
+      </div>
     </>
   );
 };
