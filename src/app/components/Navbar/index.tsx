@@ -5,7 +5,7 @@ import Image from 'next/image';
 import {
   ChevronDown, Mail, Phone, Search, Heart, ArrowRight,
   LayoutGrid, Shapes, Armchair, X, Home, Info, CalendarDays,
-  PhoneCall, Handshake, Package, MapPin, Sparkles,
+  PhoneCall, Handshake, Package, MapPin, Sparkles, Image as ImageIcon,
 } from 'lucide-react';
 import { LiquidButton } from '../ui/buttonUi';
 
@@ -56,7 +56,7 @@ const mobileNavLinks = [
   { href: '/', label: 'Home', icon: Home, color: 'bg-[#62C4D2]/15 text-[#62C4D2]', glow: '#62C4D2' },
   { href: '/about', label: 'About Us', icon: Info, color: 'bg-[#FF6B6B]/15 text-[#FF6B6B]', glow: '#FF6B6B' },
   { href: '/exhibition', label: 'News & Events', icon: CalendarDays, color: 'bg-[#f97316]/15 text-[#f97316]', glow: '#f97316' },
-  { href: '/gallery', label: 'Gallery', icon: Image, color: 'bg-[#8BC34A]/15 text-[#8BC34A]', glow: '#8BC34A' },
+  { href: '/gallery', label: 'Gallery', icon: ImageIcon, color: 'bg-[#8BC34A]/15 text-[#8BC34A]', glow: '#8BC34A' },
   { href: '/contact', label: 'Contact Us', icon: PhoneCall, color: 'bg-[#62C4D2]/15 text-[#62C4D2]', glow: '#62C4D2' },
   { href: '/partner', label: 'Partner With Us', icon: Handshake, color: 'bg-[#FFD400]/20 text-[#c9a800]', glow: '#c9a800' },
 ];

@@ -65,7 +65,6 @@ export default function Home() {
       <HeroTextSection />
       <AnyProSection />
       <KidsStackingCards />
-      <div className="h-16 md:h-24 bg-white" />
    
     
       {/* <KidsNewsSection /> */}

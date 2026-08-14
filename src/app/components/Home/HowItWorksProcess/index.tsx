@@ -91,11 +91,11 @@ const STEPS: ProcessStep[] = [
 
 export default function HowItWorksProcess() {
   return (
-    <section className="py-12 md:py-16 bg-white relative overflow-hidden font-quicksand">
+    <section className="py-6 md:py-16 bg-white relative overflow-hidden font-quicksand">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="mb-8 sm:mb-10 max-w-3xl">
+        <div className="mb-6 sm:mb-10 max-w-3xl">
           <span className="bg-[#FFE66D] text-[#2D3436] text-xs font-black tracking-widest uppercase px-4 py-1.5 rounded-full border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] inline-block mb-3">
             HOW IT WORKS
           </span>
@@ -108,7 +108,7 @@ export default function HowItWorksProcess() {
         </div>
 
         {/* 📱 MOBILE VIEW: AUTO-SWIPE ONE CARD AT A TIME (< sm) */}
-        <div className="block sm:hidden w-full relative pb-9">
+        <div className="block sm:hidden w-full relative pb-4">
           <Swiper
             modules={[Autoplay, Pagination]}
             slidesPerView={1}
@@ -118,7 +118,7 @@ export default function HowItWorksProcess() {
             pagination={{
               clickable: true,
             }}
-            className="w-full how-it-works-swiper !pb-8"
+            className="w-full how-it-works-swiper !pb-6"
           >
             {STEPS.map((step, idx) => (
               <SwiperSlide key={step.number}>

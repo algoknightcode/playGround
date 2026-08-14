@@ -84,10 +84,10 @@ export default function KidsStackingCards() {
 // ==========================================
 function MobileView() {
   return (
-    <main className="bg-[#F8F9FA] text-[#2D3436] font-quicksand py-8 px-4">
+    <main className="bg-[#F8F9FA] text-[#2D3436] font-quicksand pt-4 pb-1 px-4">
       {/* HEADER */}
-      <div className="flex flex-col items-center text-center mb-6">
-        <span className="bg-[#FF7A59] text-white text-[10px] font-black tracking-widest uppercase px-3.5 py-1 rounded-full shadow-sm mb-2">
+      <div className="flex flex-col items-center text-center mb-3">
+        <span className="bg-[#FF7A59] text-white text-[10px] font-black tracking-widest uppercase px-3.5 py-1 rounded-full shadow-sm mb-1.5">
           Fun &amp; Education For Kids
         </span>
         <h1 className="text-2xl font-black text-[#2D3436] tracking-tight leading-[115%]">
@@ -104,7 +104,7 @@ function MobileView() {
           slidesPerView={1}
           autoplay={false}
           pagination={{ clickable: true }}
-          className="w-full kids-mobile-swiper !pb-10"
+          className="w-full kids-mobile-swiper !pb-7"
         >
           {kidsActivities.map((project, i) => (
             <SwiperSlide key={project.title}>

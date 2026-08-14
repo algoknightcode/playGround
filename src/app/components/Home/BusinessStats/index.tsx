@@ -41,7 +41,7 @@ const BusinessStats = () => {
   return (
     <section className="w-full relative bg-white py-6 sm:py-16 font-quicksand overflow-hidden">
       {/* CYAN BLUE SECTION */}
-      <div className="relative max-w-7xl mx-auto bg-[#00C4B5] rounded-3xl sm:rounded-[3rem] px-4 sm:px-12 pt-8 pb-16 sm:py-16 lg:py-24 mb-10 sm:mb-20 lg:mb-32 shadow-xl">
+      <div className="relative max-w-7xl mx-auto bg-[#00C4B5] rounded-3xl sm:rounded-[3rem] px-4 sm:px-12 pt-8 pb-16 sm:py-16 lg:py-24 mb-4 sm:mb-20 lg:mb-32 shadow-xl">
         
         {/* Animated Floating Sun Icon */}
         <motion.div 

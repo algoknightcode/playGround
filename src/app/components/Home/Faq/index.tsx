@@ -117,7 +117,77 @@ export const FaqInteractivePreview = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+        {/* MOBILE VIEW: Clean Expandable Accordion */}
+        <div className="lg:hidden space-y-3">
+          {FAQ_DATA.map((item) => {
+            const isOpen = activeItem?.id === item.id;
+            return (
+              <div
+                key={item.id}
+                className={cn(
+                  'rounded-2xl transition-all duration-300 overflow-hidden border',
+                  isOpen
+                    ? 'bg-white shadow-lg border-[#00C4B5]'
+                    : 'bg-white/90 border-white/60 shadow-sm'
+                )}
+              >
+                <button
+                  onClick={() => setActiveItem(isOpen ? null as any : item)}
+                  className="w-full text-left px-5 py-4 flex items-center justify-between gap-3"
+                >
+                  <span
+                    className={cn(
+                      'text-base font-extrabold tracking-tight transition-colors duration-200',
+                      isOpen ? 'text-[#0284C7]' : 'text-[#007A70]'
+                    )}
+                  >
+                    {item.question}
+                  </span>
+                  <motion.div
+                    animate={{ rotate: isOpen ? 90 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className={cn(
+                      'w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors',
+                      isOpen ? 'bg-[#00C4B5] text-white' : 'bg-slate-100 text-[#007A70]'
+                    )}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 pb-5 pt-1 space-y-4 border-t border-slate-100">
+                        <p className="text-slate-700 text-sm leading-relaxed font-semibold">
+                          {item.answer}
+                        </p>
+                        {item.img && (
+                          <div className="overflow-hidden rounded-xl shadow-inner border border-slate-100 h-44 w-full relative">
+                            <img
+                              src={item.img}
+                              alt={item.question}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* DESKTOP VIEW: Split Side-by-Side Magic Preview */}
+        <div className="hidden lg:grid grid-cols-2 gap-12 items-start">
           
           {/* Left Column: Question List */}
           <div className="space-y-3">
@@ -128,15 +198,15 @@ export const FaqInteractivePreview = () => {
                 onClick={() => setActiveItem(item)}
                 className={cn(
                   'w-full text-left px-6 py-5 rounded-2xl cursor-pointer transition-all duration-300 flex items-center justify-between group border',
-                  activeItem.id === item.id
-                    ? 'bg-[#0D1C3A] text-white shadow-xl scale-[1.02] border-2 border-[#00C4B5]'
+                  activeItem?.id === item.id
+                    ? 'bg-gradient-to-r from-[#00C4B5] to-[#0284C7] text-white shadow-xl scale-[1.02] border-2 border-white/80'
                     : 'bg-white/90 hover:bg-white text-[#007A70] border-white/60 shadow-sm'
                 )}
               >
                 <span 
                   className={cn(
                     "text-base sm:text-lg font-extrabold tracking-tight transition-colors duration-300",
-                    activeItem.id === item.id ? "text-white" : "text-[#007A70]"
+                    activeItem?.id === item.id ? "text-white drop-shadow-sm" : "text-[#007A70]"
                   )}
                 >
                   {item.question}
@@ -144,8 +214,8 @@ export const FaqInteractivePreview = () => {
                 <ArrowRight
                   className={cn(
                     'w-5 h-5 flex-shrink-0 transition-all duration-300',
-                    activeItem.id === item.id
-                      ? 'translate-x-0 opacity-100 text-[#00C4B5]'
+                    activeItem?.id === item.id
+                      ? 'translate-x-0 opacity-100 text-white'
                       : '-translate-x-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 text-[#007A70]'
                   )}
                 />
@@ -154,41 +224,43 @@ export const FaqInteractivePreview = () => {
           </div>
 
           {/* Right Column: Spacious Preview Panel */}
-          <div className="relative min-h-[500px] lg:min-h-[530px] w-full">
+          <div className="relative min-h-[530px] w-full">
             <AnimatePresence mode="wait">
-              <motion.div
-                key={activeItem.id}
-                initial={{ opacity: 0, x: 20, scale: 0.98 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                exit={{ opacity: 0, x: -20, scale: 0.98 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-                className="absolute inset-0 bg-white rounded-3xl p-8 lg:p-10 flex flex-col justify-between shadow-xl border border-white/60 overflow-hidden"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-slate-500">
-                    <Sparkles className="w-4 h-4 text-[#00C4B5]" />
-                    <span className="text-xs font-bold uppercase tracking-widest text-[#00C4B5]">
-                      Magic Preview
-                    </span>
+              {activeItem && (
+                <motion.div
+                  key={activeItem.id}
+                  initial={{ opacity: 0, x: 20, scale: 0.98 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -20, scale: 0.98 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                  className="absolute inset-0 bg-white rounded-3xl p-8 lg:p-10 flex flex-col justify-between shadow-xl border border-white/60 overflow-hidden"
+                >
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2 text-slate-500">
+                      <Sparkles className="w-4 h-4 text-[#00C4B5]" />
+                      <span className="text-xs font-bold uppercase tracking-widest text-[#00C4B5]">
+                        Magic Preview
+                      </span>
+                    </div>
+                    
+                    <h3 className="text-2xl md:text-3xl font-black text-slate-900 leading-tight">
+                      {activeItem.question}
+                    </h3>
+                    
+                    <p className="text-slate-600 text-base md:text-lg leading-relaxed font-semibold">
+                      {activeItem.answer}
+                    </p>
                   </div>
-                  
-                  <h3 className="text-2xl md:text-3xl font-black text-slate-900 leading-tight">
-                    {activeItem.question}
-                  </h3>
-                  
-                  <p className="text-slate-600 text-base md:text-lg leading-relaxed font-semibold">
-                    {activeItem.answer}
-                  </p>
-                </div>
 
-                <div className="overflow-hidden rounded-2xl shadow-md border border-slate-100 mt-auto w-full h-52 sm:h-60 relative">
-                  <img
-                    src={activeItem.img}
-                    alt={activeItem.question}
-                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
-              </motion.div>
+                  <div className="overflow-hidden rounded-2xl shadow-md border border-slate-100 mt-auto w-full h-52 sm:h-60 relative">
+                    <img
+                      src={activeItem.img}
+                      alt={activeItem.question}
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </motion.div>
+              )}
             </AnimatePresence>
           </div>
 
