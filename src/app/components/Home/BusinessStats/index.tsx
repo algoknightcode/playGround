@@ -70,7 +70,7 @@ const BusinessStats = () => {
           <Swiper
             slidesPerView={2}
             spaceBetween={10}
-            autoplay={{ delay: 3500, disableOnInteraction: false }}
+            autoplay={false}
             loop={true}
             modules={[Autoplay]}
             className="w-full pb-2"

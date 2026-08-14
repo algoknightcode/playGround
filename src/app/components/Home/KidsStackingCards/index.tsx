@@ -102,10 +102,7 @@ function MobileView() {
           modules={[Autoplay, Pagination]}
           spaceBetween={16}
           slidesPerView={1}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
+          autoplay={false}
           pagination={{ clickable: true }}
           className="w-full kids-mobile-swiper !pb-10"
         >

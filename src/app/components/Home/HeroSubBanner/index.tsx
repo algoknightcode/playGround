@@ -34,9 +34,9 @@ export const HeroSubBanner: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  // Auto-swipe functionality for mobile view
+  // Auto-swipe functionality for desktop view
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || (typeof window !== "undefined" && window.innerWidth < 768)) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % BANNERS.length);
     }, 3500);

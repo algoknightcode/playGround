@@ -38,7 +38,7 @@ const TiktokIcon = (props: React.SVGProps<SVGSVGElement>) => (
 
 const Footer2 = () => {
   return (
-    <footer className="relative bg-white pt-4 sm:pt-16 pb-36 sm:pb-48 md:pb-60 lg:pb-72 font-quicksand text-gray-600 overflow-hidden">
+    <footer className="relative bg-white pt-4 sm:pt-16 pb-[160px] sm:pb-48 md:pb-60 lg:pb-72 font-quicksand text-gray-600 overflow-hidden">
       
       {/* ═══ TOP SCALLOPED FLUFFY CLOUD WAVE DIVIDER ═══ */}
       <div className="absolute top-0 left-0 right-0 w-full overflow-hidden leading-none z-10 pointer-events-none -translate-y-[98%] text-white">

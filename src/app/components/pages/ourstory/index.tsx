@@ -173,7 +173,7 @@ export default function OurStoryComponent() {
 
               {/* CENTER: OUR STORY (Clean White Overlay Text) */}
               <div className="flex items-center justify-center">
-                <span className="text-sm sm:text-lg md:text-2xl font-extrabold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white drop-shadow-lg bg-white/10 backdrop-blur-md px-5 sm:px-8 py-1.5 sm:py-2.5 rounded-full border-2 border-white/80">
+                <span className="text-sm sm:text-lg md:text-2xl font-extrabold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-white drop-shadow-lg bg-white/10 px-5 sm:px-8 py-1.5 sm:py-2.5 rounded-full border-2 border-white/80">
                   OUR STORY
                 </span>
               </div>
@@ -181,7 +181,7 @@ export default function OurStoryComponent() {
               {/* RIGHT: Home Button */}
               <div className="flex items-center">
                 <a href="/">
-                  <button className="px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full border-2 border-white text-white font-extrabold text-xs sm:text-base flex items-center gap-1.5 sm:gap-2 transition-all hover:bg-white/20 backdrop-blur-md">
+                  <button className="px-4 sm:px-6 py-1.5 sm:py-2.5 rounded-full border-2 border-white text-white font-extrabold text-xs sm:text-base flex items-center gap-1.5 sm:gap-2 transition-all hover:bg-white/20">
                     <span>Home</span>
                     <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[3] text-white" />
                   </button>

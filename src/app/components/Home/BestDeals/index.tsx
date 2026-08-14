@@ -169,10 +169,7 @@ export const DealsSection: React.FC = () => {
               slidesPerView={1}
               spaceBetween={16}
               loop={true}
-              autoplay={{
-                delay: 3500,
-                disableOnInteraction: false,
-              }}
+              autoplay={false}
               pagination={{
                 clickable: true,
               }}
@@ -219,10 +216,7 @@ export const DealsSection: React.FC = () => {
               slidesPerView={1}
               spaceBetween={12}
               loop={true}
-              autoplay={{
-                delay: 4000,
-                disableOnInteraction: false,
-              }}
+              autoplay={false}
               pagination={{
                 clickable: true,
               }}

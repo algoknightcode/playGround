@@ -86,7 +86,7 @@ export const ParallaxStats: React.FC = () => {
                 />
                 
                 {/* Badge Overlay */}
-                <div className="absolute bottom-6 left-6 z-20 flex items-center gap-2 bg-white/80 backdrop-blur-md px-4 py-2 rounded-full border border-black/5 shadow-sm">
+                <div className="absolute bottom-6 left-6 z-20 flex items-center gap-2 bg-white/80 px-4 py-2 rounded-full border border-black/5 shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-[#E3A813]" />
                   <span className="text-neutral-700 text-[11px] uppercase font-mono tracking-widest font-bold">
                     RAMA Studio Design System

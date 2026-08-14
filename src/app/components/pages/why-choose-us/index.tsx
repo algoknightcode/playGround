@@ -219,7 +219,7 @@ export default function WhyChooseUsPageContent() {
           ref={heroTextRef}
           className="relative z-10 text-center px-6 will-change-transform max-w-4xl"
         >
-          <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 text-[#00C4B5] px-5 py-2 rounded-full font-black text-sm uppercase tracking-widest mb-8">
+          <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-[#00C4B5] px-5 py-2 rounded-full font-black text-sm uppercase tracking-widest mb-8">
             <Sparkles className="w-4 h-4 text-[#FFE66D]" /> WHY BUSINESSES CHOOSE US
           </div>
           <h1 className="text-[9vw] md:text-[7vw] font-black leading-[0.85] uppercase tracking-tighter text-white drop-shadow-2xl mb-6">
@@ -352,7 +352,7 @@ export default function WhyChooseUsPageContent() {
                   Pillar #{idx + 1}
                 </span>
                 <div className="text-center">
-                  <div className="w-16 h-16 mx-auto bg-white/20 rounded-2xl flex items-center justify-center backdrop-blur-sm border border-white/30 mb-4">
+                  <div className="w-16 h-16 mx-auto bg-white/20 rounded-2xl flex items-center justify-center border border-white/30 mb-4">
                     <Zap className="w-8 h-8 text-white" />
                   </div>
                   <h3 className="text-3xl font-black text-white leading-none">{pillar.label1}<br/>{pillar.label2}</h3>

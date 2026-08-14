@@ -119,7 +119,7 @@ function AboutUsScrollAnimation() {
 
       {/* 2. Intro Indicator */}
       <div className="py-10 flex items-center justify-center bg-[#E0F7F6]">
-        <div className="flex items-center gap-4 bg-white/80 backdrop-blur-md px-8 py-3.5 rounded-full shadow-lg border-2 border-[#00C4B5]/40">
+        <div className="flex items-center gap-4 bg-white/80 px-8 py-3.5 rounded-full shadow-lg border-2 border-[#00C4B5]/40">
           <h2 className="text-4xl md:text-5xl font-black text-[#00A89B] tracking-wider uppercase">
             Our Story
           </h2>

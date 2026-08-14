@@ -100,7 +100,7 @@ export const NovaLandingPage: React.FC = () => {
 
       <div className="relative z-10">
 
-        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/15 bg-black/20 backdrop-blur-md px-5 sm:px-8 md:px-12 py-4">
+        <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/15 bg-black/20 px-5 sm:px-8 md:px-12 py-4">
           <div className="max-w-7xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <HexagonIcon className="w-6 h-6 text-white" />
@@ -114,7 +114,7 @@ export const NovaLandingPage: React.FC = () => {
               <a href="#blog" className="hover:text-white transition-colors">Blog</a>
               <a href="#contact" className="hover:text-white transition-colors">Contact</a>
             </div>
-            <button className="rounded-md border border-white/20 bg-white/15 backdrop-blur-md px-4 py-2 text-xs sm:px-5 sm:text-sm hover:bg-white/25 transition-all">
+            <button className="rounded-md border border-white/20 bg-white/15 px-4 py-2 text-xs sm:px-5 sm:text-sm hover:bg-white/25 transition-all">
               Get Free Consultation
             </button>
           </div>
@@ -135,7 +135,7 @@ export const NovaLandingPage: React.FC = () => {
 
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-16">
             <div>
-              <div className="inline-block border-l-2 border-white bg-white/15 px-3 py-1.5 backdrop-blur-md font-mono text-[11px] uppercase tracking-[0.15em] mb-5">
+              <div className="inline-block border-l-2 border-white bg-white/15 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em] mb-5">
                 We Automate 100+ Businesses
               </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-normal leading-[1.05] tracking-tight text-white drop-shadow-lg">
@@ -144,7 +144,7 @@ export const NovaLandingPage: React.FC = () => {
               </h1>
             </div>
 
-            <div className="flex items-center gap-4 rounded-xl border border-white/20 bg-white/15 p-3 backdrop-blur-md">
+            <div className="flex items-center gap-4 rounded-xl border border-white/20 bg-white/15 p-3">
               <img
                 src="https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260728_050334_5b076e26-0ce7-4898-b432-d764190e448f.png&w=1280&q=85"
                 alt="Mitha, co-founder of NovaAI"
@@ -167,7 +167,7 @@ export const NovaLandingPage: React.FC = () => {
         <section className="min-h-screen pt-24 sm:pt-28 pb-12 md:pb-16 px-5 sm:px-8 md:px-12 flex flex-col justify-between max-w-7xl mx-auto">
 
           <div className="flex flex-col gap-6 sm:flex-row sm:justify-between sm:items-start">
-            <div className="inline-block border-l-2 border-white bg-white/15 px-3 py-1.5 backdrop-blur-md font-mono text-[11px] uppercase tracking-[0.15em]">
+            <div className="inline-block border-l-2 border-white bg-white/15 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.15em]">
               Insight On Demand
             </div>
             <p className="text-lg sm:text-xl leading-relaxed text-white drop-shadow-md max-w-sm sm:text-right">
@@ -188,13 +188,13 @@ export const NovaLandingPage: React.FC = () => {
                 <button className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-xs sm:text-sm font-medium text-black hover:bg-white/85 transition-all">
                   Run the demo <ChevronRightIcon className="w-3.5 h-3.5" />
                 </button>
-                <button className="rounded-full border border-white/25 bg-white/10 backdrop-blur-md px-5 py-2.5 text-xs sm:text-sm text-white hover:bg-white/20 transition-all">
+                <button className="rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-xs sm:text-sm text-white hover:bg-white/20 transition-all">
                   Free consultation
                 </button>
               </div>
             </div>
 
-            <div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/10 backdrop-blur-md px-5 sm:px-6">
+            <div className="w-full max-w-md rounded-2xl border border-white/15 bg-white/10 px-5 sm:px-6">
               <div className="flex gap-5 py-5 border-b border-white/15 group cursor-pointer">
                 <span className="font-mono text-[11px] tracking-[0.15em] text-white/55 pt-0.5">01</span>
                 <div>

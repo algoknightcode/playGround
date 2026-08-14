@@ -41,7 +41,7 @@ export const CloudStatsBanner: React.FC = () => {
           <Swiper
             slidesPerView={2}
             spaceBetween={10}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoplay={false}
             loop={true}
             modules={[Autoplay]}
             className="w-full pb-2"

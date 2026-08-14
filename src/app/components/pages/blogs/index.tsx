@@ -119,7 +119,7 @@ export default function BlogsPageContent() {
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out" 
                 />
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-bold text-[#0a192f] shadow-sm flex items-center gap-1">
+                <div className="absolute top-3 right-3 bg-white/90 px-3 py-1 rounded-full text-[11px] font-bold text-[#0a192f] shadow-sm flex items-center gap-1">
                   <Tag className="w-3 h-3 text-[#0284c7]" />
                   {entry.category}
                 </div>

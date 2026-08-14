@@ -128,10 +128,7 @@ function MobileView() {
           spaceBetween={16}
           slidesPerView={1}
           loop={true}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
+          autoplay={false}
           pagination={{ clickable: true }}
           className="splitvantage-mobile-swiper !pb-10"
         >

@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination } from 'swiper/modules';
 
@@ -134,18 +133,25 @@ interface FloatingIconProps {
 }
 
 const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, duration, delay }: FloatingIconProps) => (
-  <motion.div
+  <div
     style={{
       top: top || 'auto',
       left: left || 'auto',
       right: right || 'auto',
-      rotate: rotation,
+      animation: `floatAnimation ${duration}s ease-in-out infinite`,
+      animationDelay: `${delay}s`,
+      // Custom CSS properties
+      ['--float-y' as any]: `-${floatY}px`,
     }}
-    animate={{ y: [0, -floatY, 0] }}
-    transition={{ duration, repeat: Infinity, ease: 'easeInOut', delay }}
     className="hidden sm:block absolute z-20 pointer-events-none drop-shadow-md"
   >
-    <div style={{ maxWidth: `${size}px` }} className="w-full h-auto">
+    <div 
+      style={{ 
+        maxWidth: `${size}px`,
+        transform: `rotate(${rotation}deg)`
+      }} 
+      className="w-full h-auto"
+    >
       <Image
         src={src}
         alt={alt}
@@ -154,7 +160,7 @@ const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, dura
         className="w-auto h-auto object-contain"
       />
     </div>
-  </motion.div>
+  </div>
 );
 
 // ============================================================================
@@ -399,6 +405,14 @@ const MainBanner = () => {
         :global(.main-banner-swiper .swiper-pagination-bullet-active) {
           width: 28px !important;
           border-radius: 6px !important;
+        }
+        @keyframes floatAnimation {
+          0%, 100% {
+            transform: translate3d(0, 0, 0);
+          }
+          50% {
+            transform: translate3d(0, var(--float-y), 0);
+          }
         }
       `}</style>
     </section>

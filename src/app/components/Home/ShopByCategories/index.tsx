@@ -17,7 +17,7 @@ export const ShopByCategories: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || (typeof window !== "undefined" && window.innerWidth < 768)) return;
     const timer = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % categories.length);
     }, 3500);

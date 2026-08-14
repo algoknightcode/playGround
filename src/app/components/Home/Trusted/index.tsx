@@ -92,7 +92,7 @@ export const TrustBannerSection: React.FC = () => {
         </h2>
 
         {/* Descriptive Body Paragraphs in a Soft Creamy Card */}
-        <div className="space-y-4 text-slate-700 font-medium text-base sm:text-lg leading-relaxed max-w-2xl bg-white/70 backdrop-blur-sm p-6 sm:p-8 rounded-3xl border border-amber-200/60 shadow-sm">
+        <div className="space-y-4 text-slate-700 font-medium text-base sm:text-lg leading-relaxed max-w-2xl bg-white/70 p-6 sm:p-8 rounded-3xl border border-amber-200/60 shadow-sm">
           <p>
             <BlurTextEffect>
               Here at Toy Park, we aim to provide high-quality manufacturing with our toys, setups, Playground equipment, etc. This equipment helps in shaping young minds with motor skills, cognition, and creativity while having fun!

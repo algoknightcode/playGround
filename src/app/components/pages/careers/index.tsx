@@ -129,7 +129,7 @@ export default function CareersPageContent() {
         </div>
         
         {/* Content Card */}
-        <div className="relative z-10 flex flex-col items-center text-center px-8 md:px-16 py-12 md:py-16 max-w-5xl bg-white/80 backdrop-blur-md border border-white/80 rounded-[3rem] shadow-xl">
+        <div className="relative z-10 flex flex-col items-center text-center px-8 md:px-16 py-12 md:py-16 max-w-5xl bg-white/80 border border-white/80 rounded-[3rem] shadow-xl">
           <div className="inline-flex items-center gap-2 bg-white rounded-full px-5 py-2 text-[#FF5A5F] font-bold text-sm tracking-widest uppercase mb-8 shadow-sm border border-pink-100">
             <Star className="w-5 h-5 fill-[#FF5A5F]" /> We are hiring
           </div>
