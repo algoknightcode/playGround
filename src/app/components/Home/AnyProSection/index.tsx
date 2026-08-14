@@ -2,7 +2,6 @@
 
 import React from "react";
 import { ArrowRight, Armchair, Baby, Puzzle, Sparkles, Tent, Smile } from "lucide-react";
-import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 
