@@ -57,8 +57,8 @@ export const ToyWindmillScroll: React.FC = () => {
         <div className="absolute inset-0 bg-white/10 pointer-events-none" />
         
         {/* Color Glow Overlay (#6DD2DB) */}
-        <div className="absolute inset-0 bg-[#6DD2DB]/15 pointer-events-none mix-blend-screen" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(109,210,219,0.4)_0%,transparent_45%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[#6DD2DB]/10 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(109,210,219,0.3)_0%,transparent_45%)] pointer-events-none" />
         
         {/* Top Blend Overlay (#6DD2DB to Transparent) */}
         <div className="absolute top-0 left-0 right-0 h-10 md:h-16 bg-gradient-to-b from-[#6DD2DB] to-transparent pointer-events-none z-10" />

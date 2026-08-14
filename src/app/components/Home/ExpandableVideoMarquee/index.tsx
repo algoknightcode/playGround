@@ -164,28 +164,28 @@ export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
           </motion.div>
 
           {/* Neubrutalist Accent Blobs */}
-          <div className="absolute top-12 left-1/4 w-72 h-72 bg-[#FF6B6B]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute bottom-12 right-1/4 w-72 h-72 bg-[#4ECDC4]/10 rounded-full blur-3xl pointer-events-none" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#FFE66D]/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-12 left-1/4 w-72 h-72 bg-[radial-gradient(circle_at_center,rgba(255,107,107,0.1)_0%,transparent_70%)] pointer-events-none" />
+          <div className="absolute bottom-12 right-1/4 w-72 h-72 bg-[radial-gradient(circle_at_center,rgba(78,205,196,0.1)_0%,transparent_70%)] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[radial-gradient(circle_at_center,rgba(255,230,109,0.15)_0%,transparent_70%)] pointer-events-none" />
 
           {/* SKY BACKGROUND LAYER (6 CLOUDS) */}
           <div className="absolute top-[10%] z-5 w-28 pointer-events-none animate-cloud-1">
-            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain drop-shadow-sm opacity-85" />
+            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain opacity-85" />
           </div>
           <div className="absolute bottom-[15%] z-5 w-24 pointer-events-none animate-cloud-2">
-            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain drop-shadow-sm opacity-80" />
+            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain opacity-80" />
           </div>
           <div className="absolute top-[18%] z-5 w-16 pointer-events-none animate-cloud-3">
-            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain drop-shadow-sm opacity-70" />
+            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain opacity-70" />
           </div>
           <div className="absolute bottom-[25%] z-5 w-18 pointer-events-none animate-cloud-4">
-            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain drop-shadow-sm opacity-75" />
+            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain opacity-75" />
           </div>
           <div className="absolute top-[8%] z-5 w-14 pointer-events-none animate-cloud-5">
-            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain drop-shadow-sm opacity-75" />
+            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain opacity-75" />
           </div>
           <div className="absolute top-[14%] z-5 w-16 pointer-events-none animate-cloud-6">
-            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain drop-shadow-sm opacity-80" />
+            <img src="/assets/cloud.png" alt="Sky Cloud" className="w-full h-auto object-contain opacity-80" />
           </div>
 
           {/* ORIGINAL VIBRANT 5-COLOR RAINBOW */}

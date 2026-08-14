@@ -78,7 +78,7 @@ export const FaqInteractivePreview = () => {
         <img 
           src="/assets/faq/sky-image.png_202608121708.jpeg"
           alt="FAQ Sky Background"
-          className="w-full h-full object-cover opacity-85 mix-blend-overlay"
+          className="w-full h-full object-cover opacity-60"
         />
       </div>
 
@@ -90,7 +90,16 @@ export const FaqInteractivePreview = () => {
           transition={{ duration: 5.2, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
           className="absolute top-12 right-4 sm:right-10 lg:right-14 hidden sm:flex items-center justify-center text-white/90"
         >
-          <Cloud className="w-12 h-12 md:w-16 md:h-16 stroke-[2.2] drop-shadow-md" />
+          <Cloud className="w-12 h-12 md:w-16 md:h-16 stroke-[2.2]" />
+        </motion.div>
+
+        {/* Left Floating Cloud */}
+        <motion.div
+          animate={{ y: [0, -12, 0], x: [0, 12, 0] }}
+          transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-16 left-4 sm:left-10 lg:left-20 flex items-center justify-center text-white/95"
+        >
+          <Cloud className="w-16 h-16 md:w-24 md:h-24 stroke-2" />
         </motion.div>
       </div>
 
