@@ -147,7 +147,7 @@ export default function OurStoryComponent() {
       {/* ═══ 1. BACKGROUND VIDEO (95vh COVER) WITH WHITE OVERLAY NAVBAR ═══ */}
       <div className="w-full aspect-square sm:aspect-auto sm:h-[85vh] md:h-[95vh] overflow-hidden bg-black relative">
         <video
-          src="/video/Website_video_showing_playground…_1080p_202608070041.mp4"
+          src="https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Website_video_showing_playground_1080p_202608070041_202608071011.mp4.mp4"
           className="w-full h-full object-cover block absolute inset-0 z-0 brightness-[1.02] contrast-[1.04]"
           autoPlay
           loop

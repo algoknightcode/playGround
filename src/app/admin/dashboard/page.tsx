@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Package, ExternalLink, Loader2, ArrowRight } from "lucide-react";
+import { Package, ExternalLink, Loader2, ArrowRight, MessageSquare, Handshake } from "lucide-react";
 import toast from "react-hot-toast";
 
 interface ProductImage {
@@ -19,30 +19,40 @@ interface Product {
 
 export default function AdminDashboardPage() {
     const [products, setProducts] = useState<Product[]>([]);
+    const [contactCount, setContactCount] = useState<number>(0);
+    const [partnerCount, setPartnerCount] = useState<number>(0);
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetchDashboardData = async () => {
             try {
                 setLoading(true);
-                const res = await fetch("/api/product", { cache: "no-store" });
-                const data = await res.json();
-                if (data.success) {
-                    setProducts(data.products || []);
-                }
+                const [prodRes, contactRes, partnerRes] = await Promise.all([
+                    fetch("/api/product", { cache: "no-store" }),
+                    fetch("/api/contact-form", { cache: "no-store" }),
+                    fetch("/api/partner-form", { cache: "no-store" }),
+                ]);
+
+                const prodData = await prodRes.json();
+                const contactData = await contactRes.json();
+                const partnerData = await partnerRes.json();
+
+                if (prodData.success) setProducts(prodData.products || []);
+                if (contactData.success) setContactCount(contactData.submissions?.length || 0);
+                if (partnerData.success) setPartnerCount(partnerData.submissions?.length || 0);
             } catch (error) {
-                console.error("Fetch products error:", error);
-                toast.error("Failed to fetch products");
+                console.error("Fetch dashboard metrics error:", error);
+                toast.error("Failed to fetch metrics");
             } finally {
                 setLoading(false);
             }
         };
 
-        fetchProducts();
+        fetchDashboardData();
     }, []);
 
     return (
-        <div className="space-y-8 max-w-6xl mx-auto">
+        <div className="space-y-8 max-w-6xl mx-auto font-sans">
             {/* HEADER */}
             <div>
                 <h1 className="text-3xl font-black tracking-tight text-slate-900 uppercase">
@@ -54,7 +64,8 @@ export default function AdminDashboardPage() {
             </div>
 
             {/* METRICS CARDS */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                {/* 1. TOTAL PRODUCTS */}
                 <div className="bg-white border-2 border-slate-900 rounded-3xl p-6 flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
                     <div className="space-y-1">
                         <p className="text-xs font-black text-slate-400 tracking-wider uppercase">
@@ -73,21 +84,53 @@ export default function AdminDashboardPage() {
                     </div>
                 </div>
 
+                {/* 2. CONTACT FORM INQUIRIES */}
                 <Link
-                    href="/admin/products"
-                    className="bg-white border-2 border-slate-900 rounded-3xl p-6 flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:bg-indigo-50/50 transition group"
+                    href="/admin/contact-forms"
+                    className="bg-white border-2 border-slate-900 rounded-3xl p-6 flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:bg-teal-50/50 transition group"
                 >
                     <div className="space-y-1">
-                        <p className="text-xs font-black text-indigo-600 tracking-wider uppercase">
-                            MANAGE CATALOG
+                        <p className="text-xs font-black text-teal-600 tracking-wider uppercase">
+                            CONTACT INQUIRIES
                         </p>
-                        <h3 className="text-lg font-black text-slate-900 group-hover:text-indigo-600 transition flex items-center gap-2">
-                            All Products List
-                            <ArrowRight size={18} className="group-hover:translate-x-1 transition" />
+                        <h3 className="text-3xl font-black text-slate-900 group-hover:text-teal-600 transition flex items-center gap-2">
+                            {loading ? (
+                                <Loader2 className="animate-spin text-teal-600" size={24} />
+                            ) : (
+                                contactCount
+                            )}
                         </h3>
+                        <p className="text-xs font-bold text-slate-400 group-hover:text-teal-600 flex items-center gap-1">
+                            View All <ArrowRight size={12} />
+                        </p>
                     </div>
-                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 text-white flex items-center justify-center shadow-md">
-                        <ExternalLink size={24} />
+                    <div className="w-14 h-14 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center border border-teal-200">
+                        <MessageSquare size={26} />
+                    </div>
+                </Link>
+
+                {/* 3. PARTNER WITH US INQUIRIES */}
+                <Link
+                    href="/admin/partner-forms"
+                    className="bg-white border-2 border-slate-900 rounded-3xl p-6 flex items-center justify-between shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] hover:bg-amber-50/50 transition group"
+                >
+                    <div className="space-y-1">
+                        <p className="text-xs font-black text-amber-600 tracking-wider uppercase">
+                            PARTNER REQUESTS
+                        </p>
+                        <h3 className="text-3xl font-black text-slate-900 group-hover:text-amber-600 transition flex items-center gap-2">
+                            {loading ? (
+                                <Loader2 className="animate-spin text-amber-600" size={24} />
+                            ) : (
+                                partnerCount
+                            )}
+                        </h3>
+                        <p className="text-xs font-bold text-slate-400 group-hover:text-amber-600 flex items-center gap-1">
+                            View All <ArrowRight size={12} />
+                        </p>
+                    </div>
+                    <div className="w-14 h-14 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center border border-amber-200">
+                        <Handshake size={26} />
                     </div>
                 </Link>
             </div>

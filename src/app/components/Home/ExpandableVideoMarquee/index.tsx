@@ -12,8 +12,8 @@ interface ExpandableVideoMarqueeProps {
 }
 
 export const ExpandableVideoMarquee: React.FC<ExpandableVideoMarqueeProps> = ({
-  videoSrc = 'https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Toy_park1.mp4',
-  mobileVideoSrc = 'https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Toy_park1.mp4',
+  videoSrc = 'https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Toy_park1.mp4.mp4',
+  mobileVideoSrc = 'https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/Toy_park1.mp4.mp4',
   tickerText = 'play.Grow KIDS toys and Furniture • ',
   badgeText = 'NEW COLLECTION 2026',
 }) => {

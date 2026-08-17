@@ -76,9 +76,39 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
     if (cloudsRef.current.c3) cloudsRef.current.c3.style.transform = 'translate3d(0px, 0px, 0)';
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    company: '',
+    phone: '',
+    state: '',
+    city: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch('/api/partner-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setIsSubmitted(true);
+      } else {
+        alert(data.message || 'Failed to submit partner form');
+      }
+    } catch (err) {
+      alert('Error connecting to server. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -174,7 +204,7 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
             <div className="relative w-full max-w-[520px] aspect-video p-3 bg-white rounded-[2.5rem] shadow-sm z-10">
               {isVideoVisible ? (
                 <video 
-                  src="https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/toy_park_3.mp4" 
+                  src="https://pub-eb2eff44950b4abfbe1564159bd1cbc8.r2.dev/video/toy_park_3.mp4%20(2).mp4" 
                   autoPlay 
                   loop 
                   muted 
@@ -212,6 +242,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                     <input 
                       type="text" 
                       required 
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       placeholder="Enter your name" 
                       className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
                     />
@@ -222,6 +254,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                     <input 
                       type="email" 
                       required 
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="Enter your email" 
                       className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
                     />
@@ -234,6 +268,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                     <label className="text-[11px] font-extrabold text-[#4ECDC4] uppercase tracking-widest pl-1">Company Name</label>
                     <input 
                       type="text" 
+                      value={formData.company}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       placeholder="Company name (optional)" 
                       className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
                     />
@@ -248,6 +284,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                       <input 
                         type="tel" 
                         required 
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                         placeholder="Enter 10-digit number" 
                         className="w-full px-4 py-3.5 bg-transparent text-[#0F2942] text-sm font-semibold focus:outline-none placeholder:text-[#0F2942]/50"
                       />
@@ -262,6 +300,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                     <input 
                       type="text" 
                       required 
+                      value={formData.state}
+                      onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                       placeholder="State" 
                       className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
                     />
@@ -272,6 +312,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                     <input 
                       type="text" 
                       required 
+                      value={formData.city}
+                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                       placeholder="City" 
                       className="w-full px-5 py-3.5 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50"
                     />
@@ -284,6 +326,8 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                   <textarea 
                     rows={3} 
                     required 
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Write your message..." 
                     className="w-full px-5 py-4 rounded-2xl bg-white/50 border border-transparent text-[#0F2942] text-sm font-semibold focus:bg-white focus:outline-none focus:border-[#70C1D6] transition-colors placeholder:text-[#0F2942]/50 resize-none"
                   />
@@ -292,9 +336,10 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                 {/* Submit Button */}
                 <button 
                   type="submit" 
-                  className="w-full mt-2 py-4 rounded-2xl bg-[#4ECDC4] text-white font-black text-sm tracking-widest uppercase hover:bg-[#3dbcb3] active:scale-[0.98] transition-colors duration-200 shadow-sm flex items-center justify-center gap-3 group"
+                  disabled={isSubmitting}
+                  className="w-full mt-2 py-4 rounded-2xl bg-[#4ECDC4] text-white font-black text-sm tracking-widest uppercase hover:bg-[#3dbcb3] active:scale-[0.98] transition-colors duration-200 shadow-sm flex items-center justify-center gap-3 group disabled:opacity-50"
                 >
-                  <span>Send Message</span>
+                  <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                   <svg className="w-5 h-5 transform group-hover:translate-x-1.5 group-hover:-translate-y-1.5 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                   </svg>
