@@ -177,13 +177,13 @@ export default function ProductDetail() {
 
           {/* 3. STICKY TOYPARK BRANDING & TRUST SIDEBAR WITH GIRAFFE */}
           <div className="lg:col-span-3 lg:sticky lg:top-28 self-start z-10 w-full ml-auto">
-            <div className="bg-[#F8FAFC] border-2 border-[#E2E8F0] rounded-[2rem] p-6 shadow-md relative overflow-hidden flex flex-col gap-6">
+            <div className="bg-[#F8FAFC] border-2 border-[#E2E8F0] rounded-[2rem] p-6 shadow-md relative overflow-visible flex flex-col gap-6">
               
               {/* Floating Decorative Giraffe in Top Right Corner */}
               <img 
                 src="/assets/clouds/giraffe-svgrepo-com.svg" 
                 alt="Giraffe Mascot" 
-                className="absolute -top-1 -right-1 w-16 h-16 pointer-events-none drop-shadow-sm rotate-6 z-10"
+                className="absolute -top-5 -right-3 w-16 h-16 pointer-events-none drop-shadow-sm rotate-6 z-10"
               />
 
               {/* Top Logo & Header Header */}

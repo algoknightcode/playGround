@@ -40,16 +40,6 @@ export default function Page() {
             <div className="w-full max-w-md backdrop-blur-lg bg-white/80 border border-white/30 shadow-2xl rounded-3xl p-8">
                 {/* LOGO */}
                 <div className="flex flex-col items-center mb-4">
-                    <div className="w-24 h-24">
-                        <Image
-                            src="/logo.webp"
-                            alt="Toy Park"
-                            width={100}
-                            height={100}
-                            priority
-                            className="w-full h-full object-contain"
-                        />
-                    </div>
                     <h1 className="text-3xl font-bold mt-2 text-gray-800">
                         Welcome Back
                     </h1>
