@@ -4,8 +4,8 @@ import CertificationPageContent from '../components/pages/certification';
 import Footer2 from '../components/Footer2';
 
 export const metadata = {
-  title: 'Certifications & Safety | ToyPark',
-  description: 'Explore the rigorous safety, quality, and environmental certifications that make ToyPark products the trusted choice.',
+  title: '',
+  description: '',
 };
 
 export default function CertificationPage() {
