@@ -329,12 +329,12 @@ export default function KidzaNavbar() {
             </div>
 
             {/* ── CENTER: Desktop Nav Links ── */}
-            <div className="hidden xl:flex items-center gap-1">
+            <div className="hidden xl:flex items-center gap-6">
               {desktopNav.map((item) => (
-                <div key={item.label} className="relative group py-2 px-1">
+                <div key={item.label} className="relative group py-2 px-2">
                   <a
                     href={item.href}
-                    className="flex items-center gap-1 font-extrabold text-[#334155] hover:text-[#0284C7] transition-colors text-[15px] leading-none relative"
+                    className="flex items-center gap-1.5 font-extrabold text-[#334155] hover:text-[#0284C7] transition-colors text-lg leading-none relative"
                   >
                     <span className="relative">
                       {item.label}
@@ -342,7 +342,7 @@ export default function KidzaNavbar() {
                       <span className="absolute -bottom-1 left-0 h-[2px] w-0 group-hover:w-full bg-gradient-to-r from-[#62C4D2] to-[#0284C7] rounded-full transition-all duration-300" />
                     </span>
                     {item.children && (
-                      <ChevronDown className="w-3.5 h-3.5 text-[#62C4D2] transition-transform duration-300 group-hover:rotate-180 shrink-0" />
+                      <ChevronDown className="w-4 h-4 text-[#62C4D2] transition-transform duration-300 group-hover:rotate-180 shrink-0" />
                     )}
                   </a>
 
