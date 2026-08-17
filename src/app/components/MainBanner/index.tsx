@@ -155,7 +155,7 @@ const FloatingIcon = ({ src, alt, size, top, left, right, rotation, floatY, dura
       // Custom CSS properties
       ['--float-y' as any]: `-${floatY}px`,
     }}
-    className="absolute z-20 pointer-events-none drop-shadow-md"
+    className="hidden sm:block absolute z-20 pointer-events-none drop-shadow-md"
   >
     <div 
       style={{ 

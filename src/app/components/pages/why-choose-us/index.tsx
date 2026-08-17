@@ -302,7 +302,7 @@ export default function WhyChooseUsPageContent() {
                     {reason.title}
                   </span>
                   <p className="text-white/90 text-sm sm:text-base font-semibold leading-relaxed text-center select-none">
-                    {reason.desc}
+                    {reason.desc} 
                   </p>
                 </div>
               </div>
@@ -363,7 +363,7 @@ export default function WhyChooseUsPageContent() {
               </div>
             </div>
           ))}
-        </div>
+        </div>  
       </section>
 
       {/* ─── 4. QUALITY & SAFETY SECTION ─────────────────── */}
