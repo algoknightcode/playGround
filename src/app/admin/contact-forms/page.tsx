@@ -79,15 +79,20 @@ export default function AdminContactForms() {
         </div>
       ) : (
         <div className="space-y-4">
-          {submissions.map((item) => (
+          {submissions.map((item, index) => (
             <div
               key={item._id}
               className="bg-white border-2 border-[#2D3436] p-6 rounded-2xl shadow-[4px_4px_0px_0px_#2D3436]"
             >
               <div className="flex justify-between items-start flex-wrap gap-2 mb-3">
                 <div>
-                  <h2 className="text-xl font-black text-[#2D3436]">{item.fullName}</h2>
-                  <div className="flex items-center gap-4 text-xs font-bold text-gray-600 mt-1 flex-wrap">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-7 h-7 rounded-xl bg-[#2D3436] text-white text-xs font-black flex items-center justify-center border-2 border-[#2D3436] shadow-[2px_2px_0px_0px_#2D3436] shrink-0">
+                      {index + 1}
+                    </span>
+                    <h2 className="text-xl font-black text-[#2D3436]">{item.fullName}</h2>
+                  </div>
+                  <div className="flex items-center gap-4 text-xs font-bold text-gray-600 mt-2 flex-wrap">
                     <span>📧 {item.email}</span>
                     {item.phone && <span>📞 {item.phone}</span>}
                   </div>
