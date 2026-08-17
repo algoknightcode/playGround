@@ -13,6 +13,7 @@ import {
     X,
     ExternalLink,
     FileText,
+    MessageSquare,
 } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -21,6 +22,7 @@ const navItems = [
     { name: "Categories", href: "/admin/categories", icon: Tags },
     { name: "Add Product", href: "/admin/add-product", icon: PlusSquare },
     { name: "All Products", href: "/admin/products", icon: Package },
+    { name: "Contact Forms", href: "/admin/contact-forms", icon: MessageSquare },
     { name: "Blogs", href: "/admin/blogs", icon: FileText },
 ];
 

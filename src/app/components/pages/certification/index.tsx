@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Image from "next/image";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ShieldCheck, Leaf, CheckCircle, Award, Star, ArrowRight } from "lucide-react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 // ============================================================================
 // 1. DATA (Static Certifications List)
@@ -54,55 +50,55 @@ const CERTIFICATIONS = [
 // 2. HELPER SUB-COMPONENTS
 // ============================================================================
 
-// Floating Stamp Badge
-const StampBadge = React.forwardRef<HTMLDivElement>((props, ref) => (
-  <div
-    ref={ref}
-    className="absolute right-[4%] top-[8%] sm:right-[6%] sm:top-[10%] lg:right-[8%] lg:top-[12%] z-20 pointer-events-none transform-gpu will-change-transform"
-  >
-    <div className="w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full border-[6px] sm:border-[8px] md:border-[10px] border-[#00C4B5] text-[#00C4B5] flex flex-col items-center justify-center bg-white transform -rotate-12">
-      <Star className="w-6 h-6 sm:w-10 sm:h-10 md:w-14 md:h-14 mb-0.5 sm:mb-1 fill-[#00C4B5]" />
-      <span className="font-black text-lg sm:text-2xl md:text-4xl uppercase tracking-widest leading-none">
-        Passed
-      </span>
-      <span className="font-bold text-[9px] sm:text-xs md:text-sm uppercase tracking-widest mt-0.5 sm:mt-1 text-zinc-500">
-        Global Stds
-      </span>
+// Floating Stamp Badge (Pure CSS Animation)
+function StampBadge() {
+  return (
+    <div className="absolute right-[4%] top-[8%] sm:right-[6%] sm:top-[10%] lg:right-[8%] lg:top-[12%] z-20 pointer-events-none transform-gpu animate-stamp-badge">
+      <div className="w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 rounded-full border-[6px] sm:border-[8px] md:border-[10px] border-[#00C4B5] text-[#00C4B5] flex flex-col items-center justify-center bg-white shadow-lg transform -rotate-12">
+        <Star className="w-6 h-6 sm:w-10 sm:h-10 md:w-14 md:h-14 mb-0.5 sm:mb-1 fill-[#00C4B5]" />
+        <span className="font-black text-lg sm:text-2xl md:text-4xl uppercase tracking-widest leading-none">
+          Passed
+        </span>
+        <span className="font-bold text-[9px] sm:text-xs md:text-sm uppercase tracking-widest mt-0.5 sm:mt-1 text-zinc-500">
+          Global Stds
+        </span>
+      </div>
     </div>
-  </div>
-));
-StampBadge.displayName = "StampBadge";
+  );
+}
 
 // Single Certification Card
 function CertCard({ cert, index }: { cert: (typeof CERTIFICATIONS)[0]; index: number }) {
   const isOffset = index % 2 === 1;
 
   return (
-    <div className={`cert-card relative group flex flex-col ${isOffset ? "md:mt-32" : ""}`}>
+    <div className={`relative group flex flex-col hover:-translate-y-1.5 transition-transform duration-300 ${isOffset ? "md:mt-24" : ""}`}>
       {/* Card Image Banner */}
-      <div className="relative w-full h-[280px] sm:h-[340px] md:h-[400px] rounded-[2rem] sm:rounded-[3rem] overflow-hidden">
+      <div className="relative w-full h-[280px] sm:h-[340px] md:h-[380px] rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden border border-zinc-100">
         <Image
           src={cert.image}
           alt={cert.title}
           fill
+          quality={70}
+          loading="lazy"
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover object-center sm:group-hover:scale-105 transition-transform duration-700 ease-out"
+          className="object-cover object-center sm:group-hover:scale-105 transition-transform duration-500 ease-out"
         />
 
         {/* Floating Category Icon */}
         <div
-          className={`absolute top-5 left-5 sm:top-8 sm:left-8 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full ${cert.color} flex items-center justify-center sm:group-hover:rotate-12 transition-transform duration-500`}
+          className={`absolute top-5 left-5 sm:top-8 sm:left-8 w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 rounded-full ${cert.color} flex items-center justify-center sm:group-hover:rotate-12 transition-transform duration-300 shadow-md`}
         >
           {cert.icon}
         </div>
       </div>
 
       {/* Card Text Content */}
-      <div className="mt-5 sm:mt-8 px-2 sm:px-4">
-        <div className="text-xs sm:text-sm font-bold text-[#00C4B5] uppercase tracking-widest mb-1.5 sm:mb-2">
+      <div className="mt-4 sm:mt-6 px-2 sm:px-4">
+        <div className="text-xs sm:text-sm font-bold text-[#00C4B5] uppercase tracking-widest mb-1 sm:mb-2">
           {cert.subtitle}
         </div>
-        <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-900 mb-2 sm:mb-4">
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-zinc-900 mb-2 sm:mb-3">
           {cert.title}
         </h3>
         <p className="text-zinc-600 font-medium text-base sm:text-lg leading-relaxed">
@@ -117,107 +113,10 @@ function CertCard({ cert, index }: { cert: (typeof CERTIFICATIONS)[0]; index: nu
 // 3. MAIN PAGE COMPONENT
 // ============================================================================
 export default function CertificationPageContent() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLDivElement>(null);
-  const heroTextRef = useRef<HTMLDivElement>(null);
-  const stampRef = useRef<HTMLDivElement>(null);
-
-  // Set up GSAP Animations
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    if (prefersReducedMotion) {
-      if (stampRef.current) {
-        gsap.set(stampRef.current, { opacity: 1, scale: 1, rotation: -10 });
-      }
-      return;
-    }
-
-    const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      // Mobile Animation
-      mm.add("(max-width: 767px)", () => {
-        if (stampRef.current) {
-          gsap.fromTo(
-            stampRef.current,
-            { opacity: 0, y: 15, scale: 0.95 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.75,
-              ease: "power2.out",
-              delay: 0.15,
-              onComplete: () => stampRef.current?.classList.add("animate-stamp-float"),
-            }
-          );
-        }
-      });
-
-      // Desktop Animation
-      mm.add("(min-width: 768px)", () => {
-        if (stampRef.current) {
-          gsap.fromTo(
-            stampRef.current,
-            { scale: 4, opacity: 0, rotation: 45 },
-            {
-              scale: 1,
-              opacity: 1,
-              rotation: -10,
-              duration: 1.2,
-              ease: "back.out(1.7)",
-              delay: 0.3,
-              onComplete: () => stampRef.current?.classList.add("animate-stamp-float"),
-            }
-          );
-        }
-
-        // Parallax hero scroll
-        gsap.to(heroTextRef.current, {
-          y: "-25%",
-          opacity: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: heroRef.current,
-            start: "top top",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
-
-        // Stagger cards on scroll
-        const certCards = gsap.utils.toArray<HTMLElement>(".cert-card");
-        certCards.forEach((card, i) => {
-          gsap.from(card, {
-            y: 80,
-            opacity: 0,
-            rotation: i % 2 === 0 ? -4 : 4,
-            ease: "power3.out",
-            duration: 0.9,
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          });
-        });
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <div
-      ref={containerRef}
-      className="bg-white text-zinc-900 font-quicksand selection:bg-[#00C4B5] selection:text-white"
-    >
+    <div className="bg-white text-zinc-900 font-quicksand selection:bg-[#00C4B5] selection:text-white">
       {/* ─── 1. HERO SECTION ─────────────────────────────── */}
-      <section
-        ref={heroRef}
-        className="relative min-h-[70vh] md:min-h-[80vh] py-12 md:py-16 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e0f7fa] to-[#e3f2f7]"
-      >
+      <section className="relative min-h-[65vh] md:min-h-[75vh] py-12 md:py-16 flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e0f7fa] to-[#e3f2f7]">
         {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
@@ -231,14 +130,11 @@ export default function CertificationPageContent() {
         </div>
 
         {/* Hero Content Box */}
-        <div
-          ref={heroTextRef}
-          className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-5xl mt-6 sm:mt-12 bg-white/80 md:bg-white/75 p-6 sm:p-10 md:p-16 rounded-[2rem] sm:rounded-[3rem] border border-white/60"
-        >
-          <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 sm:px-5 sm:py-2 text-[#00C4B5] font-bold text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-8">
+        <div className="relative z-10 flex flex-col items-center text-center px-4 sm:px-6 max-w-5xl mt-6 sm:mt-12 bg-white/85 p-6 sm:p-10 md:p-14 rounded-[2rem] sm:rounded-[3rem] border border-white/60 shadow-xs">
+          <div className="inline-flex items-center gap-2 bg-white rounded-full px-4 py-1.5 sm:px-5 sm:py-2 text-[#00C4B5] font-bold text-xs sm:text-sm tracking-widest uppercase mb-4 sm:mb-6 border border-cyan-100">
             <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" /> Verified Safety Standards
           </div>
-          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-extrabold leading-[1.05] md:leading-[0.95] tracking-tight text-zinc-900 mb-4 sm:mb-8">
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] md:leading-[0.95] tracking-tight text-zinc-900 mb-4 sm:mb-6">
             Tested for <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00C4B5] to-[#FF5A5F]">
               Safety &amp; Quality.
@@ -250,21 +146,21 @@ export default function CertificationPageContent() {
         </div>
 
         {/* Floating Stamp */}
-        <StampBadge ref={stampRef} />
+        <StampBadge />
 
         {/* Scroll Indicator */}
         <div className="hidden sm:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-zinc-600 text-xs font-bold tracking-widest uppercase">
           <div className="w-6 h-10 border-2 border-zinc-500 rounded-full flex items-start justify-center pt-2">
-            <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full opacity-75" />
+            <div className="w-1.5 h-1.5 bg-zinc-600 rounded-full opacity-75 animate-bounce" />
           </div>
           Scroll
         </div>
       </section>
 
       {/* ─── 2. CERTIFICATIONS SECTION ───────────────────── */}
-      <section className="relative pt-8 pb-16 md:pt-12 md:pb-32 px-4 sm:px-6 max-w-7xl mx-auto">
+      <section className="relative pt-8 pb-16 md:pt-12 md:pb-24 px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-3 sm:mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-3 sm:mb-5">
             Our Badges of Honor
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-zinc-500 font-medium max-w-3xl mx-auto">
@@ -273,7 +169,7 @@ export default function CertificationPageContent() {
         </div>
 
         {/* Grid mapping through certifications */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {CERTIFICATIONS.map((cert, index) => (
             <CertCard key={cert.id} cert={cert} index={index} />
           ))}
@@ -318,12 +214,30 @@ export default function CertificationPageContent() {
 
       {/* Floating Stamp CSS Animation */}
       <style jsx>{`
-        @keyframes stampFloat {
-          0%, 100% { transform: translateY(0px) rotate(-12deg); }
-          50% { transform: translateY(-7px) rotate(-8deg); }
+        @keyframes stampPop {
+          0% {
+            transform: scale(3.5) rotate(35deg);
+            opacity: 0;
+          }
+          75% {
+            transform: scale(0.95) rotate(-15deg);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1) rotate(-12deg);
+            opacity: 1;
+          }
         }
-        :global(.animate-stamp-float) {
-          animation: stampFloat 3s ease-in-out infinite !important;
+        @keyframes stampFloat {
+          0%, 100% {
+            transform: translateY(0px) rotate(-12deg);
+          }
+          50% {
+            transform: translateY(-8px) rotate(-7deg);
+          }
+        }
+        :global(.animate-stamp-badge) {
+          animation: stampPop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, stampFloat 3s ease-in-out 0.9s infinite !important;
         }
       `}</style>
     </div>

@@ -1,6 +1,12 @@
 import dynamic from 'next/dynamic';
 import PlayfulHeader from '../components/Navbar';
 import GalleryPageContent from '../components/pages/gallery';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: "",
+  description: "",
+};
 
 const GalleryLightboxZoom = dynamic(() => import('../components/GalleryLightboxZoom'));
 const Footer2 = dynamic(() => import('../components/Footer2'));

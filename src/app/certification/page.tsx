@@ -4,8 +4,8 @@ import CertificationPageContent from '../components/pages/certification';
 import Footer2 from '../components/Footer2';
 
 export const metadata = {
-  title: '',
-  description: '',
+  title: 'certification',
+  description: 'certification',
 };
 
 export default function CertificationPage() {

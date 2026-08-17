@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Mail, MessageSquare, ArrowRight } from 'lucide-react';
 
 interface ContactFormProps {
@@ -17,34 +16,52 @@ export default function ContactForm({ productName = '', className = '' }: Contac
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Thank you! Your inquiry has been submitted successfully.');
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      product: productName,
-      message: ''
-    });
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/contact-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        alert('Thank you! Your inquiry has been submitted successfully.');
+        setFormData({
+          fullName: '',
+          email: '',
+          phone: '',
+          product: productName,
+          message: ''
+        });
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      alert('Error connecting to server. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div id="contact-form-section" className={`bg-[#EAF8F9] border-3 border-[#2D3436] rounded-[2.5rem] p-8 md:p-12 shadow-[8px_8px_0px_0px_#2D3436] relative overflow-hidden ${className}`}>
-      {/* Animated Background Floating Clouds */}
-      <motion.img 
+      {/* Background Floating Clouds (Pure CSS Animated on Desktop, Static on Mobile) */}
+      <img 
         src="/assets/cloud-svgrepo-com.svg" 
         alt="Floating Cloud 1" 
-        className="absolute top-4 left-[-40px] w-32 md:w-44 opacity-35 pointer-events-none z-0"
-        animate={{ x: [0, 80, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+        className="hidden md:block absolute top-4 left-[-40px] w-32 md:w-44 opacity-35 pointer-events-none z-0 animate-cloud-float-slow"
       />
-      <motion.img 
+      <img 
         src="/assets/cloud-svgrepo-com.svg" 
         alt="Floating Cloud 2" 
-        className="absolute bottom-6 right-[-20px] w-36 md:w-48 opacity-35 pointer-events-none z-0"
-        animate={{ x: [0, -70, 0] }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        className="hidden md:block absolute bottom-6 right-[-20px] w-36 md:w-48 opacity-35 pointer-events-none z-0 animate-cloud-float-reverse"
       />
 
       <div className="max-w-3xl mx-auto relative z-10 font-quicksand">
@@ -142,6 +159,23 @@ export default function ContactForm({ productName = '', className = '' }: Contac
           </button>
         </form>
       </div>
+
+      <style jsx>{`
+        @keyframes cloudFloatSlow {
+          0%, 100% { transform: translateX(0px); }
+          50% { transform: translateX(60px); }
+        }
+        @keyframes cloudFloatReverse {
+          0%, 100% { transform: translateX(0px); }
+          50% { transform: translateX(-50px); }
+        }
+        :global(.animate-cloud-float-slow) {
+          animation: cloudFloatSlow 16s ease-in-out infinite;
+        }
+        :global(.animate-cloud-float-reverse) {
+          animation: cloudFloatReverse 20s ease-in-out infinite;
+        }
+      `}</style>
     </div>
   );
 }
