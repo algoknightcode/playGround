@@ -196,8 +196,7 @@ export default function KidzaNavbar() {
             {/* Shimmer overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-[shimmer_3s_linear_infinite]" />
 
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 py-2.5 flex items-center justify-between gap-2 relative z-10">
-
+            <div className="w-full px-4 sm:px-8 lg:px-12 xl:px-16 py-2.5 flex items-center justify-between gap-4 relative z-10">
 
               {/* Animated text */}
               <div className="flex items-center gap-2">
@@ -220,8 +219,8 @@ export default function KidzaNavbar() {
                 </a>
               </div>
 
-              {/* Right: contact + close */}
-              <div className="hidden md:flex items-center gap-4 text-white/90 font-medium shrink-0">
+              {/* Right: contact info */}
+              <div className="hidden md:flex items-center gap-5 text-white/90 font-medium shrink-0">
                 <a href="mailto:kidza@gmail.com" className="flex items-center gap-1 hover:text-white transition-colors">
                   <Mail className="w-3.5 h-3.5" strokeWidth={2.5} />
                   <span className="text-xs">kidza@gmail.com</span>
@@ -235,15 +234,6 @@ export default function KidzaNavbar() {
                   <span className="text-xs">Graaf Floris 22A, NY</span>
                 </span>
               </div>
-
-              {/* Close button - hidden on mobile, visible on sm and up */}
-              <button
-                onClick={() => setAnnouncementVisible(false)}
-                className="hidden sm:flex shrink-0 ml-2 w-5 h-5 rounded-full bg-white/20 items-center justify-center hover:bg-white/30 transition-colors"
-                aria-label="Close announcement"
-              >
-                <X className="w-3 h-3" />
-              </button>
             </div>
           </div>
         )}

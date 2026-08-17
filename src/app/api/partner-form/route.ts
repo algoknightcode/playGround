@@ -8,7 +8,33 @@ export async function POST(req: Request) {
   try {
     await connectDB();
     const body = await req.json();
-    await PartnerForm.create(body);
+
+    const fullName = (body.fullName || '').trim();
+    const email = (body.email || '').trim();
+    const company = (body.company || '').trim();
+    const phone = (body.phone || '').trim();
+    const state = (body.state || '').trim();
+    const city = (body.city || '').trim();
+    const message = (body.message || '').trim();
+
+    if (!fullName || !email || !phone || !state || !city) {
+      return NextResponse.json({ success: false, message: 'All required fields must be filled.' }, { status: 400 });
+    }
+
+    const cleanPhone = phone.replace(/\D/g, '');
+    if (cleanPhone.length !== 10) {
+      return NextResponse.json({ success: false, message: 'Phone number must be exactly 10 digits.' }, { status: 400 });
+    }
+
+    await PartnerForm.create({
+      fullName,
+      email,
+      company,
+      phone,
+      state,
+      city,
+      message,
+    });
     return NextResponse.json({ success: true, message: 'Partner request submitted' });
   } catch (error) {
     return NextResponse.json({ success: false, message: 'Failed to submit' }, { status: 500 });

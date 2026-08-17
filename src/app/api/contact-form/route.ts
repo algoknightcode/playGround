@@ -8,7 +8,31 @@ export async function POST(req: Request) {
   try {
     await connectDB();
     const body = await req.json();
-    await ContactForm.create(body);
+
+    const fullName = (body.fullName || '').trim();
+    const email = (body.email || '').trim();
+    const phone = (body.phone || '').trim();
+    const product = (body.product || '').trim();
+    const message = (body.message || '').trim();
+
+    if (!fullName || !email || !message) {
+      return NextResponse.json({ success: false, message: 'Full name, email, and message are required.' }, { status: 400 });
+    }
+
+    if (phone) {
+      const cleanPhone = phone.replace(/\D/g, '');
+      if (cleanPhone.length !== 10) {
+        return NextResponse.json({ success: false, message: 'Phone number must be exactly 10 digits.' }, { status: 400 });
+      }
+    }
+
+    await ContactForm.create({
+      fullName,
+      email,
+      phone,
+      product,
+      message,
+    });
     return NextResponse.json({ success: true, message: 'Submitted successfully' });
   } catch (error) {
     return NextResponse.json({ success: false, message: 'Failed to submit' }, { status: 500 });

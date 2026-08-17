@@ -89,13 +89,52 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const trimmedFullName = formData.fullName.trim();
+    const trimmedEmail = formData.email.trim();
+    const trimmedCompany = formData.company.trim();
+    const trimmedPhone = formData.phone.trim();
+    const trimmedState = formData.state.trim();
+    const trimmedCity = formData.city.trim();
+    const trimmedMessage = formData.message.trim();
+
+    if (!trimmedFullName) {
+      alert('Please enter a valid Full Name.');
+      return;
+    }
+    if (!trimmedEmail) {
+      alert('Please enter a valid Email Address.');
+      return;
+    }
+    const cleanPhone = trimmedPhone.replace(/\D/g, '');
+    if (cleanPhone.length !== 10) {
+      alert('Phone number must be exactly 10 digits.');
+      return;
+    }
+    if (!trimmedState) {
+      alert('Please enter a valid State.');
+      return;
+    }
+    if (!trimmedCity) {
+      alert('Please enter a valid City.');
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const res = await fetch('/api/partner-form', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          fullName: trimmedFullName,
+          email: trimmedEmail,
+          company: trimmedCompany,
+          phone: trimmedPhone,
+          state: trimmedState,
+          city: trimmedCity,
+          message: trimmedMessage,
+        }),
       });
 
       const data = await res.json();
@@ -284,8 +323,9 @@ export const UpperFooter: React.FC<UpperFooterProps> = ({ className = "mt-16 md:
                       <input 
                         type="tel" 
                         required 
+                        maxLength={10}
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '').slice(0, 10) })}
                         placeholder="Enter 10-digit number" 
                         className="w-full px-4 py-3.5 bg-transparent text-[#0F2942] text-sm font-semibold focus:outline-none placeholder:text-[#0F2942]/50"
                       />
