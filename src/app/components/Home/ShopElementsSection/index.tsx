@@ -84,10 +84,10 @@ export default function ShopElementsSection({
         {/* Background Cloud (Cloud 3) */}
         <motion.div 
           className="absolute top-0 left-0 w-full h-full"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 1.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0, ease: "easeOut" }}
         >
           <img 
             src="/assets/clouds/cloud3.png" 
@@ -105,10 +105,10 @@ export default function ShopElementsSection({
             '--mob-left': config.cat.left,
             '--mob-width': config.cat.width,
           } as React.CSSProperties}
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             whileHover={{ y: -20, scale: 1.08 }}
@@ -130,10 +130,10 @@ export default function ShopElementsSection({
             '--mob-left': config.zebra.left,
             '--mob-width': config.zebra.width,
           } as React.CSSProperties}
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 1.2, delay: 0.95, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             whileHover={{ y: -20, scale: 1.08 }}
@@ -155,10 +155,10 @@ export default function ShopElementsSection({
             '--mob-left': config.mouse.left,
             '--mob-width': config.mouse.width,
           } as React.CSSProperties}
-          initial={{ opacity: 0, y: 60, x: "-50%" }}
+          initial={{ opacity: 0, y: 50, x: "-50%" }}
           whileInView={{ opacity: 1, y: 0, x: "-50%" }}
-          viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 1.2, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             whileHover={{ y: -20, scale: 1.08 }}
@@ -176,10 +176,10 @@ export default function ShopElementsSection({
             '--mob-right': config.giraffe.right,
             '--mob-width': config.giraffe.width,
           } as React.CSSProperties}
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 1.2, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <motion.div
             whileHover={{ y: -20, scale: 1.08 }}
@@ -200,10 +200,10 @@ export default function ShopElementsSection({
             '--mob-bottom': config.foregroundCloud.bottom,
             '--mob-height': config.foregroundCloud.height,
           } as React.CSSProperties}
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-20px" }}
-          transition={{ duration: 1.6, delay: 0, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
         >
           <motion.div
             className="w-full h-full pointer-events-none"
